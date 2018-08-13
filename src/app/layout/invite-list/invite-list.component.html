@@ -1,0 +1,23 @@
+
+<div class="invite-list-page" [@routerTransition]>
+  <div class="row justify-content-md-center">
+      <div class="col-md-4"> 
+      <div *ngIf="myData">
+              <div *ngIf="myData.error==false; else inviteerror">
+                      <ngb-alert type="success" *ngIf="!closed" (close)="closed=true">The Customer List has been generated.</ngb-alert>                  
+              </div>
+              <ng-template #inviteerror>
+                      <ngb-alert type="danger" *ngIf="!closed" (close)="closed=true">{{myData.error_msg}}</ngb-alert> 
+              </ng-template>
+      </div>
+      
+  </div>
+</div>
+<div class="row justify-content-md-center">
+  <div class="col-md-4">        
+      <h1>Customer List</h1> 
+  </div>
+</div>
+
+</div>
+
