@@ -1,0 +1,87 @@
+<div class="login-page" [@routerTransition]>
+
+        <div *ngIf="myData">
+                <div *ngIf="myData.error==false; else loginerror">
+                    <div *ngIf="myData.user.Admin==1; else regularUser">
+                      <h2>Welcome Admin {{myData.user.fname}} {{myData.user.lname}}</h2>
+                    </div>
+                    <ng-template #regularUser>
+                      <h2>Welcome User {{myData.user.fname}} {{myData.user.lname}}</h2>
+                    </ng-template>
+                </div>
+                <ng-template #loginerror><h2>{{myData.error_msg}} </h2></ng-template>
+              </div>
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <img class="user-avatar" src="http://apparel.idw-quickselect.com/wp-content/uploads/sites/3/2017/06/Artboard-1.png" width="250px" class="user-avatar1" />
+            <h1>Registration</h1>
+            <form #newuserForm="ngForm"(ngSubmit)="userRegister(newuserForm.value)" autocomplete="off"> 
+                <div class="form-content">
+                    <div class="form-group">
+                        <input name="fname" [(ngModel)]="model.fname" #signupfname="ngModel" type="text" class="form-control input-underline input-lg" id="fname" placeholder="First Name" required>
+                    </div>                    
+                    <div *ngIf="signupfname.invalid && (signupfname.dirty || signupfname.touched)" class="alert alert-danger">   
+                            <div *ngIf="signupfname.errors.required">First Name is required.</div> 
+                    </div>
+                    <div class="form-group">
+                        <input name="lname" [(ngModel)]="model.lname" #signuplname="ngModel" type="text" class="form-control input-underline input-lg" id="lname" placeholder="Last Name" required>
+                    </div>
+                    <div *ngIf="signuplname.invalid && (signuplname.dirty || signuplname.touched)" class="alert alert-danger">   
+                            <div *ngIf="signuplname.errors.required">Last Name is required.</div> 
+                    </div>
+
+                    <div class="form-group">
+                        <input name="company" [(ngModel)]="model.company" #signupcompany="ngModel" type="text" class="form-control input-underline input-lg" id="company" placeholder="Company Name" required>
+                    </div>
+                    <div *ngIf="signupcompany.invalid && (signupcompany.dirty || signupcompany.touched)" class="alert alert-danger">   
+                            <div *ngIf="signupcompany.errors.required">Company Name is required.</div> 
+                    </div>
+
+                    <div class="form-group">
+                            <input name="phone" [(ngModel)]="model.phone" #signupphone="ngModel" type="text" class="form-control input-underline input-lg" id="phone" placeholder="Phone" required>
+                    </div>
+                    <div *ngIf="signupphone.invalid && (signupphone.dirty || signupphone.touched)" class="alert alert-danger">   
+                            <div *ngIf="signupphone.errors.required">Company Name is required.</div> 
+                    </div>
+
+                    <div class="form-group">
+                        <input name="email" [(ngModel)]="model.email" type="text" class="form-control input-underline input-lg" id="email" placeholder="Email" readonly>
+                    </div>           
+
+
+                    <div ngModelGroup="password" #userPassword="ngModelGroup" required >
+                            <div class="form-group">
+                              
+                              <input type="password"
+                              [(ngModel)]="model.password" name="password" class="form-control input-underline input-lg"
+                                id="inputPassword" placeholder="Password"
+                                minlength ="8" required>
+                            </div>
+                         
+                            <div class="form-group">
+                              
+                              <input type="password" class="form-control input-underline input-lg"
+                              [(ngModel)]="model.password2" name="password2"
+                                id="confirmPassword" placeholder="Confirm Password">
+                            </div>
+                             
+                             
+                            <div *ngIf="(userPassword.invalid|| userPassword.value?.password != userPassword.value?.password2) && (userPassword.touched)"
+                            class="alert alert-danger">
+                             
+                            <div *ngIf = "userPassword.invalid; else nomatch">
+                                Password needs to be more than 8 characters
+                            </div>
+                                <ng-template #nomatch >
+                                Passwords don't match
+                                </ng-template>
+                            </div>
+                        </div>                            
+                </div>
+                <button class="btn rounded-btn" type="submit" [disabled]="!newuserForm.form.valid"> Register </button>&nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/login']"> Log in </a> 
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+
+<div class="invite-page" [@routerTransition]>
+    <div class="row justify-content-md-center">
+        <div class="col-md-4"> 
+        <div *ngIf="myData">
+                <div *ngIf="myData.error==false; else inviteerror">
+                        <ngb-alert type="success" *ngIf="!closed" (close)="closed=true">The Customer has been Invited.</ngb-alert>                  
+                </div>
+                <ng-template #inviteerror>
+                        <ngb-alert type="danger" *ngIf="!closed" (close)="closed=true">{{myData.error_msg}}</ngb-alert> 
+                </ng-template>
+        </div>
+        
+    </div>
+  </div>
+<div class="row justify-content-md-center">
+    <div class="col-md-4">        
+        <h1>Invite Customer</h1>
+        <form #InviteForm="ngForm" (ngSubmit)="userInvite(InviteForm.value); InviteForm.reset() ">   
+            <div class="form-content">
+                <div class="form-group">
+                    <input name="email" email #invitemail="ngModel" [(ngModel)]="email" class="form-control input-underline input-lg" id="email" placeholder="Email" required>
+                </div>   
+                <div *ngIf="invitemail.invalid && (invitemail.dirty || invitemail.touched)" class="alert alert-danger">   
+                <div *ngIf="invitemail.errors.required">Email is required.</div>    
+                <div *ngIf="invitemail.errors.email">Email is not valid.</div>   
+                </div>  
+            </div>
+            <button class="btn rounded-btn" type="submit" [disabled]="!InviteForm.form.valid"> Invite </button>          
+        </form>
+    </div>
+</div>
+
+
+
+
+</div>
+

@@ -1,0 +1,47 @@
+<div class="login-page" [@routerTransition]>
+
+        
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+                <div *ngIf="myData">
+                        <div *ngIf="myData.error==false; else loginerror">
+                            <div *ngIf="myData.user.Admin==1; else regularUser">
+                              <h2>Welcome Admin {{myData.user["First Name"]}} {{myData.user["Last Name"]}}</h2>
+                            </div>
+                            <ng-template #regularUser>
+                              <h2>Welcome User {{myData.user["First Name"]}} {{myData.user["Last Name"]}}</h2>
+                            </ng-template>
+                        </div>
+                        
+                        <ng-template #loginerror ><div class="alert alert-danger"><h2>{{myData.error_msg}} </h2></div></ng-template>
+                        
+                      </div>
+            <img src="http://apparel.idw-quickselect.com/wp-content/uploads/sites/3/2017/06/Artboard-1.png" width="250px" class="user-avatar1" />
+            <h1>Login</h1>
+            <form #LoginForm="ngForm"(ngSubmit)="userLogin(LoginForm.value)">   
+                <div class="form-content">
+                    <div class="form-group">
+                        <input name="email" email #loginmail="ngModel" [(ngModel)]="email" class="form-control input-underline input-lg" id="email" placeholder="Email" required>
+                    </div>
+                    <div *ngIf="loginmail.invalid && (loginmail.dirty || loginmail.touched)" class="alert alert-danger">   
+                            <div *ngIf="loginmail.errors.required">Email is required.</div>    
+                            <div *ngIf="loginmail.errors.email">Email is not valid.</div>  
+                    </div>        
+                    <div class="form-group">
+                        <input name="password" type="password" #loginpass="ngModel" [(ngModel)]="password" class="form-control input-underline input-lg" id="password" placeholder="Password" required>
+                        <div *ngIf="loginpass.invalid && (loginpass.dirty || loginpass.touched)" class="alert alert-danger">
+                                <div *ngIf="loginpass.errors.required">Password is required.</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn rounded-btn" type="submit" [disabled]="!LoginForm.form.valid"> Log in </button>
+                
+            </form>
+        </div>
+    </div>
+
+    
+
+</div>
+
