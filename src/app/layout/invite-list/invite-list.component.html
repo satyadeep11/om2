@@ -14,9 +14,9 @@
   </div>
   <div>    
     
-    <form class="form-inline" #InviteSearch="ngForm" (keydown)="keyDownFunction($event,InviteSearch.value); InviteSearch.reset()">
+    <form class="form-inline" #InviteSearch="ngForm" (ngSubmit)="searchlist(InviteSearch.value); InviteSearch.reset() " style="display: -webkit-inline-box;">
         <input class="form-control" name="email" [(ngModel)]="email" type="text" placeholder="Search using Email" >
-    </form>
+    </form> &nbsp;
     <button type="button" class="btn btn-info" (click)="inviteList()">Full List</button>&nbsp;
     <button type="button" class="btn btn-info" (click)="pendingList()">Pending Invites</button>&nbsp;
     <button type="button" class="btn btn-info" (click)="acceptedList()">Accepted Customers</button>&nbsp;

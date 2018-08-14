@@ -15,8 +15,10 @@ export class InviteListComponent implements OnInit {
     private inviteListService: InviteListService) { }
 
     myData:any;
+    public closed = false;  
 
   ngOnInit() {
+     
     this.inviteListService.invitelist()
      .subscribe(user => {
        // show an alert to tell the user if user was invited
@@ -28,7 +30,7 @@ export class InviteListComponent implements OnInit {
   }
 
   acceptedList(){ 
-    
+    this.closed = false;
     this.inviteListService.acceptedlist()
      .subscribe(user => {
        // show an alert to tell the user if user was invited
@@ -40,7 +42,7 @@ export class InviteListComponent implements OnInit {
    }
 
    pendingList(){ 
-    
+    this.closed = false;
     this.inviteListService.pendinglist()
      .subscribe(user => {
        // show an alert to tell the user if user was invited
@@ -52,7 +54,7 @@ export class InviteListComponent implements OnInit {
    }
 
    inviteList(){ 
-    
+    this.closed = false;
     this.inviteListService.invitelist()
      .subscribe(user => {
        // show an alert to tell the user if user was invited
@@ -63,8 +65,9 @@ export class InviteListComponent implements OnInit {
    );
    }
 
-   keyDownFunction(event,email:EmailString) {
-    if(event.keyCode == 13) {
+
+  searchlist(email:EmailString){
+    this.closed = false;
     this.inviteListService.searchlist(email)
      .subscribe(user => {
        // show an alert to tell the user if user was invited
@@ -73,7 +76,6 @@ export class InviteListComponent implements OnInit {
     },
     error => console.log(error)
    );
-    }
   }
 }
 
