@@ -16,11 +16,20 @@ export class InviteListComponent implements OnInit {
 
     myData:any;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.inviteListService.invitelist()
+     .subscribe(user => {
+       // show an alert to tell the user if user was invited
+       console.log(user);
+       this.myData = user; 
+    },
+    error => console.log(error)
+   );
+  }
 
-  userListInvite(person: InviteUserList){ 
+  acceptedList(){ 
     
-    this.inviteListService.invitelist(person)
+    this.inviteListService.acceptedlist()
      .subscribe(user => {
        // show an alert to tell the user if user was invited
        console.log(user);
@@ -29,10 +38,41 @@ export class InviteListComponent implements OnInit {
     error => console.log(error)
    );
    }
+
+   pendingList(){ 
+    
+    this.inviteListService.pendinglist()
+     .subscribe(user => {
+       // show an alert to tell the user if user was invited
+       console.log(user);
+       this.myData = user; 
+    },
+    error => console.log(error)
+   );
+   }
+
+   inviteList(){ 
+    
+    this.inviteListService.invitelist()
+     .subscribe(user => {
+       // show an alert to tell the user if user was invited
+       console.log(user);
+       this.myData = user; 
+    },
+    error => console.log(error)
+   );
+   }
+
+
 }
 
-export interface InviteUserList {  
+export interface InviteUserList { 
+  fname:string;
+  lname:string;
+  company:string;
+  phone:string; 
   email: string;
   inviteid: string;
+  updated_at:string;
 }
 
