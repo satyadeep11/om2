@@ -63,7 +63,18 @@ export class InviteListComponent implements OnInit {
    );
    }
 
-
+   keyDownFunction(event,email:EmailString) {
+    if(event.keyCode == 13) {
+    this.inviteListService.searchlist(email)
+     .subscribe(user => {
+       // show an alert to tell the user if user was invited
+       console.log(user);
+       this.myData = user; 
+    },
+    error => console.log(error)
+   );
+    }
+  }
 }
 
 export interface InviteUserList { 
@@ -76,3 +87,6 @@ export interface InviteUserList {
   updated_at:string;
 }
 
+export interface EmailString {  
+  email: string;
+}

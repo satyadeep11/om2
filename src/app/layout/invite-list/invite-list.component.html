@@ -11,13 +11,17 @@
               </ng-template>
       </div>      
   </div>
-</div>
-<div>    
+  </div>
+  <div>    
+    
+    <form class="form-inline" #InviteSearch="ngForm" (keydown)="keyDownFunction($event,InviteSearch.value); InviteSearch.reset()">
+        <input class="form-control" name="email" [(ngModel)]="email" type="text" placeholder="Search using Email" >
+    </form>
     <button type="button" class="btn btn-info" (click)="inviteList()">Full List</button>&nbsp;
     <button type="button" class="btn btn-info" (click)="pendingList()">Pending Invites</button>&nbsp;
-    <button type="button" class="btn btn-info" (click)="acceptedList()">Accepted Customers</button>
-</div>
-<div class="row justify-content-md-center">
+    <button type="button" class="btn btn-info" (click)="acceptedList()">Accepted Customers</button>&nbsp;
+  </div>
+  <div class="row justify-content-md-center">
     
   <div class="col-md-5">        
       <h1 class="row justify-content-md-center">Customer List</h1> <br>
@@ -44,17 +48,6 @@
 
     </table>
   </div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
+  </div>
 </div>
 
