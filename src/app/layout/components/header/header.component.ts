@@ -33,8 +33,10 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
+        if(sessionStorage.getItem("fname")){
        this.fname= sessionStorage.getItem("fname").toString();
        this.lname= sessionStorage.getItem("lname").toString();
+    }
     }
 
     isToggled(): boolean {

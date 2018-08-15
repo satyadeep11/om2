@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-dashboard',
@@ -11,7 +12,7 @@ export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
 
-    constructor() {
+    constructor(public router: Router) {
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg',
@@ -52,7 +53,17 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        if(sessionStorage.getItem("admin")){
+
+        }else{
+            sessionStorage.removeItem('isLoggedin');
+            sessionStorage.removeItem('admin');
+            sessionStorage.removeItem('fname');
+            sessionStorage.removeItem('lname');
+            this.router.navigateByUrl('/login');
+        }
+    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);
