@@ -7,9 +7,10 @@ const routes: Routes = [
         path: '',
         component: CustomerLayoutComponent,
         children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
+            { path: '', redirectTo: 'home', pathMatch: 'prefix' },
+           
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
-
+            
         ]
     }
 ];
@@ -18,4 +19,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class CustomerLayoutRoutingModule {}
+export class CustomerLayoutRoutingModule {} 

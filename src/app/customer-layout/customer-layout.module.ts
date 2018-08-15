@@ -5,6 +5,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CustomerLayoutRoutingModule } from './customer-layout-routing.module';
 import { CustomerLayoutComponent } from './customer-layout.component';
+import { HeaderComponent } from './componenets/header/header.component';
 
 
 @NgModule({
@@ -14,6 +15,6 @@ import { CustomerLayoutComponent } from './customer-layout.component';
     TranslateModule,
     NgbDropdownModule.forRoot()
   ],
-  declarations: [CustomerLayoutComponent]
+  declarations: [CustomerLayoutComponent, HeaderComponent]
 })
 export class CustomerLayoutModule { }
