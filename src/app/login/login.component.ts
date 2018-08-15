@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('fname', this.myData.user['First Name']);
             sessionStorage.setItem('lname', this.myData.user['Last Name']);
             sessionStorage.setItem('uuid', this.myData.uuid);
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/home');
           }
           else if(this.myData.user.Admin==1){
             sessionStorage.setItem('isLoggedin', 'true');

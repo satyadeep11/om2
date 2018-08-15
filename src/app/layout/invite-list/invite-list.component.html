@@ -12,19 +12,19 @@
       </div>      
   </div>
   </div>
-  <div>    
-    
-    <form class="form-inline" #InviteSearch="ngForm" (ngSubmit)="searchlist(InviteSearch.value); InviteSearch.reset() " style="display: -webkit-inline-box;">
-        <input class="form-control" name="email" [(ngModel)]="email" type="text" placeholder="Search using Email" >
-    </form> &nbsp;
-    <button type="button" class="btn btn-info" (click)="inviteList()">Full List</button>&nbsp;
-    <button type="button" class="btn btn-info" (click)="pendingList()">Pending Invites</button>&nbsp;
-    <button type="button" class="btn btn-info" (click)="acceptedList()">Accepted Customers</button>&nbsp;
-  </div>
+ 
   <div class="row justify-content-md-center">
     
   <div class="col-md-5">        
-      <h1 class="row justify-content-md-center">Customer List</h1> <br>
+        <div>  
+                <form class="form-inline" #InviteSearch="ngForm" (ngSubmit)="searchlist(InviteSearch.value); InviteSearch.reset() " style="display: -webkit-inline-box;">
+                    <input class="form-control" name="email" [(ngModel)]="email" type="text" placeholder="Search using Email" >
+                </form> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-info" (click)="inviteList()">Full List</button>&nbsp;
+                <button type="button" class="btn btn-info" (click)="pendingList()">Pending Invites</button>&nbsp;
+                <button type="button" class="btn btn-info" (click)="acceptedList()">Accepted Customers</button>&nbsp;
+        </div>
+        <br> <h1 class="row justify-content-md-center">Customer List</h1> <br>
 
     <!-- HTML table for our list of product records -->
     <table class='table table-hover table-responsive table-bordered'>
