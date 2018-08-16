@@ -5,7 +5,12 @@
       <div class="col-md-5"> 
       <div *ngIf="myData">
               <div *ngIf="myData.error==false; else inviteerror">
-                      <ngb-alert type="success" *ngIf="!closed" (close)="closed=true">The Customer List has been generated.</ngb-alert>                  
+                    <div *ngIf="myData.success_msg; else messagecommon">
+                      <ngb-alert type="success" *ngIf="!closed" (close)="closed=true">{{myData.success_msg}}</ngb-alert>    
+                    </div>     
+                    <ng-template #messagecommon>
+                        <ngb-alert type="success" *ngIf="!closed" (close)="closed=true">The Customer List has been generated.</ngb-alert>
+                    </ng-template>         
               </div>
               <ng-template #inviteerror>
                       <ngb-alert type="danger" *ngIf="!closed" (close)="closed=true">{{myData.error_msg}}</ngb-alert> 
@@ -16,7 +21,7 @@
  
   <div class="row justify-content-md-center">
     
-  <div class="col-md-5">        
+  <div class="col-md-6">        
         <div>  
                 <form class="form-inline" #InviteSearch="ngForm" (ngSubmit)="searchlist(InviteSearch.value); InviteSearch.reset() " style="display: -webkit-inline-box;">
                     <input class="form-control" name="email" [(ngModel)]="email" type="text" placeholder="Search using Email" >
@@ -36,6 +41,7 @@
             <th>Company Name</th>
             <th>Phone Number</th>
             <th>Email</th>
+            <th>Actions</th>
         </tr>
 
         <!-- Use *ngFor directive to loop throught our list of products. -->
@@ -44,11 +50,23 @@
             <td>{{user.lname}}</td>
             <td>{{user.company}}</td>
             <td>{{user.phone}}</td>
-            <td>{{user.email}}</td>            
+            <td>{{user.email}}</td>  
+            <td>
+                    <!-- edit customer button -->
+                    
+                    <span><button (click)="updateCustomer(user.unique_id)" class='btn btn-info '>
+                         Edit Customer
+                    </button>
+ 
+                    <!-- delete customer button -->
+                    <button (click)="deleteCustomer(user.unique_id)" class='btn btn-danger '>
+                       Delete
+                    </button></span>
+            </td>         
         </tr>
 
     </table>
   </div>
   </div>
-</div>
+</div> 
 

@@ -77,6 +77,20 @@ export class InviteListComponent implements OnInit {
     error => console.log(error)
    );
   }
+
+  deleteCustomer(customerid:CustomerUID){
+    
+    this.closed = false;
+    this.inviteListService.deleteuser(customerid)
+     .subscribe(user => {
+       // show an alert to tell the user if user was invited
+       console.log(user);
+       this.myData = user; 
+    },
+    error => console.log(error)
+   );
+       
+  }
 }
 
 export interface InviteUserList { 
@@ -92,3 +106,8 @@ export interface InviteUserList {
 export interface EmailString {  
   email: string;
 }
+
+export interface CustomerUID {  
+  customerid:string;
+}
+
