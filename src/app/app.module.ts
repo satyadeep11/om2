@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { HttpModule } from '@angular/http';
+import { MatInputModule, MatButtonModule,MatMenuModule, MatIconModule, MatCardModule } from '@angular/material';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -30,6 +31,11 @@ export const createTranslateLoader = (http: HttpClient) => {
         ReactiveFormsModule,
         HttpModule,        
         BrowserAnimationsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatMenuModule, 
+        MatIconModule, 
+        MatCardModule,
         HttpClientModule,
         TranslateModule.forRoot({
             loader: {

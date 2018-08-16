@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { OrdersComponent } from './orders.component';
 
 import { OrdersRoutingModule } from './orders-routing.module';
+import { PageHeaderModule } from '../../shared';
 
 @NgModule({
   imports: [
-    CommonModule,OrdersRoutingModule
+    CommonModule,OrdersRoutingModule,PageHeaderModule
   ],
   declarations: [OrdersComponent]
 })

@@ -21,7 +21,7 @@
  
   <div class="row justify-content-md-center">
     
-  <div class="col-md-6">        
+  <div class="col-md-7">        
         <div>  
                 <form class="form-inline" #InviteSearch="ngForm" (ngSubmit)="searchlist(InviteSearch.value); InviteSearch.reset() " style="display: -webkit-inline-box;">
                     <input class="form-control" name="email" [(ngModel)]="email" type="text" placeholder="Search using Email" >
@@ -33,7 +33,7 @@
         <br> <h1 class="row justify-content-md-center">Customer List</h1> <br>
 
     <!-- HTML table for our list of product records -->
-    <table class='table table-hover table-responsive table-bordered'>
+    <table class='table table-hover table-responsive'>
 
         <tr>
             <th>First name</th>
@@ -51,17 +51,17 @@
             <td>{{user.company}}</td>
             <td>{{user.phone}}</td>
             <td>{{user.email}}</td>  
-            <td>
+            <td id="actions_td">
                     <!-- edit customer button -->
                     
-                    <span><button (click)="updateCustomer(user.unique_id)" class='btn btn-info '>
+                    <button (click)="updateCustomer(user.unique_id)" class='btn btn-info '>
                          Edit Customer
-                    </button>
+                    </button>&nbsp;
  
                     <!-- delete customer button -->
                     <button (click)="deleteCustomer(user.unique_id)" class='btn btn-danger '>
                        Delete
-                    </button></span>
+                    </button>
             </td>         
         </tr>
 
