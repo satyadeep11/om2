@@ -35,13 +35,14 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn rounded-btn" type="submit" [disabled]="!LoginForm.form.valid"> Log in </button>
-                
+                <button class="btn rounded-btn" type="submit" [disabled]="!LoginForm.form.valid"> Log in </button><br><br><br>
             </form>
+
+            <a (click)="forgotPassword();" [routerLink]=""> Forgot Password </a> 
+                <br><br>
+                <app-forgot-password *ngIf="loadComponent"></app-forgot-password>
         </div>
     </div>
-
-    
 
 </div>
 

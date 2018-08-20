@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
     constructor(public router: Router,
         private authService: AuthService) {}
     myData:any;
+    loadComponent = false;
     ngOnInit() {}
 
     onLoggedin(email:string,password:string) {
@@ -50,6 +51,12 @@ export class LoginComponent implements OnInit {
        },
        error => console.log(error)
       );
+      }
+      forgotPassword() {
+          if(this.loadComponent == true)
+        this.loadComponent = false;  
+        else      
+        this.loadComponent = true;
       }
       
 }
