@@ -1,57 +1,22 @@
+<div class="basic-container">
 
-<button mat-raised-button color="primary" [matMenuTriggerFor]="apparels" >Apparels</button> 
-<button mat-raised-button color="primary" [matMenuTriggerFor]="accessories" >Accessories</button>
-<button mat-raised-button color="primary" [matMenuTriggerFor]="fish" >Hard Goods</button>
-<br><br>
+  <mat-toolbar class="menu-bar mat-elevation-z1">
+    <span *ngFor="let item of navItems">
+      <!-- Handle branch node buttons here -->
+      <span *ngIf="item.children && item.children.length > 0">
+        <button mat-button [matMenuTriggerFor]="menu.childMenu"
+        [disabled]="item.disabled">
+          {{item.displayName}}
+        </button>
+        <app-menu-item #menu [items]="item.children"></app-menu-item>
+      </span>
+      <!-- Leaf node buttons here -->
+      <span *ngIf="!item.children || item.children.length === 0">
+        <button mat-button color="primary" [routerLink]="item.route">
+          {{item.displayName}}
+        </button>
+      </span>
+    </span>
+  </mat-toolbar>
 
-<mat-menu #apparels="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="tshirts">T Shirts</button>
-  <button mat-menu-item [matMenuTriggerFor]="shorts">Shorts</button>
-</mat-menu>
-
-
-<mat-menu #accessories="matMenu">
-  <button mat-menu-item>Regular</button>
-  <button mat-menu-item [matMenuTriggerFor]="shorts">Special</button>
-</mat-menu>
-
-<mat-menu #tshirts="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="fish">Item1</button>
-  <button mat-menu-item [matMenuTriggerFor]="amphibians">Item2</button>
-  <button mat-menu-item [matMenuTriggerFor]="reptiles">Item3</button>
-  <button mat-menu-item>Item4</button>
-  <button mat-menu-item>Item5</button>
-</mat-menu>
-
-<mat-menu #shorts="matMenu">
-  <button mat-menu-item>Item0</button>
-  <button mat-menu-item>Item1</button>
-  <button mat-menu-item>Item2</button>
-  <button mat-menu-item>Item3</button>
-  <button mat-menu-item>Item4</button>
-  <button mat-menu-item>Item5</button>
-  <button mat-menu-item>Item6</button>
-  <button mat-menu-item>Item7</button>
-</mat-menu>
-
-<mat-menu #fish="matMenu">
-  <button mat-menu-item>sub item 0</button>
-  <button mat-menu-item>sub item 1</button>
-  <button mat-menu-item>sub item 2</button>
-  <button mat-menu-item>sub item 3</button>
-
-</mat-menu>
-
-<mat-menu #amphibians="matMenu">
-  <button mat-menu-item>sub item 0</button>
-  <button mat-menu-item>sub item 1</button>
-  <button mat-menu-item>sub item 2</button>
-  <button mat-menu-item>sub item 3</button>
-</mat-menu>
-
-<mat-menu #reptiles="matMenu">
-  <button mat-menu-item>sub item 0</button>
-  <button mat-menu-item>sub item 1</button>
-  <button mat-menu-item>sub item 2</button>
-  <button mat-menu-item>sub item 3</button>
-</mat-menu>
+</div>

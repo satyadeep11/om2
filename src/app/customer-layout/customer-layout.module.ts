@@ -8,7 +8,8 @@ import { CustomerLayoutComponent } from './customer-layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './menu/menu.component';
 
-import { MatInputModule, MatButtonModule,MatMenuModule, MatIconModule, MatCardModule } from '@angular/material';
+import { MatInputModule, MatButtonModule,MatMenuModule, MatIconModule, MatToolbarModule, MatCardModule } from '@angular/material';
+import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 
 
 
@@ -20,10 +21,11 @@ import { MatInputModule, MatButtonModule,MatMenuModule, MatIconModule, MatCardMo
     MatInputModule,
         MatButtonModule,
         MatMenuModule, 
-        MatIconModule, 
+        MatIconModule,
+        MatToolbarModule, 
         MatCardModule,
     NgbDropdownModule.forRoot()
   ],
-  declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent]
+  declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent, MenuItemComponent]
 })
 export class CustomerLayoutModule { }
