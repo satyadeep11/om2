@@ -10,6 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 
 import { MatInputModule, MatButtonModule,MatMenuModule, MatIconModule, MatToolbarModule, MatCardModule } from '@angular/material';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -26,6 +27,6 @@ import { MenuItemComponent } from './menu/menu-item/menu-item.component';
         MatCardModule,
     NgbDropdownModule.forRoot()
   ],
-  declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent, MenuItemComponent]
+  declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent, MenuItemComponent, FooterComponent]
 })
 export class CustomerLayoutModule { }
