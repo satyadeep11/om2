@@ -7,9 +7,10 @@ const routes: Routes = [
         path: '',
         component: CustomerLayoutComponent,
         children: [
-            { path: '', redirectTo: 'home', pathMatch: 'prefix' },
-           
-            { path: 'home', loadChildren: './home/home.module#HomeModule' }
+            
+            { path: '', redirectTo: 'home', pathMatch: 'prefix' },           
+            { path: 'home', loadChildren: './home/home.module#HomeModule' },
+            { path: 'products', loadChildren: './products/products.module#ProductsModule' }
             
         ]
     }
