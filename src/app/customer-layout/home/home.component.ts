@@ -8,10 +8,11 @@ import { routerTransition } from '../../router.animations';
   animations: [routerTransition()]
 })
 export class HomeComponent implements OnInit {
-
+  public id: any;
   constructor() { }
 
   ngOnInit() {
+    this.id = 56;
   }
 
 } 

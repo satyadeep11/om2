@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-
-  constructor() { }
+  id: any;
+  private sub: any;
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.sub = this.route.params.subscribe(params => {
+      this.id = +params['id']; // (+) converts string 'id' to a number
+      console.log(this.id);
+      //  action to load the product details here.
+   });
   }
 
 }

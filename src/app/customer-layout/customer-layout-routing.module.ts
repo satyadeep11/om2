@@ -11,7 +11,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'prefix' },           
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
             { path: 'products', loadChildren: './products/products.module#ProductsModule' },            
-            { path: 'product-detail', loadChildren: './product-detail/product-detail.module#ProductDetailModule' },            
+            { path: 'product-detail/:id', loadChildren: './product-detail/product-detail.module#ProductDetailModule' },            
             { path: 'cart', loadChildren: './cart/cart.module#CartModule' },  
             { path: 'checkout', loadChildren: './checkout/checkout.module#CheckoutModule' }
             
