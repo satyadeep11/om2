@@ -33,6 +33,13 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
+        if(sessionStorage.getItem("admin")){
+            
+        }
+        else{
+          this.router.navigateByUrl('/home');
+        }
+        
         if(sessionStorage.getItem("fname")){
        this.fname= sessionStorage.getItem("fname").toString();
        this.lname= sessionStorage.getItem("lname").toString();

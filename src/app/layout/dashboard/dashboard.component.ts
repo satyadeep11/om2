@@ -54,15 +54,7 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(sessionStorage.getItem("admin")){
-
-        }else{
-            sessionStorage.removeItem('isLoggedin');
-            sessionStorage.removeItem('admin');
-            sessionStorage.removeItem('fname');
-            sessionStorage.removeItem('lname');
-            this.router.navigateByUrl('/login');
-        }
+        
     }
 
     public closeAlert(alert: any) {

@@ -14,7 +14,17 @@ export class LoginComponent implements OnInit {
         private authService: AuthService) {}
     myData:any;
     loadComponent = false;
-    ngOnInit() {}
+    ngOnInit() {
+      if(sessionStorage.getItem("isLoggedin")){
+        if(sessionStorage.getItem("admin")){
+          this.router.navigateByUrl('/dashboard');
+        }
+        else{
+          this.router.navigateByUrl('/home');
+        }
+      
+      }
+    }
 
     onLoggedin(email:string,password:string) {
         this.router.navigateByUrl('/access-denied');//place login logic here
