@@ -50,7 +50,7 @@ var AccessDeniedRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"error-page\" [@routerTransition]>\n  <div class=\"row justify-content-md-center\">\n      <div class=\"col-md-4\">\n          <img src=\"http://apparel.idw-quickselect.com/wp-content/uploads/sites/3/2017/06/Artboard-1.png\" width=\"250px\" class=\"user-avatar1\" />\n          <h1>Access Denied</h1>   \n          <div class=\"form-content\"></div>\n          <a class=\"btn rounded-btn\"  [routerLink]=\"['/login']\"> Try Again </a>\n                &nbsp;\n          <a class=\"btn rounded-btn\" [routerLink]=\"['/signup']\">Register</a>       \n      </div>\n  </div>\n</div>"
+module.exports = "<div class=\"error-page\" [@routerTransition]>\r\n  <div class=\"row justify-content-md-center\">\r\n      <div class=\"col-md-4\">\r\n          <img src=\"http://apparel.idw-quickselect.com/wp-content/uploads/sites/3/2017/06/Artboard-1.png\" width=\"250px\" class=\"user-avatar1\" />\r\n          <h1>Access Denied</h1>   \r\n          <div class=\"form-content\"></div>\r\n          <a class=\"btn rounded-btn\"  [routerLink]=\"['/login']\"> Try Again </a>\r\n                &nbsp;\r\n          <a class=\"btn rounded-btn\" [routerLink]=\"['/signup']\">Register</a>       \r\n      </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 

@@ -50,7 +50,7 @@ var OrdersRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"invite-list-page\" [@routerTransition]>\n    <app-page-header [heading]=\"'Orders'\" [icon]=\"'fa-shopping-cart'\"></app-page-header>\n    <p>\n  orders works!\n</p>\n</div>\n"
+module.exports = "<div class=\"invite-list-page\" [@routerTransition]>\r\n    <app-page-header [heading]=\"'Orders'\" [icon]=\"'fa-shopping-cart'\"></app-page-header>\r\n    <p>\r\n  orders works!\r\n</p>\r\n</div>\r\n"
 
 /***/ }),
 
