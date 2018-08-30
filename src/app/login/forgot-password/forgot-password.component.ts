@@ -10,6 +10,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(private forgotService: ForgotService) { }
   myData:any;
+  email:any;
   public closed = false;
 
   ngOnInit() {

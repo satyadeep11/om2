@@ -15,6 +15,7 @@ export class InviteComponent implements OnInit {
               private inviteService: InviteService) { }
       myData:any;
       public closed = false;  
+      email: any;
 
   ngOnInit() {}
 

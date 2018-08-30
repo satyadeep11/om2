@@ -15,6 +15,7 @@ export class InviteListComponent implements OnInit {
     private inviteListService: InviteListService) { }
 
     myData:any;
+    email:any;
     public closed = false;  
 
   ngOnInit() {

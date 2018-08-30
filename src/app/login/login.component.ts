@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
     constructor(public router: Router,
         private authService: AuthService) {}
     myData:any;
+    email:any;
+    password:any;
     loadComponent = false;
     ngOnInit() {
       if(sessionStorage.getItem("isLoggedin")){
