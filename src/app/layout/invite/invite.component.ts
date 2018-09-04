@@ -21,7 +21,7 @@ export class InviteComponent implements OnInit {
 
   userInvite(person: InviteUser){
    this.closed = false; 
-   person.inviteid=sessionStorage.getItem("uuid").toString();; 
+   person.inviteid=sessionStorage.getItem("uuid").toString(); 
 
     this.inviteService.invite(person)
     .subscribe(user => {
