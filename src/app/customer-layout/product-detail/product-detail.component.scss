@@ -5,6 +5,37 @@
   * 	Template Style 
   *
   * ======================================================= */
+      /* Tooltip container */
+    .size {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted #ffc300; /* If you want dots under the hoverable text */
+    }
+
+    /* Tooltip text */
+    .size .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      bottom: 100%;
+      left: 50%; 
+      margin-left: -60px;
+      background-color: #ffc300;
+      color: #fff;
+      text-align: center;
+      padding: 5px 0;
+      border-radius: 6px;
+
+      /* Position the tooltip text - see examples below! */
+      position: absolute;
+      z-index: 1;
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .size:hover .tooltiptext {
+      visibility: visible;
+    }
+  
+  
   body {
     font-family: "Roboto", Arial, sans-serif;
     font-weight: 300;

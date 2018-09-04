@@ -6,13 +6,11 @@
             <div class="row">
               <div class="col-md-5">
                 <div class="product-entry">
-                  <div class="product-img" style="background-image: url(assets/images/slider1.jpg);">
-                    <p class="tag"><span class="sale">Sale</span></p>
-                  </div>
+                  <div class="product-img" id="product-img" ></div>
                   <div class="thumb-nail">
-                    <a href="#" class="thumb-img" style="background-image: url(assets/images/slider1.jpg);"></a>
-                    <a href="#" class="thumb-img" style="background-image: url(assets/images/slider1.jpg);"></a>
-                    <a href="#" class="thumb-img" style="background-image: url(assets/images/slider1.jpg);"></a>
+                    <a href="#" class="thumb-img" id="thumb-img-1" ></a>
+                    <a href="#" class="thumb-img" id="thumb-img-2" ></a>
+                    <a href="#" class="thumb-img" id="thumb-img-3" ></a>
                   </div>
                 </div>
               </div>
@@ -32,30 +30,24 @@
                   </p>
                   <p>{{myData?.product.ProductDesc1}}</p>
                   
-                  <div class="color-wrap">
-                    <p class="color-desc">
-                      Color: 
-                      <a href="#" class="color color-1"></a>
-                      <a href="#" class="color color-2"></a>
-                      <a href="#" class="color color-3"></a>
-                      <a href="#" class="color color-4"></a>
-                      <a href="#" class="color color-5"></a>
+                  <div class="size-wrap">
+                    <p class="size-desc">
+                      Color: <br>
+                      <a *ngFor=" let item of myData?.variants;" class="size" (click)="updateImage(item.ProductID,item.ImageFile,'product-img')">{{item.A2_Short}} <span class="tooltiptext">{{item.A2_Label}}</span></a>
                     </p>
                   </div>
                   <div class="size-wrap">
                     <p class="size-desc">
-                      Size: 
-                      <a href="#" class="size size-1">xs</a>
-                      <a href="#" class="size size-2">s</a>
-                      <a href="#" class="size size-3">m</a>
-                      <a href="#" class="size size-4">l</a>
-                      <a href="#" class="size size-5">xl</a>
-                      <a href="#" class="size size-5">xxl</a>
+                      Sizes:<br> 
+                      <a *ngFor=" let item of myData?.sizes;" class="size">{{item.A1_Short}} <span class="tooltiptext">{{item.A1_Label}}</span></a>                 
                     </p>
+                    <p style="font-size: 13px;color: #b3b3b3;">
+                        All available sizes will be made available in your store.
+                      </p>
                   </div>
                   <p>SKU: {{myData?.product.ProductBaseSKU}}</p>
 
-                  <p><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</a></p>
+                  <p><a [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</a></p>
                 </div>
               </div>
             </div>
@@ -73,14 +65,11 @@
               </ul>
               <div class="tab-content">
                 <div id="description" class="tab-pane fade in active">
-                  <p>{{myData?.product.ProductDesc1}}</p>>
-                  
+                  <p>{{myData?.product.ProductDesc1}}</p>
                 </div>
                 <div id="manufacturer" class="tab-pane fade">
-
                 </div>
-                <div id="review" class="tab-pane fade">
-                   
+                <div id="review" class="tab-pane fade">                   
                 </div>
               </div>
             </div>
