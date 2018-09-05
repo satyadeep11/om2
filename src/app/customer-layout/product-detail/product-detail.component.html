@@ -20,14 +20,14 @@
                   <h3>{{myData?.product.ProductName}}</h3>
                   <p class="price">
                     <span>{{myData?.product.Price | currency:'USD'}}</span> 
-                    <span class="rate text-right">
+                    <!-- <span class="rate text-right">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star-half"></i>
                       (74 Rating)
-                    </span>
+                    </span> -->
                   </p>
                   <p>{{myData?.product.ProductDesc1}}</p>
                   
@@ -43,7 +43,7 @@
                       <a *ngFor=" let item of myData?.sizes;" class="size">{{item.A1_Short||"None"}} <span class="tooltiptext">{{item.A1_Label||"None"}}</span></a>                 
                     </p>
                     <p style="font-size: 13px;color: #b3b3b3;">
-                        All available sizes will be made available in your store.
+                        All the above sizes will be made available in your store.
                       </p>
                   </div>
                   <p>SKU: {{myData?.product.ProductBaseSKU}}</p>

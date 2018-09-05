@@ -50,8 +50,10 @@ export class ProductDetailComponent implements OnInit {
   public updateImage(product,image,imageid){
     if(image){
       var inputElement = <HTMLInputElement>document.getElementById(imageid);
-      var url="https://www.afhsgear.com/sites/998/products/998_";
-      inputElement.style.backgroundImage = 'url('+url+ product +'_'+ image + ')';
+      if(document.getElementById(imageid)){
+        var url="https://www.afhsgear.com/sites/998/products/998_";
+        inputElement.style.backgroundImage = 'url('+url+ product +'_'+ image + ')';
+      }
     }
   }
 
