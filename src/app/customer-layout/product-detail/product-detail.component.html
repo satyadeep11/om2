@@ -8,9 +8,10 @@
                 <div class="product-entry">
                   <div class="product-img" id="product-img" ></div>
                   <div class="thumb-nail">
-                    <a href="#" class="thumb-img" id="thumb-img-1" ></a>
-                    <a href="#" class="thumb-img" id="thumb-img-2" ></a>
-                    <a href="#" class="thumb-img" id="thumb-img-3" ></a>
+                    <a class="thumb-img" id="thumb-img-1" onclick="document.getElementById('product-img').style.backgroundImage =document.getElementById('thumb-img-1').style.backgroundImage ;"></a>
+                    <a class="thumb-img" id="thumb-img-2" onclick="document.getElementById('product-img').style.backgroundImage =document.getElementById('thumb-img-2').style.backgroundImage ;"></a>
+                    <a class="thumb-img" id="thumb-img-3" onclick="document.getElementById('product-img').style.backgroundImage =document.getElementById('thumb-img-3').style.backgroundImage ;"></a>
+                    
                   </div>
                 </div>
               </div>
@@ -33,13 +34,13 @@
                   <div class="size-wrap">
                     <p class="size-desc">
                       Color: <br>
-                      <a *ngFor=" let item of myData?.variants;" class="size" (click)="updateImage(item.ProductID,item.ImageFile,'product-img')">{{item.A2_Short}} <span class="tooltiptext">{{item.A2_Label}}</span></a>
+                      <a *ngFor=" let item of myData?.variants;" class="size" (click)="updateImage(item.ProductID,item.ImageFile,'product-img')">{{(item.A2_Short)||"None"}} <span class="tooltiptext">{{item.A2_Label||"None"}}</span></a>
                     </p>
                   </div>
                   <div class="size-wrap">
                     <p class="size-desc">
                       Sizes:<br> 
-                      <a *ngFor=" let item of myData?.sizes;" class="size">{{item.A1_Short}} <span class="tooltiptext">{{item.A1_Label}}</span></a>                 
+                      <a *ngFor=" let item of myData?.sizes;" class="size">{{item.A1_Short||"None"}} <span class="tooltiptext">{{item.A1_Label||"None"}}</span></a>                 
                     </p>
                     <p style="font-size: 13px;color: #b3b3b3;">
                         All available sizes will be made available in your store.

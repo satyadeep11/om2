@@ -26,13 +26,23 @@ export class ProductDetailComponent implements OnInit {
         this.myData = user; 
         console.log(this.myData.variants[0].ImageFile);
         var i=0;
+        if(this.myData.variants[i].ImageFile==null){
         while(this.myData.variants[i].ImageFile==null){
-          console.log(this.myData.variants[i].ImageFile);
+          console.log(this.myData.variants[i].ImageFile);          
           i++;
           this.updateImage(this.myData.variants[i].ProductID, this.myData.variants[i].ImageFile,'product-img');
-          this.updateImage(this.myData.variants[i+1].ProductID, this.myData.variants[i+1].ImageFile,'thumb-img-1');
-          this.updateImage(this.myData.variants[i+2].ProductID, this.myData.variants[i+2].ImageFile,'thumb-img-2');
-          this.updateImage(this.myData.variants[i+3].ProductID, this.myData.variants[i+3].ImageFile,'thumb-img-3');
+          this.updateImage(this.myData.variants[i].ProductID, this.myData.variants[i].ImageFile,'thumb-img-1');
+          this.updateImage(this.myData.variants[i+1].ProductID, this.myData.variants[i+1].ImageFile,'thumb-img-2');
+          this.updateImage(this.myData.variants[i+2].ProductID, this.myData.variants[i+2].ImageFile,'thumb-img-3');
+        }
+      }
+      else{
+        i=0;
+        this.updateImage(this.myData.variants[0].ProductID, this.myData.variants[i].ImageFile,'product-img');
+        this.myData.variants.forEach((variants) => {
+            this.updateImage(variants.ProductID, variants.ImageFile,'thumb-img-'+(i+1));
+            i++;
+          });
         }
 
       },
@@ -44,7 +54,7 @@ export class ProductDetailComponent implements OnInit {
 }
 
 
-updateImage(product,image,imageid){
+public updateImage(product,image,imageid){
   if(image){
   var inputElement = <HTMLInputElement>document.getElementById(imageid);
   inputElement.style.backgroundImage = 'url(https://www.afhsgear.com/sites/998/products/998_'+ product +'_'+ image + ')';

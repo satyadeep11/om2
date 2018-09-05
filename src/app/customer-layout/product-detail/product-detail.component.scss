@@ -6,10 +6,12 @@
   *
   * ======================================================= */
       /* Tooltip container */
+    .thumb-img{cursor: pointer;}
     .size {
       position: relative;
       display: inline-block;
       border-bottom: 1px dotted #ffc300; /* If you want dots under the hoverable text */
+      cursor: pointer;
     }
 
     /* Tooltip text */
