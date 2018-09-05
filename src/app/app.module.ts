@@ -17,7 +17,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     /* for development
     return new TranslateHttpLoader(
         http,
-        '/start-angular/SB-Admin-BS4-Angular-6/master/dist/assets/i18n/',
+        '/start-angular/Quick-Select-Angular-Master/master/dist/assets/i18n/',
         '.json'
     ); */
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
