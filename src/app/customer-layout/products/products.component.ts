@@ -26,26 +26,25 @@ export class ProductsComponent implements OnInit {
       console.log(this.id);
       
     });
-  if(this.id && this.id.catid!=0){
-    console.log(this.id);
-      this.productDetailService.category_product(this.id)
-          .subscribe(user => {
-            this.myData = user;  
-            console.log(this.myData);         
-          },
-          error => console.log(error)
-        );
-      }
-      else {
-        this.productDetailService.category_product_all()
-          .subscribe(user => {
-            this.myData = user;  
-            console.log(this.myData);         
-          },
-          error => console.log(error)
-        );
-
-      }
+    if(this.id && this.id.catid!=0){
+      console.log(this.id);
+        this.productDetailService.category_product(this.id)
+            .subscribe(user => {
+              this.myData = user;  
+              console.log(this.myData);         
+            },
+            error => console.log(error)
+          );
+        }
+        else {
+          this.productDetailService.category_product_all()
+            .subscribe(user => {
+              this.myData = user;  
+              console.log(this.myData);         
+            },
+            error => console.log(error)
+          );
+        }
   }
 
   ngOnInit() {

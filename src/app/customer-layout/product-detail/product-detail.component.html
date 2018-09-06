@@ -31,10 +31,10 @@
                   </p>
                   <p>{{myData?.product.ProductDesc1}}</p>
                   
-                  <div class="size-wrap">
-                    <p class="size-desc">
+                  <div class="color-wrap">
+                    <p class="color-desc">
                       Color: <br>
-                      <a *ngFor=" let item of myData?.variants;" class="size" (click)="updateImage(item.ProductID,item.ImageFile,'product-img')">{{(item.A2_Short)||"None"}} <span class="tooltiptext">{{item.A2_Label||"None"}}</span></a>
+                      <a *ngFor=" let item of myData?.variants;"  class="color" [ngStyle]="{background: '#'+item.Color}" (click)="updateImage(item.ProductID,item.ImageFile,'product-img')"> <span class="tooltiptext">{{item.A2_Label||"None"}}</span></a>
                     </p>
                   </div>
                   <div class="size-wrap">
