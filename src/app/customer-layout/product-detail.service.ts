@@ -35,5 +35,16 @@ export class ProductDetailService {
       options
     ).pipe(map((res: Response) => res.json()));
   }
+
+  category_product_all(): Observable<CatId>{
+ 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+  
+    return this._http.post(
+      "http://localhost/php_api/masterdb/all-category.php",
+      options
+    ).pipe(map((res: Response) => res.json()));
+  }
 }
  

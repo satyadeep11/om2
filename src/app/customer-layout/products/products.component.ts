@@ -13,21 +13,43 @@ export class ProductsComponent implements OnInit {
   myData:any;
   public url="url(https://www.afhsgear.com/sites/998/products/998_";
   public url_close=")";
-  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService) { }
+  public products_per_page=9;
+
+  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,) {
+    this.sub = this.route.params.subscribe(params => {
+      if(params['id']){
+      this.id.catid = +params['id']; // (+) converts string 'id' to a number
+      }
+      else{
+        this.id.catid = 0;
+      }
+      console.log(this.id);
+      
+    });
+  if(this.id && this.id.catid!=0){
+    console.log(this.id);
+      this.productDetailService.category_product(this.id)
+          .subscribe(user => {
+            this.myData = user;  
+            console.log(this.myData);         
+          },
+          error => console.log(error)
+        );
+      }
+      else {
+        this.productDetailService.category_product_all()
+          .subscribe(user => {
+            this.myData = user;  
+            console.log(this.myData);         
+          },
+          error => console.log(error)
+        );
+
+      }
+  }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.id.catid = +params['id']; // (+) converts string 'id' to a number
-      console.log(this.id.catid);
-    });
     
-    this.productDetailService.category_product(this.id)
-        .subscribe(user => {
-          this.myData = user;  
-          console.log(this.myData.products[0]);         
-        },
-        error => console.log(error)
-      );
   }
   
 }

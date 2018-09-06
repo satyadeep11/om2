@@ -24,7 +24,7 @@
                         </div>
                         
                     </div>
-                    <div class="row">
+                    <div class="row" *ngIf="myData?.products.length>this.products_per_page">
                         <div class="col-md-12">
                             <ul class="pagination">
                                 <li class="disabled"><a href="#">&laquo;</a></li>
