@@ -38,9 +38,10 @@
     }
 
     .color {
+      margin: 5px; //may be 10
       position: relative;
       display: inline-block;
-      //border-bottom: 1px dotted #ffc300; /* If you want dots under the hoverable text */
+      border: 1px solid #000000; /* If you want dots under the hoverable text */
       cursor: pointer;
       
     }
@@ -48,6 +49,7 @@
     /* Tooltip text */
     .color .tooltiptext {
       visibility: hidden;
+      font-size: 12px;
       width: 120px;
       bottom: 100%;
       left: 50%; 
@@ -1308,7 +1310,7 @@
         border: 1px solid #e6e6e6;
         margin-bottom: 3px;
         text-transform: uppercase;
-        color: gray; }
+        color: black; }
         .size-wrap p.size-desc .size:hover {
           color: #FFC300; }
   

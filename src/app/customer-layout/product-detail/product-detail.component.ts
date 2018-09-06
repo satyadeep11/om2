@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductDetailService } from '../product-detail.service'; 
+import {MatSnackBar} from '@angular/material';
 
 
 @Component({
@@ -9,10 +10,16 @@ import { ProductDetailService } from '../product-detail.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
+  
+  //variables
   id:PriceId={};
   private sub: any;
   myData:any;
-  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService) { 
+  colorset:ColorSet[]=[];
+
+//variables end
+
+  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,public snackBar: MatSnackBar) { 
     this.sub = this.route.params.subscribe(params => {
       this.id.productid = +params['id']; // (+) converts string 'id' to a number
     });
@@ -44,8 +51,33 @@ export class ProductDetailComponent implements OnInit {
   );
   }
 
-  ngOnInit() {
+  ngOnInit() { }
 
+  openSnackBar(msg,action) {
+    this.snackBar.open(msg,action, {
+      duration: 1500,
+    });
+  }
+
+  colorselect(color,colorcode) {
+    var inputElement = <HTMLInputElement>document.getElementsByClassName(colorcode)[0];
+    if(this.colorset.includes(color)){
+      inputElement.style.border="1px solid #000000";
+      this.openSnackBar('Color '+ color,'Removed'); 
+      delete this.colorset[colorcode];    
+     // console.log(this.colorset);
+      console.log(Object.keys(this.colorset));
+      console.log(Object.values(this.colorset));
+    }
+    else{  
+      inputElement.style.border="thick solid green";
+      this.openSnackBar('Color '+ color,'Added'); 
+      this.colorset[colorcode]=color;
+      //this.colorset.push(color);
+      //console.log(this.colorset);
+      console.log(Object.keys(this.colorset));
+      console.log(Object.values(this.colorset));
+    }
   }
 
   public updateImage(product,image,imageid){
@@ -57,6 +89,7 @@ export class ProductDetailComponent implements OnInit {
       }
     }
   }
+
 
 }
 
@@ -85,4 +118,9 @@ export class ProductDetailComponent implements OnInit {
 
 export interface PriceId {  
   productid ?: number;
+}
+
+export interface ColorSet {  
+  color ?: String;
+  colorset ?: number;
 }
