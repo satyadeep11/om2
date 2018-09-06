@@ -44,7 +44,7 @@
                       Sizes:<br> 
                       <a *ngFor=" let item of myData?.sizes;" class="size">{{item.A1_Short||"None"}} <span class="tooltiptext">{{item.A1_Label||"None"}}</span></a>                 
                     </p>
-                    <p style="font-size: 13px;color: #b3b3b3;">
+                    <p *ngIf="myData?.sizes[0].A1_Short" style="font-size: 13px;color: #b3b3b3;">
                         All the above sizes will be made available in your store.
                       </p>
                   </div>
