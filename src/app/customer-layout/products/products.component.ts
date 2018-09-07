@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { ProductDetailService } from '../product-detail.service'; 
 
 @Component({
@@ -15,7 +15,10 @@ export class ProductsComponent implements OnInit {
   public url_close=")";
   public products_per_page=9;
 
-  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,) {
+  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+  };
     this.sub = this.route.params.subscribe(params => {
       if(params['id']){
       this.id.catid = +params['id']; // (+) converts string 'id' to a number
