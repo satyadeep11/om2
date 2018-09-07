@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductDetailService } from '../product-detail.service'; 
 import {MatSnackBar} from '@angular/material';
 
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -19,7 +21,11 @@ export class ProductDetailComponent implements OnInit {
 
 //variables end
 
-  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,public snackBar: MatSnackBar) { 
+  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,public snackBar: MatSnackBar,config: NgbCarouselConfig) { 
+    config.showNavigationIndicators = false;
+  }
+
+  ngOnInit() { 
     this.sub = this.route.params.subscribe(params => {
       this.id.productid = +params['id']; // (+) converts string 'id' to a number
     });
@@ -28,30 +34,12 @@ export class ProductDetailComponent implements OnInit {
     .subscribe(user => {
       this.myData = user; 
       console.log(this.myData ); 
-      var i=0;
-      if(this.myData.variants[i].ImageFile==null){
-        while(this.myData.variants[i].ImageFile==null){          
-          i++;
-          this.updateImage(this.myData.variants[i].ProductID, this.myData.variants[i].ImageFile,'product-img');
-          this.updateImage(this.myData.variants[i].ProductID, this.myData.variants[i].ImageFile,'thumb-img-1');
-          this.updateImage(this.myData.variants[i+1].ProductID, this.myData.variants[i+1].ImageFile,'thumb-img-2');
-          this.updateImage(this.myData.variants[i+2].ProductID, this.myData.variants[i+2].ImageFile,'thumb-img-3');
-        }
-      }
-      else{
-        i=0;
-        this.updateImage(this.myData.variants[0].ProductID, this.myData.variants[i].ImageFile,'product-img');
-        this.myData.variants.forEach((variants) => {
-          this.updateImage(variants.ProductID, variants.ImageFile,'thumb-img-'+(i+1));
-          i++;
-        });
-      }
+      this.updateImage(this.myData.variants[0].ProductID, this.myData.variants[0].ImageFile,'product-img');
     },
     error => console.log(error)
   );
-  }
 
-  ngOnInit() { }
+  }
 
   openSnackBar(msg,action) {
     this.snackBar.open(msg,action, {
