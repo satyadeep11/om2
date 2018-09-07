@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ProductDetailRoutingModule } from './product-detail-routing.module';
 import { ProductDetailComponent } from './product-detail.component';
 
-import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
@@ -13,8 +14,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     CommonModule,
     ProductDetailRoutingModule,
     MatSnackBarModule,
-    NgbCarouselModule.forRoot(),
-    NgbAlertModule.forRoot(),
+    NgbModule 
   ],
   declarations: [ProductDetailComponent]
 })

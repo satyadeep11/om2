@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+ 
 
 import { CustomerLayoutRoutingModule } from './customer-layout-routing.module';
 import { CustomerLayoutComponent } from './customer-layout.component';
@@ -25,7 +26,7 @@ import { FooterComponent } from './components/footer/footer.component';
         MatIconModule,
         MatToolbarModule, 
         MatCardModule,
-    NgbDropdownModule.forRoot()
+        NgbModule.forRoot()
   ],
   declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent, MenuItemComponent, FooterComponent]
 })

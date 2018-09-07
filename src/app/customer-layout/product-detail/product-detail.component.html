@@ -1,7 +1,7 @@
 <div class="colorlib-shop">
     <div class="container">
       <div class="row row-pb-lg">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12 col-md-offset-1">
           <div class="product-detail-wrap">
             <div class="row">
               <div class="col-md-5">
@@ -68,7 +68,7 @@
                         All the above sizes will be made available in your store.
                       </p>
                   </div>
-                  <p>SKU: {{myData?.product.ProductBaseSKU}}</p>
+                  <p>SKU: {{myData?.product.ProductBaseSKU}}</p> 
 
                   <p><span [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p>
                 </div>
@@ -78,23 +78,32 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12 col-md-offset-1">
           <div class="row">
             <div class="col-md-12 tabulation">
-              <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#description">Description</a></li>
-                <li><a data-toggle="tab" href="#manufacturer">Manufacturer</a></li>
-                <li><a data-toggle="tab" href="#review">Reviews</a></li>
-              </ul>
-              <div class="tab-content">
-                <div id="description" class="tab-pane fade in active">
-                  <p>{{myData?.product.ProductDesc1}}</p>
+                <div class="card">                    
+                    <div class="card-body">
+                <ngb-tabset type="pills">
+                    <ngb-tab title="Description 1">
+                        <ng-template ngbTabContent >
+                          <br>
+                            <p>{{myData?.product.ProductDesc1}}</p>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Description 2">
+                        <ng-template ngbTabContent >
+                          <br>
+                            <p>{{myData?.product.ProductDesc2}}</p>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Sizing Chart" [disabled]="true">
+                        <ng-template ngbTabContent >
+                            <p>{{myData?.product.ProductDesc2}}</p>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>    
                 </div>
-                <div id="manufacturer" class="tab-pane fade">
-                </div>
-                <div id="review" class="tab-pane fade">                   
-                </div>
-              </div>
+              </div>          
             </div>
           </div>
         </div>

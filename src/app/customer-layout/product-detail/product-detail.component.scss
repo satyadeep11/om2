@@ -5,6 +5,10 @@
   * 	Template Style 
   *
   * ======================================================= */
+      // shadow-piercing descendant combinator
+      ::ng-deep .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+        background-color: #ffc300 !important;
+      }
       /* Tooltip container */
     .thumb-img{cursor: pointer;}
     .size {
