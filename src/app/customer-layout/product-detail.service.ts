@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { PriceId } from './product-detail/product-detail.component';
+import { PriceId,Cart } from './product-detail/product-detail.component';
 import { CatId } from './products/products.component';
 import { map } from 'rxjs/operators';
 
@@ -46,5 +46,20 @@ export class ProductDetailService {
       options
     ).pipe(map((res: Response) => res.json()));
   }
+
+  addToCart(product:Cart): Observable<Cart>{
+ 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+  
+    return this._http.post(
+      "http://localhost/php_api/add-to-cart.php",
+      product,
+      options
+    ).pipe(map((res: Response) => res.json()));
+  }
+
+
+
 }
  

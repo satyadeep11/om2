@@ -18,6 +18,9 @@ export class ProductDetailComponent implements OnInit {
   private sub: any;
   myData:any;
   colorset:ColorSet[]=[];
+  productid:number;
+  colorselected:any;
+
 
 //variables end
 
@@ -34,6 +37,7 @@ export class ProductDetailComponent implements OnInit {
     .subscribe(user => {
       this.myData = user; 
       console.log(this.myData ); 
+      this.productid=this.myData.product.ProductID;
       this.updateImage(this.myData.variants[0].ProductID, this.myData.variants[0].ImageFile,'product-img');
     },
     error => console.log(error)
@@ -52,7 +56,8 @@ export class ProductDetailComponent implements OnInit {
     if(this.colorset.includes(color)){
       inputElement.style.border="1px solid #000000";
       this.openSnackBar('Color '+ color,'Removed'); 
-      delete this.colorset[colorcode];    
+      delete this.colorset[colorcode];   
+      this.colorselected=this.colorselected.replace(colorcode,'');
      // console.log(this.colorset);
       console.log(Object.keys(this.colorset));
       console.log(Object.values(this.colorset));
@@ -61,6 +66,7 @@ export class ProductDetailComponent implements OnInit {
       inputElement.style.border="thick solid green";
       this.openSnackBar('Color '+ color,'Added'); 
       this.colorset[colorcode]=color;
+      this.colorselected=this.colorselected+colorcode;
       //this.colorset.push(color);
       //console.log(this.colorset);
       console.log(Object.keys(this.colorset));
@@ -77,6 +83,32 @@ export class ProductDetailComponent implements OnInit {
       }
     }
   }
+
+  CartCheck(){
+    if((Object.keys(this.colorset).length)==0){
+      this.openSnackBar('Select Color first '+ '','OK');      
+    }
+    else{
+      this.SubmitCart();
+    }
+  }
+
+  SubmitCart(){
+    let selectiondetails:Cart={};
+    selectiondetails.productid=+this.productid; 
+    selectiondetails.uuid=sessionStorage.getItem("uuid").toString(); 
+    let x=Object.keys(this.colorset); 
+    selectiondetails.colors=x.map(Number);
+    console.log(selectiondetails);
+
+     this.productDetailService.addToCart(selectiondetails)
+     .subscribe(user => {
+       console.log(user);
+       this.myData.error = user.error;       
+    },
+    error => console.log(error)
+   );
+   }
 
 
 }
@@ -106,6 +138,13 @@ export class ProductDetailComponent implements OnInit {
 
 export interface PriceId {  
   productid ?: number;
+}
+
+export interface Cart {  
+  productid ?: number;
+  uuid?:string;
+  colors?:Array<Number>;
+  error?:string;
 }
 
 export interface ColorSet {  

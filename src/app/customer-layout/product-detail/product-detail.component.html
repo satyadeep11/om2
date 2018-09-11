@@ -52,12 +52,24 @@
                   <p>{{myData?.product.ProductDesc1}}</p>
                   
                   <div class="color-wrap">
-                    <p class="color-desc">
-                      Colors: <br>
-<a *ngFor="let item of myData?.variants;"  [class]="'color '+item.Attr2" [ngStyle]="{background: '#'+item.Color}" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');colorselect(item.A2_Label,item.Attr2)"> 
-  <span class="tooltiptext">{{item.A2_Label||"None"}}</span>
-</a>
-                    </p>
+                    <div class="color-desc">
+                      Colors Available: <br>
+                      <span *ngFor="let item of myData?.variants;">
+                        <a *ngIf="!this.colorselected?.includes(item.Attr2)" [class]="'color '+item.Attr2" [ngStyle]="{background: '#'+item.Color}" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');colorselect(item.A2_Label,item.Attr2)"> 
+                          <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
+                        </a>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="color-wrap">
+                    <div class="color-desc">
+                      Colors Selected: <br>
+                      <span *ngFor="let item of myData?.variants;">
+                        <a *ngIf="this.colorselected?.includes(item.Attr2)" [class]="'color '+item.Attr2" [ngStyle]="{background: '#'+item.Color}" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');colorselect(item.A2_Label,item.Attr2)"> 
+                          <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
+                        </a>
+                      </span>
+                    </div>
                   </div>
                   <div class="size-wrap">
                     <p class="size-desc">
@@ -70,7 +82,8 @@
                   </div>
                   <p>SKU: {{myData?.product.ProductBaseSKU}}</p> 
 
-                  <p><span [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p>
+                  <!-- <p><span [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p> -->
+                  <p><span (click)="CartCheck();" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p>
                 </div>
               </div>
             </div>
