@@ -50,7 +50,19 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('fname', this.myData.user['First Name']);
             sessionStorage.setItem('lname', this.myData.user['Last Name']);
             sessionStorage.setItem('uuid', this.myData.uuid);
-            this.router.navigateByUrl('/home');
+            //this.router.navigateByUrl('/home');
+            //
+            let user:Cart={};
+            user.uuid=this.myData.uuid;
+            this.authService.getCart(user)
+            .subscribe(user => {              
+              sessionStorage.setItem('cartdetails', JSON.stringify(user));  
+              // var retrievedData = sessionStorage.getItem("cartdetails");
+              // var cartdetails = JSON.parse(retrievedData);   
+              // console.log(cartdetails);  
+           },
+           error => console.log(error)
+          );
           }
           else if(this.myData.user.Admin==1){
             sessionStorage.setItem('isLoggedin', 'true');
@@ -64,6 +76,8 @@ export class LoginComponent implements OnInit {
        error => console.log(error)
       );
       }
+
+
       forgotPassword() {
           if(this.loadComponent == true)
         this.loadComponent = false;  
@@ -73,7 +87,10 @@ export class LoginComponent implements OnInit {
       
 }
 export interface Person {
-  
     email: string;
     password: string;
+  }
+
+  export interface Cart {    
+    uuid?:string;
   }
