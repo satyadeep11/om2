@@ -98,7 +98,9 @@ export class ProductDetailComponent implements OnInit {
     selectiondetails.productid=+this.productid; 
     selectiondetails.uuid=sessionStorage.getItem("uuid").toString(); 
     let x=Object.keys(this.colorset); 
-    selectiondetails.colors=x.map(Number);
+    let y=Object.values(this.colorset);
+    selectiondetails.colorcodes=x.map(Number);
+    selectiondetails.colors=y.map(String);
     console.log(selectiondetails);
 
      this.productDetailService.addToCart(selectiondetails)
@@ -143,7 +145,8 @@ export interface PriceId {
 export interface Cart {  
   productid ?: number;
   uuid?:string;
-  colors?:Array<Number>;
+  colors?:Array<String>;
+  colorcodes?:Array<Number>;
   error?:string;
 }
 
