@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +17,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSnackBarModule,
     NgbModule 
   ],
-  declarations: [ProductDetailComponent]
+  declarations: [ProductDetailComponent]  
+
 })
 export class ProductDetailModule { }

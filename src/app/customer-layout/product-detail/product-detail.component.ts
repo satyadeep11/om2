@@ -4,6 +4,7 @@ import { ProductDetailService } from '../product-detail.service';
 import {MatSnackBar} from '@angular/material';
 
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../auth.service';
 
 
 @Component({
@@ -20,15 +21,19 @@ export class ProductDetailComponent implements OnInit {
   colorset:ColorSet[]=[];
   productid:number;
   colorselected:any;
+  cartcheck=true;
+
 
 
 //variables end
 
-  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,public snackBar: MatSnackBar,config: NgbCarouselConfig) { 
+  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,public snackBar: MatSnackBar,config: NgbCarouselConfig,
+    private authService: AuthService) { 
     config.showNavigationIndicators = false;
   }
 
-  ngOnInit() { 
+  ngOnInit() {
+
     this.sub = this.route.params.subscribe(params => {
       this.id.productid = +params['id']; // (+) converts string 'id' to a number
     });
@@ -43,6 +48,24 @@ export class ProductDetailComponent implements OnInit {
     error => console.log(error)
   );
 
+
+   }
+
+updateCart(){
+//insert cart data
+if(this.cartcheck){
+        var retrievedData = sessionStorage.getItem("currentCart");
+        var cartdetails = JSON.parse(retrievedData);  
+        console.log(cartdetails);
+        var self = this;
+        cartdetails.cartproducts.forEach(function (value) {
+          if(value.qs_prod_id==self.id.productid){
+            console.log(value.qs_prod_color,value.qs_prod_attr2);
+            self.colorselect(value.qs_prod_color,value.qs_prod_attr2);     
+          }
+        })
+        this.cartcheck=false;
+   }
   }
 
   openSnackBar(msg,action) {
@@ -53,12 +76,14 @@ export class ProductDetailComponent implements OnInit {
 
   colorselect(color,colorcode) {
     var inputElement = <HTMLInputElement>document.getElementsByClassName(colorcode)[0];
+    console.log(colorcode);
     if(this.colorset.includes(color)){
       inputElement.style.border="1px solid #000000";
       this.openSnackBar('Color '+ color,'Removed'); 
       delete this.colorset[colorcode];   
       this.colorselected=this.colorselected.replace(colorcode,'');
-     // console.log(this.colorset);
+      
+      console.log(this.colorset);
       console.log(Object.keys(this.colorset));
       console.log(Object.values(this.colorset));
     }
@@ -68,7 +93,7 @@ export class ProductDetailComponent implements OnInit {
       this.colorset[colorcode]=color;
       this.colorselected=this.colorselected+colorcode;
       //this.colorset.push(color);
-      //console.log(this.colorset);
+      console.log(this.colorset);
       console.log(Object.keys(this.colorset));
       console.log(Object.values(this.colorset));
     }
@@ -110,6 +135,15 @@ export class ProductDetailComponent implements OnInit {
     },
     error => console.log(error)
    );
+
+   let user:Cart={};
+            user.uuid=sessionStorage.getItem("uuid").toString();
+            this.authService.getCart(user)
+            .subscribe(user => {  
+              sessionStorage.setItem('currentCart', JSON.stringify(user));             
+           },
+           error => console.log(error)
+          );
    }
 
 

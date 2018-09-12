@@ -12,7 +12,7 @@
                     <a class="thumb-img" id="thumb-img-2" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a>
                     <a class="thumb-img" id="thumb-img-3" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a> 
                   </div> -->
-                  <ngb-carousel *ngIf="myData?.variants.length>3">
+                  <!-- <ngb-carousel *ngIf="myData?.variants.length>3">
                     <ng-template ngbSlide *ngFor="let item of myData?.variants; let i= index; let l=count ">
                       <div class="thumb-nail" *ngIf="item.ImageFile">
                         <span *ngIf="myData?.variants[i].ImageFile"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
@@ -20,9 +20,9 @@
                         <span *ngIf="l>i+2"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+myData?.variants[i+2].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
                       </div>
                     </ng-template>                  
-                  </ngb-carousel>
+                  </ngb-carousel> -->
 
-                  <ngb-carousel *ngIf="myData?.variants.length<=3" [showNavigationArrows]="false">
+                  <!-- <ngb-carousel *ngIf="myData?.variants.length<=3" [showNavigationArrows]="false">
                       <ng-template ngbSlide>
                         <div class="thumb-nail" *ngIf="myData?.variants[0].ImageFile">
                           <span *ngIf="myData?.variants.length<3"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +myData?.variants[0].ProductID+'_'+myData?.variants[0].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
@@ -30,7 +30,7 @@
                           <span *ngIf="myData?.variants.length==3"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +myData?.variants[0].ProductID+'_'+myData?.variants[2].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
                         </div>
                       </ng-template>                  
-                    </ngb-carousel>
+                    </ngb-carousel> -->
 
 
                 </div>
@@ -54,9 +54,10 @@
                   <div class="color-wrap">
                     <div class="color-desc">
                       Colors Available: <br>
-                      <span *ngFor="let item of myData?.variants;">
+                      <span *ngFor="let item of myData?.variants;let l = last">
                         <a *ngIf="!this.colorselected?.includes(item.Attr2)" [class]="'color '+item.Attr2" [ngStyle]="{background: '#'+item.Color}" on-mouseover="updateImage(item.ProductID,item.ImageFile,'product-img');" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');colorselect(item.A2_Label,item.Attr2)"> 
                           <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
+                          <span>{{ l === true ? updateCart() : null}}</span>
                         </a>
                       </span>
                     </div>
