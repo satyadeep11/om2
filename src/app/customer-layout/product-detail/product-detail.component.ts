@@ -17,7 +17,7 @@ export class ProductDetailComponent implements OnInit {
   
 //variables
   id:PriceId={};
-  private sub: any;
+  private sub: any; 
   myData:any;
   colorset:ColorSet[]=[];
   productid:number;
@@ -46,7 +46,7 @@ export class ProductDetailComponent implements OnInit {
     error => console.log(error)
   );
 
-
+this.GetCart();
    }
 
 updateCart(){
@@ -116,7 +116,7 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
       // console.log(this.colorset);
       // console.log(Object.keys(this.colorset));
       // console.log(Object.values(this.colorset));
-      //insert single prod selection
+    //insert single prod selection //comment below if on swatch insert not needed
       this.productDetailService.addToCart(selectiondetails)
       .subscribe(user => {
        //console.log(user);
@@ -180,32 +180,25 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
     this.gc.count=unique.length;
 }
   SubmitCart(){
+    var retrievedData = sessionStorage.getItem("currentCart");        
+    var cartdetails = JSON.parse(retrievedData);
     let selectiondetails:Cart={};
     selectiondetails.productid=+this.productid; 
-    selectiondetails.uuid=sessionStorage.getItem("uuid").toString(); 
+    selectiondetails.selectionid=cartdetails.selection_id;
     let x=Object.keys(this.colorset); 
     let y=Object.values(this.colorset);
     selectiondetails.colorcodes=x.map(Number);
     selectiondetails.colors=y.map(String);
-   // console.log(selectiondetails);
-
-     this.productDetailService.addToCart(selectiondetails)
-     .subscribe(user => {
-      // console.log(user);
+    console.log(selectiondetails);
+   this.productDetailService.addToCart(selectiondetails)
+      .subscribe(user => {
+       //console.log(user);
        this.myData.error = user.error;       
-    },
-    error => console.log(error)
-   );
-
-            let user:Cart={};
-            user.uuid=sessionStorage.getItem("uuid").toString();
-            this.authService.getCart(user)
-            .subscribe(user => {  
-              sessionStorage.setItem('currentCart', JSON.stringify(user));             
-           },
-           error => console.log(error)
-          );
-   }
+        },
+        error => console.log(error)
+      );
+      this.GetCart();
+  }
 
 
 }
