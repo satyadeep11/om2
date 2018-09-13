@@ -29,7 +29,7 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,public snackBar: MatSnackBar,config: NgbCarouselConfig,
     private authService: AuthService) { 
-    config.showNavigationIndicators = false;
+    config.showNavigationIndicators = false;    
   }
 
   ngOnInit() {
@@ -53,10 +53,11 @@ export class ProductDetailComponent implements OnInit {
 
 updateCart(){
 //insert cart data
-if(this.cartcheck){
-        var retrievedData = sessionStorage.getItem("currentCart");
+var retrievedData = sessionStorage.getItem("currentCart");        
         var cartdetails = JSON.parse(retrievedData);  
-        console.log(cartdetails);
+if(cartdetails.cartproducts){
+if(this.cartcheck && cartdetails.cartproducts.length>0){
+  console.log(cartdetails);
         var self = this;
         cartdetails.cartproducts.forEach(function (value) {
           if(value.qs_prod_id==self.id.productid){
@@ -67,6 +68,7 @@ if(this.cartcheck){
         this.cartcheck=false;
    }
   }
+  }
 
   openSnackBar(msg,action) {
     this.snackBar.open(msg,action, {
@@ -75,27 +77,56 @@ if(this.cartcheck){
   }
 
   colorselect(color,colorcode) {
+    var retrievedData = sessionStorage.getItem("currentCart");        
+        var cartdetails = JSON.parse(retrievedData);  
+
+    let selectiondetails:Cart={};
+    selectiondetails.productid=+this.productid;     
+    selectiondetails.colorcodes=[colorcode];
+    selectiondetails.colors=[color];
+    selectiondetails.selectionid=cartdetails.selection_id;
+    console.log('xxxxxxxxxx');
+    console.log(selectiondetails);
+    console.log('xxxxxxxxxx');
     var inputElement = <HTMLInputElement>document.getElementsByClassName(colorcode)[0];
-    console.log(colorcode);
+    
     if(this.colorset.includes(color)){
-      inputElement.style.border="1px solid #000000";
+     
       this.openSnackBar('Color '+ color,'Removed'); 
       delete this.colorset[colorcode];   
       this.colorselected=this.colorselected.replace(colorcode,'');
       
-      console.log(this.colorset);
-      console.log(Object.keys(this.colorset));
-      console.log(Object.values(this.colorset));
+      // console.log(this.colorset);
+      // console.log(Object.keys(this.colorset));
+      // console.log(Object.values(this.colorset));
+      //delete single prod selection
+      this.productDetailService.deleteFromCart(selectiondetails)
+      .subscribe(user => {
+       console.log(user);
+       this.myData.error = user.error;       
+        },
+        error => console.log(error)
+      );
+      this.GetCart();
     }
     else{  
-      inputElement.style.border="thick solid green";
+     
       this.openSnackBar('Color '+ color,'Added'); 
       this.colorset[colorcode]=color;
       this.colorselected=this.colorselected+colorcode;
       //this.colorset.push(color);
-      console.log(this.colorset);
-      console.log(Object.keys(this.colorset));
-      console.log(Object.values(this.colorset));
+      // console.log(this.colorset);
+      // console.log(Object.keys(this.colorset));
+      // console.log(Object.values(this.colorset));
+      //insert single prod selection
+      this.productDetailService.addToCart(selectiondetails)
+      .subscribe(user => {
+       console.log(user);
+       this.myData.error = user.error;       
+        },
+        error => console.log(error)
+      );
+      this.GetCart();
     }
   }
 
@@ -118,6 +149,18 @@ if(this.cartcheck){
     }
   }
 
+  GetCart(){
+    //updating local cart
+    let user:Cart={};
+    user.uuid=sessionStorage.getItem("uuid").toString();
+    this.authService.getCart(user)
+    .subscribe(user => {  
+      console.log(user);
+      sessionStorage.setItem('currentCart', JSON.stringify(user));             
+   },
+   error => console.log(error)
+  );
+  }
   SubmitCart(){
     let selectiondetails:Cart={};
     selectiondetails.productid=+this.productid; 
@@ -136,7 +179,7 @@ if(this.cartcheck){
     error => console.log(error)
    );
 
-   let user:Cart={};
+            let user:Cart={};
             user.uuid=sessionStorage.getItem("uuid").toString();
             this.authService.getCart(user)
             .subscribe(user => {  
@@ -182,6 +225,7 @@ export interface Cart {
   colors?:Array<String>;
   colorcodes?:Array<Number>;
   error?:string;
+  selectionid?:number;
 }
 
 export interface ColorSet {  

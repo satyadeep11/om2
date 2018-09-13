@@ -59,6 +59,18 @@ export class ProductDetailService {
     ).pipe(map((res: Response) => res.json()));
   }
 
+  deleteFromCart(product:Cart): Observable<Cart>{
+ 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+  
+    return this._http.post(
+      "http://localhost/php_api/delete-from-cart.php",
+      product,
+      options
+    ).pipe(map((res: Response) => res.json()));
+  }
+
 
 
 }

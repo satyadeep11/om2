@@ -55,7 +55,7 @@
                     <div class="color-desc">
                       Colors Available: <br>
                       <span *ngFor="let item of myData?.variants;let l = last">
-                        <a *ngIf="!this.colorselected?.includes(item.Attr2)" [class]="'color '+item.Attr2" [ngStyle]="{background: '#'+item.Color}" on-mouseover="updateImage(item.ProductID,item.ImageFile,'product-img');" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');colorselect(item.A2_Label,item.Attr2)"> 
+                        <a *ngIf="!this.colorselected?.includes(item.Attr2) && item.Attr2!=null" [class]="'color '+item.Attr2" [ngStyle]="{background: '#'+item.Color}" on-mouseover="updateImage(item.ProductID,item.ImageFile,'product-img');" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');colorselect(item.A2_Label,item.Attr2)"> 
                           <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
                           <span>{{ l === true ? updateCart() : null}}</span>
                         </a>

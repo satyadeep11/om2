@@ -56,7 +56,8 @@ export class LoginComponent implements OnInit {
             let user:Cart={};
             user.uuid=this.myData.uuid;
             this.authService.getCart(user)
-            .subscribe(user => {  
+            .subscribe(user => { 
+              console.log(user); 
               sessionStorage.setItem('currentCart', JSON.stringify(user));             
            },
            error => console.log(error)
