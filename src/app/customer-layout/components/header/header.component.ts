@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
     fname:String;
     lname:String;
+    quantity:number;
     
     constructor(private translate: TranslateService, public router: Router) {
         
@@ -30,11 +31,26 @@ export class HeaderComponent implements OnInit {
             }
         });
         
+        
     }
 
     ngOnInit() {
        this.fname= sessionStorage.getItem("fname").toString();
        this.lname= sessionStorage.getItem("lname").toString();
+       var retrievedData = sessionStorage.getItem("currentCart");        
+        var cartdetails = JSON.parse(retrievedData);         
+
+        var uniqueproductid=[];
+        cartdetails.cartproducts.forEach(function (value) {
+            uniqueproductid.push(value.qs_prod_id);
+          }); 
+
+          var unique = uniqueproductid.filter(function(elem, index, self) {
+            return index === self.indexOf(elem);
+        })
+
+        this.quantity=unique.length;
+       
     }
 
     isToggled(): boolean {

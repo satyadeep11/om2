@@ -92,7 +92,7 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
     
     if(this.colorset.includes(color)){
      
-      this.openSnackBar('Color '+ color,'Removed'); 
+      this.openSnackBar('Color '+ color+ ' Removed from Cart','OK'); 
       delete this.colorset[colorcode];   
       this.colorselected=this.colorselected.replace(colorcode,'');
       
@@ -111,7 +111,7 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
     }
     else{  
      
-      this.openSnackBar('Color '+ color,'Added'); 
+      this.openSnackBar('Color '+ color +' Added to Cart', 'OK'); 
       this.colorset[colorcode]=color;
       this.colorselected=this.colorselected+colorcode;
       //this.colorset.push(color);
