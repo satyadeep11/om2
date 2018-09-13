@@ -31,6 +31,9 @@
                         </div>
                       </ng-template>                  
                     </ngb-carousel> -->
+                    <span class="thumb-nail">
+                    <a *ngFor="let item of myData?.variants; " class="thumb-img" style="height:40px; width:40px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a>
+                    </span>
 
 
                 </div>
