@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import {GlobalCart} from '../../globalcart';
 
 @Component({
     selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
     lname:String;
     quantity:number;
     
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService, public router: Router,private gc: GlobalCart) {
         
 
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
@@ -37,7 +38,12 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
        this.fname= sessionStorage.getItem("fname").toString();
        this.lname= sessionStorage.getItem("lname").toString();
-       var retrievedData = sessionStorage.getItem("currentCart");        
+       this.gcUpdate();
+            
+    }
+
+    gcUpdate(){
+        var retrievedData = sessionStorage.getItem("currentCart");        
         var cartdetails = JSON.parse(retrievedData);         
 
         var uniqueproductid=[];
@@ -49,8 +55,7 @@ export class HeaderComponent implements OnInit {
             return index === self.indexOf(elem);
         })
 
-        this.quantity=unique.length;
-       
+        this.gc.count=unique.length;
     }
 
     isToggled(): boolean {

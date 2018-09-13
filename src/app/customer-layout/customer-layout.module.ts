@@ -12,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MatInputModule, MatButtonModule,MatMenuModule, MatIconModule, MatToolbarModule, MatCardModule } from '@angular/material';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { GlobalCart } from './globalcart';
 
 
 
@@ -28,6 +29,7 @@ import { FooterComponent } from './components/footer/footer.component';
         MatCardModule,
         NgbModule.forRoot()
   ],
-  declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent, MenuItemComponent, FooterComponent]
+  declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent, MenuItemComponent, FooterComponent],
+  providers: [ GlobalCart ]
 })
 export class CustomerLayoutModule { }

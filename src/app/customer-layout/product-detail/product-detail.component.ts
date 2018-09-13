@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material';
 
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../auth.service';
+import {GlobalCart} from '../globalcart';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class ProductDetailComponent implements OnInit {
 //variables end
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,public snackBar: MatSnackBar,config: NgbCarouselConfig,
-    private authService: AuthService) { 
+    private authService: AuthService,private gc: GlobalCart) { 
     config.showNavigationIndicators = false;    
   }
 
@@ -41,7 +42,7 @@ export class ProductDetailComponent implements OnInit {
     this.productDetailService.product_detail(this.id)
     .subscribe(user => {
       this.myData = user; 
-      console.log(this.myData ); 
+      //console.log(this.myData ); 
       this.productid=this.myData.product.ProductID;
       this.updateImage(this.myData.variants[0].ProductID, this.myData.variants[0].ImageFile,'product-img');
     },
@@ -57,11 +58,11 @@ var retrievedData = sessionStorage.getItem("currentCart");
         var cartdetails = JSON.parse(retrievedData);  
 if(cartdetails.cartproducts){
 if(this.cartcheck && cartdetails.cartproducts.length>0){
-  console.log(cartdetails);
+  //console.log(cartdetails);
         var self = this;
         cartdetails.cartproducts.forEach(function (value) {
           if(value.qs_prod_id==self.id.productid){
-            console.log(value.qs_prod_color,value.qs_prod_attr2);
+           // console.log(value.qs_prod_color,value.qs_prod_attr2);
             self.colorselect(value.qs_prod_color,value.qs_prod_attr2);     
           }
         })
@@ -85,9 +86,9 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
     selectiondetails.colorcodes=[colorcode];
     selectiondetails.colors=[color];
     selectiondetails.selectionid=cartdetails.selection_id;
-    console.log('xxxxxxxxxx');
-    console.log(selectiondetails);
-    console.log('xxxxxxxxxx');
+    // console.log('xxxxxxxxxx');
+    // console.log(selectiondetails);
+    // console.log('xxxxxxxxxx');
     var inputElement = <HTMLInputElement>document.getElementsByClassName(colorcode)[0];
     
     if(this.colorset.includes(color)){
@@ -102,7 +103,7 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
       //delete single prod selection
       this.productDetailService.deleteFromCart(selectiondetails)
       .subscribe(user => {
-       console.log(user);
+      // console.log(user);
        this.myData.error = user.error;       
         },
         error => console.log(error)
@@ -121,12 +122,12 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
       //insert single prod selection
       this.productDetailService.addToCart(selectiondetails)
       .subscribe(user => {
-       console.log(user);
+       //console.log(user);
        this.myData.error = user.error;       
         },
         error => console.log(error)
       );
-      this.GetCart();
+      this.GetCart();      
     }
   }
 
@@ -155,12 +156,32 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
     user.uuid=sessionStorage.getItem("uuid").toString();
     this.authService.getCart(user)
     .subscribe(user => {  
-      console.log(user);
-      sessionStorage.setItem('currentCart', JSON.stringify(user));             
+      //console.log(user);
+      sessionStorage.setItem('currentCart', JSON.stringify(user));   
+   
+    this.gcUpdate();      
    },
    error => console.log(error)
   );
+
+  
   }
+
+  gcUpdate(){
+    var retrievedData = sessionStorage.getItem("currentCart");        
+    var cartdetails = JSON.parse(retrievedData);         
+    
+    var uniqueproductid=[];
+    cartdetails.cartproducts.forEach(function (value) {
+        uniqueproductid.push(value.qs_prod_id);
+      }); 
+
+      var unique = uniqueproductid.filter(function(elem, index, self) {
+        return index === self.indexOf(elem);
+    })
+
+    this.gc.count=unique.length;
+}
   SubmitCart(){
     let selectiondetails:Cart={};
     selectiondetails.productid=+this.productid; 
@@ -169,11 +190,11 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
     let y=Object.values(this.colorset);
     selectiondetails.colorcodes=x.map(Number);
     selectiondetails.colors=y.map(String);
-    console.log(selectiondetails);
+   // console.log(selectiondetails);
 
      this.productDetailService.addToCart(selectiondetails)
      .subscribe(user => {
-       console.log(user);
+      // console.log(user);
        this.myData.error = user.error;       
     },
     error => console.log(error)
