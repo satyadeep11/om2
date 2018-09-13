@@ -47,6 +47,7 @@ export class HeaderComponent implements OnInit {
         var cartdetails = JSON.parse(retrievedData);         
 
         var uniqueproductid=[];
+        if(cartdetails){
         cartdetails.cartproducts.forEach(function (value) {
             uniqueproductid.push(value.qs_prod_id);
           }); 
@@ -56,6 +57,7 @@ export class HeaderComponent implements OnInit {
         })
 
         this.gc.count=unique.length;
+        }
     }
 
     isToggled(): boolean {

@@ -15,7 +15,7 @@ import {GlobalCart} from '../globalcart';
 })
 export class ProductDetailComponent implements OnInit {
   
-  //variables
+//variables
   id:PriceId={};
   private sub: any;
   myData:any;
@@ -23,9 +23,6 @@ export class ProductDetailComponent implements OnInit {
   productid:number;
   colorselected:any;
   cartcheck=true;
-
-
-
 //variables end
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,public snackBar: MatSnackBar,config: NgbCarouselConfig,
