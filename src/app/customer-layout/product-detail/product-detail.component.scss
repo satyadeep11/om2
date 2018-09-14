@@ -157,10 +157,26 @@
   ::selection {
     color: #fff;
     background: #FFC300; }
+
+    #color-thumbnails-mobile{
+      display:none;
+    }
   
   @media screen and (max-width: 768px) {
     .colorlib-nav {
-      margin: 0; } }
+      margin: 0; }      
+     }
+
+  @media screen and (max-width: 480px) {
+    #colorlib-hero .flexslider .slider-text > .slider-text-inner .btn {
+      width: 100%; }
+    #color-thumbnails-desk{
+      display:none;
+    }
+    #color-thumbnails-mobile{
+      display:inline-block;
+    }
+  }
   
   .colorlib-nav .top-menu {
     padding: 40px 30px; }
