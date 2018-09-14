@@ -21,6 +21,7 @@ export class ProductDetailComponent implements OnInit {
   myData:any;
   colorset:ColorSet[]=[];
   productid:number;
+  price:number;
   colorselected:any;
   cartcheck=true;
 //variables end
@@ -39,8 +40,9 @@ export class ProductDetailComponent implements OnInit {
     this.productDetailService.product_detail(this.id)
     .subscribe(user => {
       this.myData = user; 
-      //console.log(this.myData ); 
+      console.log(this.myData ); 
       this.productid=this.myData.product.ProductID;
+      this.price=this.myData.product.Price;
       this.updateImage(this.myData.variants[0].ProductID, this.myData.variants[0].ImageFile,'product-img');
     },
     error => console.log(error)
@@ -83,6 +85,7 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
     selectiondetails.colorcodes=[colorcode];
     selectiondetails.colors=[color];
     selectiondetails.selectionid=cartdetails.selection_id;
+    selectiondetails.price=this.price; 
     // console.log('xxxxxxxxxx');
     // console.log(selectiondetails);
     // console.log('xxxxxxxxxx');
@@ -237,6 +240,7 @@ export interface Cart {
   colorcodes?:Array<Number>;
   error?:string;
   selectionid?:number;
+  price?:number;
 }
 
 export interface ColorSet {  

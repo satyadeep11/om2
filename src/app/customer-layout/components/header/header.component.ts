@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
     gcUpdate(){
         var retrievedData = sessionStorage.getItem("currentCart");        
         var cartdetails = JSON.parse(retrievedData);         
-
+        console.log(cartdetails);
         var uniqueproductid=[];
         if(cartdetails){
         cartdetails.cartproducts.forEach(function (value) {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GlobalCart} from '../globalcart';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  
+  productList:any;
+  
+  constructor(private gc: GlobalCart) { 
+    var retrievedData = sessionStorage.getItem("currentCart");        
+    this.productList= JSON.parse(retrievedData); 
+  }
 
   ngOnInit() {
+    console.log(this.productList);
+    console.log(this.productList);
   }
 
 }
