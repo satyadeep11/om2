@@ -61,6 +61,7 @@
 
                   
                       <div class="product-entry">
+                        <div> 
                           Colors Available: <br>
                         <span class="thumb-nail">
                             <span *ngFor="let item of myData?.variants;let l = last">
@@ -70,6 +71,8 @@
                             </a>
                           </span>
                         </span>
+                      </div> 
+                      <div> 
                         <br>Colors Selected: <br>
                         <span class="thumb-nail">
                             <span *ngFor="let item of myData?.variants;let l = last">
@@ -77,19 +80,22 @@
                               <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>                            
                             </a>
                           </span>
-                        </span>                          
+                        </span>   
+                      </div>                        
                       </div>  
                       <br>               
-                  <div class="size-wrap">
-                    <p class="size-desc">
-                      Sizes:<br> 
-                      <a *ngFor=" let item of myData?.sizes;" class="size">{{item.A1_Short||"None"}} <span class="tooltiptext">{{item.A1_Label||"None"}}</span></a>                 
-                    </p>
-                    <p *ngIf="myData?.sizes[0].A1_Short" style="font-size: 13px;color: #b3b3b3;">
-                        All the above sizes will be made available in your store.
-                      </p>
-                  </div>
+                  
                   <p>SKU: {{myData?.product.ProductBaseSKU}}</p> 
+                  
+                  <div class="size-wrap">
+                      <p class="size-desc">
+                        Sizes:<br> 
+                        <a *ngFor=" let item of myData?.sizes;" class="size">{{item.A1_Short||"None"}} <span class="tooltiptext">{{item.A1_Label||"None"}}</span></a>                 
+                      </p>
+                      <p *ngIf="myData?.sizes[0].A1_Short" style="font-size: 13px;color: #b3b3b3;">
+                          All the above sizes will be made available in your store.
+                        </p>
+                    </div>
 
                   <!-- <p><span [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p> -->
                   <p><span (click)="CartCheck();" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p>
