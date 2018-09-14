@@ -31,15 +31,20 @@
                         </div>
                       </ng-template>                  
                     </ngb-carousel> -->
-                    <span class="thumb-nail">
-                    <a *ngFor="let item of myData?.variants; " class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a>
-                    </span>
+                    <!-- <span class="thumb-nail">
+                    <a *ngFor="let item of myData?.variants; " class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;">
+                      <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
+                      <span>{{ l === true ? updateCart() : null}}</span>
+                    </a>
+                    </span> -->
 
 
                 </div>
               </div>
+              
+
               <div class="col-md-7">
-                <div class="desc">
+                
                   <h3>{{myData?.product.ProductName}}</h3>
                   <p class="price">
                     <span>{{myData?.product.Price | currency:'USD'}}</span> 
@@ -53,28 +58,28 @@
                     </span> -->
                   </p>
                   <p>{{myData?.product.ProductDesc1}}</p>
+
                   
-                  <div class="color-wrap">
-                    <div class="color-desc">
-                      Colors Available: <br>
-                      <span *ngFor="let item of myData?.variants;let l = last">
-                        <a *ngIf="!this.colorselected?.includes(item.Attr2) && item.Attr2!=null" [class]="'color '+item.Attr2" [ngStyle]="{background: '#'+item.Color}" on-mouseover="updateImage(item.ProductID,item.ImageFile,'product-img');" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');colorselect(item.A2_Label,item.Attr2)"> 
-                          <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
-                          <span>{{ l === true ? updateCart() : null}}</span>
-                        </a>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="color-wrap">
-                    <div class="color-desc">
-                      Colors Selected: <br>
-                      <span *ngFor="let item of myData?.variants;">
-                        <a *ngIf="this.colorselected?.includes(item.Attr2)" [class]="'color '+item.Attr2" [ngStyle]="{background: '#'+item.Color}" on-mouseover="updateImage(item.ProductID,item.ImageFile,'product-img');" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');colorselect(item.A2_Label,item.Attr2)"> 
-                          <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
-                        </a>
-                      </span>
-                    </div>
-                  </div>
+                      <div class="product-entry">
+                          Colors Available: <br>
+                        <span class="thumb-nail">
+                            <span *ngFor="let item of myData?.variants;let l = last">
+                            <a *ngIf="!this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}"  on-mouseover="updateImage(item.ProductID,item.ImageFile,'product-img');" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');colorselect(item.A2_Label,item.Attr2)">
+                              <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
+                              <span>{{ l === true ? updateCart() : null}}</span>
+                            </a>
+                          </span>
+                        </span>
+                        <br>Colors Selected: <br>
+                        <span class="thumb-nail">
+                            <span *ngFor="let item of myData?.variants;let l = last">
+                            <a *ngIf="this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}"  on-mouseover="updateImage(item.ProductID,item.ImageFile,'product-img');" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');colorselect(item.A2_Label,item.Attr2)">
+                              <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>                            
+                            </a>
+                          </span>
+                        </span>                          
+                      </div>  
+                      <br>               
                   <div class="size-wrap">
                     <p class="size-desc">
                       Sizes:<br> 
@@ -88,7 +93,7 @@
 
                   <!-- <p><span [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p> -->
                   <p><span (click)="CartCheck();" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p>
-                </div>
+                
               </div>
             </div>
           </div>

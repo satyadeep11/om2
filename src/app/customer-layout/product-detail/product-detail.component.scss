@@ -68,6 +68,26 @@
       position: absolute;
       z-index: 1;
     }
+    .thumb-img .tooltiptext {
+      visibility: hidden;
+      font-size: 12px;
+      width: 120px;
+      bottom: 100%;
+      left: 50%; 
+      margin-left: -60px;
+      background-color: #ffc300;
+      color: #fff;
+      text-align: center;
+      padding: 5px 0;
+      border-radius: 6px;
+
+      /* Position the tooltip text - see examples below! */
+      position: absolute;
+      z-index: 1;
+    }
+    .thumb-img:hover .tooltiptext {
+      visibility: visible;
+    }
 
     /* Show the tooltip text when you mouse over the tooltip container */
     .color:hover .tooltiptext {
