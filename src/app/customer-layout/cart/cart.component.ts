@@ -14,10 +14,10 @@ export class CartComponent implements OnInit {
   constructor(private gc: GlobalCart) { 
     var retrievedData = sessionStorage.getItem("currentCart");        
     this.productList= JSON.parse(retrievedData); 
+    
   }
 
   ngOnInit() {
-    console.log(this.productList);
     console.log(this.productList);
   }
 

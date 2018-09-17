@@ -12,9 +12,8 @@ export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
     fname:String;
     lname:String;
-    quantity:number;
     
-    constructor(private translate: TranslateService, public router: Router,private gc: GlobalCart) {
+    constructor(private translate: TranslateService, public router: Router,public gc: GlobalCart) {
         
 
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
@@ -45,11 +44,11 @@ export class HeaderComponent implements OnInit {
     gcUpdate(){
         var retrievedData = sessionStorage.getItem("currentCart");        
         var cartdetails = JSON.parse(retrievedData);         
-        console.log(cartdetails);
+         console.log(cartdetails);
         var uniqueproductid=[];
         if(cartdetails){
         cartdetails.cartproducts.forEach(function (value) {
-            uniqueproductid.push(value.qs_prod_id);
+            uniqueproductid.push(value.ProductID);
           }); 
 
           var unique = uniqueproductid.filter(function(elem, index, self) {

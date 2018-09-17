@@ -1,25 +1,22 @@
 <div class="colorlib-shop">
 		<div class="container">
 			<div class="row row-pb-md">
-				<div class="col-md-10 col-md-offset-1">
+				<div class="col-md-12">
 					<div class="process-wrap">
 						<div class="process text-center active">
 							<p><span>01</span></p>
-							<h3>Shopping Cart</h3>
+							<h3>Selection Cart</h3>
 						</div>
+						
 						<div class="process text-center">
 							<p><span>02</span></p>
-							<h3>Checkout</h3>
-						</div>
-						<div class="process text-center">
-							<p><span>03</span></p>
-							<h3>Order Complete</h3>
+							<h3>Selection Complete</h3>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row row-pb-md">
-				<div class="col-md-10 col-md-offset-1">
+				<div class="col-md-12 col-md-offset-1">
 					<div class="product-name">
 						<div class="one-forth text-center">
 							<span>Product Details</span>
@@ -32,92 +29,38 @@
 							<span>Remove</span>
 						</div>
 					</div>
-					<div class="product-cart">
-						<div class="one-forth">
-							<div class="product-img" style="background-image: url(assets/images/slider3.jpg);">
+					<div class="product-cart" *ngFor=" let item of productList.cartproducts;">
+						<span  >
+							<div class="one-forth">
+								<div class="product-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}">
+								</div>
+
+								<div class="display-tc">
+									<h3><b>{{item.ProductName}}</b></h3><br>
+									<span *ngFor=" let item2 of productList.cartproducts;">
+									<h3 *ngIf="item.ProductID==item2.ProductID">{{item2.A2_Label}}</h3>
+									</span>
+								</div>
 							</div>
-							<div class="display-tc">
-								<h3>Product Name</h3>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<span class="price">{{item.Price| currency:'USD'}}</span>
+								</div>
+							</div>						
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<a href="#" class="closed"></a>
+								</div>
 							</div>
-						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<span class="price">$68.00</span>
-							</div>
-						</div>
-						
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<a href="#" class="closed"></a>
-							</div>
-						</div>
+						</span>
 					</div>
-					<div class="product-cart">
-						<div class="one-forth">
-							<div class="product-img" style="background-image: url(assets/images/slider3.jpg);">
-							</div>
-							<div class="display-tc">
-								<h3>Product Name</h3>
-							</div>
-						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<span class="price">$68.00</span>
-							</div>
-						</div>
-						
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<a href="#" class="closed"></a>
-							</div>
-						</div>
-					</div>
-					<div class="product-cart">
-						<div class="one-forth">
-							<div class="product-img" style="background-image: url(assets/images/slider3.jpg);">
-							</div>
-							<div class="display-tc">
-								<h3>Product Name</h3>
-							</div>
-						</div>
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<span class="price">$68.00</span>
-							</div>
-						</div>
-						
-						<div class="one-eight text-center">
-							<div class="display-tc">
-								<a href="#" class="closed"></a>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div class="total-wrap">
-						<div class="row">
-							<div class="col-md-8">
-								<form action="#">
-									<div class="row form-group">
-										<div class="col-md-9">
-											<input type="text" name="quantity" class="form-control input-number" placeholder="Your Coupon Number...">
-										</div>
-										<div class="col-md-3">
-											<input type="submit" value="Apply Coupon" class="btn btn-primary">
-										</div>
-									</div>
-								</form>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
+			
 			<div class="row">
 					<div class="col-md-12">
-					  <p><a [routerLink]="['/checkout']" [routerLinkActive]="['router-link-active']" class="btn btn-primary">Checkout</a></p>
+					  <p><a [routerLink]="['/checkout']" [routerLinkActive]="['router-link-active']" class="btn btn-primary">Submit Selection</a></p>
 					</div>
 				  </div>
 		</div>

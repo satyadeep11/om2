@@ -22,189 +22,222 @@ export class ProductDetailComponent implements OnInit {
   colorset:ColorSet[]=[];
   productid:number;
   price:number;
+  name:string;
   colorselected:any;
   cartcheck=true;
+  cart=[]; 
 //variables end
 
-  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,public snackBar: MatSnackBar,config: NgbCarouselConfig,
-    private authService: AuthService,private gc: GlobalCart) { 
-    config.showNavigationIndicators = false;    
-  }
+constructor(  private route: ActivatedRoute,
+              private productDetailService: ProductDetailService,
+              public snackBar: MatSnackBar,
+              config: NgbCarouselConfig,
+              private authService: AuthService,
+              private gc: GlobalCart) 
+              { 
+                config.showNavigationIndicators = false; 
+              }
 
-  ngOnInit() {
+ngOnInit()  {
+              this.sub = this.route.params.subscribe(params => {
+                this.id.productid = +params['id']; 
+              });
 
-    this.sub = this.route.params.subscribe(params => {
-      this.id.productid = +params['id']; // (+) converts string 'id' to a number
-    });
+              this.productDetailService.product_detail(this.id).subscribe(user => {
+                this.myData = user; 
+                
+                this.productid=this.myData.product.ProductID;
+                this.price=this.myData.product.Price;
+                this.name=this.myData.product.ProductName;
+                this.updateImage(this.myData.variants[0].ProductID, this.myData.variants[0].ImageFile,'product-img');
+              },
+              error => console.log(error)
+              );
+              this.GetCart();
+              this.updateCart();
+              
+            }
 
-    this.productDetailService.product_detail(this.id)
-    .subscribe(user => {
-      this.myData = user; 
-      console.log(this.myData ); 
-      this.productid=this.myData.product.ProductID;
-      this.price=this.myData.product.Price;
-      this.updateImage(this.myData.variants[0].ProductID, this.myData.variants[0].ImageFile,'product-img');
-    },
-    error => console.log(error)
-  );
+updateCart()  {
+                var retrievedData = sessionStorage.getItem("currentCart");        
+                var cartdetails = JSON.parse(retrievedData);  
+                if(cartdetails.cartproducts){
+                  if(this.cartcheck && cartdetails.cartproducts.length>0){
+                    var self = this;
+                    cartdetails.cartproducts.forEach(function (value) {
+                      if(value.ProductID==self.id.productid){
+                        //self.addtoCart(value.qs_prod_color,value.qs_prod_attr2,value.qs_prod_image);   
+                        self.colorselected =self.colorselected+value.Attr2;
+                        console.log(self.colorselected);
+                        
+                        self.cart.push(value);       
+                      }
+                    })
+                    this.cartcheck=false;
+                  }
+                  
+                }
+                
+              }
 
-this.GetCart();
-   }
+openSnackBar(msg,action)  {
+                            this.snackBar.open(msg,action, {
+                              duration: 1500,
+                            });
+                          }
 
-updateCart(){
-//insert cart data
-var retrievedData = sessionStorage.getItem("currentCart");        
-        var cartdetails = JSON.parse(retrievedData);  
-if(cartdetails.cartproducts){
-if(this.cartcheck && cartdetails.cartproducts.length>0){
-  //console.log(cartdetails);
-        var self = this;
-        cartdetails.cartproducts.forEach(function (value) {
-          if(value.qs_prod_id==self.id.productid){
-           // console.log(value.qs_prod_color,value.qs_prod_attr2);
-            self.colorselect(value.qs_prod_color,value.qs_prod_attr2);     
+addtoCart(color,colorcode,image) {
+                                    
+                                    var retrievedData = sessionStorage.getItem("currentCart");        
+                                    var cartdetails = JSON.parse(retrievedData);
+                                    let selectiondetails:Cart={};
+                                    selectiondetails.productid=+this.productid;     
+                                    selectiondetails.colorcodes=[colorcode];
+                                    selectiondetails.colors=[color];
+                                    selectiondetails.selectionid=cartdetails.selection_id;
+                                    selectiondetails.price=this.price;
+                                    selectiondetails.name=this.name;
+                                    selectiondetails.image=[image];
+                                    this.openSnackBar('Color '+ color +' Added to Cart', 'OK'); 
+                                    this.colorset[colorcode]=color;
+                                    this.colorselected=this.colorselected+colorcode;
+                                    console.log(this.colorselected);
+                                    this.productDetailService.addToCart(selectiondetails).subscribe(user => {
+                                      //console.log(user);
+                                      this.myData.error = user.error;       
+                                    },
+                                    error => console.log(error)
+                                    );
+                                    this.GetCart();
+                                    this.updateCart();
+
+                                    this.cart.push({ProductID:+this.productid,Attr2:colorcode,A2_Label:color,Price:+this.price,ProductName:this.name,ImageFile:image});
+                                    console.log(this.cart);
+                                  }
+
+deletefromCart(color,colorcode,image) {
+                                  console.log(this.colorselected);
+                                  this.colorselected=this.colorselected.replace(colorcode,'');
+                                  
+                                  var retrievedData = sessionStorage.getItem("currentCart");        
+                                  var cartdetails = JSON.parse(retrievedData);  
+                                  let selectiondetails:Cart={};
+                                  selectiondetails.productid=+this.productid;     
+                                  selectiondetails.colorcodes=[colorcode];
+                                  selectiondetails.colors=[color];
+                                  selectiondetails.selectionid=cartdetails.selection_id;
+                                  selectiondetails.price=this.price; 
+                                  this.openSnackBar('Color '+ color+ ' Removed from Cart','OK'); 
+                                  delete this.colorset[colorcode];   
+                                  
+                                  this.productDetailService.deleteFromCart(selectiondetails).subscribe(user => {
+                                    this.myData.error = user.error;       
+                                    },
+                                    error => console.log(error)
+                                  );
+                                  this.GetCart();
+                                  this.cart.forEach( (item, index) => {
+                                    if(item.Attr2 == colorcode) this.cart.splice(index,1);
+                                  });
+                                    console.log(this.cart);
+                                }
+
+
+
+public updateImage(product,image,imageid) {
+                                            if(image) {
+                                              var inputElement = <HTMLInputElement>document.getElementById(imageid);
+                                              if(document.getElementById(imageid)){
+                                                var url="https://www.afhsgear.com/sites/998/products/998_";
+                                                inputElement.style.backgroundImage = 'url('+url+ product +'_'+ image + ')';
+                                              }
+                                            }
+                                          }
+
+CartCheck() {
+              if((Object.keys(this.colorset).length)==0){
+                this.openSnackBar('Select Color first '+ '','OK');      
+              }
+              else{
+                this.SubmitCart();
+              }
+            }
+
+GetCart() {    
+            let user:Cart={};
+            user.uuid=sessionStorage.getItem("uuid").toString();
+            this.authService.getCart(user).subscribe(user => {        
+              sessionStorage.setItem('currentCart', JSON.stringify(user));     
+              this.gcUpdate();  
+              this.updateCart();    
+            },
+            error => console.log(error)
+            );  
           }
-        })
-        this.cartcheck=false;
-   }
-  }
-  }
 
-  openSnackBar(msg,action) {
-    this.snackBar.open(msg,action, {
-      duration: 1500,
-    });
-  }
+gcUpdate() {
+              var retrievedData = sessionStorage.getItem("currentCart");        
+              var cartdetails = JSON.parse(retrievedData); 
+              //console.log(cartdetails);
+              //this.cart=cartdetails;
+            //console.log(this.cart);
+              var uniqueproductid=[];
+              cartdetails.cartproducts.forEach(function (value) {
+                uniqueproductid.push(value.ProductID);
+              }); 
+              var unique = uniqueproductid.filter(function(elem, index, self) {
+                return index === self.indexOf(elem);
+              })
+              this.gc.count=unique.length;
+            }
+SubmitCart() {
+                var retrievedData = sessionStorage.getItem("currentCart");        
+                var cartdetails = JSON.parse(retrievedData);
+                let selectiondetails:Cart={};
+                selectiondetails.productid=+this.productid; 
+                selectiondetails.selectionid=cartdetails.selection_id;
+                let x=Object.keys(this.colorset); 
+                let y=Object.values(this.colorset);
+                selectiondetails.colorcodes=x.map(Number);
+                selectiondetails.colors=y.map(String);
+                console.log(selectiondetails);
+                this.productDetailService.addToCart(selectiondetails).subscribe(user => {
+                  this.myData.error = user.error;       
+                },
+                error => console.log(error)
+                );
+                this.GetCart();
+              }
+}
 
-  colorselect(color,colorcode) {
-    var retrievedData = sessionStorage.getItem("currentCart");        
-        var cartdetails = JSON.parse(retrievedData);  
 
-    let selectiondetails:Cart={};
-    selectiondetails.productid=+this.productid;     
-    selectiondetails.colorcodes=[colorcode];
-    selectiondetails.colors=[color];
-    selectiondetails.selectionid=cartdetails.selection_id;
-    selectiondetails.price=this.price; 
-    // console.log('xxxxxxxxxx');
-    // console.log(selectiondetails);
-    // console.log('xxxxxxxxxx');
-    var inputElement = <HTMLInputElement>document.getElementsByClassName(colorcode)[0];
-    
-    if(this.colorset.includes(color)){
-     
-      this.openSnackBar('Color '+ color+ ' Removed from Cart','OK'); 
-      delete this.colorset[colorcode];   
-      this.colorselected=this.colorselected.replace(colorcode,'');
-      
-      // console.log(this.colorset);
-      // console.log(Object.keys(this.colorset));
-      // console.log(Object.values(this.colorset));
-      //delete single prod selection
-      this.productDetailService.deleteFromCart(selectiondetails)
-      .subscribe(user => {
-      // console.log(user);
-       this.myData.error = user.error;       
-        },
-        error => console.log(error)
-      );
-      this.GetCart();
-    }
-    else{  
-     
-      this.openSnackBar('Color '+ color +' Added to Cart', 'OK'); 
-      this.colorset[colorcode]=color;
-      this.colorselected=this.colorselected+colorcode;
-      //this.colorset.push(color);
-      // console.log(this.colorset);
-      // console.log(Object.keys(this.colorset));
-      // console.log(Object.values(this.colorset));
-    //insert single prod selection //comment below if on swatch insert not needed
-      this.productDetailService.addToCart(selectiondetails)
-      .subscribe(user => {
-       //console.log(user);
-       this.myData.error = user.error;       
-        },
-        error => console.log(error)
-      );
-      this.GetCart();      
-    }
-  }
+export interface PriceId {  
+  productid ?: number;
+}
 
-  public updateImage(product,image,imageid){
-    if(image){
-      var inputElement = <HTMLInputElement>document.getElementById(imageid);
-      if(document.getElementById(imageid)){
-        var url="https://www.afhsgear.com/sites/998/products/998_";
-        inputElement.style.backgroundImage = 'url('+url+ product +'_'+ image + ')';
-      }
-    }
-  }
-
-  CartCheck(){
-    if((Object.keys(this.colorset).length)==0){
-      this.openSnackBar('Select Color first '+ '','OK');      
-    }
-    else{
-      this.SubmitCart();
-    }
-  }
-
-  GetCart(){
-    //updating local cart
-    let user:Cart={};
-    user.uuid=sessionStorage.getItem("uuid").toString();
-    this.authService.getCart(user)
-    .subscribe(user => {  
-      //console.log(user);
-      sessionStorage.setItem('currentCart', JSON.stringify(user));   
-   
-    this.gcUpdate();      
-   },
-   error => console.log(error)
-  );
-
+export interface Cart {  
+  productid ?: number;
+  uuid?:string;
+  name?:string;
+  colors?:Array<String>;
+  colorcodes?:Array<Number>;
+  image?:Array<String>;
+  error?:string;
+  selectionid?:number;
+  price?:number;
+  Attr2?: number;
+  ProductID?: number;
+  ImageFile?: string;
+  A2_Label?: string;
   
-  }
-
-  gcUpdate(){
-    var retrievedData = sessionStorage.getItem("currentCart");        
-    var cartdetails = JSON.parse(retrievedData);         
-    
-    var uniqueproductid=[];
-    cartdetails.cartproducts.forEach(function (value) {
-        uniqueproductid.push(value.qs_prod_id);
-      }); 
-
-      var unique = uniqueproductid.filter(function(elem, index, self) {
-        return index === self.indexOf(elem);
-    })
-
-    this.gc.count=unique.length;
 }
-  SubmitCart(){
-    var retrievedData = sessionStorage.getItem("currentCart");        
-    var cartdetails = JSON.parse(retrievedData);
-    let selectiondetails:Cart={};
-    selectiondetails.productid=+this.productid; 
-    selectiondetails.selectionid=cartdetails.selection_id;
-    let x=Object.keys(this.colorset); 
-    let y=Object.values(this.colorset);
-    selectiondetails.colorcodes=x.map(Number);
-    selectiondetails.colors=y.map(String);
-    console.log(selectiondetails);
-   this.productDetailService.addToCart(selectiondetails)
-      .subscribe(user => {
-       //console.log(user);
-       this.myData.error = user.error;       
-        },
-        error => console.log(error)
-      );
-      this.GetCart();
-  }
 
-
+export interface ColorSet {  
+  color ?: string;
+  colorset ?: number;
 }
+
+
 
 // export interface SingleProduct {  
 //   ProductID:number;
@@ -229,21 +262,4 @@ if(this.cartcheck && cartdetails.cartproducts.length>0){
 //   A2_Short:string;
 // }
 
-export interface PriceId {  
-  productid ?: number;
-}
 
-export interface Cart {  
-  productid ?: number;
-  uuid?:string;
-  colors?:Array<String>;
-  colorcodes?:Array<Number>;
-  error?:string;
-  selectionid?:number;
-  price?:number;
-}
-
-export interface ColorSet {  
-  color ?: String;
-  colorset ?: number;
-}
