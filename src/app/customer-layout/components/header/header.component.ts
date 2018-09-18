@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
     gcUpdate(){
         var retrievedData = sessionStorage.getItem("currentCart");        
         var cartdetails = JSON.parse(retrievedData);         
-         console.log(cartdetails);
+         
         var uniqueproductid=[];
         if(cartdetails){
         cartdetails.cartproducts.forEach(function (value) {
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
           var unique = uniqueproductid.filter(function(elem, index, self) {
             return index === self.indexOf(elem);
         })
-
+        console.log(unique);
         this.gc.count=unique.length;
         }
     }

@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div class="row row-pb-md">
-				<div class="col-md-12 col-md-offset-1">
+				<div class="col-md-10 col-md-offset-1">
 					<div class="product-name">
 						<div class="one-forth text-center">
 							<span>Product Details</span>
@@ -29,16 +29,16 @@
 							<span>Remove</span>
 						</div>
 					</div>
-					<div class="product-cart" *ngFor=" let item of productList.cartproducts;">
+					<div class="product-cart" *ngFor=" let item of newCart;">
 						<span  >
 							<div class="one-forth">
-								<div class="product-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}">
+								<div class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')','cursor': 'pointer'}">
 								</div>
 
 								<div class="display-tc">
-									<h3><b>{{item.ProductName}}</b></h3><br>
-									<span *ngFor=" let item2 of productList.cartproducts;">
-									<h3 *ngIf="item.ProductID==item2.ProductID">{{item2.A2_Label}}</h3>
+									<h3><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">{{item.ProductName}}</a></h3><br>
+									<span *ngFor=" let item2 of item.Colors;">
+									<h3>{{item2}}</h3>
 									</span>
 								</div>
 							</div>
@@ -49,7 +49,7 @@
 							</div>						
 							<div class="one-eight text-center">
 								<div class="display-tc">
-									<a href="#" class="closed"></a>
+									<a class="closed" [ngStyle]="{'cursor': 'pointer'}" (click)="DeleteProduct(item.ProductID);"></a>
 								</div>
 							</div>
 						</span>

@@ -65,8 +65,7 @@ updateCart()  {
                   if(this.cartcheck && cartdetails.cartproducts.length>0){
                     var self = this;
                     cartdetails.cartproducts.forEach(function (value) {
-                      if(value.ProductID==self.id.productid){
-                        //self.addtoCart(value.qs_prod_color,value.qs_prod_attr2,value.qs_prod_image);   
+                      if(value.ProductID==self.id.productid){                        
                         self.colorselected =self.colorselected+value.Attr2;
                         console.log(self.colorselected);
                         
