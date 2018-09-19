@@ -15,7 +15,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="row row-pb-md">
+			<div  *ngIf="gc.count==0" class="row row-pb-md">
+<span>No Products Selected</span>
+			</div>
+			<div  *ngIf="gc.count>0" class="row row-pb-md">
 				<div class="col-md-10 col-md-offset-1">
 					<div class="product-name">
 						<div class="one-forth text-center">
@@ -60,7 +63,8 @@
 			
 			<div class="row">
 					<div class="col-md-12">
-					  <p><a [routerLink]="['/checkout']" [routerLinkActive]="['router-link-active']" class="btn btn-primary">Submit Selection</a></p>
+					  <p *ngIf="gc.count>0"><a [routerLink]="['/checkout']" [routerLinkActive]="['router-link-active']" (click)="SubmitCart()" class="btn btn-primary">Submit Selection</a></p>
+					  
 					</div>
 				  </div>
 		</div>

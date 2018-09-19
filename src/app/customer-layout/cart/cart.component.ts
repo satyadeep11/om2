@@ -3,6 +3,8 @@ import {GlobalCart} from '../globalcart';
 import { ProductDetailService } from '../product-detail.service'; 
 import { AuthService } from '../../auth.service';
 
+import {MatSnackBar} from '@angular/material';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -16,6 +18,7 @@ export class CartComponent implements OnInit {
   
   constructor(private gc: GlobalCart,
     private authService: AuthService,
+    public snackBar: MatSnackBar,
     private productDetailService: ProductDetailService) { 
     var retrievedData = localStorage.getItem("currentCart");        
     this.productList= JSON.parse(retrievedData); 
@@ -80,6 +83,34 @@ export class CartComponent implements OnInit {
     
   }
 
+  openSnackBar(msg,action)  {
+    this.snackBar.open(msg,action, {
+      duration: 2500,
+    });
+  }
+
+  SubmitCart() {
+
+    if(this.gc.count==0){
+      this.openSnackBar('No Products Selected '+ '','OK');      
+    }
+    else {
+      
+
+        let cartdetails:CID={};
+        cartdetails.selectionid=this.productList.selection_id;
+        cartdetails.uuid=localStorage.getItem("uuid").toString();
+        this.productDetailService.SubmitCart(cartdetails).subscribe(user => {
+          //console.log(user);
+          // this.myData.error = user.error;  
+          this.GetCart();
+        },
+        error => console.log(error)
+        );
+      }
+  }
+
+
   GetCart() {    
     let user:Cart={};
     user.uuid=localStorage.getItem("uuid").toString();
@@ -110,6 +141,11 @@ export class CartComponent implements OnInit {
 
 export interface PID {  
   productid ?: number; 
+  selectionid?:number;
+}
+
+export interface CID {  
+  uuid ?: string; 
   selectionid?:number;
 }
 

@@ -84,7 +84,7 @@ updateCart()  {
 
 openSnackBar(msg,action)  {
                             this.snackBar.open(msg,action, {
-                              duration: 1500,
+                              duration: 2500,
                             });
                           }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { PriceId,Cart } from './product-detail/product-detail.component';
-import { PID } from './cart/cart.component';
+import { PID,CID} from './cart/cart.component';
 import { CatId } from './products/products.component';
 import { map } from 'rxjs/operators';
 
@@ -79,6 +79,18 @@ export class ProductDetailService {
   
     return this._http.post(
       "http://localhost/php_api/delete-product.php",
+      product,
+      options
+    ).pipe(map((res: Response) => res.json()));
+  }
+
+  SubmitCart(product:CID): Observable<PID>{
+ 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+  
+    return this._http.post(
+      "http://localhost/php_api/submit-product.php",
       product,
       options
     ).pipe(map((res: Response) => res.json()));
