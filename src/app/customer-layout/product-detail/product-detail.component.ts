@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductDetailService } from '../product-detail.service'; 
 import {MatSnackBar} from '@angular/material';
 
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../auth.service';
 import {GlobalCart} from '../globalcart';
 
@@ -31,11 +30,9 @@ export class ProductDetailComponent implements OnInit {
 constructor(  private route: ActivatedRoute,
               private productDetailService: ProductDetailService,
               public snackBar: MatSnackBar,
-              config: NgbCarouselConfig,
               private authService: AuthService,
               private gc: GlobalCart) 
               { 
-                config.showNavigationIndicators = false; 
               }
 
 ngOnInit()  {
@@ -55,6 +52,7 @@ ngOnInit()  {
               );
               this.GetCart();
               this.updateCart();
+              console.log(this.gc.count);
               
             }
 
@@ -65,10 +63,15 @@ updateCart()  {
                   if(this.cartcheck && cartdetails.cartproducts.length>0){
                     var self = this;
                     cartdetails.cartproducts.forEach(function (value) {
-                      if(value.ProductID==self.id.productid){                        
+                      if(value.ProductID==self.id.productid){ 
+                        if(self.colorselected){self.colorselected=self.colorselected.replace(new RegExp(value.Attr2),'');}                       
                         self.colorselected =self.colorselected+value.Attr2;
                         console.log(self.colorselected);
-                        
+                        if(self.cart){
+                          self.cart.forEach( (item, index) => {
+                            if(item.Attr2 == value.Attr2) self.cart.splice(index,1);
+                          });
+                          }
                         self.cart.push(value);       
                       }
                     })
@@ -77,7 +80,7 @@ updateCart()  {
                   
                 }
                 
-              }
+              } 
 
 openSnackBar(msg,action)  {
                             this.snackBar.open(msg,action, {
@@ -86,6 +89,15 @@ openSnackBar(msg,action)  {
                           }
 
 addtoCart(color,colorcode,image) {
+                                    if(this.colorselected){this.colorselected=this.colorselected.replace(new RegExp(colorcode),'');}
+                                    
+                                    if(this.cart){
+                                    this.cart.forEach( (item, index) => {
+                                      if(item.Attr2 == colorcode) this.cart.splice(index,1);
+                                    });
+                                    }
+                                   this.cart.push({ProductID:+this.productid,Attr2:colorcode,A2_Label:color,Price:+this.price,ProductName:this.name,ImageFile:image});
+                                    
                                     
                                     var retrievedData = sessionStorage.getItem("currentCart");        
                                     var cartdetails = JSON.parse(retrievedData);
@@ -99,25 +111,24 @@ addtoCart(color,colorcode,image) {
                                     selectiondetails.image=[image];
                                     this.openSnackBar('Color '+ color +' Added to Cart', 'OK'); 
                                     this.colorset[colorcode]=color;
+                                    
                                     this.colorselected=this.colorselected+colorcode;
-                                    console.log(this.colorselected);
+                                    // console.log(this.colorselected);
                                     this.productDetailService.addToCart(selectiondetails).subscribe(user => {
                                       //console.log(user);
-                                      this.myData.error = user.error;       
+                                      this.myData.error = user.error;     
+                                      this.GetCart();  
                                     },
                                     error => console.log(error)
                                     );
-                                    this.GetCart();
-                                    this.updateCart();
-
-                                    this.cart.push({ProductID:+this.productid,Attr2:colorcode,A2_Label:color,Price:+this.price,ProductName:this.name,ImageFile:image});
-                                    console.log(this.cart);
+                                    
+                                    console.log(this.gc.count);
                                   }
 
 deletefromCart(color,colorcode,image) {
-                                  console.log(this.colorselected);
-                                  this.colorselected=this.colorselected.replace(colorcode,'');
-                                  
+                                   
+                                  if(this.colorselected){this.colorselected=this.colorselected.replace(new RegExp(colorcode),'');}
+                                  // console.log(this.colorselected);
                                   var retrievedData = sessionStorage.getItem("currentCart");        
                                   var cartdetails = JSON.parse(retrievedData);  
                                   let selectiondetails:Cart={};
@@ -130,15 +141,17 @@ deletefromCart(color,colorcode,image) {
                                   delete this.colorset[colorcode];   
                                   
                                   this.productDetailService.deleteFromCart(selectiondetails).subscribe(user => {
-                                    this.myData.error = user.error;       
+                                    this.myData.error = user.error;  
+                                    this.GetCart();     
                                     },
                                     error => console.log(error)
                                   );
-                                  this.GetCart();
+                                  
                                   this.cart.forEach( (item, index) => {
                                     if(item.Attr2 == colorcode) this.cart.splice(index,1);
                                   });
-                                    console.log(this.cart);
+                                    // console.log(this.cart);
+                                    console.log(this.gc.count);
                                 }
 
 
@@ -166,7 +179,8 @@ GetCart() {
             let user:Cart={};
             user.uuid=sessionStorage.getItem("uuid").toString();
             this.authService.getCart(user).subscribe(user => {        
-              sessionStorage.setItem('currentCart', JSON.stringify(user));     
+              sessionStorage.setItem('currentCart', JSON.stringify(user));    
+              console.log(user); 
               this.gcUpdate();  
               this.updateCart();    
             },
@@ -188,6 +202,8 @@ gcUpdate() {
                 return index === self.indexOf(elem);
               })
               this.gc.count=unique.length;
+              console.log(cartdetails);
+              console.log(this.gc.count);
             }
 SubmitCart() {
                 var retrievedData = sessionStorage.getItem("currentCart");        
