@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
            },
            error => console.log(error)
           );
-            if(localStorage.getItem("visitedproducts")){
+            if(!localStorage.getItem("visitedproducts")){
             localStorage.setItem('visitedproducts',''); 
             }
           }

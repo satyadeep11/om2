@@ -75,7 +75,12 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
-        localStorage.clear();
+        localStorage.removeItem('currentCart');
+        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('uuid');
+        localStorage.removeItem('lname');
+        localStorage.removeItem('fname');
+        // localStorage.clear();
     }
 
     changeLang(language: string) {

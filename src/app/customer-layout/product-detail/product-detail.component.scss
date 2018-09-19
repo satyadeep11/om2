@@ -568,6 +568,8 @@
       display: block;
       height: 350px;
       margin-bottom: 20px;
+      background: transparent url('../../../assets/images/loading.gif')  center no-repeat ;
+      background-size : auto 100%;
       position: relative; }
       .product-entry .product-img .tag {
         position: absolute;
@@ -650,7 +652,9 @@
       height: 120px;
       width: 31.87%;
       float: left;
-       }
+      background: transparent url('../../../assets/images/loading.gif')  center no-repeat ;
+      background-size : auto 100%;
+      }
       .product-detail-wrap .thumb-nail .thumb-img:first-child {
         margin-left: 0; }
       @media screen and (max-width: 768px) {

@@ -13,7 +13,7 @@ export class ProductsComponent implements OnInit {
   myData:any;
   public url="url(https://www.afhsgear.com/sites/998/products/998_";
   public url_close=")";
-  public products_per_page=9;
+  public products_per_page=90;
   visitedproducts="";
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router) {
@@ -49,12 +49,11 @@ export class ProductsComponent implements OnInit {
             error => console.log(error)
           );
         }
-
-    this.visitedproducts=localStorage.getItem("visitedproducts");      
+if(localStorage.getItem("visitedproducts") ){this.visitedproducts=localStorage.getItem("visitedproducts"); }
+         
   }
 
   ngOnInit() {
-    
   }
   
 }
