@@ -25,6 +25,7 @@ export class ProductDetailComponent implements OnInit {
   colorselected:any;
   cartcheck=true;
   cart=[]; 
+  visitedproducts='';
 //variables end
 
 constructor(  private route: ActivatedRoute,
@@ -44,6 +45,9 @@ ngOnInit()  {
                 this.myData = user; 
                 
                 this.productid=this.myData.product.ProductID;
+                    this.visitedproducts=localStorage.getItem("visitedproducts");
+                    this.visitedproducts=this.visitedproducts+this.productid.toString();
+                    localStorage.setItem('visitedproducts',this.visitedproducts); 
                 this.price=this.myData.product.Price;
                 this.name=this.myData.product.ProductName;
                 this.updateImage(this.myData.variants[0].ProductID, this.myData.variants[0].ImageFile,'product-img');

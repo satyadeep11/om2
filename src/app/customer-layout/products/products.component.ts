@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit {
   public url="url(https://www.afhsgear.com/sites/998/products/998_";
   public url_close=")";
   public products_per_page=9;
+  visitedproducts="";
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
@@ -48,6 +49,8 @@ export class ProductsComponent implements OnInit {
             error => console.log(error)
           );
         }
+
+    this.visitedproducts=localStorage.getItem("visitedproducts");      
   }
 
   ngOnInit() {

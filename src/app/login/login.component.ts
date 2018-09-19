@@ -62,6 +62,9 @@ export class LoginComponent implements OnInit {
            },
            error => console.log(error)
           );
+            if(localStorage.getItem("visitedproducts")){
+            localStorage.setItem('visitedproducts',''); 
+            }
           }
           else if(this.myData.user.Admin==1){
             localStorage.setItem('isLoggedin', 'true');

@@ -95,8 +95,6 @@ export class CartComponent implements OnInit {
       this.openSnackBar('No Products Selected '+ '','OK');      
     }
     else {
-      
-
         let cartdetails:CID={};
         cartdetails.selectionid=this.productList.selection_id;
         cartdetails.uuid=localStorage.getItem("uuid").toString();

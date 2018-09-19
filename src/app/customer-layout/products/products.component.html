@@ -6,7 +6,8 @@
                         <div *ngFor=" let item of myData?.products;"class="col-md-4 text-center">
                             <div class="product-entry">
                                 <div class="product-img" [style.backgroundImage]="this.url+item.product.ProductID+'_'+item.product.ImageFile+this.url_close">
-                                    <p class="tag"><span class="new">New</span></p>
+                                    <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
+                                    <!-- &#9989; -->
                                     <div class="cart">
                                         <p>
                                             <span class="addtocart"><a [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']"><i class="fa fa-shopping-cart"></i></a></span> 
@@ -22,7 +23,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+                         
                     </div>
                     <div class="row" *ngIf="myData?.products">
                         <div class="col-md-12" *ngIf="myData?.products.length>this.products_per_page">
