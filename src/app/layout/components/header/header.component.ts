@@ -33,16 +33,16 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(sessionStorage.getItem("admin")){
+        if(localStorage.getItem("admin")){
             
         }
         else{
           this.router.navigateByUrl('/home');
         }
         
-        if(sessionStorage.getItem("fname")){
-       this.fname= sessionStorage.getItem("fname").toString();
-       this.lname= sessionStorage.getItem("lname").toString();
+        if(localStorage.getItem("fname")){
+       this.fname= localStorage.getItem("fname").toString();
+       this.lname= localStorage.getItem("lname").toString();
     }
     }
 
@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
-        sessionStorage.clear();
+        localStorage.clear();
     }
 
     changeLang(language: string) {

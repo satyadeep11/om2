@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
     password:any;
     loadComponent = false;
     ngOnInit() {
-      if(sessionStorage.getItem("isLoggedin")){
-        if(sessionStorage.getItem("admin")){
+      if(localStorage.getItem("isLoggedin")){
+        if(localStorage.getItem("admin")){
           this.router.navigateByUrl('/dashboard');
         }
         else{
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
     onLoggedin(email:string,password:string) {
         this.router.navigateByUrl('/access-denied');//place login logic here
-        //sessionStorage.setItem('isLoggedin', 'true');
+        //localStorage.setItem('isLoggedin', 'true');
         console.log(email);
        
     }
@@ -47,10 +47,10 @@ export class LoginComponent implements OnInit {
             console.log("Login Error");
           }
           else if(this.myData.user.Admin==0){
-            sessionStorage.setItem('isLoggedin', 'true');
-            sessionStorage.setItem('fname', this.myData.user['First Name']);
-            sessionStorage.setItem('lname', this.myData.user['Last Name']);
-            sessionStorage.setItem('uuid', this.myData.uuid);
+            localStorage.setItem('isLoggedin', 'true');
+            localStorage.setItem('fname', this.myData.user['First Name']);
+            localStorage.setItem('lname', this.myData.user['Last Name']);
+            localStorage.setItem('uuid', this.myData.uuid);
             this.router.navigateByUrl('/home');
             //define user cart on login
             let user:Cart={};
@@ -58,17 +58,17 @@ export class LoginComponent implements OnInit {
             this.authService.getCart(user)
             .subscribe(user => { 
               console.log(user); 
-              sessionStorage.setItem('currentCart', JSON.stringify(user));             
+              localStorage.setItem('currentCart', JSON.stringify(user));             
            },
            error => console.log(error)
           );
           }
           else if(this.myData.user.Admin==1){
-            sessionStorage.setItem('isLoggedin', 'true');
-            sessionStorage.setItem('admin', 'true');
-            sessionStorage.setItem('fname', this.myData.user['First Name']);
-            sessionStorage.setItem('lname', this.myData.user['Last Name']);
-            sessionStorage.setItem('uuid', this.myData.uuid);
+            localStorage.setItem('isLoggedin', 'true');
+            localStorage.setItem('admin', 'true');
+            localStorage.setItem('fname', this.myData.user['First Name']);
+            localStorage.setItem('lname', this.myData.user['Last Name']);
+            localStorage.setItem('uuid', this.myData.uuid);
             this.router.navigateByUrl('/dashboard');
           }
        },

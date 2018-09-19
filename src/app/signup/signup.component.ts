@@ -45,16 +45,16 @@ export class SignupComponent implements OnInit {
             this.router.navigateByUrl('/access-denied');
           }
           else if(this.myData.user.admin==0){
-            sessionStorage.setItem('isLoggedin', 'true');
-            sessionStorage.setItem('fname', this.myData.user.fname);
-            sessionStorage.setItem('lname', this.myData.user.lname);
+            localStorage.setItem('isLoggedin', 'true');
+            localStorage.setItem('fname', this.myData.user.fname);
+            localStorage.setItem('lname', this.myData.user.lname);
             this.router.navigateByUrl('/home');
           }
           else if(this.myData.user.admin==1){
-            sessionStorage.setItem('isLoggedin', 'true');
-            sessionStorage.setItem('admin', 'true');
-            sessionStorage.setItem('fname', this.myData.user.fname);
-            sessionStorage.setItem('lname', this.myData.user.lname);
+            localStorage.setItem('isLoggedin', 'true');
+            localStorage.setItem('admin', 'true');
+            localStorage.setItem('fname', this.myData.user.fname);
+            localStorage.setItem('lname', this.myData.user.lname);
             this.router.navigateByUrl('/dashboard');
           }
        },

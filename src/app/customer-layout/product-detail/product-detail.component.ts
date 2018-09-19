@@ -57,7 +57,7 @@ ngOnInit()  {
             }
 
 updateCart()  {
-                var retrievedData = sessionStorage.getItem("currentCart");        
+                var retrievedData = localStorage.getItem("currentCart");        
                 var cartdetails = JSON.parse(retrievedData);  
                 if(cartdetails.cartproducts){
                   if(this.cartcheck && cartdetails.cartproducts.length>0){
@@ -99,7 +99,7 @@ addtoCart(color,colorcode,image) {
                                    this.cart.push({ProductID:+this.productid,Attr2:colorcode,A2_Label:color,Price:+this.price,ProductName:this.name,ImageFile:image});
                                     
                                     
-                                    var retrievedData = sessionStorage.getItem("currentCart");        
+                                    var retrievedData = localStorage.getItem("currentCart");        
                                     var cartdetails = JSON.parse(retrievedData);
                                     let selectiondetails:Cart={};
                                     selectiondetails.productid=+this.productid;     
@@ -129,7 +129,7 @@ deletefromCart(color,colorcode,image) {
                                    
                                   if(this.colorselected){this.colorselected=this.colorselected.replace(new RegExp(colorcode),'');}
                                   // console.log(this.colorselected);
-                                  var retrievedData = sessionStorage.getItem("currentCart");        
+                                  var retrievedData = localStorage.getItem("currentCart");        
                                   var cartdetails = JSON.parse(retrievedData);  
                                   let selectiondetails:Cart={};
                                   selectiondetails.productid=+this.productid;     
@@ -177,9 +177,9 @@ CartCheck() {
 
 GetCart() {    
             let user:Cart={};
-            user.uuid=sessionStorage.getItem("uuid").toString();
+            user.uuid=localStorage.getItem("uuid").toString();
             this.authService.getCart(user).subscribe(user => {        
-              sessionStorage.setItem('currentCart', JSON.stringify(user));    
+              localStorage.setItem('currentCart', JSON.stringify(user));    
               console.log(user); 
               this.gcUpdate();  
               this.updateCart();    
@@ -189,7 +189,7 @@ GetCart() {
           }
 
 gcUpdate() {
-              var retrievedData = sessionStorage.getItem("currentCart");        
+              var retrievedData = localStorage.getItem("currentCart");        
               var cartdetails = JSON.parse(retrievedData); 
               //console.log(cartdetails);
               //this.cart=cartdetails;
@@ -206,7 +206,7 @@ gcUpdate() {
               console.log(this.gc.count);
             }
 SubmitCart() {
-                var retrievedData = sessionStorage.getItem("currentCart");        
+                var retrievedData = localStorage.getItem("currentCart");        
                 var cartdetails = JSON.parse(retrievedData);
                 let selectiondetails:Cart={};
                 selectiondetails.productid=+this.productid; 

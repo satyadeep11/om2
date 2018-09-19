@@ -35,14 +35,14 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-       this.fname= sessionStorage.getItem("fname").toString();
-       this.lname= sessionStorage.getItem("lname").toString();
+       this.fname= localStorage.getItem("fname").toString();
+       this.lname= localStorage.getItem("lname").toString();
        this.gcUpdate();
             
     }
 
     gcUpdate(){
-        var retrievedData = sessionStorage.getItem("currentCart");        
+        var retrievedData = localStorage.getItem("currentCart");        
         var cartdetails = JSON.parse(retrievedData);         
          
         var uniqueproductid=[];
@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
-        sessionStorage.clear();
+        localStorage.clear();
     }
 
     changeLang(language: string) {

@@ -21,7 +21,7 @@ export class InviteComponent implements OnInit {
 
   userInvite(person: InviteUser){
    this.closed = false; 
-   person.inviteid=sessionStorage.getItem("uuid").toString(); 
+   person.inviteid=localStorage.getItem("uuid").toString(); 
 
     this.inviteService.invite(person)
     .subscribe(user => {
@@ -34,9 +34,9 @@ export class InviteComponent implements OnInit {
       //   this.router.navigateByUrl('/error');
       // }
       // else if(this.myData.user.Admin==0){
-      //   sessionStorage.setItem('isLoggedin', 'true');
-      //   sessionStorage.setItem('fname', this.myData.user['First Name']);
-      //   sessionStorage.setItem('lname', this.myData.user['Last Name']);
+      //   localStorage.setItem('isLoggedin', 'true');
+      //   localStorage.setItem('fname', this.myData.user['First Name']);
+      //   localStorage.setItem('lname', this.myData.user['Last Name']);
       //   this.router.navigateByUrl('/dashboard');
       // }     
    },

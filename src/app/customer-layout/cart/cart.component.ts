@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
   constructor(private gc: GlobalCart,
     private authService: AuthService,
     private productDetailService: ProductDetailService) { 
-    var retrievedData = sessionStorage.getItem("currentCart");        
+    var retrievedData = localStorage.getItem("currentCart");        
     this.productList= JSON.parse(retrievedData); 
     var colors_container=[];
     
@@ -82,9 +82,9 @@ export class CartComponent implements OnInit {
 
   GetCart() {    
     let user:Cart={};
-    user.uuid=sessionStorage.getItem("uuid").toString();
+    user.uuid=localStorage.getItem("uuid").toString();
     this.authService.getCart(user).subscribe(user => {        
-      sessionStorage.setItem('currentCart', JSON.stringify(user)); 
+      localStorage.setItem('currentCart', JSON.stringify(user)); 
       this.gcUpdate(); 
     },
     error => console.log(error)
@@ -92,7 +92,7 @@ export class CartComponent implements OnInit {
   }
 
   gcUpdate() {
-    var retrievedData = sessionStorage.getItem("currentCart");        
+    var retrievedData = localStorage.getItem("currentCart");        
     var cartdetails = JSON.parse(retrievedData); 
     var uniqueproductid=[];
     cartdetails.cartproducts.forEach(function (value) {
