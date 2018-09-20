@@ -28,7 +28,7 @@ export class ProductsComponent implements OnInit {
       else{
         this.id.catid = 0;
       }
-      console.log(this.id);
+      //console.log(this.id);
       
     });
     if(this.id && this.id.catid!=0){
@@ -36,14 +36,16 @@ export class ProductsComponent implements OnInit {
         this.productDetailService.category_product(this.id)
             .subscribe(user => {
               this.myData = user;  
-              console.log(this.myData);     
+              //console.log(this.myData);     
               //get the product list for this category
                         var self=this;
                         self.gc.productlist.length=0;
                         self.gc.productlist.push(+this.id.catid);
+                        if(this.myData.products){
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
                           });
+                        }
                         //console.log(this.gc.productlist);   
                         // localStorage.setItem('productList', JSON.stringify(this.gc.productlist)); 
                           
@@ -55,7 +57,7 @@ export class ProductsComponent implements OnInit {
           this.productDetailService.category_product_all()
             .subscribe(user => {
               this.myData = user;  
-              console.log(this.myData);  
+              //console.log(this.myData);  
               //get the product list for this category
                         var self=this;
                         self.gc.productlist.length=0;
@@ -63,7 +65,7 @@ export class ProductsComponent implements OnInit {
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
                           });
-                        console.log(this.gc.productlist);       
+                        //console.log(this.gc.productlist);       
             },
             error => console.log(error)
           );
@@ -74,7 +76,7 @@ if(localStorage.getItem("visitedproducts") ){this.visitedproducts=localStorage.g
 
   ngOnInit() {
     // console.log(this.myData);
-    // console.log(this.gc.productlist);
+     console.log(this.gc.menuitems);
   }
   
 }

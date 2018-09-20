@@ -45,7 +45,7 @@ ngOnInit()  {
 
               this.productDetailService.product_detail(this.id).subscribe(user => {
                 this.myData = user; 
-                
+                console.log(this.myData);
                 this.productid=this.myData.product.ProductID;
                     this.visitedproducts=localStorage.getItem("visitedproducts");
                     this.visitedproducts=this.visitedproducts+this.productid.toString();

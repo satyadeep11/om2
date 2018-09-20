@@ -43,38 +43,12 @@
                             <div class="fancy-collapse-panel">
                           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                              
-                                     <div class="panel-body">
-                                            <p>Apparel</p>
+                                     <div class="panel-body" *ngFor="let item of gc?.menuitems">
+                                            <p>{{item.displayName}}</p>
                                          <ul>
-                                             <li><a href="#">Jeans</a></li>
-                                             <li><a href="#">T-Shirt</a></li>
-                                             <li><a href="#">Jacket</a></li>
-                                             <li><a href="#">Shoes</a></li>
-                                             <li><a href="#">Polos</a></li>
+                                             <li *ngFor="let items of item.children"><a [routerLink]="['/products',items.CategoryID]" [routerLinkActive]="['router-link-active']">{{items.displayName}}</a></li>                                             
                                          </ul>
                                      </div>
-
-                                     <div class="panel-body">
-                                            <p>Hardgoods</p>
-                                         <ul>
-                                             <li><a href="#">Hardgood 1</a></li>
-                                             <li><a href="#">Hardgood 2</a></li>
-                                             <li><a href="#">Hardgood 3</a></li>
-                                             <li><a href="#">Hardgood 4</a></li>
-                                         </ul>
-                                     </div>
-
-                                     <div class="panel-body">
-                                            <p>Accessories</p>
-                                         <ul>
-                                             <li><a href="#">Caps</a></li>
-                                             <li><a href="#">Bags</a></li>
-                                         </ul>
-                                     </div>
-                                
-                             
-                             
-                             
                           </div>
                        </div>
                         </div>
