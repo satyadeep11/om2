@@ -248,6 +248,9 @@ getNextMember(array, productID) {
                     this.router.navigate(['/product-detail', array[startIndex]]);
                 }
               }
+getThumb(imagename){
+  return imagename.replace(".jpg", "_60.jpg");
+}              
 }
 
 
