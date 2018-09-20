@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
  
   newCart:any=[];
   
-  constructor(private gc: GlobalCart,
+  constructor(public gc: GlobalCart,
     private authService: AuthService,
     public snackBar: MatSnackBar,
     private productDetailService: ProductDetailService) { 
@@ -63,7 +63,7 @@ export class CartComponent implements OnInit {
     return newArray;
   }
 
-  DeleteProduct(ProductID) {
+  DeleteProduct(ProductID,ProductName) {
 
     let productdetails:PID={};
     productdetails.selectionid=this.productList.selection_id;
@@ -80,6 +80,8 @@ export class CartComponent implements OnInit {
     this.newCart.forEach( (item, index) => {
       if(item.ProductID == ProductID) this.newCart.splice(index,1);
     });
+
+    this.openSnackBar(ProductName+' removed from selection.','OK');    
     
   }
 

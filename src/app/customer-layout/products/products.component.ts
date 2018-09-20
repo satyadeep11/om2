@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { ProductDetailService } from '../product-detail.service'; 
+import {GlobalCart} from '../globalcart';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +17,7 @@ export class ProductsComponent implements OnInit {
   public products_per_page=90;
   visitedproducts="";
 
-  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router) {
+  constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router,public gc: GlobalCart) {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
   };
@@ -35,7 +36,17 @@ export class ProductsComponent implements OnInit {
         this.productDetailService.category_product(this.id)
             .subscribe(user => {
               this.myData = user;  
-              console.log(this.myData);         
+              console.log(this.myData);     
+              //get the product list for this category
+                        var self=this;
+                        self.gc.productlist.length=0;
+                        self.gc.productlist.push(+this.id.catid);
+                        this.myData.products.forEach(function (value) {
+                          self.gc.productlist.push(+value.product.ProductID);
+                          });
+                        //console.log(this.gc.productlist);   
+                        // localStorage.setItem('productList', JSON.stringify(this.gc.productlist)); 
+                          
             },
             error => console.log(error)
           );
@@ -44,7 +55,15 @@ export class ProductsComponent implements OnInit {
           this.productDetailService.category_product_all()
             .subscribe(user => {
               this.myData = user;  
-              console.log(this.myData);         
+              console.log(this.myData);  
+              //get the product list for this category
+                        var self=this;
+                        self.gc.productlist.length=0;
+                        self.gc.productlist.push('');
+                        this.myData.products.forEach(function (value) {
+                          self.gc.productlist.push(+value.product.ProductID);
+                          });
+                        console.log(this.gc.productlist);       
             },
             error => console.log(error)
           );
@@ -54,6 +73,8 @@ if(localStorage.getItem("visitedproducts") ){this.visitedproducts=localStorage.g
   }
 
   ngOnInit() {
+    // console.log(this.myData);
+    // console.log(this.gc.productlist);
   }
   
 }

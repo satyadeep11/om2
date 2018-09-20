@@ -9,6 +9,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
+import { ImagePreloader } from '../components/img-preload';
+
 
 @NgModule({
   imports: [
@@ -17,7 +19,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSnackBarModule,
     NgbModule 
   ],
-  declarations: [ProductDetailComponent]  
+  declarations: [ProductDetailComponent,ImagePreloader]  
 
 })
 export class ProductDetailModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductDetailService } from '../product-detail.service'; 
 import {MatSnackBar} from '@angular/material';
+import {Router} from "@angular/router";
 
 import { AuthService } from '../../auth.service';
 import {GlobalCart} from '../globalcart';
@@ -32,7 +33,8 @@ constructor(  private route: ActivatedRoute,
               private productDetailService: ProductDetailService,
               public snackBar: MatSnackBar,
               private authService: AuthService,
-              private gc: GlobalCart) 
+              private gc: GlobalCart,
+              private router: Router) 
               { 
               }
 
@@ -113,7 +115,7 @@ addtoCart(color,colorcode,image) {
                                     selectiondetails.price=this.price;
                                     selectiondetails.name=this.name;
                                     selectiondetails.image=[image];
-                                    this.openSnackBar('Color '+ color +' Added to Cart', 'OK'); 
+                                    this.openSnackBar('Color '+ color +' added to Selection', 'OK'); 
                                     this.colorset[colorcode]=color;
                                     
                                     this.colorselected=this.colorselected+colorcode;
@@ -141,7 +143,7 @@ deletefromCart(color,colorcode,image) {
                                   selectiondetails.colors=[color];
                                   selectiondetails.selectionid=cartdetails.selection_id;
                                   selectiondetails.price=this.price; 
-                                  this.openSnackBar('Color '+ color+ ' Removed from Cart','OK'); 
+                                  this.openSnackBar('Color '+ color+ ' removed from Selection','OK'); 
                                   delete this.colorset[colorcode];   
                                   
                                   this.productDetailService.deleteFromCart(selectiondetails).subscribe(user => {
@@ -170,14 +172,14 @@ public updateImage(product,image,imageid) {
                                             }
                                           }
 
-CartCheck() {
-              if((Object.keys(this.colorset).length)==0){
-                this.openSnackBar('Select Color first '+ '','OK');      
-              }
-              else{
-                this.SubmitCart();
-              }
-            }
+// CartCheck() {
+//               if((Object.keys(this.colorset).length)==0){
+//                 this.openSnackBar('Select Color first '+ '','OK');      
+//               }
+//               else{
+//                 this.SubmitCart();
+//               }
+//             }
 
 GetCart() {    
             let user:Cart={};
@@ -210,22 +212,41 @@ gcUpdate() {
               console.log(this.gc.count);
             }
 SubmitCart() {
-                var retrievedData = localStorage.getItem("currentCart");        
-                var cartdetails = JSON.parse(retrievedData);
-                let selectiondetails:Cart={};
-                selectiondetails.productid=+this.productid; 
-                selectiondetails.selectionid=cartdetails.selection_id;
-                let x=Object.keys(this.colorset); 
-                let y=Object.values(this.colorset);
-                selectiondetails.colorcodes=x.map(Number);
-                selectiondetails.colors=y.map(String);
-                console.log(selectiondetails);
-                this.productDetailService.addToCart(selectiondetails).subscribe(user => {
-                  this.myData.error = user.error;       
-                },
-                error => console.log(error)
-                );
-                this.GetCart();
+                // var retrievedData = localStorage.getItem("currentCart");        
+                // var cartdetails = JSON.parse(retrievedData);
+                // let selectiondetails:Cart={};
+                // selectiondetails.productid=+this.productid; 
+                // selectiondetails.selectionid=cartdetails.selection_id;
+                // let x=Object.keys(this.colorset); 
+                // let y=Object.values(this.colorset);
+                // selectiondetails.colorcodes=x.map(Number);
+                // selectiondetails.colors=y.map(String);
+                // console.log(selectiondetails);
+                // this.productDetailService.addToCart(selectiondetails).subscribe(user => {
+                //   this.myData.error = user.error;       
+                // },
+                // error => console.log(error)
+                // );
+                // this.GetCart();
+                if(this.gc.productlist.length>0){
+                this.getNextMember(this.gc.productlist, +this.productid);
+                }
+                else{
+                  this.router.navigate(['/products']);
+                }
+              }
+
+getNextMember(array, productID) {
+                var startIndex = array.indexOf(productID);
+                console.log(array,productID,startIndex); 
+                if(startIndex==array.length - 1){
+                  this.router.navigate(['/products', array[0]]);
+                }
+                else{
+                    startIndex++;  
+                    console.log(array[startIndex]);
+                    this.router.navigate(['/product-detail', array[startIndex]]);
+                }
               }
 }
 
