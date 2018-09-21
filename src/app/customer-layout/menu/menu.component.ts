@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router} from '@angular/router';
 import {VERSION} from '@angular/material';
-import {GlobalCart} from '../globalcart';
 
 
 @Component({
@@ -11,12 +10,12 @@ import {GlobalCart} from '../globalcart';
 })
 export class MenuComponent implements OnInit {
 
-  constructor( public router: Router,public gc: GlobalCart) { }
+  constructor( public router: Router) { }
 
   ngOnInit() {
   }
   version = VERSION;
-  navItems  = this.gc.menuitems;
+  navItems  = require('../../../assets/menu.json');
 
 }
 
