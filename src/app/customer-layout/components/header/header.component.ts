@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
        this.fname= localStorage.getItem("fname").toString();
        this.lname= localStorage.getItem("lname").toString();   
-         this.gcUpdate();     
+        
     }
 
     gcUpdate(){
@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit {
           var unique = uniqueproductid.filter(function(elem, index, self) {
             return index === self.indexOf(elem);
         })
-        console.log(unique);
         this.gc.count=unique.length;
         }
     }

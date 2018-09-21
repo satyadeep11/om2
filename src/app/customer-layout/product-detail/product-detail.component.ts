@@ -52,7 +52,7 @@ ngOnInit()  {
                     localStorage.setItem('visitedproducts',this.visitedproducts); 
                 this.price=this.myData.product.Price;
                 this.name=this.myData.product.ProductName;
-                this.updateImage(this.myData.variants[0].ProductID, this.myData.variants[0].ImageFile,'product-img');
+                this.updateImage(this.myData.variants[0].ProductID, this.getMain(this.myData.variants[0].ImageFile),'product-img');
               },
               error => console.log(error)
               );
@@ -250,8 +250,15 @@ getNextMember(array, productID) {
               }
 getThumb(imagename){
                       return imagename.replace(".jpg", "_60.jpg");
-                  }              
+                  }       
+                  
+                  getMain(imagename){
+                    return imagename.replace(".jpg", "_600.jpg");
+                }              
+
 }
+
+
 
 
 export interface PriceId {  

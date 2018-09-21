@@ -60,7 +60,7 @@
                           Colors Available: <br>
                         <span class="thumb-nail">
                             <span *ngFor="let item of myData?.variants;let l = last">
-                            <a *ngIf="!this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,item.ImageFile,'product-img');" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');addtoCart(item.A2_Label,item.Attr2,item.ImageFile)">
+                            <a *ngIf="!this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');addtoCart(item.A2_Label,item.Attr2,item.ImageFile)">
                               <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
                               
                             </a>
@@ -71,7 +71,7 @@
                         <br>Colors Selected: <br>
                         <span class="thumb-nail">
                             <span *ngFor="let item of cart;let l = last">
-                            <a *ngIf="this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,item.ImageFile,'product-img');" (click)="updateImage(item.ProductID,item.ImageFile,'product-img');deletefromCart(item.A2_Label,item.Attr2,item.ImageFile)">
+                            <a *ngIf="this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');deletefromCart(item.A2_Label,item.Attr2,item.ImageFile)">
                               <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>                            
                             </a>
                           </span>
