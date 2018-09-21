@@ -76,7 +76,7 @@ if(localStorage.getItem("visitedproducts") ){this.visitedproducts=localStorage.g
 
   ngOnInit() {
     // console.log(this.myData);
-     console.log(this.gc.menuitems);
+     //console.log(this.gc.menuitems);
   }
   
 }

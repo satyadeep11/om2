@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router} from '@angular/router';
 import {VERSION} from '@angular/material';
-
+declare var require: any;
 
 @Component({
   selector: 'app-menu',
