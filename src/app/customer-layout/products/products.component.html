@@ -43,7 +43,7 @@
                             <div class="fancy-collapse-panel">
                           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                              
-                                     <div class="panel-body" *ngFor="let item of gc?.menuitems">
+                                     <div class="panel-body" *ngFor="let item of menuitems">
                                             <p>{{item.displayName}}</p>
                                          <ul>
                                              <li *ngFor="let items of item.children"><a [routerLink]="['/products',items.CategoryID]" [routerLinkActive]="['router-link-active']">{{items.displayName}}</a></li>                                             

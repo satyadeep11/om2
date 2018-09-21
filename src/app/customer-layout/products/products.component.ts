@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { ProductDetailService } from '../product-detail.service'; 
 import {GlobalCart} from '../globalcart';
+declare var require: any;
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,7 @@ export class ProductsComponent implements OnInit {
   public url_close=")";
   public products_per_page=90;
   visitedproducts="";
+  menuitems = require('../../../assets/menu.json');
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router,public gc: GlobalCart) {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
