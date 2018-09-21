@@ -249,8 +249,8 @@ getNextMember(array, productID) {
                 }
               }
 getThumb(imagename){
-  return imagename.replace(".jpg", "_60.jpg");
-}              
+                      return imagename.replace(".jpg", "_60.jpg");
+                  }              
 }
 
 

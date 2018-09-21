@@ -5,21 +5,22 @@ import { PriceId,Cart } from './product-detail/product-detail.component';
 import { PID,CID} from './cart/cart.component';
 import { CatId } from './products/products.component';
 import { map } from 'rxjs/operators';
+import {GlobalCart} from './globalcart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductDetailService {
 
-  constructor(private _http : Http) { }
+  constructor(private _http : Http,private gc: GlobalCart) { }
 
   product_detail(product): Observable<PriceId>{
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-  
+    let link=this.gc.link+"/php_api/masterdb/single-product.php";
     return this._http.post(
-      "http://localhost/php_api/masterdb/single-product.php",
+      link,
       product,
       options
     ).pipe(map((res: Response) => res.json()));
@@ -29,9 +30,10 @@ export class ProductDetailService {
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/masterdb/single-category.php";
   
     return this._http.post(
-      "http://localhost/php_api/masterdb/single-category.php",
+      link,
       product,
       options
     ).pipe(map((res: Response) => res.json()));
@@ -41,9 +43,10 @@ export class ProductDetailService {
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/masterdb/all-category.php";
   
     return this._http.post(
-      "http://localhost/php_api/masterdb/all-category.php",
+      link,
       options
     ).pipe(map((res: Response) => res.json()));
   }
@@ -52,9 +55,10 @@ export class ProductDetailService {
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/add-to-cart.php";
   
     return this._http.post(
-      "http://localhost/php_api/add-to-cart.php",
+      link,
       product,
       options
     ).pipe(map((res: Response) => res.json()));
@@ -64,9 +68,10 @@ export class ProductDetailService {
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/delete-from-cart.php";
   
     return this._http.post(
-      "http://localhost/php_api/delete-from-cart.php",
+      link,
       product,
       options
     ).pipe(map((res: Response) => res.json()));
@@ -76,9 +81,10 @@ export class ProductDetailService {
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/delete-product.php";
   
     return this._http.post(
-      "http://localhost/php_api/delete-product.php",
+      link,
       product,
       options
     ).pipe(map((res: Response) => res.json()));
@@ -88,9 +94,10 @@ export class ProductDetailService {
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/submit-product.php";
   
     return this._http.post(
-      "http://localhost/php_api/submit-product.php",
+      link,
       product,
       options
     ).pipe(map((res: Response) => res.json()));

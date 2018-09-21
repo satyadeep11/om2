@@ -4,21 +4,23 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { InviteUserList} from './invite-list/invite-list.component';
 import { EmailString,CustomerUID} from './invite-list/invite-list.component';
 import { map } from 'rxjs/operators';
+import {GlobalCart} from '../customer-layout/globalcart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InviteListService {
 
-  constructor(private _http : Http) { }
+  constructor(private _http : Http,private gc: GlobalCart) { }
 
   invitelist(): Observable<InviteUserList>{
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/invite-list.php";    
   
     return this._http.post(
-      "http://localhost/php_api/invite-list.php",
+      link,
       options
     ).pipe(map((res: Response) => res.json()));
   }
@@ -27,9 +29,10 @@ export class InviteListService {
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/invite-pending-list.php";
   
     return this._http.post(
-      "http://localhost/php_api/invite-pending-list.php",
+      link,
       options
     ).pipe(map((res: Response) => res.json()));
   }
@@ -38,9 +41,10 @@ export class InviteListService {
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/invite-accepted-list.php";
   
     return this._http.post(
-      "http://localhost/php_api/invite-accepted-list.php",
+      link,
       options
     ).pipe(map((res: Response) => res.json()));
   }
@@ -49,9 +53,10 @@ export class InviteListService {
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/invite-single-user.php";
   
     return this._http.post(
-      "http://localhost/php_api/invite-single-user.php",
+      link,
       email,
       options
     ).pipe(map((res: Response) => res.json()));
@@ -61,10 +66,10 @@ export class InviteListService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('customerid',customerid.toString()); 
     let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/delete-single-user.php";
   
     return this._http.post(
-      "http://localhost/php_api/delete-single-user.php",
-      
+      link,      
       options
     ).pipe(map((res: Response) => res.json()));
   }

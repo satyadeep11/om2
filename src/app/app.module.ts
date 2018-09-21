@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { HttpModule } from '@angular/http';
 import { MatInputModule, MatButtonModule,MatMenuModule, MatIconModule, MatToolbarModule,MatCardModule } from '@angular/material';
+import { GlobalCart } from './customer-layout/globalcart';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -48,7 +49,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         AppRoutingModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard],
+    providers: [AuthGuard,GlobalCart],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
