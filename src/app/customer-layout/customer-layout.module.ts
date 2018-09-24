@@ -13,6 +13,7 @@ import { MatInputModule, MatButtonModule,MatMenuModule, MatIconModule, MatToolba
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GlobalCart } from './globalcart';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 
 
@@ -21,6 +22,7 @@ import { GlobalCart } from './globalcart';
     CommonModule,
     CustomerLayoutRoutingModule,
     TranslateModule,
+    NgxPaginationModule,
     MatInputModule,
         MatButtonModule,
         MatMenuModule, 

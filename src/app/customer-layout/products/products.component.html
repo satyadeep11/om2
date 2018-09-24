@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-10 col-md-push-2">
                     <div class="row row-pb-lg" >
-                        <div *ngFor=" let item of myData?.products;"class="col-md-4 text-center">
+                        <div *ngFor=" let item of myData?.products|slice:current:end;"class="col-md-4 text-center">
                             <div class="product-entry">
                                 <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
                                     <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
@@ -24,13 +24,8 @@
                     </div>
                     <div class="row" *ngIf="myData?.products">
                         <div class="col-md-12" *ngIf="myData?.products.length>this.products_per_page">
-                            <ul class="pagination">
-                                <li class="disabled"><a href="#">&laquo;</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">&raquo;</a></li>
+                            <ul class="pagination">                                
+                                <li *ngFor="let n of pages; " class="active" (click)="changePage(n)"><a>{{n}}</a></li>                                
                             </ul>
                         </div>
                     </div>

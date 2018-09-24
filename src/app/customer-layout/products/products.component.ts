@@ -15,7 +15,12 @@ export class ProductsComponent implements OnInit {
   myData:any;
   public url="url(https://www.afhsgear.com/sites/998/products/998_";
   public url_close=")";
-  public products_per_page=90;
+  public products_per_page=9;
+  current=0;
+  end=9;
+  total=0;
+  pages=[];
+  numberofpages=0;
   visitedproducts="";
   menuitems = require('../../../assets/menu.json');
 
@@ -44,6 +49,9 @@ export class ProductsComponent implements OnInit {
                         self.gc.productlist.length=0;
                         self.gc.productlist.push(+this.id.catid);
                         if(this.myData.products){
+                          this.total=this.myData.products.length;
+                          this.pagesCount(this.total);
+                          
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
                           });
@@ -59,6 +67,8 @@ export class ProductsComponent implements OnInit {
           this.productDetailService.category_product_all()
             .subscribe(user => {
               this.myData = user;  
+              this.total=this.myData.products.length;
+              this.pagesCount(this.total);
               //console.log(this.myData);  
               //get the product list for this category
                         var self=this;
@@ -76,15 +86,26 @@ if(localStorage.getItem("visitedproducts") ){this.visitedproducts=localStorage.g
          
   }
 
-  ngOnInit() {
-    // console.log(this.myData);
-     //console.log(this.gc.menuitems);
-  }
-  getMain(imagename){
+ngOnInit() {}
+
+getMain(imagename){
     return imagename.replace(".jpg", "_600.jpg");
 }   
-  
+
+pagesCount(total){    
+    var numberofpages=total/this.products_per_page;
+    var self=this;
+    this.total=total;
+    for (var i = 0; i < numberofpages; i++) {
+        self.pages.push(i+1);      
+    }
+  }
+  changePage(pagerequested){    
+    this.current=((pagerequested-1)*this.products_per_page);
+    this.end=this.products_per_page+((pagerequested-1)*this.products_per_page);  
+  }
 }
+
 
 export interface CatId {  
   catid ?: number;
