@@ -5,13 +5,12 @@
                     <div class="row row-pb-lg" >
                         <div *ngFor=" let item of myData?.products;"class="col-md-4 text-center">
                             <div class="product-entry">
-                                <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+item.product.ImageFile+this.url_close">
+                                <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
                                     <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
                                     <!-- &#9989; -->
                                     <div class="cart">
-                                        <p>
-                                            <span class="addtocart"><a [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']"><i class="fa fa-shopping-cart"></i></a></span> 
-                                            <span><a [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']"><i class="fa fa-eye"></i></a></span> 
+                                        <p>                                            
+                                            <span><a [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']"><i class="fa fa-eye">    View Product</i></a></span> 
                                         </p>
                                     </div>
                                 </div>

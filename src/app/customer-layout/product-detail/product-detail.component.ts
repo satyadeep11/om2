@@ -27,6 +27,8 @@ export class ProductDetailComponent implements OnInit {
   cartcheck=true;
   cart=[]; 
   visitedproducts='';
+  public url="url(https://www.afhsgear.com/sites/998/products/998_";
+  public url_close=")";
 //variables end
 
 constructor(  private route: ActivatedRoute,
@@ -36,6 +38,9 @@ constructor(  private route: ActivatedRoute,
               private gc: GlobalCart,
               private router: Router) 
               { 
+                this.router.routeReuseStrategy.shouldReuseRoute = function() {
+                  return false;
+              };
               }
 
 ngOnInit()  {

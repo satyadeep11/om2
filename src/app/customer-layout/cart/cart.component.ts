@@ -92,7 +92,7 @@ export class CartComponent implements OnInit {
   }
 
   SubmitCart() {
-
+    localStorage.removeItem('visitedproducts');
     if(this.gc.count==0){
       this.openSnackBar('No Products Selected '+ '','OK');      
     }
@@ -104,6 +104,8 @@ export class CartComponent implements OnInit {
           //console.log(user);
           // this.myData.error = user.error;  
           this.GetCart();
+          
+        
         },
         error => console.log(error)
         );

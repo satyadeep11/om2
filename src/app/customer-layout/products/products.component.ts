@@ -80,6 +80,9 @@ if(localStorage.getItem("visitedproducts") ){this.visitedproducts=localStorage.g
     // console.log(this.myData);
      //console.log(this.gc.menuitems);
   }
+  getMain(imagename){
+    return imagename.replace(".jpg", "_600.jpg");
+}   
   
 }
 
