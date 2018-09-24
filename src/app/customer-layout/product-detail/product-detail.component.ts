@@ -257,7 +257,7 @@ getThumb(imagename){
                       return imagename.replace(".jpg", "_60.jpg");
                   }       
                   
-                  getMain(imagename){
+getMain(imagename){
                     return imagename.replace(".jpg", "_600.jpg");
                 }              
 
