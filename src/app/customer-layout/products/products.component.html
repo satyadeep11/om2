@@ -22,13 +22,15 @@
                         </div>
                          
                     </div>
+                    <div class="row justify-content-center"> 
                     <div class="row" *ngIf="myData?.products">
-                        <div class="col-md-12" *ngIf="myData?.products.length>this.products_per_page">
+                        <div class="col-md-4 text-center" *ngIf="myData?.products.length>this.products_per_page">
                             <ul class="pagination">                                
-                                <li *ngFor="let n of pages; " class="active" (click)="changePage(n)"><a>{{n}}</a></li>                                
+                                <li *ngFor="let n of pages; " [ngStyle]="{'cursor': 'pointer'}"  (click)="changePage(n)"><a>{{n}}</a></li>                                
                             </ul>
                         </div>
                     </div>
+                </div>
                 </div>
                 <div class="col-md-2 col-md-pull-10">
                     <div class="sidebar">
