@@ -81,20 +81,21 @@ export class CartComponent implements OnInit {
       if(item.ProductID == ProductID) this.newCart.splice(index,1);
     });
 
-    this.openSnackBar(ProductName+' removed from selection.','OK');    
+    this.openSnackBar(ProductName+' removed from selection.','','red-snackbar');    
     
   }
 
-  openSnackBar(msg,action)  {
+  openSnackBar(msg,action,className)  {
     this.snackBar.open(msg,action, {
       duration: 2500,
+      panelClass: [className]
     });
   }
 
   SubmitCart() {
     localStorage.removeItem('visitedproducts');
     if(this.gc.count==0){
-      this.openSnackBar('No Products Selected '+ '','OK');      
+      this.openSnackBar('No Products Selected ','','red-snackbar');      
     }
     else {
         let cartdetails:CID={};

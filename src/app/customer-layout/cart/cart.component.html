@@ -27,6 +27,9 @@
 						<div class="one-eight text-center">
 							<span>Price</span>
 						</div>
+						<div class="one-eight text-center">
+								<span>Action</span>
+						</div>
 						
 						<div class="one-eight text-center">
 							<span>Remove</span>
@@ -49,7 +52,12 @@
 								<div class="display-tc">
 									<span class="price">{{item.Price| currency:'USD'}}</span>
 								</div>
-							</div>						
+							</div>	
+							<div class="one-eight text-center">
+									<div class="display-tc">
+										<a class="btn btn-primary" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">Edit</a>
+									</div>
+							</div>					
 							<div class="one-eight text-center">
 								<div class="display-tc">
 									<a class="closed" [ngStyle]="{'cursor': 'pointer'}" (click)="DeleteProduct(item.ProductID,item.ProductName);"></a>

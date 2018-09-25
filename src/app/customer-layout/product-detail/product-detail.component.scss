@@ -5,6 +5,12 @@
   * 	Template Style 
   *
   * ======================================================= */
+  ::ng-deep .green-snackbar {
+    background:rgb(3, 122, 3) !important;
+  }
+  ::ng-deep .red-snackbar {
+    background:#F44336 !important;
+  }
       // shadow-piercing descendant combinator
       ::ng-deep .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
         background-color: #ffc300 !important;
