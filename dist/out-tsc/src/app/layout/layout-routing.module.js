@@ -19,7 +19,7 @@ var routes = [
             { path: 'invite', loadChildren: './invite/invite.module#InviteModule' },
             { path: 'invite-list', loadChildren: './invite-list/invite-list.module#InviteListModule' },
             { path: 'orders', loadChildren: './orders/orders.module#OrdersModule' },
-            { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
+            // { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
             { path: 'forms', loadChildren: './form/form.module#FormModule' },
             { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },

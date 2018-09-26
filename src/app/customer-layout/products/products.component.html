@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-10 col-md-push-2">
                     <div class="row row-pb-lg" >
-                        <div *ngFor=" let item of myData?.products|genderfilter : filtervalue" class="col-md-4 text-center">
+                        <div *ngFor=" let item of myData?.products|genderfilter : filtervalue| pricefilter :startprice:endprice" class="col-md-4 text-center">
                             <div class="product-entry">
                                 <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
                                     <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
@@ -24,67 +24,65 @@
 
                 </div>
                 <div class="col-md-2 col-md-pull-10">
-                    <div class="sidebar">
-                        
+                    <div class="sidebar">                        
                         <div class="side">
                             <h2>Categories</h2>
                             <div class="fancy-collapse-panel">
-                          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                             
-                                     <div class="panel-body" *ngFor="let item of menuitems">
-                                            <p>{{item.displayName}}</p>
-                                         <ul>
-                                             <li *ngFor="let items of item.children"><a [routerLink]="['/products',items.CategoryID]" [routerLinkActive]="['router-link-active']">{{items.displayName}}</a></li>                                             
-                                         </ul>
-                                     </div>
-                          </div>
-                       </div>
-                        </div>
-                        <div class="side">
-                                <h2>Gender</h2>
-                                <div >
-                                    <p >
-                                        <a (click)="filtervalue='men'">MEN</a><br>
-                                        <a (click)="filtervalue='ladies'">WOMEN</a>                                        
-                                    </p>
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel-body" *ngFor="let item of menuitems">
+                                        <p>{{item.displayName}}</p>
+                                        <ul>
+                                            <li *ngFor="let items of item.children"><a [routerLink]="['/products',items.CategoryID]" [routerLinkActive]="['router-link-active']">{{items.displayName}}</a></li>                                             
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="side">
+                            <h2>Gender</h2>
+                            <div >
+                                <p>
+                                    <a (click)="filtervalue='men'">Men</a><br>
+                                    <a (click)="filtervalue='ladies'">Women</a>                                        
+                                </p>
+                            </div>
+                        </div>
                         <div class="side">
                             <h2>Price Range</h2>
                             <form method="post" class="colorlib-form-2">
-                              <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label for="guests">Price from:</label>
-                                <div class="form-field">
-                                  <i class="icon fa fa-arrow-down"></i>
-                                  <select name="people" id="people" class="form-control">
-                                    <option value="#">1</option>
-                                    <option value="#">200</option>
-                                    <option value="#">300</option>
-                                    <option value="#">400</option>
-                                    <option value="#">1000</option>
-                                  </select>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="guests">Price from:</label>
+                                            <div class="form-field">
+                                            <i class="icon fa fa-arrow-down"></i>
+                                            <select [(ngModel)]="startprice"  name="people" id="people" class="form-control">
+                                                <option [value]=1>1</option>
+                                                <option [value]=10>10</option>
+                                                <option [value]=20>20</option>
+                                                <option [value]=30>30</option>
+                                                <option [value]=50>50</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="guests">Price to:</label>
+                                            <div class="form-field">
+                                            <i class="icon fa fa-arrow-down"></i>
+                                            <select [(ngModel)]="endprice" name="people" id="people" class="form-control">     
+                                                    <option [value]=10>10</option>
+                                                    <option [value]=20>20</option>
+                                                    <option [value]=30>30</option>
+                                                    <option [value]=50>50</option>
+                                                    <option [value]=100>100</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label for="guests">Price to:</label>
-                                <div class="form-field">
-                                  <i class="icon fa fa-arrow-down"></i>
-                                  <select name="people" id="people" class="form-control">
-                                    <option value="#">2000</option>
-                                    <option value="#">4000</option>
-                                    <option value="#">6000</option>
-                                    <option value="#">8000</option>
-                                    <option value="#">10000</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </form>
+                            </form>
                         </div>
                         <div class="side">
                             <h2>Color</h2>

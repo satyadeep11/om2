@@ -18,6 +18,7 @@ var material_1 = require("@angular/material");
 var menu_item_component_1 = require("./menu/menu-item/menu-item.component");
 var footer_component_1 = require("./components/footer/footer.component");
 var globalcart_1 = require("./globalcart");
+var ngx_pagination_1 = require("ngx-pagination");
 var CustomerLayoutModule = /** @class */ (function () {
     function CustomerLayoutModule() {
     }
@@ -27,6 +28,7 @@ var CustomerLayoutModule = /** @class */ (function () {
                 common_1.CommonModule,
                 customer_layout_routing_module_1.CustomerLayoutRoutingModule,
                 core_2.TranslateModule,
+                ngx_pagination_1.NgxPaginationModule,
                 material_1.MatInputModule,
                 material_1.MatButtonModule,
                 material_1.MatMenuModule,

@@ -23,13 +23,8 @@ var ProductsComponent = /** @class */ (function () {
         this.id = {};
         this.url = "url(https://www.afhsgear.com/sites/998/products/998_";
         this.url_close = ")";
-        this.products_per_page = 9;
-        this.current = 0;
-        this.end = 9;
-        this.total = 0;
-        this.pages = [];
-        this.numberofpages = 0;
         this.visitedproducts = "";
+        this.filtervalue = '';
         this.menuitems = require('../../../assets/menu.json');
         this.router.routeReuseStrategy.shouldReuseRoute = function () {
             return false;
@@ -48,14 +43,12 @@ var ProductsComponent = /** @class */ (function () {
             this.productDetailService.category_product(this.id)
                 .subscribe(function (user) {
                 _this.myData = user;
-                //console.log(this.myData);     
+                console.log(_this.myData);
                 //get the product list for this category
                 var self = _this;
                 self.gc.productlist.length = 0;
                 self.gc.productlist.push(+_this.id.catid);
                 if (_this.myData.products) {
-                    _this.total = _this.myData.products.length;
-                    _this.pagesCount(_this.total);
                     _this.myData.products.forEach(function (value) {
                         self.gc.productlist.push(+value.product.ProductID);
                     });
@@ -68,9 +61,7 @@ var ProductsComponent = /** @class */ (function () {
             this.productDetailService.category_product_all()
                 .subscribe(function (user) {
                 _this.myData = user;
-                _this.total = _this.myData.products.length;
-                _this.pagesCount(_this.total);
-                //console.log(this.myData);  
+                console.log(_this.myData);
                 //get the product list for this category
                 var self = _this;
                 self.gc.productlist.length = 0;
@@ -88,13 +79,6 @@ var ProductsComponent = /** @class */ (function () {
     ProductsComponent.prototype.ngOnInit = function () { };
     ProductsComponent.prototype.getMain = function (imagename) {
         return imagename.replace(".jpg", "_600.jpg");
-    };
-    ProductsComponent.prototype.pagesCount = function (total) {
-        var numberofpages = total / this.products_per_page;
-        var self = this;
-        for (var i = 0; i < numberofpages; i++) {
-            self.pages.push(i + 1);
-        }
     };
     ProductsComponent = __decorate([
         core_1.Component({

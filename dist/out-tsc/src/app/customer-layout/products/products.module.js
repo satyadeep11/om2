@@ -10,6 +10,8 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var products_component_1 = require("./products.component");
 var products_routing_module_1 = require("./products-routing.module");
+var genderfilter_pipe_1 = require("../genderfilter.pipe");
+var pricefilter_pipe_1 = require("../pricefilter.pipe");
 var ProductsModule = /** @class */ (function () {
     function ProductsModule() {
     }
@@ -19,7 +21,7 @@ var ProductsModule = /** @class */ (function () {
                 common_1.CommonModule,
                 products_routing_module_1.ProductsRoutingModule
             ],
-            declarations: [products_component_1.ProductsComponent]
+            declarations: [products_component_1.ProductsComponent, genderfilter_pipe_1.GenderFilterPipe, pricefilter_pipe_1.PriceFilterPipe]
         })
     ], ProductsModule);
     return ProductsModule;

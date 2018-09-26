@@ -83,9 +83,10 @@ var ProductDetailComponent = /** @class */ (function () {
             }
         }
     };
-    ProductDetailComponent.prototype.openSnackBar = function (msg, action) {
+    ProductDetailComponent.prototype.openSnackBar = function (msg, action, className) {
         this.snackBar.open(msg, action, {
             duration: 2500,
+            panelClass: [className]
         });
     };
     ProductDetailComponent.prototype.addtoCart = function (color, colorcode, image) {
@@ -110,7 +111,7 @@ var ProductDetailComponent = /** @class */ (function () {
         selectiondetails.price = this.price;
         selectiondetails.name = this.name;
         selectiondetails.image = [image];
-        this.openSnackBar('Color ' + color + ' added to Selection', 'OK');
+        this.openSnackBar('Color ' + color + ' added to Selection', '', 'green-snackbar');
         this.colorset[colorcode] = color;
         this.colorselected = this.colorselected + colorcode;
         // console.log(this.colorselected);
@@ -135,7 +136,7 @@ var ProductDetailComponent = /** @class */ (function () {
         selectiondetails.colors = [color];
         selectiondetails.selectionid = cartdetails.selection_id;
         selectiondetails.price = this.price;
-        this.openSnackBar('Color ' + color + ' removed from Selection', 'OK');
+        this.openSnackBar('Color ' + color + ' removed from Selection', '', 'red-snackbar');
         delete this.colorset[colorcode];
         this.productDetailService.deleteFromCart(selectiondetails).subscribe(function (user) {
             _this.myData.error = user.error;

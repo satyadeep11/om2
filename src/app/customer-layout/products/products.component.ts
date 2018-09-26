@@ -17,6 +17,8 @@ export class ProductsComponent implements OnInit {
   public url_close=")";
   visitedproducts="";
   filtervalue='';
+  startprice=0;
+  endprice=0;
   menuitems = require('../../../assets/menu.json');
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router,public gc: GlobalCart) {
@@ -84,7 +86,6 @@ ngOnInit() {}
 getMain(imagename){
     return imagename.replace(".jpg", "_600.jpg");
 }   
-
 
   
 }
