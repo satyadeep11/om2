@@ -22,6 +22,7 @@ export class ProductsComponent implements OnInit {
   pages=[];
   numberofpages=0;
   visitedproducts="";
+  filtervalue='';
   menuitems = require('../../../assets/menu.json');
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router,public gc: GlobalCart) {
@@ -43,7 +44,7 @@ export class ProductsComponent implements OnInit {
         this.productDetailService.category_product(this.id)
             .subscribe(user => {
               this.myData = user;  
-              //console.log(this.myData);     
+              console.log(this.myData);     
               //get the product list for this category
                         var self=this;
                         self.gc.productlist.length=0;
@@ -69,7 +70,7 @@ export class ProductsComponent implements OnInit {
               this.myData = user;  
               this.total=this.myData.products.length;
               this.pagesCount(this.total);
-              //console.log(this.myData);  
+              console.log(this.myData);  
               //get the product list for this category
                         var self=this;
                         self.gc.productlist.length=0;
@@ -100,10 +101,12 @@ pagesCount(total){
         self.pages.push(i+1);      
     }
   }
-  changePage(pagerequested){    
+  
+changePage(pagerequested){    
     this.current=((pagerequested-1)*this.products_per_page);
     this.end=this.products_per_page+((pagerequested-1)*this.products_per_page);  
   }
+  
 }
 
 
