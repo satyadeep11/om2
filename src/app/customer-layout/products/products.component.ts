@@ -16,9 +16,15 @@ export class ProductsComponent implements OnInit {
   public url="url(https://www.afhsgear.com/sites/998/products/998_";
   public url_close=")";
   visitedproducts="";
-  filtervalue='';
   startprice=0;
   endprice=0;
+  menCheckBox:boolean=true;
+  womenCheckBox:boolean=true;
+  youthCheckBox:boolean=true;
+  menText:string='men';
+  womenText:string='ladies';
+  youthText:string='youth';
+  brandArray=[];
   menuitems = require('../../../assets/menu.json');
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router,public gc: GlobalCart) {
@@ -46,15 +52,13 @@ export class ProductsComponent implements OnInit {
                         self.gc.productlist.length=0;
                         self.gc.productlist.push(+this.id.catid);
                         if(this.myData.products){
-                          
-                          
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
+                          self.brandArray.push(value.product.Brand);
                           });
                         }
                         //console.log(this.gc.productlist);   
-                        // localStorage.setItem('productList', JSON.stringify(this.gc.productlist)); 
-                          
+                        // localStorage.setItem('productList', JSON.stringify(this.gc.productlist));                           
             },
             error => console.log(error)
           );
@@ -62,8 +66,7 @@ export class ProductsComponent implements OnInit {
         else {
           this.productDetailService.category_product_all()
             .subscribe(user => {
-              this.myData = user;  
-              
+              this.myData = user;                
               console.log(this.myData);  
               //get the product list for this category
                         var self=this;
@@ -71,8 +74,12 @@ export class ProductsComponent implements OnInit {
                         self.gc.productlist.push('');
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
+                          self.brandArray.push(value.product.Brand);
                           });
-                        //console.log(this.gc.productlist);       
+                        //console.log(this.gc.productlist);    
+                         
+                        this.brandArray=this.removeDupes(this.brandArray);
+                        console.log(this.brandArray); 
             },
             error => console.log(error)
           );
@@ -85,7 +92,38 @@ ngOnInit() {}
 
 getMain(imagename){
     return imagename.replace(".jpg", "_600.jpg");
-}   
+}
+
+menCheck(){
+  if(!this.menCheckBox){
+    this.menText='@nonmencheck!';
+  }else{
+    this.menText='men'
+    // console.log(this.menText);
+  }
+}
+womenCheck(){
+  if(!this.womenCheckBox){
+    this.womenText='@nonwomencheck!';
+  }else{
+    this.womenText='ladies';
+    // console.log(this.womenText);
+  }
+}
+youthCheck(){
+  if(!this.youthCheckBox){
+    this.youthText='@nonyouthcheck!';
+  }else{
+    this.youthText='youth';
+    // console.log(this.youthText);
+  }
+}
+removeDupes(array){
+  var seen = {};
+    return array.filter(function(item) {
+        return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+    });
+}
 
   
 }
