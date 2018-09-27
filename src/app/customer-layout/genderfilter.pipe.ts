@@ -4,6 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class GenderFilterPipe implements PipeTransform {
   transform(items: any[], searchText1: string,searchText2: string,searchText3: string): any[] {
+    
       if(!items) return [];     
       searchText1 = searchText1.toLowerCase();
       searchText2 = searchText2.toLowerCase();

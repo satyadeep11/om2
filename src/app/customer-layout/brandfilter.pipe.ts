@@ -9,8 +9,7 @@ export class BrandFilterPipe implements PipeTransform {
       if(!searcharr) return [];  
       // console.log(searchText1,searchText2,searchText3);
       return items.filter( it => {
-          if(searcharr.includes(it.product.Brand)){
-              console.log(it.product.Brand);
+          if(searcharr.includes(it.product.Brand)){              
               return it;
           }
       });

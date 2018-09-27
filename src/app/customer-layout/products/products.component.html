@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-10 col-md-push-2">
                     <div class="row row-pb-lg" >
-                        <div *ngFor=" let item of myData?.products|genderfilter : menText:womenText:youthText| pricefilter :startprice:endprice| brandfilter :brandFilterArray" class="col-md-4 text-center">
+                        <div *ngFor=" let item of myData?.products|genderfilter : menText:womenText:youthText|brandfilter :brandFilterArray| pricefilter :startprice:endprice" class="col-md-4 text-center">
                             <div class="product-entry">
                                 <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
                                     <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
