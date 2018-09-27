@@ -24,7 +24,10 @@ export class ProductsComponent implements OnInit {
   menText:string='men';
   womenText:string='ladies';
   youthText:string='youth';
-  brandArray=[];
+  brandCheckBox:boolean;
+  brandArray:Brand[]=[];
+  
+  brandFilterArray=[];
   menuitems = require('../../../assets/menu.json');
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router,public gc: GlobalCart) {
@@ -54,7 +57,7 @@ export class ProductsComponent implements OnInit {
                         if(this.myData.products){
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
-                          self.brandArray.push(value.product.Brand);
+                          self.brandArray.push({name:value.product.Brand,checked:true});
                           });
                         }
                         //console.log(this.gc.productlist);   
@@ -74,12 +77,14 @@ export class ProductsComponent implements OnInit {
                         self.gc.productlist.push('');
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
-                          self.brandArray.push(value.product.Brand);
+                          self.brandArray.push({name:value.product.Brand,checked:true});
                           });
-                        //console.log(this.gc.productlist);    
-                         
+                        //console.log(this.gc.productlist); 
                         this.brandArray=this.removeDupes(this.brandArray);
-                        console.log(this.brandArray); 
+                        this.brandArray.forEach(function (value){
+                            self.brandFilterArray.push(value.name);
+                        });
+                        // console.log(this.brandFilterArray);                                                
             },
             error => console.log(error)
           );
@@ -121,8 +126,21 @@ youthCheck(){
 removeDupes(array){
   var seen = {};
     return array.filter(function(item) {
-        return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+        return seen.hasOwnProperty(item.name) || item.name==null ? false : (seen[item.name] = true);//remove dupes and nulls
     });
+}
+brandCheck(brand,i){
+  
+  if(this.brandArray[i].checked){
+    this.brandFilterArray.splice( this.brandFilterArray.indexOf(brand.name), 1 );    
+    console.log(this.brandFilterArray);
+    this.brandArray[i].checked=false;
+  }else{    
+    this.brandFilterArray.push(brand.name);
+    console.log(this.brandFilterArray);
+    this.brandArray[i].checked=true;
+  }
+  
 }
 
   
@@ -131,4 +149,9 @@ removeDupes(array){
 
 export interface CatId {  
   catid ?: number;
+}
+
+export interface Brand{  
+  name ?: string;
+  checked?: boolean;
 }
