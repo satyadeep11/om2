@@ -26,6 +26,8 @@ export class ProductsComponent implements OnInit {
   youthText:string='youth';
   brandCheckBox:boolean;
   brandArray:Brand[]=[];
+  sizeArray=[];
+  sizeSelected='';
   
   brandFilterArray=[];
   menuitems = require('../../../assets/menu.json');
@@ -61,7 +63,11 @@ export class ProductsComponent implements OnInit {
                           });
                         }
                         //console.log(this.gc.productlist);   
-                        // localStorage.setItem('productList', JSON.stringify(this.gc.productlist));                           
+                        // localStorage.setItem('productList', JSON.stringify(this.gc.productlist));  
+                        this.brandArray=this.removeDupes(this.brandArray);
+                        this.brandArray.forEach(function (value){
+                            self.brandFilterArray.push(value.name);
+                        });                         
             },
             error => console.log(error)
           );
@@ -78,8 +84,13 @@ export class ProductsComponent implements OnInit {
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
                           self.brandArray.push({name:value.product.Brand,checked:true});
-                          });
-                        //console.log(this.gc.productlist); 
+                          self.sizeArray.push(value.sizes);
+                          });              
+                        this.sizeArray=[].concat.apply([], this.sizeArray); //merge all arrays inside array           
+                        // this.sizeArray=Array.from(new Set(this.sizeArray));
+                        //this.sizeArray.map(v => v.checked=false);//adding checked true to all elements
+                        this.sizeArray=this.removeDupesSizes(this.sizeArray);
+                        console.log(this.sizeArray); 
                         this.brandArray=this.removeDupes(this.brandArray);
                         this.brandArray.forEach(function (value){
                             self.brandFilterArray.push(value.name);
@@ -93,7 +104,9 @@ if(localStorage.getItem("visitedproducts") ){this.visitedproducts=localStorage.g
          
   }
 
-ngOnInit() {}
+ngOnInit() {
+  console.log(this.sizeSelected);
+}
 
 getMain(imagename){
     return imagename.replace(".jpg", "_600.jpg");
@@ -129,8 +142,14 @@ removeDupes(array){
         return seen.hasOwnProperty(item.name) || item.name==null ? false : (seen[item.name] = true);//remove dupes and nulls
     });
 }
-brandCheck(brand,i){
-  
+removeDupesSizes(array){
+  var seen = {};
+    return array.filter(function(item) {
+        return seen.hasOwnProperty(item.A1_Short) || item.A1_Short==null ? false : (seen[item.A1_Short] = true);//remove dupes and nulls
+    });
+}
+
+brandCheck(brand,i){  
   if(this.brandArray[i].checked){
     this.brandFilterArray.splice( this.brandFilterArray.indexOf(brand.name), 1 );    
     console.log(this.brandFilterArray);
@@ -139,9 +158,9 @@ brandCheck(brand,i){
     this.brandFilterArray.push(brand.name);
     console.log(this.brandFilterArray);
     this.brandArray[i].checked=true;
-  }
-  
+  }  
 }
+
 
   
 }

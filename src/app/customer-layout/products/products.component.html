@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-10 col-md-push-2">
                     <div class="row row-pb-lg" >
-                        <div *ngFor=" let item of myData?.products|genderfilter : menText:womenText:youthText|brandfilter :brandFilterArray| pricefilter :startprice:endprice" class="col-md-4 text-center">
+                        <div *ngFor=" let item of myData?.products|genderfilter : menText:womenText:youthText|brandfilter :brandFilterArray |sizefilter : sizeSelected" class="col-md-4 text-center">
                             <div class="product-entry">
                                 <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
                                     <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
@@ -53,6 +53,16 @@
                                 <p> 
                                     <span *ngFor="let item of brandArray;let i=index">
                                     <input *ngIf="item.name!=null" type="checkbox" [checked]="item.checked" (change)="brandCheck(item,i)" /> {{item.name}}<br> 
+                                    </span>  
+                                </p>
+                            </div>
+                        </div>
+                        <div class="side">
+                            <h2>Sizes</h2>
+                            <div>
+                                <p> 
+                                    <span *ngFor="let item of sizeArray">
+                                    <input *ngIf="item.A1_Short!=null" type="radio" [value]="item.A1_Short" [(ngModel)]="sizeSelected" /> {{item.A1_Short}}<br> 
                                     </span>  
                                 </p>
                             </div>
