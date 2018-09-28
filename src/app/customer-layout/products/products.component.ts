@@ -162,10 +162,7 @@ brandCheck(brand,i){
     console.log(this.brandFilterArray);
     this.brandArray[i].checked=true;
   }  
-}
-
-
-  
+}  
 }
 
 
