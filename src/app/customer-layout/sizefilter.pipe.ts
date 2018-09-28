@@ -11,7 +11,7 @@ export class SizeFilterPipe implements PipeTransform {
       if(searchtext=='') return items;  
        items.filter( it => {
         it.sizes.filter(it1=>{            
-            if(it1.A1_Short==searchtext){              
+            if(it1.A1_Label==searchtext){              
                 x.push(it);
             }
         });
