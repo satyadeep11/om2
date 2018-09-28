@@ -60,10 +60,13 @@ export class ProductsComponent implements OnInit {
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
                           self.brandArray.push({name:value.product.Brand,checked:true});
+                          self.sizeArray.push(value.sizes);
                           });
                         }
                         //console.log(this.gc.productlist);   
                         // localStorage.setItem('productList', JSON.stringify(this.gc.productlist));  
+                        this.sizeArray=[].concat.apply([], this.sizeArray);
+                        this.sizeArray=this.removeDupesSizes(this.sizeArray);
                         this.brandArray=this.removeDupes(this.brandArray);
                         this.brandArray.forEach(function (value){
                             self.brandFilterArray.push(value.name);
@@ -81,16 +84,16 @@ export class ProductsComponent implements OnInit {
                         var self=this;
                         self.gc.productlist.length=0;
                         self.gc.productlist.push('');
+                        if(this.myData.products){
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
                           self.brandArray.push({name:value.product.Brand,checked:true});
                           self.sizeArray.push(value.sizes);
-                          });              
-                        this.sizeArray=[].concat.apply([], this.sizeArray); //merge all arrays inside array           
-                        // this.sizeArray=Array.from(new Set(this.sizeArray));
-                        //this.sizeArray.map(v => v.checked=false);//adding checked true to all elements
+                          });      
+                        }        
+                        this.sizeArray=[].concat.apply([], this.sizeArray);
                         this.sizeArray=this.removeDupesSizes(this.sizeArray);
-                        console.log(this.sizeArray); 
+                        
                         this.brandArray=this.removeDupes(this.brandArray);
                         this.brandArray.forEach(function (value){
                             self.brandFilterArray.push(value.name);
