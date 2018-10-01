@@ -59,7 +59,7 @@ export class ProductsComponent implements OnInit {
                         if(this.myData.products){
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
-                          self.brandArray.push({name:value.product.Brand,checked:true});
+                          self.brandArray.push({name:value.product.Brand,checked:false});
                           self.sizeArray.push(value.sizes);
                           });
                         }
@@ -68,9 +68,9 @@ export class ProductsComponent implements OnInit {
                         this.sizeArray=[].concat.apply([], this.sizeArray);
                         this.sizeArray=this.removeDupesSizes(this.sizeArray);
                         this.brandArray=this.removeDupes(this.brandArray);
-                        this.brandArray.forEach(function (value){
-                            self.brandFilterArray.push(value.name);
-                        });                         
+                        // this.brandArray.forEach(function (value){
+                        //     self.brandFilterArray.push(value.name);
+                        // });                         
             },
             error => console.log(error)
           );
@@ -87,7 +87,7 @@ export class ProductsComponent implements OnInit {
                         if(this.myData.products){
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
-                          self.brandArray.push({name:value.product.Brand,checked:true});
+                          self.brandArray.push({name:value.product.Brand,checked:false});
                           self.sizeArray.push(value.sizes);
                           });      
                         }        
@@ -95,9 +95,9 @@ export class ProductsComponent implements OnInit {
                         this.sizeArray=this.removeDupesSizes(this.sizeArray);
                         
                         this.brandArray=this.removeDupes(this.brandArray);
-                        this.brandArray.forEach(function (value){
-                            self.brandFilterArray.push(value.name);
-                        });
+                        // this.brandArray.forEach(function (value){
+                        //     self.brandFilterArray.push(value.name);
+                        // });
                         // console.log(this.brandFilterArray);                                                
             },
             error => console.log(error)
@@ -108,7 +108,7 @@ if(localStorage.getItem("visitedproducts") ){this.visitedproducts=localStorage.g
   }
 
 ngOnInit() {
-  console.log(this.sizeSelected);
+ 
 }
 
 getMain(imagename){

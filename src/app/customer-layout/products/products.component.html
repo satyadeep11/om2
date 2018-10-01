@@ -5,7 +5,7 @@
                     <div>
                         <span *ngIf="sizeSelected.length>0">Size: {{sizeSelected}}
                             <a (click)="sizeSelected=''" [ngStyle]="{'cursor': 'pointer'}"><i class="fa fa-remove"></i></a>
-                        </span>
+                        </span> 
                         <span *ngIf="startprice>0 && endprice>0">Price Range: {{startprice}} - {{endprice}}
                                 <a (click)="startprice=0;endprice=0" [ngStyle]="{'cursor': 'pointer'}"><i class="fa fa-remove"></i></a>
                         </span>
