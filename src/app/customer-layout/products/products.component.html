@@ -11,7 +11,7 @@
                         </span>
                     </div>
                     <div class="row row-pb-lg" >
-                        <div *ngFor=" let item of myData?.products|genderfilter : genderFilterArray |brandfilter :brandFilterArray |sizefilter : sizeSelected| pricefilter :startprice:endprice | searchfilter : searchText" class="col-md-4 text-center">
+                        <div *ngFor=" let item of myData?.products|genderfilter : genderFilterArray |brandfilter :brandFilterArray |sizefilter : sizeSelected| pricefilter :startprice:endprice | colorfilter : colorFilterArray | searchfilter : searchText" class="col-md-4 text-center">
                             <div class="product-entry">
                                 <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
                                     <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
@@ -57,6 +57,16 @@
                                 <p> 
                                     <span *ngFor="let item of genderArray;let i=index">
                                     <input *ngIf="item.name!=null" type="checkbox" [checked]="item.checked" (change)="genderCheck(item,i)" /> {{item.name}}<br> 
+                                    </span>  
+                                </p>
+                            </div>
+                        </div>
+                        <div class="side">
+                            <h2>Color Groups</h2>
+                            <div>
+                                <p> 
+                                    <span *ngFor="let item of colorArray;let i=index">
+                                    <input *ngIf="item.colorgroup.GroupName!=null" type="checkbox" [checked]="item.checked" (change)="colorCheck(item.colorgroup.ColorGroupID,i)"/> {{item.colorgroup.GroupName}}<br> 
                                     </span>  
                                 </p>
                             </div>
@@ -122,14 +132,10 @@
                             <h2>Color</h2>
                             <div class="color-wrap">
                                 <p class="color-desc">
-                                    <a href="#" class="color color-1"></a>
-                                    <a href="#" class="color color-2"></a>
-                                    <a href="#" class="color color-3"></a>
-                                    <a href="#" class="color color-4"></a>
-                                    <a href="#" class="color color-5"></a>
+                                    <a *ngFor=" let item of myData?.colorgroups;"  class="color" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundColor]="item.GroupName.slice(0,-1)"><i *ngIf="item.GroupName=='Patterns'" class="fa fa-align-center"></i> <span class="tooltiptext">{{item.GroupName||"None"}}</span></a>
                                 </p>
-                            </div>
-                        </div>                        
+                            </div>                            
+                        </div>                                       
                     </div>
                 </div>
             </div>

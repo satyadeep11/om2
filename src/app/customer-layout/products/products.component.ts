@@ -20,11 +20,13 @@ export class ProductsComponent implements OnInit {
   endprice=0;
   brandArray:Brand[]=[];
   genderArray:Gender[]=[];
+  colorArray:ColorGroup[]=[];
   sizeArray=[];
   sizeSelected='';
   
   brandFilterArray=[];
   genderFilterArray=[];
+  colorFilterArray=[];
   menuitems = require('../../../assets/menu.json');
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router,public gc: GlobalCart) {
@@ -59,6 +61,11 @@ export class ProductsComponent implements OnInit {
                           self.sizeArray.push(value.sizes);
                           });
                         }
+                        if(this.myData.colorgroups){
+                          this.myData.colorgroups.forEach(function (value) {
+                            self.colorArray.push({colorgroup:value,checked:false});
+                            });
+                          }                        
                         //console.log(this.gc.productlist);   
                         // localStorage.setItem('productList', JSON.stringify(this.gc.productlist));  
                         this.sizeArray=[].concat.apply([], this.sizeArray);
@@ -88,7 +95,12 @@ export class ProductsComponent implements OnInit {
                           self.genderArray.push({name:value.product.Gender,checked:false});
                           self.sizeArray.push(value.sizes);
                           });      
-                        }        
+                        } 
+                        if(this.myData.colorgroups){
+                          this.myData.colorgroups.forEach(function (value) {
+                            self.colorArray.push({colorgroup:value,checked:false});
+                            });
+                        }         
                         this.sizeArray=[].concat.apply([], this.sizeArray);
                         this.sizeArray=this.removeDupesSizes(this.sizeArray);                        
                         this.brandArray=this.removeDupes(this.brandArray);
@@ -96,7 +108,7 @@ export class ProductsComponent implements OnInit {
                         // this.brandArray.forEach(function (value){
                         //     self.brandFilterArray.push(value.name);
                         // });
-                        // console.log(this.brandFilterArray);                                                
+                         console.log(this.colorArray);                                                
             },
             error => console.log(error)
           );
@@ -136,7 +148,22 @@ brandCheck(brand,i){
     console.log(this.brandFilterArray);
     this.brandArray[i].checked=true;
   }  
-}  
+}
+
+colorCheck(color,i){  
+  color=','+color+',';//for search
+  console.log(color);
+  if(this.colorArray[i].checked){
+    this.colorFilterArray.splice( this.colorFilterArray.indexOf(color), 1 );    
+    console.log(this.colorFilterArray);
+    this.colorArray[i].checked=false;
+  }else{    
+    this.colorFilterArray.push(color);
+    console.log(this.colorFilterArray);
+    this.colorArray[i].checked=true;
+  }  
+} 
+
 genderCheck(gender,i){  
   if(this.genderArray[i].checked){
     this.genderFilterArray.splice( this.genderFilterArray.indexOf(gender.name), 1 );    
@@ -162,5 +189,9 @@ export interface Brand{
 
 export interface Gender{  
   name ?: string;
+  checked?: boolean;
+}
+export interface ColorGroup{  
+  colorgroup ?: any;
   checked?: boolean;
 }
