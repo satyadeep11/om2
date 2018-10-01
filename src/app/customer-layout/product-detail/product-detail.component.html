@@ -101,11 +101,11 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-md-offset-3 text-center colorlib-heading">
+      <div *ngIf="myData?.companion.length>0" class="col-md-12 col-md-offset-3 text-center colorlib-heading">
           <h2><span>Companion Products</span></h2>
           <p>Following are companion products for above selections.</p>
       </div>
-      <div class="row row-pb-lg" >
+      <div class="row row-pb-lg" *ngIf="myData?.companion.length>0" >
         <div *ngFor=" let item of myData?.companion" class="col-md-4 text-center">
             <div class="product-entry">
                 <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
