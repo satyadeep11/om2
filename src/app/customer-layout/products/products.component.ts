@@ -18,18 +18,13 @@ export class ProductsComponent implements OnInit {
   visitedproducts="";
   startprice=0;
   endprice=0;
-  menCheckBox:boolean=true;
-  womenCheckBox:boolean=true;
-  youthCheckBox:boolean=true;
-  menText:string='men';
-  womenText:string='ladies';
-  youthText:string='youth';
-  brandCheckBox:boolean;
   brandArray:Brand[]=[];
+  genderArray:Gender[]=[];
   sizeArray=[];
   sizeSelected='';
   
   brandFilterArray=[];
+  genderFilterArray=[];
   menuitems = require('../../../assets/menu.json');
 
   constructor(private route: ActivatedRoute,private productDetailService: ProductDetailService,private router: Router,public gc: GlobalCart) {
@@ -60,6 +55,7 @@ export class ProductsComponent implements OnInit {
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
                           self.brandArray.push({name:value.product.Brand,checked:false});
+                          self.genderArray.push({name:value.product.Gender,checked:false});
                           self.sizeArray.push(value.sizes);
                           });
                         }
@@ -68,6 +64,7 @@ export class ProductsComponent implements OnInit {
                         this.sizeArray=[].concat.apply([], this.sizeArray);
                         this.sizeArray=this.removeDupesSizes(this.sizeArray);
                         this.brandArray=this.removeDupes(this.brandArray);
+                        this.genderArray=this.removeDupes(this.genderArray);
                         // this.brandArray.forEach(function (value){
                         //     self.brandFilterArray.push(value.name);
                         // });                         
@@ -88,13 +85,14 @@ export class ProductsComponent implements OnInit {
                         this.myData.products.forEach(function (value) {
                           self.gc.productlist.push(+value.product.ProductID);
                           self.brandArray.push({name:value.product.Brand,checked:false});
+                          self.genderArray.push({name:value.product.Gender,checked:false});
                           self.sizeArray.push(value.sizes);
                           });      
                         }        
                         this.sizeArray=[].concat.apply([], this.sizeArray);
-                        this.sizeArray=this.removeDupesSizes(this.sizeArray);
-                        
+                        this.sizeArray=this.removeDupesSizes(this.sizeArray);                        
                         this.brandArray=this.removeDupes(this.brandArray);
+                        this.genderArray=this.removeDupes(this.genderArray);
                         // this.brandArray.forEach(function (value){
                         //     self.brandFilterArray.push(value.name);
                         // });
@@ -115,30 +113,6 @@ getMain(imagename){
     return imagename.replace(".jpg", "_600.jpg");
 }
 
-menCheck(){
-  if(!this.menCheckBox){
-    this.menText='@nonmencheck!';
-  }else{
-    this.menText='men'
-    // console.log(this.menText);
-  }
-}
-womenCheck(){
-  if(!this.womenCheckBox){
-    this.womenText='@nonwomencheck!';
-  }else{
-    this.womenText='ladies';
-    // console.log(this.womenText);
-  }
-}
-youthCheck(){
-  if(!this.youthCheckBox){
-    this.youthText='@nonyouthcheck!';
-  }else{
-    this.youthText='youth';
-    // console.log(this.youthText);
-  }
-}
 removeDupes(array){
   var seen = {};
     return array.filter(function(item) {
@@ -163,6 +137,17 @@ brandCheck(brand,i){
     this.brandArray[i].checked=true;
   }  
 }  
+genderCheck(gender,i){  
+  if(this.genderArray[i].checked){
+    this.genderFilterArray.splice( this.genderFilterArray.indexOf(gender.name), 1 );    
+    console.log(this.genderFilterArray);
+    this.genderArray[i].checked=false;
+  }else{    
+    this.genderFilterArray.push(gender.name);
+    console.log(this.genderFilterArray);
+    this.genderArray[i].checked=true;
+  }  
+} 
 }
 
 
@@ -171,6 +156,11 @@ export interface CatId {
 }
 
 export interface Brand{  
+  name ?: string;
+  checked?: boolean;
+}
+
+export interface Gender{  
   name ?: string;
   checked?: boolean;
 }

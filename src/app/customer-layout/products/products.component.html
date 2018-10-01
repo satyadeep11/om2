@@ -11,7 +11,7 @@
                         </span>
                     </div>
                     <div class="row row-pb-lg" >
-                        <div *ngFor=" let item of myData?.products|genderfilter : menText:womenText:youthText|brandfilter :brandFilterArray |sizefilter : sizeSelected| pricefilter :startprice:endprice" class="col-md-4 text-center">
+                        <div *ngFor=" let item of myData?.products|genderfilter : genderFilterArray |brandfilter :brandFilterArray |sizefilter : sizeSelected| pricefilter :startprice:endprice" class="col-md-4 text-center">
                             <div class="product-entry">
                                 <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
                                     <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
@@ -44,14 +44,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="side">
                             <h2>Gender</h2>
                             <div>
                                 <p> 
-                                    <input type="checkbox" [(ngModel)]="menCheckBox" (change)="menCheck()"/> Men<br>                                  
-                                    <input type="checkbox" [(ngModel)]="womenCheckBox" (change)="womenCheck()"/> Women<br> 
-                                    <input type="checkbox" [(ngModel)]="youthCheckBox" (change)="youthCheck()"/> Youth<br>                                                                   
+                                    <span *ngFor="let item of genderArray;let i=index">
+                                    <input *ngIf="item.name!=null" type="checkbox" [checked]="item.checked" (change)="genderCheck(item,i)" /> {{item.name}}<br> 
+                                    </span>  
                                 </p>
                             </div>
                         </div>
