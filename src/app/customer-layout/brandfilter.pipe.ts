@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'brandfilter',
-  pure: false
+  pure: false//important when passing array to pipes
 })
 export class BrandFilterPipe implements PipeTransform {
   transform(items: any[], searcharr:any[]): any[] {

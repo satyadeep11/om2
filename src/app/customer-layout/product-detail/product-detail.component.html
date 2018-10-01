@@ -101,6 +101,29 @@
           </div>
         </div>
       </div>
+      <div class="col-md-12 col-md-offset-3 text-center colorlib-heading">
+          <h2><span>Companion Products</span></h2>
+          <p>Following are companion products for above selections.</p>
+      </div>
+      <div class="row row-pb-lg" >
+        <div *ngFor=" let item of myData?.companion" class="col-md-4 text-center">
+            <div class="product-entry">
+                <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
+                    <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
+                    <!-- &#9989; -->
+                    <div class="cart">
+                        <p>
+                            <span><a [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']"><i class="fa fa-eye">    View Product</i></a></span> 
+                        </p>
+                    </div>
+                </div>
+                <div class="desc">
+                    <h3><a [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']">{{item.product.ProductName}}</a></h3>
+                    <p class="price"><span>{{item.product.Price|currency:'USD'}}</span></p>
+                </div>
+            </div>
+        </div>                         
+    </div>
       <div class="row">
         <div class="col-md-12 col-md-offset-1">
           <div class="row">
