@@ -11,7 +11,7 @@
                         </span>
                     </div>
                     <div class="row row-pb-lg" >
-                        <div *ngFor=" let item of myData?.products|genderfilter : genderFilterArray |brandfilter :brandFilterArray |sizefilter : sizeSelected| pricefilter :startprice:endprice" class="col-md-4 text-center">
+                        <div *ngFor=" let item of myData?.products|genderfilter : genderFilterArray |brandfilter :brandFilterArray |sizefilter : sizeSelected| pricefilter :startprice:endprice | searchfilter : searchText" class="col-md-4 text-center">
                             <div class="product-entry">
                                 <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
                                     <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
@@ -31,7 +31,13 @@
                     </div>
                 </div>
                 <div class="col-md-2 col-md-pull-10">
-                    <div class="sidebar">                        
+                    <div class="sidebar">    
+                        <div class="side">
+                            <h2>Search</h2>
+                            <div>
+                                <input [(ngModel)]="searchText" placeholder="Search here.." size="10">
+                            </div>
+                        </div>                    
                         <div class="side">
                             <h2>Categories</h2>
                             <div class="fancy-collapse-panel">
@@ -123,20 +129,7 @@
                                     <a href="#" class="color color-5"></a>
                                 </p>
                             </div>
-                        </div>
-                        <div class="side">
-                            <h2>Size</h2>
-                            <div class="size-wrap">
-                                <p class="size-desc">
-                                    <a href="#" class="size size-1">xs</a>
-                                    <a href="#" class="size size-2">s</a>
-                                    <a href="#" class="size size-3">m</a>
-                                    <a href="#" class="size size-4">l</a>
-                                    <a href="#" class="size size-5">xl</a>
-                                    <a href="#" class="size size-5">xxl</a>
-                                </p>
-                            </div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </div>

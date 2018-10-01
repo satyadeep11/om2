@@ -6,6 +6,7 @@ import { GenderFilterPipe} from '../genderfilter.pipe';
 import { PriceFilterPipe} from '../pricefilter.pipe';
 import { BrandFilterPipe} from '../brandfilter.pipe';
 import { SizeFilterPipe} from '../sizefilter.pipe';
+import { SearchFilterPipe} from '../searchfilter.pipe';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -13,6 +14,6 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ProductsRoutingModule, FormsModule
   ],
-  declarations: [ProductsComponent, GenderFilterPipe,PriceFilterPipe,BrandFilterPipe,SizeFilterPipe]
+  declarations: [ProductsComponent, GenderFilterPipe,PriceFilterPipe,BrandFilterPipe,SizeFilterPipe,SearchFilterPipe]
 })
 export class ProductsModule { }
