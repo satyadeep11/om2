@@ -14,6 +14,9 @@ export class OrdersComponent implements OnInit {
   constructor(public router: Router,
     private orderService: OrdersService) { }
     myData:any;
+    singleOrderData:any;
+    newCart:any=[];
+    editCheck=false;
 
   ngOnInit() {
 
@@ -28,18 +31,53 @@ export class OrdersComponent implements OnInit {
 
 }
 
-getSigleOrder(selectionid){
-  let orderid:OrderId={};
-  orderid.selectionid=selectionid;   
-  this.orderService.getOrder(orderid)
-    .subscribe(order => {
-      // show an alert to tell the user if user was invited
-      console.log(order);
-   },
-   error => console.log(error)
-  );
+  getSigleOrder(selectionid){
+    this.editCheck=true;
+    let orderid:OrderId={};
+    var colors_container=[];    
+    var uniqueproductid:any[][]=[];
+    orderid.selectionid=selectionid;   
+    this.orderService.getOrder(orderid)
+      .subscribe(order => {
+        // show an alert to tell the user if user was invited
+        console.log(order);
+        this.singleOrderData=order;
+        var self=this;
+          this.singleOrderData.cartproducts.forEach(function (value) {
+            
+            uniqueproductid[value.ProductID]=[];
+            uniqueproductid[value.ProductID]['Colors']=[];            
+            uniqueproductid[value.ProductID]['ProductID']=value.ProductID;
+            uniqueproductid[value.ProductID]['ImageFile']=value.ImageFile;
+            uniqueproductid[value.ProductID]['Price']=value.Price;
+            uniqueproductid[value.ProductID]['ProductName']=value.ProductName;    
+            
+            self.singleOrderData.cartproducts.forEach(function (value2) {
+              if(value2.ProductID==value.ProductID && value2.A2_Label){
+                colors_container=(value2.A2_Label);
+                uniqueproductid[value.ProductID]['Colors'].push(colors_container);              
+              }
+            });
+          });           
+          this.newCart=this.cleanArray(uniqueproductid); 
+    },
+    error => console.log(error)
+    );    
+  }
 
- }
+  cleanArray(actual) {
+    var newArray = new Array();
+    for (var i = 0; i < actual.length; i++) {
+      if (actual[i]) {
+        newArray.push(actual[i]);
+      }
+    }
+    return newArray;
+  }
+
+  editCheckChangeHandler(editCheck) {
+    this.editCheck = editCheck;
+  }
 
 }
 

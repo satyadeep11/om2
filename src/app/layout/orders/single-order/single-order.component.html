@@ -1,0 +1,25 @@
+<div *ngIf="newCart">    
+    <td><button class="btn btn-primary" (click)="Close()">Go Back</button></td>
+<table class='table table-hover table-responsive'>
+      <tr><th></th>
+          <th>Product Details</th>
+          <th>Price</th>
+          <th>Action</th>          
+          <th>Remove</th>
+      </tr>
+      <tr *ngFor="let item of newCart">
+          <td>
+              <img class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [src]="'https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile"/>
+          </td>
+          <td>
+              <h5><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">{{item.ProductName}}</a></h5>
+              <h6 *ngFor=" let item2 of item.Colors;">{{item2}}</h6>
+          </td>
+          <td>{{item.Price| currency:'USD'}}</td>
+          <td><a class="btn btn-primary" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">Edit</a></td>
+          <td style="text-align:center"><a class="closed" [ngStyle]="{'cursor': 'pointer'}" (click)="DeleteProduct(item.ProductID,item.ProductName);">X</a></td>        
+      </tr>
+</table>
+</div>
+
+

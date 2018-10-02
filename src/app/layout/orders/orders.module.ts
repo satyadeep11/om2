@@ -4,11 +4,12 @@ import { OrdersComponent } from './orders.component';
 
 import { OrdersRoutingModule } from './orders-routing.module';
 import { PageHeaderModule } from '../../shared';
+import { SingleOrderComponent } from './single-order/single-order.component';
 
 @NgModule({
   imports: [
     CommonModule,OrdersRoutingModule,PageHeaderModule
   ],
-  declarations: [OrdersComponent]
+  declarations: [OrdersComponent, SingleOrderComponent]
 })
 export class OrdersModule { } 
