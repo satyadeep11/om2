@@ -1,6 +1,31 @@
 <div class="invite-list-page" [@routerTransition]>
     <app-page-header [heading]="'Orders'" [icon]="'fa-shopping-cart'"></app-page-header>
-    <p>
-  orders works!
-</p>
+
+    <table class='table table-hover table-responsive text-center'>
+
+      <tr>
+          <th>Order ID</th>
+          <th>Name</th>
+          <th>Company Name</th>          
+          <th>Email</th>
+          <th>Date Time</th>
+          <th>Actions</th>
+      </tr>
+
+      <!-- Use *ngFor directive to loop throught our list of orders. -->
+      <tr *ngFor="let order of myData?.orders">
+          <td>{{order.Id}}</td>
+          <td>{{order.Name}}</td>
+          <td>{{order.Company}}</td>
+          <td>{{order.Email}}</td>  
+          <td>{{order.Date}}</td> 
+          <td id="actions_td">
+                  <!-- edit Order button -->                  
+                  <button (click)="EditOrder(order.Id)" class='btn btn-info '>
+                       Edit Order
+                  </button>&nbsp;                  
+          </td>         
+      </tr>
+
+  </table>
 </div>

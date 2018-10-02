@@ -127,15 +127,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="side">
-                            <h2>Color</h2>
-                            <div class="color-wrap">
-                                <p class="color-desc">
-                                    <a *ngFor=" let item of myData?.colorgroups;"  class="color" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundColor]="item.GroupName.slice(0,-1)"><i *ngIf="item.GroupName=='Patterns'" class="fa fa-align-center"></i> <span class="tooltiptext">{{item.GroupName||"None"}}</span></a>
-                                </p>
-                            </div>                            
-                        </div>                                       
+                        </div>                                                            
                     </div>
                 </div>
             </div>
