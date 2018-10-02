@@ -26,6 +26,23 @@ export class OrdersComponent implements OnInit {
     error => console.log(error)
    );
 
-  }
+}
 
+getSigleOrder(selectionid){
+  let orderid:OrderId={};
+  orderid.selectionid=selectionid;   
+  this.orderService.getOrder(orderid)
+    .subscribe(order => {
+      // show an alert to tell the user if user was invited
+      console.log(order);
+   },
+   error => console.log(error)
+  );
+
+ }
+
+}
+
+export interface OrderId {  
+  selectionid?:number;  
 }
