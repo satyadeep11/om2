@@ -39,10 +39,10 @@ export class OrdersComponent implements OnInit {
     orderid.selectionid=selectionid;   
     this.orderService.getOrder(orderid)
       .subscribe(order => {
-        // show an alert to tell the user if user was invited
+        // show an alert to tell the user if user was invited        
         console.log(order);
-        this.singleOrderData=order;
-        var self=this;
+          this.singleOrderData=order;
+          var self=this;
           this.singleOrderData.cartproducts.forEach(function (value) {
             
             uniqueproductid[value.ProductID]=[];
@@ -50,7 +50,8 @@ export class OrdersComponent implements OnInit {
             uniqueproductid[value.ProductID]['ProductID']=value.ProductID;
             uniqueproductid[value.ProductID]['ImageFile']=value.ImageFile;
             uniqueproductid[value.ProductID]['Price']=value.Price;
-            uniqueproductid[value.ProductID]['ProductName']=value.ProductName;    
+            uniqueproductid[value.ProductID]['ProductName']=value.ProductName; 
+            uniqueproductid[value.ProductID]['selectionid']=self.singleOrderData.selection_id;   
             
             self.singleOrderData.cartproducts.forEach(function (value2) {
               if(value2.ProductID==value.ProductID && value2.A2_Label){
@@ -59,7 +60,8 @@ export class OrdersComponent implements OnInit {
               }
             });
           });           
-          this.newCart=this.cleanArray(uniqueproductid); 
+          this.newCart=this.cleanArray(uniqueproductid);           
+          console.log(this.newCart);
     },
     error => console.log(error)
     );    

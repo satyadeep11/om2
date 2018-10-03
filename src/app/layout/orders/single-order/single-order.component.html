@@ -9,17 +9,31 @@
           <th>Action</th>          
           <th>Remove</th>
       </tr>
-      <tr *ngFor="let item of newCart">
+      <tr *ngFor="let item of newCart;let count=index">
           <td>
               <img class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [src]="'https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile"/>
           </td>
           <td>
               <h5><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">{{item.ProductName}}</a></h5>
-              <h6 *ngFor=" let item2 of item.Colors;">{{item2}}</h6>
+              <div *ngIf="!(myData?.colors[0].ProductID==item.ProductID)">
+                <span *ngFor=" let item2 of item.Colors;">{{item2}}; </span>
+              </div>
+              <div *ngIf="myData?.colors[0].ProductID==item.ProductID">
+                    <p> 
+                        <span *ngFor="let colors of myData.colors;let i=index">
+                            <input *ngIf="colors.ProductID!=null" type="checkbox" [checked]="item.Colors.includes(colors.A2_Label)" (change)="AddRemove(item.ProductID,colors.Attr2,colors.A2_Label,item.selectionid,colors.Price,item.ProductName,colors.ImageFile,$event)" /> {{colors.A2_Label}}<br> 
+                        </span>  
+                    </p>
+              </div>
           </td>
-          <td>{{item.Price| currency:'USD'}}</td>
-          <td><a class="btn btn-primary" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">Edit</a></td>
-          <td style="text-align:center"><a class="closed" [ngStyle]="{'cursor': 'pointer'}" (click)="DeleteProduct(item.ProductID,item.ProductName);">X</a></td>        
+        <td>{{item.Price| currency:'USD'}}</td>
+        <td>
+            <a  *ngIf="!(myData?.colors[0].ProductID==item.ProductID)" class="btn btn-primary" (click)="EditProduct(item.ProductID)">Edit</a>
+            <a *ngIf="myData?.colors[0].ProductID==item.ProductID" class="btn btn-primary" (click)="1">Save</a>            
+        </td>
+        <td style="text-align:center">
+        <a class="closed" [ngStyle]="{'cursor': 'pointer'}" (click)="DeleteProduct(item.ProductID,item.ProductName);">X</a>
+        </td>
       </tr>
 </table>
 </div>

@@ -121,6 +121,7 @@ addtoCart(color,colorcode,image) {
                                     selectiondetails.price=this.price;
                                     selectiondetails.name=this.name;
                                     selectiondetails.image=[image];
+                                    selectiondetails.status=0;
                                     this.openSnackBar('Color '+ color +' added to Selection','','green-snackbar'); 
                                     this.colorset[colorcode]=color;
                                     
@@ -283,6 +284,7 @@ export interface Cart {
   price?:number;
   Attr2?: number;
   ProductID?: number;
+  status?: number;
   ImageFile?: string;
   A2_Label?: string;
   
