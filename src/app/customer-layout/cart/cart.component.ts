@@ -68,6 +68,7 @@ export class CartComponent implements OnInit {
     let productdetails:PID={};
     productdetails.selectionid=this.productList.selection_id;
     productdetails.productid=ProductID;
+    productdetails.status=0;
 
     this.productDetailService.deleteProduct(productdetails).subscribe(user => {
       //console.log(user);
@@ -145,6 +146,7 @@ export class CartComponent implements OnInit {
 export interface PID {  
   productid ?: number; 
   selectionid?:number;
+  status?:number;
 }
 
 export interface CID {  

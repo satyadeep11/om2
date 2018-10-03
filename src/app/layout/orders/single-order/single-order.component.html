@@ -32,7 +32,7 @@
             <a *ngIf="myData?.colors[0].ProductID==item.ProductID" class="btn btn-primary" (click)="Save(item.selectionid)">Save</a>            
         </td>
         <td style="text-align:center">
-        <a class="closed" [ngStyle]="{'cursor': 'pointer'}" (click)="DeleteProduct(item.ProductID,item.ProductName);">X</a>
+        <a class="closed" [ngStyle]="{'cursor': 'pointer'}" (click)="Remove(item.ProductID,item.selectionid);">X</a>
         </td>
       </tr>
 </table>

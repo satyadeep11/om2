@@ -150,6 +150,7 @@ deletefromCart(color,colorcode,image) {
                                   selectiondetails.colors=[color];
                                   selectiondetails.selectionid=cartdetails.selection_id;
                                   selectiondetails.price=this.price; 
+                                  selectiondetails.status=0;
                                   this.openSnackBar('Color '+ color+ ' removed from Selection','','red-snackbar'); 
                                   delete this.colorset[colorcode];   
                                   

@@ -26,6 +26,22 @@ export class SingleOrderComponent implements OnInit {
     this.myData=undefined;
   }
 
+  Remove(PId,SelectionId){
+    let selectiondetails:Cart={};
+    selectiondetails.productid=PId;    
+    selectiondetails.selectionid=SelectionId;   
+    selectiondetails.status=1;
+    this.productDetailService.deleteProduct(selectiondetails).subscribe(user => {
+      console.log(user);
+    },
+    error => console.log(error)
+    );
+
+    this.Save(SelectionId)
+    console.log(this.newCart)
+
+  }
+
   constructor(private orderService: OrdersService,
     private productDetailService: ProductDetailService) {    
    }
