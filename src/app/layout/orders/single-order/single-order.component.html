@@ -29,7 +29,7 @@
         <td>{{item.Price| currency:'USD'}}</td>
         <td>
             <a  *ngIf="!(myData?.colors[0].ProductID==item.ProductID)" class="btn btn-primary" (click)="EditProduct(item.ProductID)">Edit</a>
-            <a *ngIf="myData?.colors[0].ProductID==item.ProductID" class="btn btn-primary" (click)="1">Save</a>            
+            <a *ngIf="myData?.colors[0].ProductID==item.ProductID" class="btn btn-primary" (click)="Save(item.selectionid)">Save</a>            
         </td>
         <td style="text-align:center">
         <a class="closed" [ngStyle]="{'cursor': 'pointer'}" (click)="DeleteProduct(item.ProductID,item.ProductName);">X</a>

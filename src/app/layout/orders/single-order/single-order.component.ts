@@ -15,12 +15,16 @@ export class SingleOrderComponent implements OnInit {
   @Input() fullCart;
  
   @Output() editCheckChange = new EventEmitter<boolean>();
+  @Output() saveCheckChange = new EventEmitter<number>();
   
   
-  Close(){
-     
+  Close(){     
       this.editCheckChange.emit(false);
     }
+  Save(selectionid){     
+    this.saveCheckChange.emit(selectionid);    
+    this.myData=undefined;
+  }
 
   constructor(private orderService: OrdersService,
     private productDetailService: ProductDetailService) {    

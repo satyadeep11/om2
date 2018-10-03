@@ -81,6 +81,10 @@ export class OrdersComponent implements OnInit {
     this.editCheck = editCheck;
   }
 
+  saveCheckChangeHandler(selectionid) {
+    this.getSigleOrder(selectionid);
+  }
+
 }
 
 export interface OrderId {  
