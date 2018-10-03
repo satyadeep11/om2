@@ -8,13 +8,13 @@ import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 export class SingleOrderComponent implements OnInit {
 
   @Input() newCart;
-  @Input() editCheck;
+ 
   @Output() editCheckChange = new EventEmitter<boolean>();
   
   
   Close(){
-      this.editCheck=false;
-      this.editCheckChange.emit(this.editCheck);
+     
+      this.editCheckChange.emit(false);
     }
 
   constructor() {    
