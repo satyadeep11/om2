@@ -1,0 +1,40 @@
+<p>
+  add-product works!
+</p>
+<mat-horizontal-stepper #stepper>
+  <mat-step >    
+      <ng-template matStepLabel>Select Product</ng-template>   
+      <mat-form-field>
+        <input matInput [(ngModel)]="searchText" (click)="openSelector()" placeholder="Product Name" required>
+      </mat-form-field>   
+      <mat-form-field class="list">
+        <mat-select [(value)]="selected" matInput placeholder="Product Name" >          
+          <mat-option  *ngFor="let item of allProducts?.products| searchproductfilter : searchText" value="item.ProductID" value2="item.ProductName">{{item.ProductName}}</mat-option>          
+        </mat-select>
+      </mat-form-field>
+      <p>You selected: {{selected_name}}</p>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+   
+  </mat-step>
+  <mat-step >    
+      <ng-template matStepLabel>Select Colors</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Colors"  required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+   
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

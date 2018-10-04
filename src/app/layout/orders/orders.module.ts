@@ -5,11 +5,15 @@ import { OrdersComponent } from './orders.component';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { PageHeaderModule } from '../../shared';
 import { SingleOrderComponent } from './single-order/single-order.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import {MatStepperModule,MatFormFieldModule,MatInputModule,MatSelectModule} from '@angular/material';
+import { SearchProductFilterPipe} from './searchproductfilter.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule,OrdersRoutingModule,PageHeaderModule
+    CommonModule,OrdersRoutingModule,PageHeaderModule,MatStepperModule,MatFormFieldModule,MatInputModule,MatSelectModule,FormsModule, ReactiveFormsModule
   ],
-  declarations: [OrdersComponent, SingleOrderComponent]
+  declarations: [OrdersComponent, SingleOrderComponent, AddProductComponent,SearchProductFilterPipe]
 })
 export class OrdersModule { } 

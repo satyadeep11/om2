@@ -1,6 +1,7 @@
-<div *ngIf="newCart">    
+<div *ngIf="newCart && !addCheck">    
         <div class="col-md-8">
-    <button class="btn btn-primary pull-right" (click)="Close()">Go Back</button>
+    <button class="btn btn-primary pull-right" (click)="Close()"> Go Back</button>
+    <button class="btn btn-primary " (click)="AddProduct()">Add Product </button>
     </div>
 <table class='table table-hover table-responsive'>
       <tr><th></th>
@@ -37,5 +38,7 @@
       </tr>
 </table>
 </div>
+
+<app-add-product *ngIf="addCheck" [allProducts]="allProducts"></app-add-product>
 
 

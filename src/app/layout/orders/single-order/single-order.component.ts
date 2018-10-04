@@ -11,6 +11,8 @@ import {Router} from "@angular/router";
 export class SingleOrderComponent implements OnInit {
 
   myData:any;
+  addCheck=false;
+  allProducts:any=[];
 
   @Input() newCart;
   @Input() fullCart;
@@ -96,6 +98,18 @@ export class SingleOrderComponent implements OnInit {
         error => console.log(error)
       );
     }
+}
+
+AddProduct(){
+   
+  this.productDetailService.all_products().subscribe(user => {        
+    this.allProducts=user;
+    //console.log(this.allProducts);
+     this.addCheck=true;
+    },
+    error => console.log(error)
+  );
+  
 }
 
 }
