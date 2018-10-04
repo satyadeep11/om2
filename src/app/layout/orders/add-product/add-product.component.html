@@ -5,16 +5,16 @@
   <mat-step >    
       <ng-template matStepLabel>Select Product</ng-template>   
       <mat-form-field>
-        <input matInput [(ngModel)]="searchText" (click)="openSelector()" placeholder="Product Name" required>
+        <input matInput [(ngModel)]="searchText" (click)="openSelector()"  placeholder="Search Product">
       </mat-form-field>   
       <mat-form-field class="list">
-        <mat-select [(value)]="selected" matInput placeholder="Product Name" >          
-          <mat-option  *ngFor="let item of allProducts?.products| searchproductfilter : searchText" value="item.ProductID" value2="item.ProductName">{{item.ProductName}}</mat-option>          
+        <mat-select [(value)]="selectedProduct" matInput placeholder="Product Name" required>          
+          <mat-option  *ngFor="let item of allProducts?.products| searchproductfilter : searchText" [value]="item.ProductID" >{{item.ProductName}}</mat-option>          
         </mat-select>
       </mat-form-field>
-      <p>You selected: {{selected_name}}</p>
+      <p>Selected Product Id: {{selectedProduct}}</p>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button (click)="CheckSelection(stepper)">Next</button>
       </div>
    
   </mat-step>
