@@ -1,11 +1,12 @@
-<p>
-  add-product works!
-</p>
+<div class="col-md-12">
+  <button class="btn btn-primary pull-right" (click)="Close()"> Go Back</button>
+</div><br>
+
 <mat-horizontal-stepper #stepper>
   <mat-step >    
       <ng-template matStepLabel>Select Product</ng-template>   
       <mat-form-field>
-        <input matInput [(ngModel)]="searchText" (click)="openSelector()"  placeholder="Search Product">
+        <input matInput [(ngModel)]="searchText" (click)="openSelector();selectedProduct=''" (change)="openSelector();selectedProduct=''"  placeholder="Search Product">
       </mat-form-field>   
       <mat-form-field class="list">
         <mat-select [(value)]="selectedProduct" matInput placeholder="Product Name" required>          
@@ -14,27 +15,26 @@
       </mat-form-field>
       <p>Selected Product Id: {{selectedProduct}}</p>
       <div>
-        <button mat-button (click)="CheckSelection(stepper)">Next</button>
+        <button mat-button (click)="CheckSelection(stepper,selectedProduct)">Next</button>
       </div>
    
   </mat-step>
   <mat-step >    
       <ng-template matStepLabel>Select Colors</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Colors"  required>
-      </mat-form-field>
+         
+        <div *ngIf="myData">
+            <img class="product-img" [src]="'https://www.afhsgear.com/sites/998/products/998_' +myData?.colors[0].ProductID+'_'+getThumb(myData?.colors[0].ImageFile)"/>
+          <p> 
+              <span *ngFor="let colors of myData.colors;let i=index">
+                  <input *ngIf="colors.ProductID!=null" type="checkbox" (change)="AddRemove(colors.ProductID,colors.Attr2,colors.A2_Label,colors.Price,colors.ProductName,colors.ImageFile,$event)" /> {{colors.A2_Label}}<br> 
+              </span>  
+          </p>
+        </div>
+      
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button (click)="Save()">Save</button>        
       </div>
    
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
+
 </mat-horizontal-stepper>

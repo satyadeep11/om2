@@ -13,6 +13,7 @@ export class SingleOrderComponent implements OnInit {
   myData:any;
   addCheck=false;
   allProducts:any=[];
+  selectionid:any;
 
   @Input() newCart;
   @Input() fullCart;
@@ -100,8 +101,8 @@ export class SingleOrderComponent implements OnInit {
     }
 }
 
-AddProduct(){
-   
+AddProduct(){  
+  this.selectionid=this.newCart[0].selectionid;
   this.productDetailService.all_products().subscribe(user => {        
     this.allProducts=user;
     //console.log(this.allProducts);
@@ -111,6 +112,15 @@ AddProduct(){
   );
   
 }
+
+addCheckChangeHandler(addCheck) {
+  this.addCheck = addCheck;
+}
+
+saveAddChangeHandler(selectionid) {
+  this.Save(selectionid);
+}
+
 
 }
 
