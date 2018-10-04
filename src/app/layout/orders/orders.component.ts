@@ -82,11 +82,12 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrders(){
-    this.orderService.getOrders()
+    var self=this;
+    this.orderService.getOrders()   
     .subscribe(orders => {
       // show an alert to tell the user if user was invited
       console.log(orders);
-      this.myData = orders; 
+      self.myData = orders; 
    },
    error => console.log(error)
   );

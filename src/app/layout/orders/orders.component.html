@@ -1,6 +1,6 @@
-<div class="invite-list-page" [@routerTransition]>
+<div class="orders-page" [@routerTransition] >
     <app-page-header [heading]="'Orders'" [icon]="'fa-shopping-cart'"></app-page-header>
-
+<div *ngIf="!myData?.error">
     <table *ngIf="!editCheck" class='table table-hover table-responsive text-center'>
 
       <tr>
@@ -29,6 +29,8 @@
 
   </table>
     <app-single-order *ngIf="editCheck" [newCart]="newCart" [fullCart]="singleOrderData" (editCheckChange)="editCheckChangeHandler($event)" (saveCheckChange)="saveCheckChangeHandler($event)"></app-single-order>
-    
-  
+</div>
+<div *ngIf="myData?.error" >    
+   <img src="../../../assets/images/ordersnone.png"/><br> No Orders   
+</div>
 </div>
