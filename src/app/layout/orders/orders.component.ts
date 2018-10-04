@@ -19,20 +19,11 @@ export class OrdersComponent implements OnInit {
     editCheck=false;
 
   ngOnInit() {
-
-    this.orderService.getOrders()
-     .subscribe(orders => {
-       // show an alert to tell the user if user was invited
-       console.log(orders);
-       this.myData = orders; 
-    },
-    error => console.log(error)
-   );
-
-}
+    this.getOrders();
+  }
 
   getSigleOrder(selectionid){
-    this.editCheck=true;
+    
     let orderid:OrderId={};
     var colors_container=[];    
     var uniqueproductid:any[][]=[];
@@ -60,8 +51,13 @@ export class OrdersComponent implements OnInit {
               }
             });
           });           
-          this.newCart=this.cleanArray(uniqueproductid);           
-          console.log(this.newCart);
+          this.newCart=this.cleanArray(uniqueproductid);      
+          this.editCheck=true;     
+          console.log(this.newCart,'here');
+          if(this.newCart.length==0){
+            this.getOrders();
+            this.editCheck=false;
+          }
     },
     error => console.log(error)
     );    
@@ -83,6 +79,17 @@ export class OrdersComponent implements OnInit {
 
   saveCheckChangeHandler(selectionid) {
     this.getSigleOrder(selectionid);
+  }
+
+  getOrders(){
+    this.orderService.getOrders()
+    .subscribe(orders => {
+      // show an alert to tell the user if user was invited
+      console.log(orders);
+      this.myData = orders; 
+   },
+   error => console.log(error)
+  );
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { OrdersService } from '../../orders.service'; 
 import { ProductDetailService } from '../../../customer-layout/product-detail.service'; 
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-single-order',
@@ -23,7 +24,7 @@ export class SingleOrderComponent implements OnInit {
     }
   Save(selectionid){     
     this.saveCheckChange.emit(selectionid);    
-    this.myData=undefined;
+    this.myData=undefined;        
   }
 
   Remove(PId,SelectionId){
@@ -33,17 +34,19 @@ export class SingleOrderComponent implements OnInit {
     selectiondetails.status=1;
     this.productDetailService.deleteProduct(selectiondetails).subscribe(user => {
       console.log(user);
+      this.newCart=undefined;
+      this.Save(SelectionId)
     },
     error => console.log(error)
     );
-
-    this.Save(SelectionId)
-    console.log(this.newCart)
-
   }
 
-  constructor(private orderService: OrdersService,
-    private productDetailService: ProductDetailService) {    
+  constructor(private orderService: OrdersService,private router: Router,
+    private productDetailService: ProductDetailService) { 
+      
+        this.router.routeReuseStrategy.shouldReuseRoute = function() {
+          return false;
+      };   
    }
 
   ngOnInit() {
