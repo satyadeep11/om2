@@ -19,8 +19,8 @@
       <!-- Use *ngFor directive to loop throught our list of orders. -->
       <tr *ngFor="let order of myData?.orders">
           <td>{{order.Id}}</td>
-          <td>{{order.Name}}</td>
-          <td>{{order.Company}}</td>
+          <td>{{order.Name|titlecase}}</td>
+          <td>{{order.Company|titlecase}}</td>
           <td>{{order.Email}}</td>  
           <td>{{order.Date}}</td> 
           <td id="actions_td">
@@ -47,16 +47,18 @@
               <th>Company Name</th>          
               <th>Email</th>
               <th>Date Time</th>
+              <th>Approved By</th>
               <th>Actions</th>
           </tr>
     
           <!-- Use *ngFor directive to loop throught our list of orders. -->
           <tr *ngFor="let order of subData?.orders">
               <td>{{order.Id}}</td>
-              <td>{{order.Name}}</td>
-              <td>{{order.Company}}</td>
+              <td>{{order.Name|titlecase}}</td>
+              <td>{{order.Company|titlecase}}</td>
               <td>{{order.Email}}</td>  
               <td>{{order.Date}}</td> 
+              <td>{{order.Approved_by_name|titlecase}}</td> 
               <td id="actions_td">
                       <!-- edit Order button -->                  
                       <button (click)="getSigleApprovedOrder(order.Id)" class='btn btn-info'>
