@@ -1,14 +1,22 @@
 <div *ngIf="newCart && !addCheck">    
-    <div class="col-md-12">
-    <button class="btn btn-primary pull-right" (click)="Close()"> Go Back</button>
-    <button class="btn btn-primary " (click)="AddProduct()">Add Product </button>
+    <div class="row">
+    <span class="col-md-4 text-md-left">
+    <button class="btn btn-primary  " (click)="AddProduct()">Add Product </button>
+    </span>    
+    <span class="col-md-4 text-md-center ">
+    <button class="btn btn-success " (click)="Approve()"> Approve </button>
+    </span>
+    <span class="col-md-4 text-md-right">
+    <button class="btn btn-primary" (click)="Close()"> Go Back</button>
+    </span>
+    
     </div><br>
 <table class='table table-hover table-responsive'>
       <tr><th></th>
           <th>Product Details</th>
           <th>Price</th>
-          <th>Action</th>          
-          <th>Remove</th>
+          <th colspan=2 class="text-center">Actions</th>          
+          
       </tr>
       <tr *ngFor="let item of newCart;let count=index">
           <td>
@@ -32,8 +40,8 @@
             <button  *ngIf="!(myData?.colors[0].ProductID==item.ProductID)" class="btn btn-primary" (click)="EditProduct(item.ProductID)">Edit</button>
             <button *ngIf="myData?.colors[0].ProductID==item.ProductID" class="btn btn-primary" (click)="Save(item.selectionid)">Save</button>            
         </td>
-        <td style="text-align:center">
-        <a class="closed" [ngStyle]="{'cursor': 'pointer'}" (click)="Remove(item.ProductID,item.selectionid);">X</a>
+        <td style="text-align:center">        
+        <button class="btn btn-danger" (click)="Remove(item.ProductID,item.selectionid);"> Remove</button>
         </td>
       </tr>
 </table>

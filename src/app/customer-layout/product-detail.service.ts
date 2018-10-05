@@ -3,6 +3,7 @@ import { Observable} from 'rxjs';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { PriceId,Cart } from './product-detail/product-detail.component';
 import { PID,CID} from './cart/cart.component';
+import { OrderConfirm } from '../layout/orders/single-order/single-order.component';
 import { CatId } from './products/products.component';
 import { map } from 'rxjs/operators';
 import {GlobalCart} from './globalcart';
@@ -119,6 +120,19 @@ export class ProductDetailService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let link=this.gc.link+"/php_api/submit-product.php";
+  
+    return this._http.post(
+      link,
+      product,
+      options
+    ).pipe(map((res: Response) => res.json()));
+  }
+
+  OrderConfirm(product:OrderConfirm): Observable<OrderConfirm>{
+ 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/order-confirm.php";
   
     return this._http.post(
       link,

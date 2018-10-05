@@ -113,6 +113,20 @@ AddProduct(){
   
 }
 
+Approve(){  
+  let orderdetails:OrderConfirm={};
+  orderdetails.selectionid=this.newCart[0].selectionid;
+  orderdetails.uuid=localStorage.getItem("uuid");
+  this.productDetailService.OrderConfirm(orderdetails).subscribe(user => {
+    console.log(user);
+    this.newCart=undefined;
+    this.Save(orderdetails.selectionid);
+  },
+  error => console.log(error)
+  );
+  
+}
+
 addCheckChangeHandler(addCheck) {
   this.addCheck = addCheck;
 }
@@ -144,3 +158,9 @@ export interface Cart {
   ImageFile?: string;
   A2_Label?: string;  
 }
+
+export interface OrderConfirm {     
+  selectionid?:number;  
+  uuid?:string;
+}
+
