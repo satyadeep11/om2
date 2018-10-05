@@ -1,10 +1,10 @@
-<div *ngIf="newCart && !addCheck">    
+<div *ngIf="newCart && !addCheck && !approveCheck">    
     <div class="row">
     <span class="col-md-4 text-md-left">
     <button class="btn btn-primary  " (click)="AddProduct()">Add Product </button>
     </span>    
     <span class="col-md-4 text-md-center ">
-    <button class="btn btn-success " (click)="Approve()"> Approve </button>
+    <button class="btn btn-success " (click)="ApproveCheck()"> Approve </button>
     </span>
     <span class="col-md-4 text-md-right">
     <button class="btn btn-primary" (click)="Close()"> Go Back</button>
@@ -49,5 +49,12 @@
 
 
 <app-add-product *ngIf="addCheck" [allProducts]="allProducts" [selectionid]="selectionid" (addCheckChange)="addCheckChangeHandler($event)" (saveAddChange)="saveAddChangeHandler($event)"></app-add-product>
+<div *ngIf="approveCheck">
 
+    <button class="btn btn-primary pull-right" (click)="CloseApprove()"> Go Back</button>
+
+<p>Enter Site ID</p>
+<input [(ngModel)]="siteid" type="number" required><br><br>
+<button class="btn btn-success " (click)="Approve(siteid)">Approve Selection</button>
+</div>
 

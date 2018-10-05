@@ -12,8 +12,10 @@ export class SingleOrderComponent implements OnInit {
 
   myData:any;
   addCheck=false;
+  approveCheck=false;
   allProducts:any=[];
   selectionid:any;
+  siteid:number=0;
 
   @Input() newCart;
   @Input() fullCart;
@@ -113,10 +115,15 @@ AddProduct(){
   
 }
 
-Approve(){  
+ApproveCheck(){  
+     this.approveCheck=true;
+}
+
+Approve(siteid){  
   let orderdetails:OrderConfirm={};
   orderdetails.selectionid=this.newCart[0].selectionid;
   orderdetails.uuid=localStorage.getItem("uuid");
+  orderdetails.siteid=siteid;
   this.productDetailService.OrderConfirm(orderdetails).subscribe(user => {
     console.log(user);
     this.newCart=undefined;
@@ -133,6 +140,10 @@ addCheckChangeHandler(addCheck) {
 
 saveAddChangeHandler(selectionid) {
   this.Save(selectionid);
+}
+
+CloseApprove(){
+  this.approveCheck=false;
 }
 
 
@@ -162,5 +173,6 @@ export interface Cart {
 export interface OrderConfirm {     
   selectionid?:number;  
   uuid?:string;
+  siteid?:number;
 }
 
