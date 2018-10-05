@@ -25,7 +25,7 @@
           <td>
               <h5><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">{{item.ProductName}}</a></h5>
               <div *ngIf="!(myData?.colors[0].ProductID==item.ProductID)">
-                <span *ngFor=" let item2 of item.Colors;"><span  class="colorslisted"><i class="fa fa-dot-circle-o"></i> {{item2}} </span> </span>
+                <span *ngFor=" let item2 of item.Colors;"><span  class="colorslisted"><i class="fa fa-dot-circle-o"></i>{{item2}} </span> </span>
               </div>
               <div *ngIf="myData?.colors[0].ProductID==item.ProductID">
                     <p> 
