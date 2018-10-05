@@ -54,13 +54,13 @@
 								</div>
 							</div>	
 							<div class="one-eight text-center">
-									<div class="display-tc">
-										<a class="btn btn-primary" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">Edit</a>
-									</div>
+								<div class="display-tc">
+									<button class="btn btn-primary" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">Edit</button>
+								</div>
 							</div>					
 							<div class="one-eight text-center">
 								<div class="display-tc">
-									<a class="closed" [ngStyle]="{'cursor': 'pointer'}" (click)="DeleteProduct(item.ProductID,item.ProductName);"></a>
+									<button class="btn btn-danger" (click)="DeleteProduct(item.ProductID,item.ProductName);">Remove</button>
 								</div>
 							</div>
 						</span>

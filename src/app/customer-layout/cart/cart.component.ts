@@ -64,7 +64,7 @@ export class CartComponent implements OnInit {
   }
 
   DeleteProduct(ProductID,ProductName) {
-
+    if(window.confirm('Are you sure you want to remove this item ?')){
     let productdetails:PID={};
     productdetails.selectionid=this.productList.selection_id;
     productdetails.productid=ProductID;
@@ -83,7 +83,7 @@ export class CartComponent implements OnInit {
     });
 
     this.openSnackBar(ProductName+' removed from selection.','','red-snackbar');    
-    
+  }
   }
 
   openSnackBar(msg,action,className)  {

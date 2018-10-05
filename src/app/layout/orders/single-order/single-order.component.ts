@@ -33,7 +33,7 @@ export class SingleOrderComponent implements OnInit {
   }
 
   Remove(PId,SelectionId){
-    if(window.confirm('Are sure you want to delete this item ?')){
+    if(window.confirm('Are you sure you want to delete this item ?')){
     let selectiondetails:Cart={};
     selectiondetails.productid=PId;    
     selectiondetails.selectionid=SelectionId;   
