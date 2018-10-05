@@ -1,6 +1,10 @@
 <div class="orders-page" [@routerTransition] >
     <app-page-header [heading]="'Orders'" [icon]="'fa-shopping-cart'"></app-page-header>
-<div *ngIf="!myData?.error">
+    <div *ngIf="!editCheck && !viewCheck">
+        <button class='btn btn-primary' (click)="PendingCheck()">Pending Orders</button> &nbsp; 
+        <button class='btn btn-primary' (click)="ApproveCheck()">Approved Orders</button> <br><br>
+    </div>
+<div *ngIf="!myData?.error && !approvedCheck">
     <table *ngIf="!editCheck" class='table table-hover table-responsive text-center'>
 
       <tr>
@@ -30,7 +34,67 @@
   </table>
     <app-single-order *ngIf="editCheck" [newCart]="newCart" [fullCart]="singleOrderData" (editCheckChange)="editCheckChangeHandler($event)" (saveCheckChange)="saveCheckChangeHandler($event)"></app-single-order>
 </div>
-<div *ngIf="myData?.error" >    
+<div *ngIf="myData?.error && !approvedCheck" >    
    <img src="../../../assets/images/ordersnone.png"/><br> No Pending Orders   
 </div>
+
+<div *ngIf="!subData?.error && approvedCheck && !viewCheck">
+        <table *ngIf="!editCheck" class='table table-hover table-responsive text-center'>
+    
+          <tr>
+              <th>Order ID</th>
+              <th>Name</th>
+              <th>Company Name</th>          
+              <th>Email</th>
+              <th>Date Time</th>
+              <th>Actions</th>
+          </tr>
+    
+          <!-- Use *ngFor directive to loop throught our list of orders. -->
+          <tr *ngFor="let order of subData?.orders">
+              <td>{{order.Id}}</td>
+              <td>{{order.Name}}</td>
+              <td>{{order.Company}}</td>
+              <td>{{order.Email}}</td>  
+              <td>{{order.Date}}</td> 
+              <td id="actions_td">
+                      <!-- edit Order button -->                  
+                      <button (click)="getSigleApprovedOrder(order.Id)" class='btn btn-info'>
+                           View Order
+                      </button>&nbsp;                  
+              </td>         
+          </tr>
+    
+      </table>
+        <app-single-order *ngIf="editCheck" [newCart]="newCart" [fullCart]="singleOrderData" (editCheckChange)="editCheckChangeHandler($event)" (saveCheckChange)="saveCheckChangeHandler($event)"></app-single-order>
+    </div>
+    <div *ngIf="subData?.error && approvedCheck" >    
+       <img src="../../../assets/images/ordersnone.png"/><br> No Pending Orders   
+    </div>
+
+
+    <div *ngIf="viewCheck">    
+            <button class="btn btn-primary pull-right" (click)="CloseApproved()"> Go Back</button>
+            
+        <table class='table table-hover table-responsive'>
+              <tr><th></th>
+                  <th>Product Details</th>
+                  <th>Price</th>
+              </tr>
+              <tr *ngFor="let item of approvedCart;let count=index">
+                  <td>
+                      <img class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [src]="'https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile"/>
+                  </td>
+                  <td>
+                      <h5><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">{{item.ProductName}}</a></h5>
+                      <div >
+                        <span *ngFor=" let item2 of item.Colors;"><span  class="colorslisted"><i class="fa fa-dot-circle-o"></i>{{item2}} </span> </span>
+                      </div>                      
+                  </td>
+                <td>{{item.Price| currency:'USD'}}</td>
+                
+              </tr>
+        </table>
+        </div>
+
 </div>

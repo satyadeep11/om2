@@ -26,6 +26,18 @@ export class OrdersService {
     ).pipe(map((res: Response) => res.json()));
   }
 
+  getApprovedOrders(): Observable<InviteUserList>{
+ 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/order-list-full.php";    
+  
+    return this._http.post(
+      link,
+      options
+    ).pipe(map((res: Response) => res.json()));
+  }
+
   getOrder(product:OrderId): Observable<OrderId>{
  
     let headers = new Headers({ 'Content-Type': 'application/json' });

@@ -70,7 +70,7 @@ ngOnInit()  {
 updateCart()  {
                 var retrievedData = localStorage.getItem("currentCart");        
                 var cartdetails = JSON.parse(retrievedData);  
-                if(cartdetails.cartproducts){
+                if(cartdetails){
                   if(this.cartcheck && cartdetails.cartproducts.length>0){
                     var self = this;
                     cartdetails.cartproducts.forEach(function (value) {

@@ -16,7 +16,11 @@ export class OrdersComponent implements OnInit {
     myData:any;
     singleOrderData:any;
     newCart:any=[];
+    approvedCart:any=[];
     editCheck=false;
+    viewCheck=false;
+    approvedCheck=false;
+    subData:any;
 
   ngOnInit() {
     this.getOrders();
@@ -27,7 +31,8 @@ export class OrdersComponent implements OnInit {
     let orderid:OrderId={};
     var colors_container=[];    
     var uniqueproductid:any[][]=[];
-    orderid.selectionid=selectionid;   
+    orderid.selectionid=selectionid;  
+    orderid.status=0; 
     this.orderService.getOrder(orderid)
       .subscribe(order => {
         // show an alert to tell the user if user was invited        
@@ -63,6 +68,47 @@ export class OrdersComponent implements OnInit {
     );    
   }
 
+  getSigleApprovedOrder(selectionid){
+    
+    let orderid:OrderId={};
+    var colors_container=[];    
+    var uniqueproductid:any[][]=[];
+    orderid.selectionid=selectionid; 
+    orderid.status=1;  
+    this.orderService.getOrder(orderid)
+      .subscribe(order => {
+        // show an alert to tell the user if user was invited        
+        console.log(order);
+          this.singleOrderData=order;
+          var self=this;
+          this.singleOrderData.cartproducts.forEach(function (value) {            
+            uniqueproductid[value.ProductID]=[];
+            uniqueproductid[value.ProductID]['Colors']=[];            
+            uniqueproductid[value.ProductID]['ProductID']=value.ProductID;
+            uniqueproductid[value.ProductID]['ImageFile']=value.ImageFile;
+            uniqueproductid[value.ProductID]['Price']=value.Price;
+            uniqueproductid[value.ProductID]['ProductName']=value.ProductName; 
+            uniqueproductid[value.ProductID]['selectionid']=self.singleOrderData.selection_id;   
+            
+            self.singleOrderData.cartproducts.forEach(function (value2) {
+              if(value2.ProductID==value.ProductID && value2.A2_Label){
+                colors_container=(value2.A2_Label);
+                uniqueproductid[value.ProductID]['Colors'].push(colors_container);              
+              }
+            });
+          });           
+          this.approvedCart=this.cleanArray(uniqueproductid);      
+          this.viewCheck=true;     
+          console.log(this.approvedCart,'approved');
+          if(this.approvedCart.length==0){
+            this.getApprovedOrders();
+            this.editCheck=false;
+          }
+    },
+    error => console.log(error)
+    );    
+  }
+
   cleanArray(actual) {
     var newArray = new Array();
     for (var i = 0; i < actual.length; i++) {
@@ -88,13 +134,38 @@ export class OrdersComponent implements OnInit {
       // show an alert to tell the user if user was invited
       console.log(orders);
       self.myData = orders; 
+      this.approvedCheck=false;
    },
    error => console.log(error)
   );
   }
 
+  getApprovedOrders(){
+    var self=this;
+    this.orderService.getApprovedOrders()   
+    .subscribe(orders => {
+      // show an alert to tell the user if user was invited
+      console.log(orders);
+      self.subData = orders; 
+      this.approvedCheck=true;
+   },
+   error => console.log(error)
+  );
+  }
+
+  ApproveCheck(){
+    this.getApprovedOrders();    
+  }
+  PendingCheck(){
+    this.getOrders(); 
+  }
+  CloseApproved(){
+    this.viewCheck=false;
+  }
+
 }
 
 export interface OrderId {  
-  selectionid?:number;  
+  selectionid?:number; 
+  status?:number; 
 }
