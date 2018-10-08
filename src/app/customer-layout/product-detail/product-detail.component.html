@@ -143,10 +143,10 @@
                             <p>{{myData?.product.ProductDesc2}}</p>
                         </ng-template>
                     </ngb-tab>
-                    <ngb-tab title="Sizing Chart" >
+                    <ngb-tab title="Sizing Chart" *ngIf="myData?.chart.columns.length>0" >
                         <ng-template ngbTabContent >
                             <table class="table table-striped">
-                                <caption>Sizing Chart</caption>
+                                <caption>All sizes represented in this size chart are approximations and are not actual finished sizes.</caption>
                               <thead>
                                 <tr>
                                   <th></th>
@@ -155,7 +155,7 @@
                               </thead>
                               <tbody>
                                 <tr  *ngFor="let row of myData?.chart.rows; let i =index">
-                                  <th scope="row">{{row.RowText}} <i class="fa fa-question-circle" [ngStyle]="{'cursor': 'pointer'}" data-toggle="tooltip" placement="top" [ngbTooltip]="row.RowMeasure"></i></th>
+                                  <th scope="row">{{row.RowText}} <i *ngIf="row.RowMeasure.length>0" class="fa fa-question-circle" [ngStyle]="{'cursor': 'pointer'}" data-toggle="tooltip" placement="top" [ngbTooltip]="row.RowMeasure"></i></th>
                                   <td *ngFor="let row of myData?.chart.data|slice:(i*myData?.chart.columns.length):((i+1)*myData?.chart.columns.length)">{{row.DataText}}</td>
                                 </tr>
                               </tbody>
