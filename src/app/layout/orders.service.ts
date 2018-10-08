@@ -64,4 +64,16 @@ export class OrdersService {
     ).pipe(map((res: Response) => res.json()));
   }
 
+  getSiteId(): Observable<ColorSet>{
+ 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });    
+    let link=this.gc.link+"/php_api/masterdb/get-siteid.php";
+  
+    return this._http.post(
+      link,
+      options
+    ).pipe(map((res: Response) => res.json()));
+  }
+
 }

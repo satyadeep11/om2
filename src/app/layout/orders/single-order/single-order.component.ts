@@ -14,6 +14,7 @@ export class SingleOrderComponent implements OnInit {
   addCheck=false;
   approveCheck=false;
   allProducts:any=[];
+  siteIds:any=[];
   selectionid:any;
   siteid:number=0;
 
@@ -43,7 +44,7 @@ export class SingleOrderComponent implements OnInit {
       this.newCart=undefined;
       this.Save(SelectionId)
     },
-    error => console.log(error)
+    error => console.log(error) 
     );
   }
   }
@@ -119,9 +120,17 @@ AddProduct(){
 
 ApproveCheck(){  
      this.approveCheck=true;
+     this.orderService.getSiteId()
+      .subscribe(siteids => {        
+       this.siteIds=siteids;
+       console.log(siteids);
+    },
+    error => console.log(error)
+    );
 }
 
 Approve(siteid){  
+  console.log(siteid);
   let orderdetails:OrderConfirm={};
   orderdetails.selectionid=this.newCart[0].selectionid;
   orderdetails.uuid=localStorage.getItem("uuid");

@@ -54,7 +54,13 @@
     <button class="btn btn-primary pull-right" (click)="CloseApprove()"> Go Back</button>
 
 <p>Enter Site ID</p>
-<input [(ngModel)]="siteid" type="number" required><br><br>
+<select [(ngModel)]="siteid"  placeholder="Product Name" required>          
+    <option *ngFor="let item of siteIds.siteid" [value]="item.ID" >{{item.NAME}}</option>          
+</select><br><br>
 <button class="btn btn-success " (click)="Approve(siteid)">Approve Selection</button>
+
+
+        
+
 </div>
 
