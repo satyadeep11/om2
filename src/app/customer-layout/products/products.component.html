@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                         </div>                        
-                        <div class="side">
+                        <div class="side" *ngIf="genderArray.length>1">
                             <h2>Gender</h2>
                             <div>
                                 <p> 
@@ -85,7 +85,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="side">
+                        <div class="side" *ngIf="colorArray.length>1">
                             <h2>Color Groups</h2>
                             <div>
                                 <p> 
@@ -95,7 +95,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="side">
+                        <div class="side" *ngIf="brandArray.length>1">
                             <h2>Brand</h2>
                             <div>
                                 <p> 
@@ -105,7 +105,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="side">
+                        <div class="side" *ngIf="sizeArray.length>1">
                             <h2>Sizes</h2>
                             <div>
                                 <p> 
