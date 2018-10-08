@@ -12,6 +12,11 @@
                         <span *ngIf="startprice>0 && endprice>0">Price Range: {{startprice}} - {{endprice}}
                                 <a (click)="startprice=0;endprice=0" [ngStyle]="{'cursor': 'pointer'}"><i class="fa fa-remove"></i></a>
                         </span>
+                        <span *ngFor="let item of genderArray; let i= index">
+                            <span *ngIf="item.checked">{{item.name}}
+                            <a (click)="genderCheck(item,i)" [ngStyle]="{'cursor': 'pointer'}"><i class="fa fa-remove"></i></a>
+                            </span>
+                        </span>
                     </div>
                     <div class="row row-pb-lg" >
                         <div *ngFor=" let item of myData?.products|orderfilter|genderfilter : genderFilterArray |brandfilter :brandFilterArray |sizefilter : sizeSelected| pricefilter :startprice:endprice | colorfilter : colorFilterArray | searchfilter : searchText" class="col-md-4 text-center">
