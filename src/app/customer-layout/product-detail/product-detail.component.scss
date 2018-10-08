@@ -11,6 +11,10 @@
   ::ng-deep .red-snackbar {
     background:#F44336 !important;
   }
+caption {caption-side: top !important;}
+::ng-deep.tooltip-inner {
+  max-width: unset !important;
+}
       // shadow-piercing descendant combinator
       ::ng-deep .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
         background-color: #ffc300 !important;
