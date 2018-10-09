@@ -41,7 +41,10 @@ export class ProductsComponent implements OnInit {
       else{
         this.id.catid = 0;
       }
-      //console.log(this.id);
+      
+      if(params['search']){
+        this.searchText=params['search'];
+    }
       
     });
     if(this.id && this.id.catid!=0){

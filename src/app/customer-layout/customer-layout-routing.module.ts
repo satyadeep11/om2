@@ -11,7 +11,8 @@ const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'prefix' },           
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
             { path: 'products/:id', loadChildren: './products/products.module#ProductsModule' },   
-            { path: 'products', loadChildren: './products/products.module#ProductsModule' },           
+            { path: 'products', loadChildren: './products/products.module#ProductsModule' },  
+            { path: 'products/search/:search', loadChildren: './products/products.module#ProductsModule' },           
             { path: 'product-detail/:id', loadChildren: './product-detail/product-detail.module#ProductDetailModule' },            
             { path: 'cart', loadChildren: './cart/cart.module#CartModule' },  
             { path: 'customer-orders', loadChildren: './customer-orders/customer-orders.module#CustomerOrdersModule' },
@@ -19,7 +20,7 @@ const routes: Routes = [
             
         ]
     }
-];
+]; 
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
