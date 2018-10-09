@@ -1,3 +1,57 @@
-<p>
-  customer-orders works!
-</p>
+<div class="colorlib-shop">
+		<div class="container" *ngIf="!viewCheck">
+			<div *ngIf="myData?.orders.length==0" class="row row-pb-md">
+        <span>No Orders</span>
+			</div>
+			<div  *ngIf="myData?.orders.length>0" class="row row-pb-md">
+        <h4>Your List of Selections</h4>
+          <table class='table table-hover table-responsive text-center'>    
+              <tr>
+                  <th>Selection Number</th>
+                  <th>Product Count</th>
+                  <th>Order Date</th>          
+                  <th>Action</th>
+              </tr>        
+              <!-- Use *ngFor directive to loop throught our list of orders. -->
+              <tr *ngFor="let item of myData?.orders">
+                  <td>{{item.selectionid}}</td>
+                  <td>{{item.Count}}</td>
+                  <td>{{item.Date}}</td>
+                  <td><button class="btn btn-primary" (click)="ViewOrder(item.selectionid,item.qs_approved_status)">View</button></td>          
+              </tr>        
+          </table>				
+			</div>	
+    </div>    
+    <div class="container" *ngIf="viewCheck">
+        <div class="col-md-12 text-right" >
+            <button (click)="viewCheck=false" class="btn btn-info">Back</button>
+          </div>
+<h5>Order Number: {{orderNumber}}</h5>
+        <table class='table table-hover table-responsive text-center'>    
+            <tr>
+                <th colspan="2">Product Details</th>
+                <th>Price</th>
+            </tr>        
+            <!-- Use *ngFor directive to loop throught our list of orders. -->
+            <tr *ngFor=" let item of singleOrder?.cartproducts">
+                <td>
+                    <img class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [src]="'https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile"/>
+                </td>
+                <td>
+                  <div class="display-tc">
+                    <h4><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">{{item.ProductName}}</a></h4><br>
+                    <span *ngFor=" let item2 of item.Colors;">
+                    <h3>{{item2}}</h3>
+                    </span>
+                  </div>
+                </td>
+                <td>{{item.Price| currency:'USD'}}</td>
+                       
+            </tr>        
+        </table>
+        <div class="row">
+            <div class="col-md-12 text-right" >
+              <button (click)="viewCheck=false" class="btn btn-info">Back</button>
+            </div>
+        </div>    
+	</div>
