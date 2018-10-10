@@ -24,6 +24,7 @@ export class ProductsComponent implements OnInit {
   sizeArray=[];
   sizeSelected='';
   searchText:any;
+  secondsize=[];
   
   brandFilterArray=[];
   genderFilterArray=[];
@@ -89,6 +90,7 @@ export class ProductsComponent implements OnInit {
               this.myData = user;                
               console.log(this.myData);  
               //get the product list for this category
+                        var secondsize=[];
                         var self=this;
                         self.gc.productlist.length=0;
                         self.gc.productlist.push('');
@@ -104,15 +106,26 @@ export class ProductsComponent implements OnInit {
                           this.myData.colorgroups.forEach(function (value) {
                             self.colorArray.push({colorgroup:value,checked:false});
                             });
-                        }         
+                        }     
+                        if(this.myData.products){
+                          this.myData.products.forEach(function (value) {
+                            self.secondsize.push(value.product.A1_Label);
+                            });
+                        }  
+                        
+                          this.secondsize = this.secondsize.join('').split(',').filter(function(item, pos,self) {
+                          if(item.length>0)
+                          return self.indexOf(item) == pos;
+                        });
                         this.sizeArray=[].concat.apply([], this.sizeArray);
-                        this.sizeArray=this.removeDupesSizes(this.sizeArray);                        
+                        // this.sizeArray=this.removeDupesSizes(this.sizeArray);                        
                         this.brandArray=this.removeDupes(this.brandArray);
                         this.genderArray=this.removeDupes(this.genderArray);
                         // this.brandArray.forEach(function (value){
                         //     self.brandFilterArray.push(value.name);
                         // });
-                         console.log(this.colorArray);                                                
+                        console.log(this.secondsize,secondsize)
+                                                                       
             },
             error => console.log(error)
           );

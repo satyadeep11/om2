@@ -105,12 +105,12 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="side" *ngIf="sizeArray.length>1">
+                        <div class="side" *ngIf="secondsize.length>1">
                             <h2>Sizes</h2>
                             <div>
                                 <p> 
-                                    <span *ngFor="let item of sizeArray">
-                                    <input *ngIf="item.A1_Short!=null" type="radio" [value]="item.A1_Label" [(ngModel)]="sizeSelected" /> {{item.A1_Label}}<br> 
+                                    <span *ngFor="let item of secondsize">
+                                    <input *ngIf="item!=null" type="radio" [value]="item" [(ngModel)]="sizeSelected" /> {{item}}<br> 
                                     </span>  
                                 </p>
                             </div>

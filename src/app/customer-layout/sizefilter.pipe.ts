@@ -9,13 +9,17 @@ export class SizeFilterPipe implements PipeTransform {
     var x=[];
       if(!items) return [];     
       if(searchtext=='') return items;  
-       items.filter( it => {
-        it.sizes.filter(it1=>{            
-            if(it1.A1_Label==searchtext){              
-                x.push(it);
-            }
-        });
+      console.log()
+       return items.filter( it => {
+        
+        if(it.product.A1_Label!=null){ 
+         
+            if(it.product.A1_Label.includes(searchtext)){    
+              console.log(it.product.A1_Label,searchtext)             
+              return(it);
+            } 
+          }       
       });
-      return x;
+      
    }
 } 
