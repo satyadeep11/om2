@@ -60,9 +60,9 @@ export class ProductsComponent implements OnInit {
                         self.gc.productlist.push(+this.id.catid);
                         if(this.myData.products){
                         this.myData.products.forEach(function (value) {
-                          self.gc.productlist.push(+value.product.ProductID);
-                          self.brandArray.push({name:value.product.Brand,checked:false});
-                          self.genderArray.push({name:value.product.Gender,checked:false});
+                          self.gc.productlist.push(+value.ProductID);
+                          self.brandArray.push({name:value.Brand,checked:false});
+                          self.genderArray.push({name:value.Gender,checked:false});
                           self.sizeArray.push(value.sizes);
                           });
                         }
@@ -73,7 +73,7 @@ export class ProductsComponent implements OnInit {
                           }
                           if(this.myData.products){
                             this.myData.products.forEach(function (value) {
-                              self.secondsize.push(value.product.A1_Label);
+                              self.secondsize.push(value.A1_Label);
                               });
                           }                          
                           this.secondsize = this.secondsize.join('').split(',').filter(function(item, pos,self) {
@@ -105,9 +105,9 @@ export class ProductsComponent implements OnInit {
                         self.gc.productlist.push('');
                         if(this.myData.products){
                         this.myData.products.forEach(function (value) {
-                          self.gc.productlist.push(+value.product.ProductID);
-                          self.brandArray.push({name:value.product.Brand,checked:false});
-                          self.genderArray.push({name:value.product.Gender,checked:false});
+                          self.gc.productlist.push(+value.ProductID);
+                          self.brandArray.push({name:value.Brand,checked:false});
+                          self.genderArray.push({name:value.Gender,checked:false});
                           self.sizeArray.push(value.sizes);
                           });      
                         } 
@@ -118,7 +118,7 @@ export class ProductsComponent implements OnInit {
                         }     
                         if(this.myData.products){
                           this.myData.products.forEach(function (value) {
-                            self.secondsize.push(value.product.A1_Label);
+                            self.secondsize.push(value.A1_Label);
                             });
                         }                          
                         this.secondsize = this.secondsize.join('').split(',').filter(function(item, pos,self) {

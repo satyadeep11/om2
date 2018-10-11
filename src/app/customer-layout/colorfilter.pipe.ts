@@ -11,8 +11,8 @@ export class ColorFilterPipe implements PipeTransform {
     if(searcharr.length==0) return items;      
     return items.filter( it => {
 
-        if(it.product.Colorgroups!=null){
-            if(searcharr.some(substring=>it.product.Colorgroups.includes(substring))){              
+        if(it.Colorgroups!=null){
+            if(searcharr.some(substring=>it.Colorgroups.includes(substring))){              
                 return it;
             }
         }

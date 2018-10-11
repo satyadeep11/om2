@@ -9,7 +9,7 @@ export class GenderFilterPipe implements PipeTransform {
     if(!searcharr) return []; 
     if(searcharr.length==0) return items;      
     return items.filter( it => {
-        if(searcharr.includes(it.product.Gender)){              
+        if(searcharr.includes(it.Gender)){              
             return it;
         }
     });

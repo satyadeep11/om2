@@ -8,7 +8,7 @@ export class PriceFilterPipe implements PipeTransform {
       if(!startPrice) return items;      
       if(!endPrice) return items;
       return items.filter( it => {
-          if((parseInt(it.product.Price)>=startPrice)  && (parseInt(it.product.Price) <= endPrice)){
+          if((parseInt(it.Price)>=startPrice)  && (parseInt(it.Price) <= endPrice)){
             return it;
           }
       });

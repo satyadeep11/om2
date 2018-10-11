@@ -10,8 +10,8 @@ export class SizeFilterPipe implements PipeTransform {
       if(!items) return [];     
       if(searchtext=='') return items;  
        return items.filter( it => {        
-        if(it.product.A1_Label!=null){          
-            if(it.product.A1_Label.includes(searchtext)){           
+        if(it.A1_Label!=null){          
+            if(it.A1_Label.includes(searchtext)){           
               return(it);
             } 
           }       

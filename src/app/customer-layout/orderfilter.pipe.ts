@@ -9,9 +9,9 @@ export class OrderFilterPipe implements PipeTransform {
 
         console.log(items);
         items.sort((a: any, b: any) => {
-            if (a.product.ProductName < b.product.ProductName) {
+            if (a.ProductName < b.ProductName) {
               return -1;
-            } else if (a.product.ProductName > b.product.ProductName) {
+            } else if (a.ProductName > b.ProductName) {
               return 1;
             } else {
               return 0;
