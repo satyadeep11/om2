@@ -10,12 +10,13 @@ import { SearchFilterPipe} from '../searchfilter.pipe';
 import { OrderFilterPipe} from '../orderfilter.pipe';
 import { ColorFilterPipe} from '../colorfilter.pipe';
 import { FormsModule } from '@angular/forms';
+import {MatExpansionModule,MatFormFieldModule,MatInputModule,MatSelectModule,MatSidenavModule} from '@angular/material';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    ProductsRoutingModule, FormsModule
+    ProductsRoutingModule, FormsModule,MatExpansionModule,MatFormFieldModule,MatInputModule,MatSelectModule,MatSidenavModule
   ],
   declarations: [ProductsComponent, GenderFilterPipe,PriceFilterPipe,BrandFilterPipe,SizeFilterPipe,SearchFilterPipe,ColorFilterPipe,OrderFilterPipe]
 })

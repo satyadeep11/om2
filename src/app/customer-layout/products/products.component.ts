@@ -10,6 +10,7 @@ declare var require: any;
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  panelOpenState = false;
   id:CatId={};
   private sub: any;
   myData:any;
