@@ -3,16 +3,15 @@
     <mat-step *ngIf="item.CategoryParent==0">      
         <ng-template  matStepLabel>{{item.CategoryName}}</ng-template>
         <div *ngFor="let item2 of myData?.cats">
-        <span *ngIf="item.CategoryID== item2.CategoryParent"><input type="checkbox" (value)="item2.CategoryID">{{item2.CategoryName}}</span>
+          <span *ngIf="item.CategoryID== item2.CategoryParent">
+            <input type="checkbox" (change)="AddRemoveCat($event,item2.CategoryID)">{{item2.CategoryName}}
+          </span>
         </div>
         <div>
-
           <button *ngIf="i!=2" mat-button matStepperNext>Next</button>
           <button *ngIf="i!=0" mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button *ngIf="i==2" mat-button (click)="SaveCat()">Save</button>
         </div>      
     </mat-step>
   </div>
-
-
   </mat-horizontal-stepper>
