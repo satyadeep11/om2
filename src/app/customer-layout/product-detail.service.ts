@@ -17,7 +17,7 @@ export class ProductDetailService {
 
   product_detail(product): Observable<PriceId>{
  
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json' }); 
     let options = new RequestOptions({ headers: headers });
     let link=this.gc.link+"/php_api/masterdb/single-product.php";
     return this._http.post(
@@ -166,6 +166,31 @@ export class ProductDetailService {
     ).pipe(map((res: Response) => res.json()));
   }
 
+  get_category_products(product:Cart): Observable<Cart>{
+ 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/masterdb/get-all-cat-products-list.php";
+  
+    return this._http.post(
+      link,
+      product,
+      options
+    ).pipe(map((res: Response) => res.json()));
+  }
+
+  update_category(product:Cart): Observable<Cart>{
+ 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/insert-category.php";
+  
+    return this._http.post(
+      link,
+      product,
+      options
+    ).pipe(map((res: Response) => res.json()));
+  }
 
 
 }

@@ -58,7 +58,8 @@ export class LoginComponent implements OnInit {
             this.authService.getCart(user)
             .subscribe(user => { 
               console.log(user); 
-              localStorage.setItem('currentCart', JSON.stringify(user));             
+              localStorage.setItem('currentCart', JSON.stringify(user));     
+              localStorage.setItem('selection_id', (user.selection_id)); 
            },
            error => console.log(error)
           );
@@ -94,5 +95,6 @@ export interface Person {
 
   export interface Cart {    
     uuid?:string;
+    selection_id?:string;
     
   }

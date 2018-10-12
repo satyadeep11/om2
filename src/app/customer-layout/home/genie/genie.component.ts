@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductDetailService } from '../../product-detail.service'; 
+import {GlobalCart} from '../../globalcart';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-genie',
@@ -10,8 +12,7 @@ export class GenieComponent implements OnInit {
 isLinear = true;
 myData:any;
 catList=[];
-finalcatList='';
-  constructor(private productDetailService: ProductDetailService) { 
+  constructor(private productDetailService: ProductDetailService,private gc: GlobalCart,private router: Router) { 
 
     this.productDetailService.category_all().subscribe(user => {
       this.myData = user; 
@@ -34,7 +35,28 @@ AddRemoveCat(event,value){
   }
 }
 SaveCat(){
-this.finalcatList=this.catList.join(", ");
-console.log(this.finalcatList);
+  var cartList:Cart={};
+  cartList.selectionid=(+localStorage.getItem("selection_id"));
+  cartList.catid=this.catList.join(", ");
+  var self=this;
+  this.productDetailService.update_category(cartList).subscribe(user => {
+    if(!user.error) {
+      self.productDetailService.get_category_products(cartList).subscribe(user => {   
+        self.gc.productlist=user.products;  
+        this.router.navigate(['/product-detail',+self.gc.productlist[0]]);  
+      },
+      error => console.log(error)
+      );
+    }
+         
+  },
+  error => console.log(error)
+  );
+
 }
+}
+
+export interface Cart {    
+  catid?:string;
+  selectionid?:number;   
 }

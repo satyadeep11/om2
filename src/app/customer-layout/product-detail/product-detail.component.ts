@@ -288,6 +288,8 @@ export interface Cart {
   status?: number;
   ImageFile?: string;
   A2_Label?: string;
+  catid?: string;
+  products?:Array<String>; 
   
 }
 

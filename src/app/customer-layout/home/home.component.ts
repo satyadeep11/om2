@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
 getMain(imagename){
+  if(imagename)
     return imagename.replace(".jpg", "_600.jpg");
 }  
 
