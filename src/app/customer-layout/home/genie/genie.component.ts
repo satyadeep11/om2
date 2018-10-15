@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Inject } from '@angular/core';
 import { ProductDetailService } from '../../product-detail.service'; 
 import {GlobalCart} from '../../globalcart';
 import {Router} from "@angular/router";
+
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-genie',
   templateUrl: './genie.component.html',
   styleUrls: ['./genie.component.scss']
 })
-export class GenieComponent implements OnInit {
+export class GenieComponent {
 isLinear = true;
 myData:any;
 catList=[];
-  constructor(private productDetailService: ProductDetailService,private gc: GlobalCart,private router: Router) { 
+  constructor(private dialogRef: MatDialogRef<GenieComponent>, @Inject(MAT_DIALOG_DATA) public data : any,
+  private productDetailService: ProductDetailService,private gc: GlobalCart,private router: Router) { 
 
     this.productDetailService.category_all().subscribe(user => {
       this.myData = user; 
@@ -22,8 +25,7 @@ catList=[];
     );
   }
 
-  ngOnInit() {
-  }
+
 AddRemoveCat(event,value){
   if ( event.target.checked ){
     this.catList.push(value);
@@ -48,6 +50,7 @@ SaveCat(){
         self.gc.productlist=self.gc.productlist.map(function(v){return +v});
         localStorage.setItem('productList',JSON.stringify(self.gc.productlist)); 
         this.router.navigate(['/product-detail',self.gc.productlist[0]]);  
+        this.dialogRef.close();
         }
         else{
           alert('No products found in Selected Categories');
@@ -71,6 +74,11 @@ Reset() {
       }
       this.catList=[];
 }
+
+public closeDialog(){
+  this.dialogRef.close();
+}
+
 }
 
 export interface Cart {    

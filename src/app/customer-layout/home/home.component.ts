@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-
+import {GenieComponent} from "./genie/genie.component";
 import { ProductDetailService } from '../product-detail.service'; 
+import {MatDialog} from "@angular/material";
 
 @Component({
   selector: 'app-home',
@@ -15,16 +16,21 @@ export class HomeComponent implements OnInit {
   public url="url(https://www.afhsgear.com/sites/998/products/998_";
   public url_close=")";
 
-  constructor(private productDetailService: ProductDetailService) { 
+  constructor(private productDetailService: ProductDetailService,public dialog : MatDialog) { 
     this.productDetailService.new_products().subscribe(user => {
       this.myData = user; 
       console.log(this.myData);      
     },
     error => console.log(error)
     );
+    this.dialog.open(GenieComponent, {
+      width: '500px',
+      data: {}
+    });
   }
 
   ngOnInit() {
+    
   }
 
 getMain(imagename){

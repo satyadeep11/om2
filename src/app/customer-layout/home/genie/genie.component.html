@@ -1,3 +1,7 @@
+<button style="float: right;" mat-button (click)="closeDialog()">Close</button>
+<mat-card-title>Select Categories</mat-card-title><br>
+<mat-card-subtitle>Select from the categories to simplify your selection experience. </mat-card-subtitle>
+
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <div *ngFor="let item of myData?.cats; let i=index">
     <mat-step *ngIf="item.CategoryParent==0">      
