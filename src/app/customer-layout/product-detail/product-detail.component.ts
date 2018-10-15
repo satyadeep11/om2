@@ -239,6 +239,11 @@ SubmitCart() {
                 if(this.gc.productlist.length>0){
                 this.getNextMember(this.gc.productlist, +this.productid,'genie');
                 }
+                else if(localStorage.getItem("productList")){
+                  var retrievedData = localStorage.getItem("productList");        
+                  this.gc.productlist= JSON.parse(retrievedData); 
+                  this.getNextMember(this.gc.productlist, +this.productid,'genie');
+                  }
                 else if(this.gc.productlistcategory.length>0){
                   this.getNextMember(this.gc.productlistcategory, +this.productid,'category');
                   }

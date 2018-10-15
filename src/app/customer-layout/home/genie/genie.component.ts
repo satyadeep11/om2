@@ -46,6 +46,7 @@ SaveCat(){
         console.log(self.gc.productlist);
         if(self.gc.productlist)  {
         self.gc.productlist=self.gc.productlist.map(function(v){return +v});
+        localStorage.setItem('productList',JSON.stringify(self.gc.productlist)); 
         this.router.navigate(['/product-detail',self.gc.productlist[0]]);  
         }
         else{
