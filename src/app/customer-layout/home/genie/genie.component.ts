@@ -36,10 +36,12 @@ AddRemoveCat(event,value){
     console.log(this.catList);
   }
 }
+
 SaveCat(){
   var cartList:Cart={};
   cartList.selectionid=(+localStorage.getItem("selection_id"));
   cartList.catid=this.catList.join(", ");
+  if(cartList.catid!=undefined && cartList.catid.length>0){  
   var self=this;
   this.productDetailService.update_category(cartList).subscribe(user => {
     if(!user.error) {
@@ -59,11 +61,15 @@ SaveCat(){
       error => console.log(error)
       );
     }
+  
          
   },
   error => console.log(error)
   );
-
+  }
+  else{
+    alert('No categoires were selected');
+  }
 }
 Reset() {
   let elements = document.getElementsByTagName('input');
