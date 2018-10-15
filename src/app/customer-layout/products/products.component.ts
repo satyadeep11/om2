@@ -57,11 +57,11 @@ export class ProductsComponent implements OnInit {
               console.log(this.myData);     
               //get the product list for this category
                         var self=this;
-                        self.gc.productlist.length=0;
-                        self.gc.productlist.push(+this.id.catid);
+                        self.gc.productlistcategory.length=0;
+                        self.gc.productlistcategory.push(+this.id.catid);
                         if(this.myData.products){
                         this.myData.products.forEach(function (value) {
-                          self.gc.productlist.push(+value.ProductID);
+                          self.gc.productlistcategory.push(+value.ProductID);
                           self.brandArray.push({name:value.Brand,checked:false});
                           self.genderArray.push({name:value.Gender,checked:false});
                           self.sizeArray.push(value.sizes);
@@ -81,8 +81,8 @@ export class ProductsComponent implements OnInit {
                             if(item.length>0)
                             return self.indexOf(item) == pos;
                           });                        
-                        //console.log(this.gc.productlist);   
-                        // localStorage.setItem('productList', JSON.stringify(this.gc.productlist));  
+                        //console.log(this.gc.productlistcategory);   
+                        // localStorage.setItem('productlistcategory', JSON.stringify(this.gc.productlistcategory));  
                         //this.sizeArray=[].concat.apply([], this.sizeArray);
                         //this.sizeArray=this.removeDupesSizes(this.sizeArray);
                         this.brandArray=this.removeDupes(this.brandArray);
@@ -102,11 +102,11 @@ export class ProductsComponent implements OnInit {
               //get the product list for this category
                         
                         var self=this;
-                        self.gc.productlist.length=0;
-                        self.gc.productlist.push('');
+                        self.gc.productlistcategory.length=0;
+                        self.gc.productlistcategory.push('');
                         if(this.myData.products){
                         this.myData.products.forEach(function (value) {
-                          self.gc.productlist.push(+value.ProductID);
+                          self.gc.productlistcategory.push(+value.ProductID);
                           self.brandArray.push({name:value.Brand,checked:false});
                           self.genderArray.push({name:value.Gender,checked:false});
                           self.sizeArray.push(value.sizes);

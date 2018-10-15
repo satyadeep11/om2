@@ -50,7 +50,7 @@ ngOnInit()  {
 
               this.productDetailService.product_detail(this.id).subscribe(user => {
                 this.myData = user; 
-                console.log(this.myData);
+                //console.log(this.myData);
                 this.productid=this.myData.product.ProductID;
                     this.visitedproducts=localStorage.getItem("visitedproducts");
                     this.visitedproducts=this.visitedproducts+this.productid.toString();
@@ -63,7 +63,7 @@ ngOnInit()  {
               );
               this.GetCart();
               this.updateCart();
-              console.log(this.gc.count);
+              //console.log(this.gc.count);
               
             }
 
@@ -77,7 +77,7 @@ updateCart()  {
                       if(value.ProductID==self.id.productid){ 
                         if(self.colorselected){self.colorselected=self.colorselected.replace(new RegExp(value.Attr2),'');}                       
                         self.colorselected =self.colorselected+value.Attr2;
-                        console.log(self.colorselected);
+                        //console.log(self.colorselected);
                         if(self.cart){
                           self.cart.forEach( (item, index) => {
                             if(item.Attr2 == value.Attr2) self.cart.splice(index,1);
@@ -135,7 +135,7 @@ addtoCart(color,colorcode,image) {
                                     error => console.log(error)
                                     );
                                     
-                                    console.log(this.gc.count);
+                                    //console.log(this.gc.count);
                                   }
 
 deletefromCart(color,colorcode,image) {
@@ -165,7 +165,7 @@ deletefromCart(color,colorcode,image) {
                                     if(item.Attr2 == colorcode) this.cart.splice(index,1);
                                   });
                                     // console.log(this.cart);
-                                    console.log(this.gc.count);
+                                    //console.log(this.gc.count);
                                 }
 
 
@@ -194,7 +194,7 @@ GetCart() {
             user.uuid=localStorage.getItem("uuid").toString();
             this.authService.getCart(user).subscribe(user => {        
               localStorage.setItem('currentCart', JSON.stringify(user));    
-              console.log(user); 
+              //console.log(user); 
               this.gcUpdate();  
               this.updateCart();    
             },
@@ -216,8 +216,8 @@ gcUpdate() {
                 return index === self.indexOf(elem);
               })
               this.gc.count=unique.length;
-              console.log(cartdetails);
-              console.log(this.gc.count);
+             // console.log(cartdetails);
+             // console.log(this.gc.count);
             }
 SubmitCart() {
                 // var retrievedData = localStorage.getItem("currentCart");        
@@ -237,18 +237,27 @@ SubmitCart() {
                 // );
                 // this.GetCart();
                 if(this.gc.productlist.length>0){
-                this.getNextMember(this.gc.productlist, +this.productid);
+                this.getNextMember(this.gc.productlist, +this.productid,'genie');
                 }
+                else if(this.gc.productlistcategory.length>0){
+                  this.getNextMember(this.gc.productlistcategory, +this.productid,'category');
+                  }
                 else{
-                  this.router.navigate(['/products']);
+                  this.router.navigate(['/home']);
                 }
               }
 
-getNextMember(array, productID) {
+getNextMember(array, productID, from) {
                 var startIndex = array.indexOf(productID);
                 console.log(array,productID,startIndex); 
                 if(startIndex==array.length - 1){
-                  this.router.navigate(['/products', array[0]]);
+                  if(from=='genie'){
+                    this.router.navigate(['/cart']);
+                  }
+                  else
+                  if(from=='category'){
+                    this.router.navigate(['/products', array[0]]);
+                  }
                 }
                 else{
                     startIndex++;  

@@ -8,9 +8,10 @@
           </span>
         </div>
         <div>
+          <button mat-button (click)="Reset();stepper.reset()">Reset</button>
           <button *ngIf="i!=2" mat-button matStepperNext>Next</button>
-          <button *ngIf="i!=0" mat-button matStepperPrevious>Back</button>
-          <button *ngIf="i==2" mat-button (click)="SaveCat()">Save</button>
+          <!-- <button *ngIf="i!=0" mat-button matStepperPrevious>Back</button> -->
+          <button *ngIf="i==2" mat-button (click)="SaveCat()">Save</button>          
         </div>      
     </mat-step>
   </div>

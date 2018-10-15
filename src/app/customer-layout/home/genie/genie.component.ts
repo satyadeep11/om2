@@ -42,8 +42,15 @@ SaveCat(){
   this.productDetailService.update_category(cartList).subscribe(user => {
     if(!user.error) {
       self.productDetailService.get_category_products(cartList).subscribe(user => {   
-        self.gc.productlist=user.products;  
-        this.router.navigate(['/product-detail',+self.gc.productlist[0]]);  
+        self.gc.productlist=user.products;
+        console.log(self.gc.productlist);
+        if(self.gc.productlist)  {
+        self.gc.productlist=self.gc.productlist.map(function(v){return +v});
+        this.router.navigate(['/product-detail',self.gc.productlist[0]]);  
+        }
+        else{
+          alert('No products found in Selected Categories');
+        }
       },
       error => console.log(error)
       );
@@ -53,6 +60,15 @@ SaveCat(){
   error => console.log(error)
   );
 
+}
+Reset() {
+  let elements = document.getElementsByTagName('input');
+      for (let i = 0; i < elements.length; i++) {
+        if (elements[i].type == 'checkbox') {
+          elements[i].checked = false;
+        }
+      }
+      this.catList=[];
 }
 }
 

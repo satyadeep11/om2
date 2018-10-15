@@ -4,5 +4,6 @@ import { Injectable } from '@angular/core';
 export class GlobalCart {
  count:number=0;  
  productlist:any[]=[]; 
+ productlistcategory:any[]=[]; 
  link="http://localhost";
 }
