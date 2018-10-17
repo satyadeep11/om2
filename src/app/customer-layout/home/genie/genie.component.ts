@@ -19,7 +19,14 @@ catList=[];
 
     this.productDetailService.category_all().subscribe(user => {
       this.myData = user; 
-      console.log(this.myData);      
+      console.log(this.myData);   
+      this.myData.cats.forEach(function (value) {
+        if(+value.CategoryParent!=0){
+          gc.CatListFull.push(+value.CategoryID); 
+          localStorage.setItem('CatListFull',JSON.stringify(gc.CatListFull));         
+        }
+      }); 
+         console.log(gc.CatListFull);
     },
     error => console.log(error)
     );

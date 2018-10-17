@@ -5,5 +5,6 @@ export class GlobalCart {
  count:number=0;  
  productlist:any[]=[]; 
  productlistcategory:any[]=[]; 
+ CatListFull:any[]=[];
  link="http://localhost";
 }

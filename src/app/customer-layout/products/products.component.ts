@@ -175,6 +175,40 @@ brandCheck(brand,i){
   }  
 }
 
+NextCat() {
+  if(this.gc.CatListFull.length>0){
+    if(this.id)
+  this.getNextMember(this.gc.CatListFull, this.id.catid,'genie');
+  }
+  else if(localStorage.getItem("CatListFull")){
+    var retrievedData = localStorage.getItem("CatListFull");        
+    this.gc.CatListFull= JSON.parse(retrievedData); 
+    if(this.id)
+    this.getNextMember(this.gc.CatListFull, this.id.catid,'genie');
+    }
+  else{
+    this.router.navigate(['/home']);
+  }
+}
+getNextMember(array, productID, from) {
+  var startIndex = array.indexOf(productID);
+  console.log(array,productID,startIndex); 
+  if(startIndex==array.length - 1){
+    if(from=='genie'){
+      this.router.navigate(['/home']);
+    }
+    else
+    if(from=='category'){
+      this.router.navigate(['/products', array[0]]);
+    }
+  }
+  else{
+      startIndex++;  
+      console.log(array[startIndex]);
+      this.router.navigate(['/products', array[startIndex]]);
+  }
+}
+
 colorCheck(color,i){  
   color=','+color+',';//for search
   console.log(color);
