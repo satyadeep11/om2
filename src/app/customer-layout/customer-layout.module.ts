@@ -12,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MatInputModule, MatButtonModule,MatMenuModule, MatIconModule, MatToolbarModule, MatCardModule } from '@angular/material';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GlobalCart } from './globalcart';
 import {NgxPaginationModule} from 'ngx-pagination'; 
 
@@ -23,6 +24,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CustomerLayoutRoutingModule,
     TranslateModule,
     NgxPaginationModule,
+    FormsModule, ReactiveFormsModule,
     MatInputModule,
         MatButtonModule,
         MatMenuModule, 

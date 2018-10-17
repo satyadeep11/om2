@@ -4,7 +4,7 @@
     <div class="row justify-content-md-center">
         <div class="col-md-4"> 
         <div *ngIf="myData">
-                <div *ngIf="myData.error==false; else inviteerror">
+                <div *ngIf="myData.error; else inviteerror">
                         <ngb-alert type="success" *ngIf="!closed" (close)="closed=true">The Customer has been Invited.</ngb-alert>                  
                 </div>
                 <ng-template #inviteerror>

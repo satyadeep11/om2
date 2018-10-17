@@ -1,6 +1,5 @@
-<div >
-
-  <mat-toolbar class="menu-bar">
+<div >    
+  <mat-toolbar class="menu-bar">      
     <span *ngFor="let item of navItems">
       <!-- Handle branch node buttons here -->
       <span *ngIf="item.children && item.children.length > 0">
@@ -17,6 +16,9 @@
         </button>
       </span>
     </span>
+    <span class="fill-space"></span>
+    <input [(ngModel)]="searchText" type="text" placeholder="Search.." name="search">
+    <button (click)="Search(searchText);searchText='';"><i class="fa fa-search"></i></button>
   </mat-toolbar>
 
 </div>

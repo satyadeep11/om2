@@ -9,13 +9,17 @@ declare var require: any;
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+  searchText:any;
 
   constructor( public router: Router) { }
 
   ngOnInit() {
   }
+  Search(searchText){
+    this.router.navigate(['/products/search/',searchText]);
+  }
   version = VERSION;
   navItems  = require('../../../assets/menu.json');
-
+  
 }
 
