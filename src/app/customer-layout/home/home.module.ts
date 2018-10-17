@@ -7,8 +7,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 
 import { StatModule } from '../../shared';
-import { GenieComponent } from './genie/genie.component';
-import {MatStepperModule} from '@angular/material/stepper';
 
 
 @NgModule({
@@ -17,17 +15,12 @@ import {MatStepperModule} from '@angular/material/stepper';
         NgbCarouselModule.forRoot(),
         NgbAlertModule.forRoot(),
         HomeRoutingModule,
-        MatStepperModule,
         MatDialogModule,
         MatCardModule,
         StatModule
     ],
     declarations: [
-        HomeComponent,
-        GenieComponent
-    ],
-    entryComponents: [
-        GenieComponent
+        HomeComponent
     ]
 })
 export class HomeModule { } 

@@ -9,12 +9,15 @@ import { CustomerLayoutComponent } from './customer-layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './menu/menu.component';
 
-import { MatInputModule, MatButtonModule,MatMenuModule, MatIconModule, MatToolbarModule, MatCardModule } from '@angular/material';
+import { MatInputModule,MatDialogModule, MatButtonModule,MatMenuModule, MatIconModule, MatToolbarModule, MatCardModule } from '@angular/material';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GlobalCart } from './globalcart';
 import {NgxPaginationModule} from 'ngx-pagination'; 
+import { GenieComponent } from './home/genie/genie.component';
+
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -24,8 +27,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CustomerLayoutRoutingModule,
     TranslateModule,
     NgxPaginationModule,
+    MatStepperModule,
     FormsModule, ReactiveFormsModule,
-    MatInputModule,
+    MatInputModule,MatDialogModule,
         MatButtonModule,
         MatMenuModule, 
         MatIconModule,
@@ -33,7 +37,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
         MatCardModule,
         NgbModule.forRoot()
   ],
-  declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent, MenuItemComponent, FooterComponent],
+  declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent, MenuItemComponent, FooterComponent, GenieComponent],
   providers: [ GlobalCart ]
+  ,
+    entryComponents: [
+        GenieComponent
+    ]
 })
 export class CustomerLayoutModule { }

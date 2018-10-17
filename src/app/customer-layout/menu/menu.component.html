@@ -16,9 +16,14 @@
         </button>
       </span>
     </span>
+    <span><button (click)="LoadGenie()">Selection Genie</button></span>
     <span class="fill-space"></span>
-    <input [(ngModel)]="searchText" type="text" placeholder="Search.." name="search">
+    
+    <span>
+    <input [(ngModel)]="searchText" (keydown.enter)="Search(searchText);searchText='';" type="text" placeholder="Search.." name="search">
     <button (click)="Search(searchText);searchText='';"><i class="fa fa-search"></i></button>
+    </span>
+    
   </mat-toolbar>
 
 </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router} from '@angular/router';
 import {VERSION} from '@angular/material';
+import {GenieComponent} from "../home/genie/genie.component";
+import {MatDialog} from "@angular/material";
 declare var require: any;
 
 @Component({
@@ -10,16 +12,25 @@ declare var require: any;
 })
 export class MenuComponent implements OnInit {
   searchText:any;
+  version = VERSION;
+  navItems  = require('../../../assets/menu.json');
 
-  constructor( public router: Router) { }
+  constructor( public router: Router,public dialog : MatDialog) { }
 
   ngOnInit() {
   }
   Search(searchText){
+    if(searchText)
     this.router.navigate(['/products/search/',searchText]);
   }
-  version = VERSION;
-  navItems  = require('../../../assets/menu.json');
+
+  LoadGenie(){
+    this.dialog.open(GenieComponent, {
+      width: '500px',
+      data: {}
+    });
+  }
+  
   
 }
 
