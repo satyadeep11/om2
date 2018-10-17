@@ -24,7 +24,7 @@ export class ProductsComponent implements OnInit {
   colorArray:ColorGroup[]=[];
   sizeArray=[];
   sizeSelected='';
-  searchText:any;
+  searchText:any='';
   secondsize=[];
   
   brandFilterArray=[];

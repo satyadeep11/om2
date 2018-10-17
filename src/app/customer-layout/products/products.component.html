@@ -5,8 +5,14 @@
                     <button (click)="NextCat();" class="btn btn-primary pull-right">Next Category</button>
                     <h3>{{myData?.catName}}</h3>
                 </div>
-                <div class="col-md-10 col-md-push-2">
+                <div *ngIf="myData?.error" class="col-md-10 col-md-push-2" >    
+                        <img src="../../../assets/images/ordersnone.png"/><br> Nothing Found   
+                     </div>
+                <div *ngIf="!myData?.error" class="col-md-10 col-md-push-2">
                     <div>
+                        <span *ngIf="searchText.length>0"><b>Search:</b> {{searchText}}
+                            <a (click)="searchText=''" [ngStyle]="{'cursor': 'pointer'}"><i class="fa fa-remove"></i></a>
+                        </span> 
                         <span *ngIf="sizeSelected.length>0"><b>Size:</b> {{sizeSelected}}
                             <a (click)="sizeSelected=''" [ngStyle]="{'cursor': 'pointer'}"><i class="fa fa-remove"></i></a>
                         </span> 
@@ -51,11 +57,14 @@
                                     <h3><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">{{item.ProductName}}</a></h3>
                                     <p class="price"><span>{{item.Price|currency:'USD'}}</span></p>
                                 </div>
-                            </div>
-                        </div>                         
+                            </div>                            
+                        </div>    
+                        <div *ngIf="(myData?.products|genderfilter : genderFilterArray |brandfilter :brandFilterArray |sizefilter : sizeSelected| pricefilter :startprice:endprice | colorfilter : colorFilterArray | searchfilter : searchText).length === 0" class="col-md-10 col-md-push-2" >    
+                                <img src="../../../assets/images/ordersnone.png"/><br> Nothing Found   
+                        </div>                     
                     </div>
                 </div>
-                <div class="col-md-2 col-md-pull-10">
+                <div *ngIf="!myData?.error" class="col-md-2 col-md-pull-10">
                     <div class="sidebar">    
                         <div class="side">
                             <h2>Search</h2>

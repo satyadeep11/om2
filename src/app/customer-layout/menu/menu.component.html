@@ -16,11 +16,13 @@
         </button>
       </span>
     </span>
-    <span><button (click)="LoadGenie()">Selection Genie</button></span>
+    <button type="button" (click)="LoadGenie()" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Quickly Select Categories">
+        Selection Genie
+      </button>
     <span class="fill-space"></span>
     
     <span>
-    <input [(ngModel)]="searchText" (keydown.enter)="Search(searchText);searchText='';" type="text" placeholder="Search.." name="search">
+    <input [(ngModel)]="searchText" (keydown.enter)="Search(searchText);searchText='';" type="search" placeholder="Search.." name="search">
     <button (click)="Search(searchText);searchText='';"><i class="fa fa-search"></i></button>
     </span>
     
