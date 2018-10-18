@@ -17,7 +17,8 @@ export class MenuComponent implements OnInit {
   searchText:any;
   version = VERSION;
   navItems  = require('../../../assets/menu.json');
-  intro:any;
+  intro:any;  
+  QuestionBounceCheck:string='';
 
   constructor( public router: Router,public dialog : MatDialog) {
     this.intro = IntroJs();
@@ -26,26 +27,25 @@ export class MenuComponent implements OnInit {
     
    }
 
-  ngOnInit() {    
+  ngOnInit() {  
+
   }
-  FirstVisitCheck() {
+  ngAfterViewInit() {
     if(!localStorage.getItem('HomeVisit') && (window.location.pathname.includes("home"))) {
-      localStorage.setItem('HomeVisit', 'Yes');
-      return true;      
-    }
-    else if(!localStorage.getItem('ProductsVisit') && (window.location.pathname.includes("products"))) {
-            localStorage.setItem('ProductsVisit', 'Yes');
-            return true;            
-    }
-    else if(!localStorage.getItem('DetailVisit') && (window.location.pathname.includes("product-detail"))) {
-      
-      localStorage.setItem('DetailVisit', 'Yes');
-      return true;
-    }
-    else
-    return false;
-    
+        localStorage.setItem('HomeVisit', 'Yes');
+        this.OpenTour(); 
+      }
+     if(!localStorage.getItem('ProductsVisit') && (window.location.pathname.includes("products"))) {
+              localStorage.setItem('ProductsVisit', 'Yes');
+              this.QuestionBounceCheck='question';          
+      }
+     if(!localStorage.getItem('DetailVisit') && (window.location.pathname.includes("product-detail"))) {
+        
+        localStorage.setItem('DetailVisit', 'Yes');
+        this.QuestionBounceCheck= 'question';
+      }
   }
+
   OpenTour(){
     this.LoadTourValues();
     var self=this;

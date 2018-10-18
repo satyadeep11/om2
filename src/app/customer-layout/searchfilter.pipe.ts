@@ -10,7 +10,7 @@ export class SearchFilterPipe implements PipeTransform {
       searchText1 = searchText1.toLowerCase();
       // console.log(searchText1,searchText2,searchText3);
       return items.filter( it => {
-         if(it.ProductName.toLowerCase().includes(searchText1)){
+         if(it.ProductName.toLowerCase().includes(searchText1)||it.ProductDesc1.toLowerCase().includes(searchText1)||it.ProductDesc1.toLowerCase().includes(searchText1)){
           return it;
          }
       });
