@@ -3,7 +3,6 @@ import { routerTransition } from '../../router.animations';
 import {GenieComponent} from "./genie/genie.component";
 import { ProductDetailService } from '../product-detail.service'; 
 import {MatDialog} from "@angular/material";
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,7 +13,7 @@ export class HomeComponent implements OnInit {
   public id: any;
   myData:any;
   public url="url(https://www.afhsgear.com/sites/998/products/998_";
-  public url_close=")";
+  public url_close=")";  
 
   constructor(private productDetailService: ProductDetailService,public dialog : MatDialog) {
     if(!localStorage.getItem("CatListFull")){
@@ -31,6 +30,7 @@ export class HomeComponent implements OnInit {
     },
     error => console.log(error)
     );
+    
     
   }
 

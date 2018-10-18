@@ -1,6 +1,7 @@
 <div >    
-  <mat-toolbar class="menu-bar">      
-    <span *ngFor="let item of navItems">
+  <mat-toolbar class="menu-bar">
+    <span class="step-three">      
+    <span *ngFor="let item of navItems" >
       <!-- Handle branch node buttons here -->
       <span *ngIf="item.children && item.children.length > 0">
         <button mat-button [matMenuTriggerFor]="menu.childMenu"
@@ -16,12 +17,17 @@
         </button>
       </span>
     </span>
+  </span>
+    <span class="step-one">
     <button type="button" (click)="LoadGenie()" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Quickly Select Categories">
         Selection Genie
       </button>
+      
+    </span>
+    <span (click)="OpenTour();"><i class="fa fa-question-circle"></i></span>
     <span class="fill-space"></span>
     
-    <span>
+    <span class="step-two">
     <input [(ngModel)]="searchText" (keydown.enter)="Search(searchText);searchText='';" type="search" placeholder="Search.." name="search">
     <button (click)="Search(searchText);searchText='';"><i class="fa fa-search"></i></button>
     </span>
