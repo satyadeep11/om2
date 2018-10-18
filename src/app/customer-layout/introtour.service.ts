@@ -1,105 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router} from '@angular/router';
-import {VERSION} from '@angular/material';
-import {GenieComponent} from "../home/genie/genie.component";
-import {MatDialog} from "@angular/material";
+import { Injectable } from '@angular/core';
 import IntroJs from 'intro.js/intro.js';
 
-//const IntroJs = require('../../../../node_modules/intro.js');
-declare var require: any;
+@Injectable()
 
-@Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
-})
-export class MenuComponent implements OnInit {
-  searchText:any;
-  version = VERSION;
-  navItems  = require('../../../assets/menu.json');
+export class IntroTourService {
   intro:any;
-
-  constructor( public router: Router,public dialog : MatDialog) {
-    this.intro = IntroJs();
-    // Initialize steps
-    console.log(window.location.pathname);
-    
-   }
-
-  ngOnInit() {    
-  }
-  FirstVisitCheck() {
-    if(!localStorage.getItem('HomeVisit') && (window.location.pathname.includes("home"))) {
-      localStorage.setItem('HomeVisit', 'Yes');
-      return true;      
-    }
-    else if(!localStorage.getItem('ProductsVisit') && (window.location.pathname.includes("products"))) {
-            localStorage.setItem('ProductsVisit', 'Yes');
-            return true;            
-    }
-    else if(!localStorage.getItem('DetailVisit') && (window.location.pathname.includes("product-detail"))) {
-      
-      localStorage.setItem('DetailVisit', 'Yes');
-      return true;
-    }
-    else
-    return false;
-    
-  }
-  OpenTour(){
-    this.LoadTourValues();
-    var self=this;
-    if(window.location.pathname.includes("home")){
-    this.intro.onchange(function(targetElement) {  
-      console.log(this._currentStep,"here"); 
-          switch (this._currentStep) 
-              { 
-              case 0: 
-              self.LoadGenie();
-              break; 
-              case 1: 
-                  self.dialog.closeAll();
-              break;
-              }
-      }).start();
-    }
-    if(window.location.pathname.includes("products")){
-      this.intro.onchange(function(targetElement) {  
-        console.log(this._currentStep,"here"); 
-            // switch (this._currentStep) 
-            //     { 
-            //     case 0: 
-            //     self.LoadGenie();
-            //     break; 
-            //     case 1: 
-            //         self.dialog.closeAll();
-            //     break;
-            //     }
-        }).start();
-      }
-      if(window.location.pathname.includes("product-detail")){
-        this.intro.onchange(function(targetElement) {  
-          console.log(this._currentStep,"here"); 
-              // switch (this._currentStep) 
-              //     { 
-              //     case 0: 
-              //     self.LoadGenie();
-              //     break; 
-              //     case 1: 
-              //         self.dialog.closeAll();
-              //     break;
-              //     }
-          }).start();
-      }
-
-
-  }
-  Search(searchText){
-    if(searchText)
-    this.router.navigate(['/products/search/',searchText]);
-  }
   
   LoadTourValues(){
+    this.intro = IntroJs();
     if(window.location.pathname.includes("home")){
       this.intro.setOptions({
           steps: [
@@ -245,15 +153,4 @@ export class MenuComponent implements OnInit {
       });
     }
   }
- 
-
-  LoadGenie(){
-    this.dialog.open(GenieComponent, {
-      width: '500px',
-      data: {}
-    });
-  }
-  
-  
 }
-

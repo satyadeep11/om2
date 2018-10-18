@@ -21,10 +21,9 @@
     <span class="step-one">
     <button type="button" (click)="LoadGenie()" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Quickly Select Categories">
         Selection Genie
-      </button>
-      
+      </button>      
     </span>
-    <span (click)="OpenTour();"><i class="fa fa-question-circle"></i></span>
+    <span [ngClass]="{'question':FirstVisitCheck()}" (click)="OpenTour();"><i class="fa fa-question-circle"></i></span>
     <span class="fill-space"></span>
     
     <span class="step-two">

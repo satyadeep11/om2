@@ -2,8 +2,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-push-2">
-                    <button (click)="NextCat();" class="btn btn-primary pull-right">Next Category</button>
-                    <h3>{{myData?.catName}}</h3>
+                    <button (click)="NextCat();" class="btn btn-primary pull-right products-nine">Next Category</button>
+                    <h3><span class="products-eight">{{myData?.catName}}</span></h3>
                 </div>
                 <div *ngIf="myData?.error" class="col-md-10 col-md-push-2" >    
                         <img src="../../../assets/images/ordersnone.png"/><br> Nothing Found   
@@ -66,13 +66,13 @@
                 </div>
                 <div *ngIf="!myData?.error" class="col-md-2 col-md-pull-10">
                     <div class="sidebar">    
-                        <div class="side">
+                        <div class="side products-one">
                             <h2>Search</h2>
                             <div>
                                 <input [(ngModel)]="searchText" placeholder="Search here.." size="10">
                             </div>
                         </div>                    
-                        <div class="side">
+                        <div class="side products-two">
                             <h2>Categories</h2>
                             <div class="fancy-collapse-panel">
                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                         </div>                        
-                        <div class="side" *ngIf="genderArray.length>1">
+                        <div class="side products-three" *ngIf="genderArray.length>1">
                             <h2>Gender</h2>
                             <div>
                                 <p> 
@@ -95,7 +95,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="side" *ngIf="colorArray.length>1">
+                        <div class="side products-four" *ngIf="colorArray.length>1">
                             <h2>Color Groups</h2>
                             <div>
                                 <p> 
@@ -105,7 +105,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="side" *ngIf="brandArray.length>1">
+                        <div class="side products-five" *ngIf="brandArray.length>1">
                             <h2>Brand</h2>
                             <div>
                                 <p> 
@@ -115,7 +115,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="side" *ngIf="secondsize.length>1">
+                        <div class="side products-six" *ngIf="secondsize.length>1">
                             <h2>Sizes</h2>
                             <div>
                                 <p> 
@@ -125,7 +125,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="side">
+                        <div class="side products-seven">
                             <h2>Price Range</h2>
                             <form method="post" class="colorlib-form-2">
                                 <div class="row">

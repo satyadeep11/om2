@@ -42,9 +42,9 @@
                 </div>
               </div>
               <div class="col-md-7">                
-                  <h3>{{myData?.product.ProductName}}</h3>
+                  <h3 class="detail-one">{{myData?.product.ProductName}}</h3>
                   <p class="price">
-                    <span>{{myData?.product.Price | currency:'USD'}}</span> 
+                    <span class="detail-two">{{myData?.product.Price | currency:'USD'}}</span> 
                     <!-- <span class="rate text-right">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -55,7 +55,7 @@
                     </span> -->
                   </p>
                   <p>{{myData?.product.ProductDesc1}}</p>                  
-                      <div id="color-thumbnails" class="product-entry">
+                      <div id="color-thumbnails" class="product-entry detail-three">
                         <span class="btn-danger" *ngIf="!this.colorselected || this.colorselected=='undefined'">* To add this Product select the colors by clicking below.<br></span>
                         <div> 
                           Colors Available: <br>
@@ -83,7 +83,7 @@
                   
                   <p>SKU: {{myData?.product.ProductBaseSKU}}</p> 
                   
-                  <div class="size-wrap">
+                  <div class="size-wrap detail-four">
                       <p class="size-desc">
                         Sizes:<br> 
                         <a *ngFor=" let item of myData?.sizes;" class="size">{{item.A1_Short||"None"}} <span class="tooltiptext">{{item.A1_Label||"None"}}</span></a>                 
@@ -94,7 +94,7 @@
                     </div>
 
                   <!-- <p><span [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p> -->
-                  <p><button (click)="SubmitCart();" class="btn btn-primary">Next Product</button></p>
+                  <p><button (click)="SubmitCart();" class="btn btn-primary detail-five">Next Product</button></p>
                 
               </div>
             </div>
@@ -105,7 +105,7 @@
           <h2><span>Companion Products</span></h2>
           <p>Following are companion products for above selection.</p>
       </div>
-      <div class="row row-pb-lg" *ngIf="myData?.companion.length>0">
+      <div class="row row-pb-lg detail-six" *ngIf="myData?.companion.length>0">
         <div *ngFor=" let item of myData?.companion" class="col-md-4 text-center">
             <div class="product-entry">
                 <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
@@ -128,7 +128,7 @@
         <div class="col-sm-12 col-md-offset-1">
           <div class="row">
             <div class="col-sm-12 tabulation">
-                <div class="card">                    
+                <div class="card detail-seven">                    
                     <div class="card-body">
                 <ngb-tabset type="pills">
                     <ngb-tab title="Additional Info">
@@ -179,8 +179,8 @@
           <p>Following are some products we recommend based on your selections.</p>
         </div>
       </div>
-      <div class="row">
-        <div *ngFor=" let item of myData?.related|slice:0:4" class="col-md-3 text-center">
+      <div class="row detail-eight">
+        <div *ngFor=" let item of myData?.related|slice:0:4" class="col-md-3 text-center ">
           <div class="product-entry">
             <div class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.ProductID+'_'+getMain(item.ImageFile)+this.url_close">
                 <!-- &#9989; -->

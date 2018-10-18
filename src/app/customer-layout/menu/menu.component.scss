@@ -4,6 +4,23 @@
     flex: 1 1 auto;
   }
 
+  .question {
+    text-align:right;
+    opacity: 1;
+    -webkit-animation: bounce .3s infinite alternate;
+    -moz-animation: bounce .3s infinite alternate;
+    animation: bounce .3s infinite alternate;
+  }
+  @-webkit-keyframes bounce {
+    to { -webkit-transform: scale(1.2); }
+  }
+  @-moz-keyframes bounce {
+    to { -moz-transform: scale(1.2); }
+  }
+  @keyframes bounce {
+    to { transform: scale(1.2); }
+  }
+
 
 $topnav-background-color: #222;
 :host {
