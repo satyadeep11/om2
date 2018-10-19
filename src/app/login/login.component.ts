@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('isLoggedin', 'true');
             localStorage.setItem('fname', this.myData.user['First Name']);
             localStorage.setItem('lname', this.myData.user['Last Name']);
+            localStorage.setItem('email', this.myData.Email);
             localStorage.setItem('uuid', this.myData.uuid);
             this.router.navigateByUrl('/home');
             //define user cart on login
@@ -72,6 +73,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('admin', 'true');
             localStorage.setItem('fname', this.myData.user['First Name']);
             localStorage.setItem('lname', this.myData.user['Last Name']);
+            localStorage.setItem('email', this.myData.Email);
             localStorage.setItem('uuid', this.myData.uuid);
             this.router.navigateByUrl('/dashboard');
           }

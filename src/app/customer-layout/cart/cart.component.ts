@@ -102,6 +102,9 @@ export class CartComponent implements OnInit {
         let cartdetails:CID={};
         cartdetails.selectionid=this.productList.selection_id;
         cartdetails.uuid=localStorage.getItem("uuid").toString();
+        cartdetails.email=localStorage.getItem("email").toString();
+        cartdetails.fname=localStorage.getItem("fname").toString();
+        cartdetails.lname=localStorage.getItem("lname").toString();
         this.productDetailService.SubmitCart(cartdetails).subscribe(user => {
           //console.log(user);
           // this.myData.error = user.error;  
@@ -152,6 +155,9 @@ export interface PID {
 export interface CID {  
   uuid ?: string; 
   selectionid?:number;
+  email?:string;
+  fname?:string;
+  lname?:string;
 }
 
 export interface Cart {  
