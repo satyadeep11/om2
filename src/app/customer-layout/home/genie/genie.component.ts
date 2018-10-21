@@ -20,6 +20,7 @@ catList=[];
     this.productDetailService.category_all().subscribe(user => {
       this.myData = user; 
       console.log(this.myData);   
+      gc.CatListFull=[];
       this.myData.cats.forEach(function (value) {
         if(+value.CategoryParent!=0){
           gc.CatListFull.push(+value.CategoryID); 

@@ -22,26 +22,52 @@ export class MenuComponent implements OnInit {
 
   constructor( public router: Router,public dialog : MatDialog) {
     this.intro = IntroJs();
+    var self=this;
     // Initialize steps
-    console.log(window.location.pathname);
-    
-   }
+    console.log(window.location.pathname,localStorage.getItem("ProductsVisit"));
+    this.intro.oncomplete(function(targetElement) {         
+        if(!localStorage.getItem("HomeVisit") && (window.location.pathname.includes("home"))){
+            localStorage.setItem('HomeVisit', 'Yes');
+            self.LoadGenie();
+        }
+        if(!localStorage.getItem("ProductsVisit") && (window.location.pathname.includes("products"))){
+            localStorage.setItem('ProductsVisit', 'Yes'); 
+            this.QuestionBounceCheck='';                
+        }
+        if(!localStorage.getItem("DetailVisit") && (window.location.pathname.includes("product-detail"))){
+            localStorage.setItem('DetailVisit', 'Yes');
+            this.QuestionBounceCheck='';                
+        }
+        }).start();
+    this.intro.onexit(function(targetElement) {  
+        if(!localStorage.getItem("HomeVisit") && (window.location.pathname.includes("home"))){
+            localStorage.setItem('HomeVisit', 'Yes');
+            self.LoadGenie();
+        }
+        if(!localStorage.getItem("ProductsVisit") && (window.location.pathname.includes("products"))){
+            localStorage.setItem('ProductsVisit', 'Yes');                
+        }
+        if(!localStorage.getItem("DetailVisit") && (window.location.pathname.includes("product-detail"))){
+            localStorage.setItem('DetailVisit', 'Yes');                
+        }
+        }).start();
+      }
 
   ngOnInit() {  
 
   }
   ngAfterViewInit() {
     if(!localStorage.getItem('HomeVisit') && (window.location.pathname.includes("home"))) {
-        localStorage.setItem('HomeVisit', 'Yes');
+        // localStorage.setItem('HomeVisit', 'Yes');
         this.OpenTour(); 
       }
      if(!localStorage.getItem('ProductsVisit') && (window.location.pathname.includes("products"))) {
-              localStorage.setItem('ProductsVisit', 'Yes');
+              
               this.QuestionBounceCheck='question';          
       }
      if(!localStorage.getItem('DetailVisit') && (window.location.pathname.includes("product-detail"))) {
         
-        localStorage.setItem('DetailVisit', 'Yes');
+        
         this.QuestionBounceCheck= 'question';
       }
   }
@@ -52,15 +78,15 @@ export class MenuComponent implements OnInit {
     if(window.location.pathname.includes("home")){
     this.intro.onchange(function(targetElement) {  
       console.log(this._currentStep,"here"); 
-          switch (this._currentStep) 
-              { 
-              case 0: 
-              self.LoadGenie();
-              break; 
-              case 1: 
-                  self.dialog.closeAll();
-              break;
-              }
+        //   switch (this._currentStep) 
+        //       { 
+        //       case 0: 
+        //       self.LoadGenie();
+        //       break; 
+        //       case 1: 
+        //           self.dialog.closeAll();
+        //       break;
+        //       }
       }).start();
     }
     if(window.location.pathname.includes("products")){

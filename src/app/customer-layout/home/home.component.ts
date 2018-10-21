@@ -16,12 +16,12 @@ export class HomeComponent implements OnInit {
   public url_close=")";  
 
   constructor(private productDetailService: ProductDetailService,public dialog : MatDialog) {
-    if(!localStorage.getItem("CatListFull")){
-        this.dialog.open(GenieComponent, {
-        width: '500px',
-        data: {}
-      });
-    }
+    // if(!localStorage.getItem("CatListFull")){
+    //     this.dialog.open(GenieComponent, {
+    //     width: '500px',
+    //     data: {}
+    //   });
+    // }
     
 
     this.productDetailService.new_products().subscribe(user => {
