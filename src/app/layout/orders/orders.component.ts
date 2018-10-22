@@ -55,6 +55,7 @@ export class OrdersComponent implements OnInit {
                 uniqueproductid[value.ProductID]['Colors'].push(colors_container);              
               }
             });
+            uniqueproductid[value.ProductID]['Colors']=value.ColorsList.split(','); 
           });           
           this.newCart=this.cleanArray(uniqueproductid);      
           this.editCheck=true;     
@@ -96,6 +97,7 @@ export class OrdersComponent implements OnInit {
                 uniqueproductid[value.ProductID]['Colors'].push(colors_container);              
               }
             });
+            uniqueproductid[value.ProductID]['Colors']=value.ColorsList.split(','); 
           });           
           this.approvedCart=this.cleanArray(uniqueproductid);      
           this.viewCheck=true;     

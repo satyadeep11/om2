@@ -70,6 +70,10 @@ getThumb(imagename){
   return imagename.replace(".jpg", "_200.jpg");
 }  
 
+getThumb60(imagename){
+  return imagename.replace(".jpg", "_60.jpg");
+} 
+
 AddRemove(PId,ColorCode,ColorName,Price,PName,Image,event) {//event gets the checkbox checked or not value
   let selectiondetails:Cart={};
   selectiondetails.productid=PId;     

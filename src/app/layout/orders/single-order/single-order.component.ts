@@ -62,13 +62,14 @@ export class SingleOrderComponent implements OnInit {
   }
 
   EditProduct(PId) {
+    console.log(this.newCart,"newcart")
     let colorSet:ColorSet={};
     colorSet.productid=PId;
     this.orderService.getColors(colorSet)
       .subscribe(colors => {
         // show an alert to tell the user if user was invited
        this.myData=colors;
-       console.log(colors);
+       console.log(colors,"colors");
     },
     error => console.log(error)
     ); 
@@ -157,6 +158,13 @@ CloseApprove(){
   this.approveCheck=false;
 }
 
+getThumb60(imagename){
+  return imagename.replace(".jpg", "_60.jpg");
+} 
+
+getThumb(imagename){
+  return imagename.replace(".jpg", "_200.jpg");
+} 
 
 }
 

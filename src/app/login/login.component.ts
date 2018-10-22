@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
     loadComponent = false;
     ngOnInit() {
       if(localStorage.getItem("isLoggedin")){
-        if(localStorage.getItem("admin")){
-          this.router.navigateByUrl('/dashboard');
+        if(!localStorage.getItem("admin")){
+          this.router.navigateByUrl('/home');
         }
         else{
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/dashboard');
         }
       
       }
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('isLoggedin', 'true');
             localStorage.setItem('fname', this.myData.user['First Name']);
             localStorage.setItem('lname', this.myData.user['Last Name']);
-            localStorage.setItem('email', this.myData.Email);
+            localStorage.setItem('email', this.myData.user.Email);
             localStorage.setItem('uuid', this.myData.uuid);
             this.router.navigateByUrl('/home');
             //define user cart on login
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('admin', 'true');
             localStorage.setItem('fname', this.myData.user['First Name']);
             localStorage.setItem('lname', this.myData.user['Last Name']);
-            localStorage.setItem('email', this.myData.Email);
+            localStorage.setItem('email', this.myData.user.Email);
             localStorage.setItem('uuid', this.myData.uuid);
             this.router.navigateByUrl('/dashboard');
           }
