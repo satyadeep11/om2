@@ -3,20 +3,26 @@
         <app-page-header [heading]="'Invite'" [icon]="'fa-envelope'"></app-page-header>
     <div class="row justify-content-md-center">
         <div class="col-md-4"> 
+                <ngb-alert type="danger" *ngIf="sgListerror" (close)="sgListerror=false;">No Groups Selected.</ngb-alert>
         <div *ngIf="myData">
                 <div *ngIf="!myData?.error; else inviteerror">
                         <ngb-alert type="success" *ngIf="!closed" (close)="closed=true">The Customer has been Invited.</ngb-alert>                  
                 </div>
                 <ng-template #inviteerror>
                         <ngb-alert type="danger" *ngIf="!closed" (close)="closed=true">{{myData.error_msg}}</ngb-alert> 
-                </ng-template>
-        </div>
-        
+                </ng-template>                
+        </div>        
     </div>
   </div>
 <div class="row justify-content-md-center">
     <div class="col-md-4">        
-        <h1>Invite Customer</h1><br>
+        <h1>Invite Customers</h1><br>
+        <h5>Select Groups</h5>
+        <span style="padding: 5px;overflow: auto;display: inline-block;margin: 5px;">            
+            <span *ngFor="let group of securityGroups?.security_groups" >                
+                <input *ngIf="group.GroupID" type="checkbox" (change)="AddRemove(group.GroupID,$event)"/> {{group.GroupName | titlecase}}<br>
+            </span>    
+        </span>  
         <form #InviteForm="ngForm" (ngSubmit)="userInvite(InviteForm.value); InviteForm.reset() ">   
             <div class="form-content">
                 <div class="form-group">
