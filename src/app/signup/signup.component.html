@@ -42,7 +42,7 @@
                             <input name="phone" [(ngModel)]="model.phone" #signupphone="ngModel" type="text" class="form-control input-underline input-lg" id="phone" placeholder="Phone" required>
                     </div>
                     <div *ngIf="signupphone.invalid && (signupphone.dirty || signupphone.touched)" class="alert alert-danger">   
-                            <div *ngIf="signupphone.errors.required">Company Name is required.</div> 
+                            <div *ngIf="signupphone.errors.required">Phone is required.</div> 
                     </div>
 
                     <div class="form-group">

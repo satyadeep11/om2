@@ -83,7 +83,7 @@
                   
                   <p>SKU: {{myData?.product.ProductBaseSKU}}</p> 
                   
-                  <div class="size-wrap detail-four">
+                  <div *ngIf="myData?.sizes[0].A1_Short" class="size-wrap detail-four">
                       <p class="size-desc">
                         Sizes:<br> 
                         <a *ngFor=" let item of myData?.sizes;" class="size">{{item.A1_Short||"None"}} <span class="tooltiptext">{{item.A1_Label||"None"}}</span></a>                 

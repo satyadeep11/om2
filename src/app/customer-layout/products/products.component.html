@@ -5,7 +5,7 @@
                     <button (click)="NextCat();" class="btn btn-primary pull-right products-nine">Next Category</button>
                     <h3><span class="products-eight">{{myData?.catName}}</span></h3>
                 </div>
-                <div *ngIf="myData?.error" class="col-md-10 col-md-push-2" >    
+                <div *ngIf="myData?.error" class="text-center" >    
                         <img src="../../../assets/images/ordersnone.png"/><br> Nothing Found   
                      </div>
                 <div *ngIf="!myData?.error" class="col-md-10 col-md-push-2">
@@ -65,104 +65,130 @@
                     </div>
                 </div>
                 <div *ngIf="!myData?.error" class="col-md-2 col-md-pull-10">
-                    <div class="sidebar">    
-                        <div class="side products-one">
-                            <h2>Search</h2>
-                            <div>
-                                <input [(ngModel)]="searchText" placeholder="Search here.." size="10">
+                    <mat-accordion>
+                    <div class="sidebar">
+                        <mat-expansion-panel class="products-one" expanded>    
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Search
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>   
+                            <span>
+                            <input matInput [(ngModel)]="searchText" placeholder="Search here.." style='width:100%'>
+                            </span>
+                        </mat-expansion-panel> 
+                        <!-- <mat-expansion-panel class="products-two">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Categories
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>                   
+                            <div class="panel-body" *ngFor="let item of menuitems">
+                                    <p>{{item.displayName}}</p>
+                                    <ul>
+                                        <li *ngFor="let items of item.children"><a [routerLink]="['/products',items.CategoryID]" [routerLinkActive]="['router-link-active']">{{items.displayName}}</a></li>                                             
+                                    </ul>
                             </div>
-                        </div>                    
-                        <div class="side products-two">
-                            <h2>Categories</h2>
-                            <div class="fancy-collapse-panel">
-                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                    <div class="panel-body" *ngFor="let item of menuitems">
-                                        <p>{{item.displayName}}</p>
-                                        <ul>
-                                            <li *ngFor="let items of item.children"><a [routerLink]="['/products',items.CategoryID]" [routerLinkActive]="['router-link-active']">{{items.displayName}}</a></li>                                             
-                                        </ul>
-                                    </div>
+                        </mat-expansion-panel>  -->
+                        <mat-expansion-panel class="products-three" *ngIf="genderArray.length>1">  
+                        <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Gender
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                        <div>
+                            <p> 
+                                <span *ngFor="let item of genderArray;let i=index">
+                                <input *ngIf="item.name!=null" type="checkbox" [checked]="item.checked" (change)="genderCheck(item,i)" /> {{item.name}}<br> 
+                                </span>  
+                            </p>
+                        </div>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel class="products-four" *ngIf="colorArray.length>1">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Color Groups
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div>
+                                    <p> 
+                                        <span *ngFor="let item of colorArray;let i=index">
+                                        <input *ngIf="item.colorgroup.GroupName!=null" type="checkbox" [checked]="item.checked" (change)="colorCheck(item.colorgroup.ColorGroupID,i)"/> {{item.colorgroup.GroupName}}<br> 
+                                        </span>  
+                                    </p>
                                 </div>
-                            </div>
-                        </div>                        
-                        <div class="side products-three" *ngIf="genderArray.length>1">
-                            <h2>Gender</h2>
-                            <div>
-                                <p> 
-                                    <span *ngFor="let item of genderArray;let i=index">
-                                    <input *ngIf="item.name!=null" type="checkbox" [checked]="item.checked" (change)="genderCheck(item,i)" /> {{item.name}}<br> 
-                                    </span>  
-                                </p>
-                            </div>
-                        </div>
-                        <div class="side products-four" *ngIf="colorArray.length>1">
-                            <h2>Color Groups</h2>
-                            <div>
-                                <p> 
-                                    <span *ngFor="let item of colorArray;let i=index">
-                                    <input *ngIf="item.colorgroup.GroupName!=null" type="checkbox" [checked]="item.checked" (change)="colorCheck(item.colorgroup.ColorGroupID,i)"/> {{item.colorgroup.GroupName}}<br> 
-                                    </span>  
-                                </p>
-                            </div>
-                        </div>
-                        <div class="side products-five" *ngIf="brandArray.length>1">
-                            <h2>Brand</h2>
-                            <div>
-                                <p> 
-                                    <span *ngFor="let item of brandArray;let i=index">
-                                    <input *ngIf="item.name!=null" type="checkbox" [checked]="item.checked" (change)="brandCheck(item,i)" /> {{item.name}}<br> 
-                                    </span>  
-                                </p>
-                            </div>
-                        </div>
-                        <div class="side products-six" *ngIf="secondsize.length>1">
-                            <h2>Sizes</h2>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel class="products-five" *ngIf="brandArray.length>1">
+                            <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Brand
+                                    </mat-panel-title>
+                            </mat-expansion-panel-header>
+                                <div>
+                                    <p> 
+                                        <span *ngFor="let item of brandArray;let i=index">
+                                        <input *ngIf="item.name!=null" type="checkbox" [checked]="item.checked" (change)="brandCheck(item,i)" /> {{item.name}}<br> 
+                                        </span>  
+                                    </p>
+                                </div>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel class="products-six" *ngIf="secondsize.length>1">
+                            <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Sizes
+                                    </mat-panel-title>
+                            </mat-expansion-panel-header>
                             <div>
                                 <p> 
                                     <span *ngFor="let item of secondsize">
                                     <input *ngIf="item!=null" type="radio" [value]="item" [(ngModel)]="sizeSelected" /> {{item}}<br> 
                                     </span>  
                                 </p>
-                            </div>
-                        </div>
-                        <div class="side products-seven">
-                            <h2>Price Range</h2>
+                            </div>                        
+                        </mat-expansion-panel>
+                        <mat-expansion-panel class="products-seven">
+                            <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Price Range
+                                    </mat-panel-title>
+                            </mat-expansion-panel-header>
                             <form method="post" class="colorlib-form-2">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="guests">Price from:</label>
-                                            <div class="form-field">
-                                            <i class="icon fa fa-arrow-down"></i>
-                                            <select [(ngModel)]="startprice"  name="people" id="people" class="form-control">
-                                                <option [value]=1>1</option>
-                                                <option [value]=10>10</option>
-                                                <option [value]=20>20</option>
-                                                <option [value]=30>30</option>
-                                                <option [value]=50>50</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="guests">Price to:</label>
-                                            <div class="form-field">
-                                            <i class="icon fa fa-arrow-down"></i>
-                                            <select [(ngModel)]="endprice" name="people" id="people" class="form-control">     
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="guests">Price from:</label>
+                                                <div class="form-field">
+                                                <i class="icon fa fa-arrow-down"></i>
+                                                <select [(ngModel)]="startprice"  name="people" id="people" class="form-control">
+                                                    <option [value]=1>1</option>
                                                     <option [value]=10>10</option>
                                                     <option [value]=20>20</option>
                                                     <option [value]=30>30</option>
                                                     <option [value]=50>50</option>
-                                                    <option [value]=100>100</option>
-                                            </select>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="guests">Price to:</label>
+                                                <div class="form-field">
+                                                <i class="icon fa fa-arrow-down"></i>
+                                                <select [(ngModel)]="endprice" name="people" id="people" class="form-control">     
+                                                        <option [value]=10>10</option>
+                                                        <option [value]=20>20</option>
+                                                        <option [value]=30>30</option>
+                                                        <option [value]=50>50</option>
+                                                        <option [value]=100>100</option>
+                                                </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>                                                            
+                                </form>
+                    </mat-expansion-panel>                                                            
                     </div>
+                    </mat-accordion>
                 </div>
             </div>
         </div>
