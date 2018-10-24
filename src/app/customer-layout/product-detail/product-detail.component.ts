@@ -265,9 +265,14 @@ getNextMember(array, productID, from) {
                   }
                 }
                 else{
+                  if(from=='category'){
+                    this.router.navigate(['/products', array[0]]);
+                  }
+                  else{
                     startIndex++;  
                     console.log(array[startIndex]);
                     this.router.navigate(['/product-detail', array[startIndex]]);
+                  }
                 }
               }
 getThumb(imagename){

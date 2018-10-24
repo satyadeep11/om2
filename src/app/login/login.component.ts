@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('lname', this.myData.user['Last Name']);
             localStorage.setItem('email', this.myData.user.Email);
             localStorage.setItem('uuid', this.myData.uuid);
+            localStorage.setItem('securityGroup', this.myData.user['security_group']);
             this.router.navigateByUrl('/home');
             //define user cart on login
             let user:Cart={};
@@ -65,7 +66,7 @@ export class LoginComponent implements OnInit {
            error => console.log(error)
           );
             if(!localStorage.getItem("visitedproducts")){
-            localStorage.setItem('visitedproducts',''); 
+              localStorage.setItem('visitedproducts',''); 
             }
           }
           else if(this.myData.user.Admin==1){
@@ -74,12 +75,14 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('fname', this.myData.user['First Name']);
             localStorage.setItem('lname', this.myData.user['Last Name']);
             localStorage.setItem('email', this.myData.user.Email);
-            localStorage.setItem('uuid', this.myData.uuid);
+            localStorage.setItem('uuid', this.myData.uuid);            
+            localStorage.setItem('securityGroup', this.myData.user['security_group']);
             this.router.navigateByUrl('/dashboard');
           }
        },
        error => console.log(error)
       );
+     
       }
       forgotPassword() {
           if(this.loadComponent == true)

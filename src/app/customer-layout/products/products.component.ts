@@ -50,6 +50,7 @@ export class ProductsComponent implements OnInit {
       
     });
     if(this.id && this.id.catid!=0){
+      this.id.sglist=localStorage.getItem("securityGroup");
       console.log(this.id);
         this.productDetailService.category_product(this.id)
             .subscribe(user => {
@@ -95,7 +96,8 @@ export class ProductsComponent implements OnInit {
           );
         }
         else {
-          this.productDetailService.category_product_all()
+          this.id.sglist=localStorage.getItem("securityGroup");
+          this.productDetailService.category_product_all(this.id)
             .subscribe(user => {
               this.myData = user;                
               console.log(this.myData);  
@@ -239,6 +241,7 @@ genderCheck(gender,i){
 
 export interface CatId {  
   catid ?: number;
+  sglist?:string;
 }
 
 export interface Brand{  

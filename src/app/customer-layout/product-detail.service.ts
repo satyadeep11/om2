@@ -40,7 +40,7 @@ export class ProductDetailService {
     ).pipe(map((res: Response) => res.json()));
   }
 
-  category_product_all(): Observable<CatId>{
+  category_product_all(product): Observable<CatId>{
  
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -48,6 +48,7 @@ export class ProductDetailService {
   
     return this._http.post(
       link,
+      product,
       options
     ).pipe(map((res: Response) => res.json()));
   }
