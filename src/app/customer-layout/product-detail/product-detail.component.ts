@@ -63,7 +63,7 @@ ngOnInit()  {
               );
               this.GetCart();
               this.updateCart();
-              //console.log(this.gc.count);
+              console.log(this.cart,"here");
               
             }
 
@@ -277,7 +277,10 @@ getNextMember(array, productID, from) {
               }
 getThumb(imagename){
                       return imagename.replace(".jpg", "_60.jpg");
-                  }       
+                  }  
+getThumb200(imagename){
+  return imagename.replace(".jpg", "_200.jpg");
+}      
                   
 getMain(imagename){
                     return imagename.replace(".jpg", "_600.jpg");

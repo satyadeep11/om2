@@ -55,22 +55,22 @@
                     </span> -->
                   </p>
                   <p>{{myData?.product.ProductDesc1}}</p>                  
-                      <div id="color-thumbnails" class="product-entry detail-three">
-                        <span class="btn-danger" *ngIf="!this.colorselected || this.colorselected=='undefined'">* To add this Product select the colors by clicking below.<br></span>
+                      <div id="color-thumbnails" class="product-entry detail-three box-case" style="display: flow-root;">
+                        <span class="btn-danger" *ngIf="!this.colorselected || this.colorselected=='undefined'">* Select the colors for this product below<br></span>
                         <div> 
-                          Colors Available: <br>
+                          <h5>Colors Available:</h5>
                         <span class="thumb-nail">
                             <span *ngFor="let item of myData?.variants;let l = last">
                             <a *ngIf="!this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');addtoCart(item.A2_Label,item.Attr2,item.ImageFile)">
-                              <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
-                              
+                              <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>                              
                             </a>
                           </span>
                         </span>
                       </div> 
                       <div> 
-                        <br>Colors Selected: <br>
-                        <span class="thumb-nail">
+                        
+                        <span *ngIf="cart.length!=0" class="thumb-nail">
+                            <br ><h5>Colors Selected:</h5>
                             <span *ngFor="let item of cart;let l = last">
                             <a *ngIf="this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');deletefromCart(item.A2_Label,item.Attr2,item.ImageFile)">
                               <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>                            
@@ -78,12 +78,36 @@
                           </span>
                         </span>   
                       </div>                        
+                      </div>
+                      <div id="color-thumbnails" class="product-entry detail-four box-case" style="display: flow-root;">
+                          <div *ngIf="myData?.companion.length>0" class="col-md-12 col-md-offset-3 text-center">
+                              <h5 style="display:initial"><span>Companion Products</span></h5>
+                              <!-- <p>Following are companion products for above selection.</p> -->
+                          </div>
+                          <div class="row row-pb-lg " *ngIf="myData?.companion.length>0" style="padding-bottom: unset!important;">
+                              <div *ngFor=" let item of myData?.companion" class="col-md-4 text-center">
+                                  <div class="product-entry-companion">
+                                      <div class="product-img-companion" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getThumb200(item.product.ImageFile)+this.url_close">
+                                          <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
+                                          <!-- &#9989; -->
+                                          <div class="cart-companion">
+                                              <p>
+                                                  <span><a [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']"><i class="fa fa-eye">View Product</i></a></span> 
+                                              </p>
+                                          </div>
+                                      </div>
+                                      <div class="desc-companion">
+                                          <h5><a [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']">{{item.product.ProductName}}</a></h5>                                          
+                                      </div>
+                                  </div>
+                              </div>                         
+                          </div>
                       </div>  
-                      <br>              
+                                  
                   
                   <p>SKU: {{myData?.product.ProductBaseSKU}}</p> 
                   
-                  <div *ngIf="myData?.sizes[0].A1_Short" class="size-wrap detail-four">
+                  <div *ngIf="myData?.sizes[0].A1_Short" class="size-wrap detail-five">
                       <p class="size-desc">
                         Sizes:<br> 
                         <a *ngFor=" let item of myData?.sizes;" class="size">{{item.A1_Short||"None"}} <span class="tooltiptext">{{item.A1_Label||"None"}}</span></a>                 
@@ -94,14 +118,14 @@
                     </div>
 
                   <!-- <p><span [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p> -->
-                  <p><button (click)="SubmitCart();" class="btn btn-primary detail-five">Next Product</button></p>
+                  <p><button (click)="SubmitCart();" class="btn btn-primary detail-six">Next Product</button></p>
                 
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div *ngIf="myData?.companion.length>0" class="col-md-12 col-md-offset-3 text-center colorlib-heading">
+      <!-- <div *ngIf="myData?.companion.length>0" class="col-md-12 col-md-offset-3 text-center colorlib-heading">
           <h2><span>Companion Products</span></h2>
           <p>Following are companion products for above selection.</p>
       </div>
@@ -110,7 +134,7 @@
             <div class="product-entry">
                 <div class="product-img" [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.product.ProductID+'_'+getMain(item.product.ImageFile)+this.url_close">
                     <p *ngIf="visitedproducts.includes(item.product.ProductID.toString())" class="tag"><span class="new">Viewed</span></p>
-                    <!-- &#9989; -->
+                    
                     <div class="cart">
                         <p>
                             <span><a [routerLink]="['/product-detail',item.product.ProductID]" [routerLinkActive]="['router-link-active']"><i class="fa fa-eye">    View Product</i></a></span> 
@@ -123,7 +147,7 @@
                 </div>
             </div>
         </div>                         
-    </div>
+    </div> -->
       <div class="row">
         <div class="col-sm-12 col-md-offset-1">
           <div class="row">
