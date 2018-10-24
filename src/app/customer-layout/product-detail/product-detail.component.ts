@@ -265,14 +265,14 @@ getNextMember(array, productID, from) {
                   }
                 }
                 else{
-                  if(from=='category'){
-                    this.router.navigate(['/products', array[0]]);
-                  }
-                  else{
+                  // if(from=='category'){
+                  //   this.router.navigate(['/products', array[0]]);
+                  // }
+                  // else{// need to fix this , coming from home page the next button displays error as it takes you to product detail page with category id
                     startIndex++;  
                     console.log(array[startIndex]);
                     this.router.navigate(['/product-detail', array[startIndex]]);
-                  }
+                  
                 }
               }
 getThumb(imagename){

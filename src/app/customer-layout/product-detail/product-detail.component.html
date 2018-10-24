@@ -57,7 +57,7 @@
                   <p>{{myData?.product.ProductDesc1}}</p>                  
                       <div id="color-thumbnails" class="product-entry detail-three box-case" style="display: flow-root;">
                         <span class="btn-danger" *ngIf="!this.colorselected || this.colorselected=='undefined'">* Select the colors for this product below<br></span>
-                        <div> 
+                        <div *ngIf="myData?.variants.length!=cart.length"> 
                           <h5>Colors Available:</h5>
                         <span class="thumb-nail">
                             <span *ngFor="let item of myData?.variants;let l = last">
@@ -79,7 +79,7 @@
                         </span>   
                       </div>                        
                       </div>
-                      <div id="color-thumbnails" class="product-entry detail-four box-case" style="display: flow-root;">
+                      <div *ngIf="myData?.companion.length>0" id="color-thumbnails" class="product-entry detail-four box-case" style="display: flow-root;">
                           <div *ngIf="myData?.companion.length>0" class="col-md-12 col-md-offset-3 text-center">
                               <h5 style="display:initial"><span>Companion Products</span></h5>
                               <!-- <p>Following are companion products for above selection.</p> -->
