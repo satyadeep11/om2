@@ -6,7 +6,10 @@
             <div class="row">
               <div class="col-md-5">
                 <div class="product-entry">
-                  <div class="product-img" id="product-img" ></div>
+                    <div *ngIf="myData?.error" class="text-center" >    
+                        <img src="../../../assets/images/ordersnone.png"/><br> Nothing Found   
+                     </div>
+                  <div *ngIf="!myData?.error" class="product-img" id="product-img" ></div>
                   <!-- <div class="thumb-nail">
                     <a class="thumb-img" id="thumb-img-1" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a>
                     <a class="thumb-img" id="thumb-img-2" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a>
@@ -55,10 +58,10 @@
                     </span> -->
                   </p>
                   <p>{{myData?.product.ProductDesc1}}</p>                  
-                      <div id="color-thumbnails" class="product-entry detail-three box-case" style="display: flow-root;">
+                      <div *ngIf="myData && !myData?.error" id="color-thumbnails" class="product-entry detail-three box-case" style="display: flow-root;">
                         <span class="btn-danger" *ngIf="!this.colorselected || this.colorselected=='undefined'">* Select the colors for this product below<br></span>
                         <div *ngIf="myData?.variants.length!=cart.length"> 
-                          <h5>Colors Available:</h5>
+                          <h5>Colors Available</h5>
                         <span class="thumb-nail">
                             <span *ngFor="let item of myData?.variants;let l = last">
                             <a *ngIf="!this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');addtoCart(item.A2_Label,item.Attr2,item.ImageFile)">
@@ -70,7 +73,7 @@
                       <div> 
                         
                         <span *ngIf="cart.length!=0" class="thumb-nail">
-                            <br ><h5>Colors Selected:</h5>
+                            <br ><h5>Colors Selected</h5>
                             <span *ngFor="let item of cart;let l = last">
                             <a *ngIf="this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');deletefromCart(item.A2_Label,item.Attr2,item.ImageFile)">
                               <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>                            
@@ -105,7 +108,7 @@
                       </div>  
                                   
                   
-                  <p>SKU: {{myData?.product.ProductBaseSKU}}</p> 
+                  <p *ngIf="myData">SKU: {{myData?.product.ProductBaseSKU}}</p> 
                   
                   <div *ngIf="myData?.sizes[0].A1_Short" class="size-wrap detail-five">
                       <p class="size-desc">
@@ -118,7 +121,7 @@
                     </div>
 
                   <!-- <p><span [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p> -->
-                  <p><button (click)="SubmitCart();" class="btn btn-primary detail-six">Next Product</button></p>
+                  <p *ngIf="myData"><button (click)="SubmitCart();" class="btn btn-primary detail-six">Next Product</button></p>
                 
               </div>
             </div>
@@ -148,7 +151,7 @@
             </div>
         </div>                         
     </div> -->
-      <div class="row">
+      <div *ngIf="myData" class="row">
         <div class="col-sm-12 col-md-offset-1">
           <div class="row">
             <div class="col-sm-12 tabulation">
@@ -195,7 +198,7 @@
     </div>
   </div>
 
-  <div class="colorlib-shop">
+  <div *ngIf="myData" class="colorlib-shop">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-md-offset-3 text-center colorlib-heading">
