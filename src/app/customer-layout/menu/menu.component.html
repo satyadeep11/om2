@@ -29,8 +29,19 @@
     <span class="step-two">
     <input [(ngModel)]="searchText" (keydown.enter)="Search(searchText);searchText='';" type="search" placeholder="Search.." name="search">
     <button (click)="Search(searchText);searchText='';"><i class="fa fa-search"></i></button>
-    </span>
-    
+    </span>    
+    <!-- <span *ngFor="let item of myData?.cats; let i=index">
+        <button *ngIf="item.CategoryParent==0" mat-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{name: item.CategoryName}">{{item.CategoryName}}</button>
+        <mat-menu #appMenu="matMenu" [overlapTrigger]="false">
+            <ng-template matMenuContent let-name="name">
+              <div *ngFor="let item2 of myData?.cats">
+                  <span *ngIf="item.CategoryID== item2.CategoryParent">
+                      <button mat-menu-item [routerLink]="['/products/',item2.CategoryID]" [routerLinkActive]="['router-link-active']">{{item2.CategoryName}}</button>
+                  </span>
+                </div>
+            </ng-template>
+        </mat-menu>
+    </span> -->
   </mat-toolbar>
 
 </div>

@@ -4,6 +4,7 @@ import {VERSION} from '@angular/material';
 import {GenieComponent} from "../home/genie/genie.component";
 import {MatDialog} from "@angular/material";
 import IntroJs from 'intro.js/intro.js';
+import { ProductDetailService } from '../product-detail.service'; 
 
 //const IntroJs = require('../../../../node_modules/intro.js');
 declare var require: any;
@@ -18,9 +19,10 @@ export class MenuComponent implements OnInit {
   version = VERSION;
   navItems  = require('../../../assets/menu.json');
   intro:any;  
+  myData:any;
   QuestionBounceCheck:string='';
 
-  constructor( public router: Router,public dialog : MatDialog) {
+  constructor( public router: Router,private productDetailService: ProductDetailService,public dialog : MatDialog) {
     this.intro = IntroJs();
     var self=this;
     // Initialize steps
@@ -51,6 +53,13 @@ export class MenuComponent implements OnInit {
             localStorage.setItem('DetailVisit', 'Yes');                
         }
         }).start();
+        
+        this.productDetailService.category_all().subscribe(user => {
+            this.myData = user;  
+            console.log(this.myData);
+          },
+          error => console.log(error)
+          );
       }
 
   ngOnInit() {  

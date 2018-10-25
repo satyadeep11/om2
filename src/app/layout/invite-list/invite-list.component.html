@@ -1,7 +1,7 @@
 
 <div class="invite-list-page" [@routerTransition]>
 <app-page-header [heading]="'Customer List'" [icon]="'fa-search'"></app-page-header>
-  <div class="row justify-content-md-center">
+  <div *ngIf="!editCustomer" class="row justify-content-md-center">
       <div class="col-md-5"> 
       <div *ngIf="myData">
               <div *ngIf="myData.error==false; else inviteerror">
@@ -19,9 +19,9 @@
   </div>
   </div>
  
-  <div class="row justify-content-md-center">
+  <div  class="row justify-content-md-center">
     
-  <div class="col-md-7">        
+  <div class="col-md-7" *ngIf="!editCustomer">        
         <div>  
                 <form class="form-inline" #InviteSearch="ngForm" (ngSubmit)="searchlist(InviteSearch.value); InviteSearch.reset() " style="display: -webkit-inline-box;">
                     <input class="form-control" name="email" [(ngModel)]="email" type="text" placeholder="Search using Email" >
@@ -34,7 +34,7 @@
 
     <!-- HTML table for our list of product records -->
     <table class='table table-hover table-responsive'>
-
+ 
         <tr>
             <th>First name</th>
             <th>Last Name</th>
@@ -54,7 +54,7 @@
             <td id="actions_td">
                     <!-- edit customer button -->
                     
-                    <button (click)="updateCustomer(user.unique_id)" class='btn btn-info '>
+                    <button (click)="editCustomerInfo(user.unique_id,user.fname,user.lname,user.company,user.phone,user.security_group);" class='btn btn-info '>
                          Edit Customer
                     </button>&nbsp;
  
@@ -67,6 +67,70 @@
 
     </table>
   </div>
+
+  <div class="col-md-5" *ngIf="editCustomer">
+    <button (click)="editCustomer=false;currentUser='';" class='btn btn-primary pull-right'>Back</button>
+    <span *ngFor="let user of myData?.users">
+    <table class="table table-striped table-borderless" *ngIf="user.unique_id==currentUser">
+        
+        <thead >
+            <tr>            
+            <th scope="col">Details</th>
+            <th scope="col">Action</th>                
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <th scope="row">First name</th>
+                <td class="align-middle"><input type="text"  [(ngModel)]="ufname">  </td>              
+            </tr>
+            <tr>
+                <th scope="row">Last Name</th>
+                <td class="align-middle"><input type="text"  [(ngModel)]="ulname">  </td>              
+            </tr>
+            <tr>
+                <th scope="row">Company Name</th>
+                <td class="align-middle"> <input type="text"  [(ngModel)]="ucompany">  </td>             
+            </tr>
+            <tr>
+                <th scope="row">Phone</th>
+                <td class="align-middle"> <input type="text"  [(ngModel)]="uphone">  </td>             
+            </tr>
+            <tr>
+                <th scope="row">Email</th>
+                <td class="align-middle"> <input type="text" disabled [value]="user.email">  </td>             
+            </tr>
+            <tr>
+                    <th scope="row">Security Group</th>
+                    <td class="align-middle"> 
+                        <span style="padding: 5px;overflow: auto;display: inline-block;margin: 5px;">            
+                            <span *ngFor="let group of securityGroups?.security_groups" >                
+                                <input *ngIf="group.GroupID" type="checkbox" [checked]="user.security_group.includes(group.GroupID)" (change)="AddRemove(group.GroupID,$event)"/> {{group.GroupName | titlecase}}<br>
+                            </span>    
+                        </span>  
+                    </td>             
+                </tr>
+            <tr>
+                <th scope="row"></th>
+                <td id="actions_td">
+                        <!-- edit customer button -->
+                        
+                        <button (click)="updateCustomer(ufname,ulname,ucompany,uphone);" class='btn btn-success '>
+                             Update
+                        </button>&nbsp;
+     
+                        <!-- delete customer button -->
+                        <button (click)="editCustomer=false;currentUser='';" class='btn btn-danger '>
+                           Cancel
+                        </button>
+                </td>                
+            </tr>
+        </tbody>
+        
+    </table>
+</span>
+    </div>
   </div>
 </div> 
 

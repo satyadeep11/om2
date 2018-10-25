@@ -73,4 +73,18 @@ export class InviteListService {
       options
     ).pipe(map((res: Response) => res.json()));
   }
+
+  updateuser(userInformation): Observable<InviteUserList>{
+ 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let link=this.gc.link+"/php_api/update-single-user.php";
+  
+    return this._http.post(
+      link,
+      userInformation,
+      options
+    ).pipe(map((res: Response) => res.json()));
+  }
+  
 } 
