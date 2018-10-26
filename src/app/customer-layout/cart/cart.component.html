@@ -1,22 +1,11 @@
 <div class="colorlib-shop">
 		<div class="container">
-			<div class="row row-pb-md">
-				<div class="col-md-12">
-					<div class="process-wrap">
-						<div class="process text-center active">
-							<p><span>01</span></p>
-							<h3>Selection Cart</h3>
-						</div>
-						
-						<div class="process text-center">
-							<p><span>02</span></p>
-							<h3>Selection Complete</h3>
-						</div>
-					</div>
-				</div>
-			</div>
+
 			<div  *ngIf="gc.count==0" class="row row-pb-md">
-<span>No Products Selected</span>
+				<span>No Products Selected</span>
+			</div>
+			<div  *ngIf="gc.count!=0" class="row row-pb-md">
+				<h4>Summary of your current Selections</h4>
 			</div>
 			<div  *ngIf="gc.count>0" class="row row-pb-md">
 				<div class="col-md-10 col-md-offset-1">
