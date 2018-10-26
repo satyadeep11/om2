@@ -8,7 +8,7 @@
                 <div *ngIf="myData?.error" class="text-center" >    
                         <img src="../../../assets/images/ordersnone.png"/><br> Nothing Found   
                      </div>
-                <div *ngIf="!myData?.error" class="col-md-10 col-md-push-2">
+                <div *ngIf="!myData?.error" class="col-md-10 col-md-push-2 content">
                     <div>
                         <span *ngIf="searchText.length>0"><b>Search:</b> {{searchText}}
                             <a (click)="searchText=''" [ngStyle]="{'cursor': 'pointer'}"><i class="fa fa-remove"></i></a>
@@ -64,7 +64,7 @@
                         </div>                     
                     </div>
                 </div>
-                <div *ngIf="!myData?.error" class="col-md-2 col-md-pull-10">
+                <div *ngIf="!myData?.error" class="col-md-2 col-md-pull-10" id="sidebar_float">
                     <mat-accordion>
                     <div class="sidebar">
                         <mat-expansion-panel class="products-one" expanded>    

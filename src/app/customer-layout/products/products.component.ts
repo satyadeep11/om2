@@ -36,6 +36,9 @@ export class ProductsComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
   };
+
+
+
     this.sub = this.route.params.subscribe(params => {
       if(params['id']){
       this.id.catid = +params['id']; // (+) converts string 'id' to a number
@@ -236,6 +239,23 @@ genderCheck(gender,i){
     this.genderArray[i].checked=true;
   }  
 } 
+//scroll script
+ngAfterViewInit(){
+  
+    window.onscroll = function() {myFunction()};
+    var navbar = document.getElementById("sidebar_float");
+    var sticky = navbar.offsetTop;
+    function myFunction() {
+      if(window.matchMedia("(max-width: 1920px)").matches){
+        if (window.pageYOffset >= sticky) {
+          navbar.classList.add("sticky")
+        } else {
+          navbar.classList.remove("sticky");
+        }
+    }
+  }
+}
+//
 }
 
 
