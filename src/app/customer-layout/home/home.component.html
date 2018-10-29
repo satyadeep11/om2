@@ -30,7 +30,7 @@
         </ng-template>
     
     
-        <ng-template ngbSlide >
+        <!-- <ng-template ngbSlide >
             <img class="img-fluid mx-auto d-block" src="/assets/images/homepage-slider-2.jpg" width="100%">
             <div class="carousel-caption" style="color:black;">
                 <div class="row justify-content-center">
@@ -41,7 +41,7 @@
               </div>
               </div>
             </div>
-        </ng-template>
+        </ng-template> -->
     </ngb-carousel>
 </div>
 
@@ -49,7 +49,7 @@
   
   <!-- Banner -->
 
-	<div class="banner">
+	<!-- <div class="banner">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
@@ -75,10 +75,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- new arrival-->
-    <div class="colorlib-shop">
+    <!-- <div class="colorlib-shop">
         <div class="container step-four">
           <div class="row">
             <div class="col-md-12 col-md-offset-3 text-center colorlib-heading">
@@ -90,7 +90,7 @@
               <div *ngFor=" let item of myData?.new_products" class="col-md-3 text-center">
                 <div class="product-entry">
                   <div class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.ProductID+'_'+getMain(item.ImageFile)+this.url_close">
-                      <!-- &#9989; -->
+                      
                       <div class="cart">
                         <p>                                            
                           <span><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']"><i class="fa fa-eye">    View Product</i></a></span> 
@@ -106,11 +106,11 @@
             </div>
           
         </div>
-      </div>
+      </div> -->
 
       <!--Products-->
 
-      <div class="colorlib-shop">
+      <!-- <div class="colorlib-shop">
           <div class="container">
             <div class="row">
               <div class="col-md-12 col-md-offset-3 text-center colorlib-heading">
@@ -121,7 +121,7 @@
                 <div *ngFor=" let item of myData?.rand_products|slice:0:8" class="col-md-3 text-center">
                   <div class="product-entry">
                     <div class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.ProductID+'_'+getMain(item.ImageFile)+this.url_close">
-                        <!-- &#9989; -->
+                        
                         <div class="cart">
                           <p>                                            
                             <span><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']"><i class="fa fa-eye">    View Product</i></a></span> 
@@ -136,7 +136,7 @@
                 </div>
               </div>
           </div>
-        </div>
+        </div> -->
 
                     
 
