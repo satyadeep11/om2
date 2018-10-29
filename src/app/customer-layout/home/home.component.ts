@@ -42,5 +42,11 @@ getMain(imagename){
   if(imagename)
     return imagename.replace(".jpg", "_600.jpg");
 }  
+LoadGenie(){
+  this.dialog.open(GenieComponent, {
+    width: '500px',
+    data: {}
+  });
+}
 
 } 

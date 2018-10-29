@@ -54,15 +54,15 @@
       <div class="col-md-12 text-center">
           <img class="" src="/assets/images/steps.png " style="width: inherit;" >
       </div>
-      <div style="background-color:#ee5d31;display:flex;padding: 20px ">
+      <div class="home_bg">
         <div class="row">
           <div class="col"></div>
-          <div class="col" style="color:white">
+          <div class="col" style="color:white; margin-left:8rem;margin-top: 5rem">
             <h2>Selection Genie</h2>
             <h5>Use the automated Selection Genie to choose from only the categories, brands, colors, or price points that you want to see. It’s quick! It’s efficient!      
             </h5>
             <div style="padding-right: 20px">
-            <button class="btn-lg btn-primary pull-right" style="background-color:#AAAD00;border-style: double;border-color: white; "><b>GET STARTED</b></button>
+            <button class="btn-lg btn-primary pull-right" [ngStyle]="{'cursor': 'pointer'}" style="background-color:#AAAD00;border-style: double;border-color: white;" (click)="LoadGenie()"><b>GET STARTED</b></button>
             </div>
           </div>
           </div>
