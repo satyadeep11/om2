@@ -1,5 +1,6 @@
-<div >    
-  <mat-toolbar class="menu-bar">
+<div style="background-color:#53565A  ">    
+  <mat-toolbar class="menu-bar" style="    background-color: unset;
+  color: ghostwhite;">
     <span class="step-three">      
     <span *ngFor="let item of navItems" >
       <!-- Handle branch node buttons here -->
@@ -19,10 +20,21 @@
     </span>
   </span>
     <span class="step-one">
-    <button type="button" (click)="LoadGenie()" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Quickly Select Categories">
-        Selection Genie
+    <button mat-button [matMenuTriggerFor]="menu">Selection Genie</button>  
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item (click)="LoadGenie()">
+          Selection Genie
       </button>      
+    </mat-menu>
     </span>
+    <span class="step-four">
+        <button mat-button [matMenuTriggerFor]="menu">FAQs</button>  
+        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item >
+              FAQs
+          </button>      
+        </mat-menu>
+        </span>
     <span [class]="QuestionBounceCheck" (click)="OpenTour();"><i class="fa fa-question-circle"></i></span>
     <span class="fill-space"></span>
     
