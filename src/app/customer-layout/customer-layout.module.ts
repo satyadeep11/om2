@@ -18,6 +18,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { GenieComponent } from './home/genie/genie.component';
 
 import {MatStepperModule} from '@angular/material/stepper';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 
@@ -37,7 +38,7 @@ import {MatStepperModule} from '@angular/material/stepper';
         MatCardModule,
         NgbModule.forRoot()
   ],
-  declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent, MenuItemComponent, FooterComponent, GenieComponent],
+  declarations: [CustomerLayoutComponent, HeaderComponent, MenuComponent, MenuItemComponent, FooterComponent, GenieComponent, SidebarComponent],
   providers: [ GlobalCart ]
   ,
     entryComponents: [

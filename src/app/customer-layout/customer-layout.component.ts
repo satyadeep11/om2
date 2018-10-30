@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerLayoutComponent implements OnInit {
 
+  collapedSideBar: boolean;
   constructor() { }
 
   ngOnInit() {
   }
+
+  receiveCollapsed($event) {
+    this.collapedSideBar = $event;
+}
 
 }
