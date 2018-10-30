@@ -1,16 +1,9 @@
-<div *ngIf="newCart && !addCheck && !approveCheck">    
-    <div class="row">
-    <span class="col-md-4 text-md-left">
-    <button class="btn btn-primary  " (click)="AddProduct()">Add Product </button>
-    </span>    
-    <span class="col-md-4 text-md-center ">
-    <button class="btn btn-success " (click)="ApproveCheck()"> Approve </button>
-    </span>
-    <span class="col-md-4 text-md-right">
-    <button class="btn btn-primary" (click)="Close()"> Go Back</button>
-    </span>
-    
-    </div><br>
+<div *ngIf="newCart && !addCheck && !approveCheck" class="col-md-auto text-center">    
+    <div class="btn-group" role="group" aria-label="Basic example">    
+        <button class="btn btn-primary  " (click)="AddProduct()">Add Product </button> 
+        <button class="btn btn-success " (click)="ApproveCheck()"> Approve </button>
+        <button class="btn btn-primary" (click)="Close()"> Go Back</button>
+    </div><br><br>
 <table class='table table-hover table-responsive'>
       <tr><th></th>
           <th>Product Details</th>

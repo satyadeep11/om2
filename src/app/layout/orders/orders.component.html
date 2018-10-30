@@ -1,44 +1,51 @@
 <div class="orders-page" [@routerTransition] >
     <app-page-header [heading]="'Orders'" [icon]="'fa-shopping-cart'"></app-page-header>
-    <div *ngIf="!editCheck && !viewCheck">
-        <button class='btn btn-primary' (click)="PendingCheck()">Pending Orders</button> &nbsp; 
-        <button class='btn btn-primary' (click)="ApproveCheck()">Approved Orders</button> <br><br>
+    <div  class="row justify-content-md-center">
+        <div *ngIf="!editCheck && !viewCheck" class="col-md-auto text-center">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button class='btn btn-primary' (click)="PendingCheck()">Pending Orders</button>
+                <button class='btn btn-primary' (click)="ApproveCheck()">Approved Orders</button>
+            </div>
+        </div>
+        <br><br>
     </div>
-<div *ngIf="!myData?.error && !approvedCheck">
-    <table *ngIf="!editCheck" class='table table-hover table-responsive text-center'>
+    
+    <div  class="row justify-content-md-center">
+    <div *ngIf="!myData?.error && !approvedCheck" >
+        <table *ngIf="!editCheck" class='table table-hover table-responsive text-center'>
 
-      <tr>
-          <th>Order ID</th>
-          <th>Name</th>
-          <th>Company Name</th>          
-          <th>Email</th>
-          <th>Ordered On</th>
-          <th>Actions</th>
-      </tr>
+            <tr>
+                <th>Order ID</th>
+                <th>Name</th>
+                <th>Company Name</th>          
+                <th>Email</th>
+                <th>Ordered On</th>
+                <th>Actions</th>
+            </tr>
 
-      <!-- Use *ngFor directive to loop throught our list of orders. -->
-      <tr *ngFor="let order of myData?.orders">
-          <td>{{order.Id}}</td>
-          <td>{{order.Name|titlecase}}</td>
-          <td>{{order.Company|titlecase}}</td>
-          <td>{{order.Email}}</td>  
-          <td>{{order.Date}}</td> 
-          <td id="actions_td">
-                  <!-- edit Order button -->                  
-                  <button (click)="getSigleOrder(order.Id)" class='btn btn-info '>
-                       Edit Order
-                  </button>&nbsp;                  
-          </td>         
-      </tr>
+            <!-- Use *ngFor directive to loop throught our list of orders. -->
+            <tr *ngFor="let order of myData?.orders">
+                <td>{{order.Id}}</td>
+                <td>{{order.Name|titlecase}}</td>
+                <td>{{order.Company|titlecase}}</td>
+                <td>{{order.Email}}</td>  
+                <td>{{order.Date}}</td> 
+                <td id="actions_td">
+                        <!-- edit Order button -->                  
+                        <button (click)="getSigleOrder(order.Id)" class='btn btn-primary '>
+                            Edit Order
+                        </button>&nbsp;                  
+                </td>         
+            </tr>
 
-  </table>
-    <app-single-order *ngIf="editCheck" [newCart]="newCart" [fullCart]="singleOrderData" (editCheckChange)="editCheckChangeHandler($event)" (saveCheckChange)="saveCheckChangeHandler($event)"></app-single-order>
-</div>
-<div *ngIf="myData?.error && !approvedCheck" >    
-   <img src="../../../assets/images/ordersnone.png"/><br> No Pending Orders   
-</div>
+        </table>
+        <app-single-order *ngIf="editCheck" [newCart]="newCart" [fullCart]="singleOrderData" (editCheckChange)="editCheckChangeHandler($event)" (saveCheckChange)="saveCheckChangeHandler($event)"></app-single-order>
+    </div>
+    <div *ngIf="myData?.error && !approvedCheck" >    
+    <img src="../../../assets/images/ordersnone.png"/><br> No Pending Orders   
+    </div>
 
-<div *ngIf="!subData?.error && approvedCheck && !viewCheck">
+    <div *ngIf="!subData?.error && approvedCheck && !viewCheck" >
         <table *ngIf="!editCheck" class='table table-hover table-responsive text-center'>
     
           <tr>
@@ -61,13 +68,13 @@
               <td>{{order.Approved_by_name|titlecase}}</td> 
               <td id="actions_td">
                       <!-- edit Order button -->                  
-                      <button (click)="getSigleApprovedOrder(order.Id)" class='btn btn-info'>
+                      <button (click)="getSigleApprovedOrder(order.Id)" class='btn btn-primary'>
                            View Order
                       </button>&nbsp;                  
               </td>         
           </tr>
     
-      </table>
+        </table>
         <app-single-order *ngIf="editCheck" [newCart]="newCart" [fullCart]="singleOrderData" (editCheckChange)="editCheckChangeHandler($event)" (saveCheckChange)="saveCheckChangeHandler($event)"></app-single-order>
     </div>
     <div *ngIf="subData?.error && approvedCheck" >    
@@ -97,6 +104,6 @@
                 
               </tr>
         </table>
-        </div>
-
+    </div>
+    </div>
 </div>

@@ -21,16 +21,18 @@
  
   <div  class="row justify-content-md-center">
     
-  <div class="col-md-7" *ngIf="!editCustomer">        
-        <div>  
-                <form class="form-inline" #InviteSearch="ngForm" (ngSubmit)="searchlist(InviteSearch.value); InviteSearch.reset() " style="display: -webkit-inline-box;">
-                    <input class="form-control" name="email" [(ngModel)]="email" type="text" placeholder="Search using Email" >
-                </form> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
-                <button type="button" class="btn btn-info" (click)="inviteList()">Full List</button>&nbsp;
-                <button type="button" class="btn btn-info" (click)="pendingList()">Pending Invites</button>&nbsp;
-                <button type="button" class="btn btn-info" (click)="acceptedList()">Accepted Customers</button>&nbsp;
+  <div class="col-md-auto" *ngIf="!editCustomer">        
+        <div class="col-md-auto text-center">  
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary" (click)="inviteList()">Full List</button>
+                <button type="button" class="btn btn-primary" (click)="pendingList()">Pending </button>
+                <button type="button" class="btn btn-primary" (click)="acceptedList()">Accepted </button>                
+            </div>
+            <form class="form-inline" #InviteSearch="ngForm" (ngSubmit)="searchlist(InviteSearch.value); InviteSearch.reset() " style="display: -webkit-inline-box;">
+                <input class="form-control" name="email" [(ngModel)]="email" type="email" placeholder="Search using Email">
+            </form>
         </div>
-        <br> <h1 class="row justify-content-md-center">Customer List</h1> <br>
+        <br> <h1>Customer List</h1> <br>
 
     <!-- HTML table for our list of product records -->
     <table class='table table-hover table-responsive'>
@@ -54,7 +56,7 @@
             <td id="actions_td">
                     <!-- edit customer button -->
                     
-                    <button (click)="editCustomerInfo(user.unique_id,user.fname,user.lname,user.company,user.phone,user.security_group);" class='btn btn-info '>
+                    <button (click)="editCustomerInfo(user.unique_id,user.fname,user.lname,user.company,user.phone,user.security_group);" class='btn btn-primary '>
                          Edit Customer
                     </button>&nbsp;
  
