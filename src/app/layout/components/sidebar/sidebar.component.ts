@@ -12,6 +12,8 @@ export class SidebarComponent {
     collapsed: boolean = false;
     showMenu: string = '';
     pushRightClass: string = 'push-right';
+    fname:String;
+    lname:String;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
     
@@ -30,6 +32,8 @@ export class SidebarComponent {
                 this.toggleSidebar();
             }
         });
+        this.fname= localStorage.getItem("fname").toString();
+       this.lname= localStorage.getItem("lname").toString();
     }
 
     eventCalled() {
