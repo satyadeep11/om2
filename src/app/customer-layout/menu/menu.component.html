@@ -30,7 +30,7 @@
     <span class="step-four">
         <button mat-button [matMenuTriggerFor]="menus">FAQs</button>  
         <mat-menu #menus="matMenu" [overlapTrigger]="false">
-          <button mat-menu-item >
+          <button mat-menu-item  [routerLink]="['/faq']" [routerLinkActive]="['router-link-active']">
               FAQs
           </button>      
         </mat-menu>
