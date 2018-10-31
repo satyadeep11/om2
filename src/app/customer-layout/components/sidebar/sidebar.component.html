@@ -1,6 +1,6 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <div class="list-group">
-        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <!-- <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;
             <span>{{ 'Dashboard' | translate }}</span>
         </a>
@@ -14,8 +14,8 @@
         </a>
         <a [routerLink]="['/orders']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-shopping-cart"></i>&nbsp;
-            <span>{{ 'Orders' | translate }}</span>
-        </a>
+            <span>{{ 'Orders' | translate }}</span> 
+        </a> -->
         <!-- <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
             <span>{{ 'Charts' | translate }}</span>
@@ -151,6 +151,37 @@
                     </ul>
                 </li>
             </div>
+            
+            <div class="nested-menu">
+                <span *ngFor="let item of myData?.cats; let i=index">
+                    <span *ngIf="item.CategoryParent==0">
+                        <a class="list-group-item" (click)="addExpandClass(item.CategoryName)">
+                                <i class="fa fa-angle-down"></i> {{item.CategoryName}} <b class="caret"></b>
+                        </a>
+                        <li class="nested" [class.expand]="showMenu === item.CategoryName">
+                            <ul class="submenu" *ngFor="let item2 of myData?.cats">
+                                <li *ngIf="item.CategoryID== item2.CategoryParent">
+                                    <a [routerLink]="['/products/',item2.CategoryID]" [routerLinkActive]="['router-link-active']">
+                                        <span>{{item2.CategoryName}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </span>
+                </span> 
+                <a class="list-group-item" (click)="LoadGenie()">
+                        <span><i class="fa fa-location-arrow"></i> Selection Genie</span>
+                </a>      
+                <a class="list-group-item" >
+                        <span><i class="fa fa-location-arrow"></i> FAQs</span>
+                </a>  
+                <a class="list-group-item" >                
+                    <input [(ngModel)]="searchText" (keydown.enter)="Search(searchText);searchText='';" type="search" size="18" placeholder="Search.." name="search">
+                    <button (click)="Search(searchText);searchText='';"><i class="fa fa-search"></i></button>                
+                </a>       
+            </div>
+
+
         </div>
     </div>
     <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">

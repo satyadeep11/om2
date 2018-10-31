@@ -779,10 +779,10 @@
     padding: 10px; }
   
   .product-detail-wrap .btn {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -ms-border-radius: 0;
-    border-radius: 0;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    -ms-border-radius:0.25rem;
+    border-radius: 0.25rem;
     height: 40px;
     display: table; }
     .product-detail-wrap .btn i {

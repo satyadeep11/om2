@@ -1,6 +1,9 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ProductDetailService } from '../../product-detail.service'; 
+import {GenieComponent} from "../../home/genie/genie.component";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-sidebar',
@@ -14,10 +17,11 @@ export class SidebarComponent {
     pushRightClass: string = 'push-right';
     fname:String;
     lname:String;
+    myData:any;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
     
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService, public router: Router,private productDetailService: ProductDetailService,public dialog : MatDialog) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
         this.translate.setDefaultLang('en');
         const browserLang = this.translate.getBrowserLang();
@@ -34,6 +38,12 @@ export class SidebarComponent {
         });
         this.fname= localStorage.getItem("fname").toString();
        this.lname= localStorage.getItem("lname").toString();
+       this.productDetailService.category_all().subscribe(user => {
+        this.myData = user;  
+        console.log(this.myData);
+      },
+      error => console.log(error)
+      );
     }
 
     eventCalled() {
@@ -75,4 +85,15 @@ export class SidebarComponent {
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
     }
+
+    LoadGenie(){
+        this.dialog.open(GenieComponent, {
+          width: '500px',
+          data: {}
+        });
+      }
+      Search(searchText){
+        if(searchText)
+        this.router.navigate(['/products/search/',searchText]);
+      }
 }
