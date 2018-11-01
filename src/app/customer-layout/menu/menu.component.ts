@@ -145,19 +145,25 @@ export class MenuComponent implements OnInit {
               },
               {
                   element: '.step-two',
-                  intro: "Search products here",
+                  intro: "Search for products here",
                   position: 'bottom'
               },
               {
                   element: '.step-three',
-                  intro: 'The menu',
+                  intro: 'Access the categories using the menu',
                   position: 'bottom'
               },
               {
                   element: '.step-four',
-                  intro: 'Our latest Arrivals',
-                  position: 'right'
+                  intro: 'Have Questions about using the Quick Select Website? Click here!',
+                  position: 'bottom'
+              },
+              {
+                  element: '.step-five',
+                  intro: 'Dont know how to prodceed? Click on the Question mark to quickly get more information.',
+                  position: 'bottom'
               }
+
               
           ].filter(function (obj) {            
             console.log(document.getElementsByClassName(obj.element.substr(1)).length,obj.element.substr(1));

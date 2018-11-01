@@ -1,6 +1,16 @@
 /*********************************
 3. Home
 *********************************/
+
+  @media (min-width: 992px) {
+	.sepText {
+		display: flex;
+		flex-direction: column;
+		width: 1px;
+		background: currentColor;
+	  }
+} 
+
 .home_bg {
 	background-image: url("/assets/images/home_bg.png");
 	background-color: #cccccc;
