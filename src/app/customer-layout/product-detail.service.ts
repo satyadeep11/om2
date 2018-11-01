@@ -6,7 +6,7 @@ import { PID,CID} from './cart/cart.component';
 import { OrderConfirm } from '../layout/orders/single-order/single-order.component';
 import { CatId } from './products/products.component';
 import { map } from 'rxjs/operators';
-import {GlobalCart} from './globalcart';
+import { GlobalCart } from './globalcart';
 
 @Injectable({
   providedIn: 'root'

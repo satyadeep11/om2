@@ -4,7 +4,7 @@
 			<div  *ngIf="gc.count==0" class="row row-pb-md">
 				<span>No Products Selected</span>
 			</div>
-			<div  *ngIf="gc.count!=0" class="row row-pb-md">
+			<div  *ngIf="gc.count!=0">
 				<h4>Summary of your current Selections</h4>
 			</div>
 			<div  *ngIf="gc.count>0" class="row row-pb-md">
@@ -60,7 +60,11 @@
 			
 			<div class="row">
 					<div class="col-md-12">
-					  <p *ngIf="gc.count>0"><a [routerLink]="['/checkout']" [routerLinkActive]="['router-link-active']" (click)="SubmitCart()" class="btn btn-primary">Submit Selection</a></p>
+						<p>Were you unable to find something?<br>If yes, Please mention that in the box below before you submit your selection and we will get back to you. Thanks.</p>
+						<div >
+							<textarea class="form-control" [(ngModel)]='textEntered' rows="3" (change)="check(textEntered)"></textarea>
+						</div><br>
+					  	<p *ngIf="gc.count>0"><button [routerLink]="['/checkout']" [routerLinkActive]="['router-link-active']" (click)="SubmitCart()" class="btn btn-primary">Submit Selection</button></p>
 					  
 					</div>
 				  </div>

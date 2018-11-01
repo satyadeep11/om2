@@ -41,7 +41,7 @@
                             </span>
                         </span>
                     </div>
-                    <div class="row row-pb-lg" >
+                    <div class="row row-pb-sm" >
                         <div *ngFor=" let item of myData?.products|genderfilter : genderFilterArray |brandfilter :brandFilterArray |sizefilter : sizeSelected| pricefilter :startprice:endprice | colorfilter : colorFilterArray | searchfilter : searchText" class="col-md-4 text-center">
                             <div class="product-entry">
                                 <div class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [ngStyle]="{'cursor': 'pointer'}" [style.backgroundImage]="this.url+item.ProductID+'_'+getMain(item.ImageFile)+this.url_close">
@@ -64,7 +64,8 @@
                         </div>                     
                     </div>
                 </div>
-                <div *ngIf="!myData?.error" class="col-md-2 col-md-pull-10" id="sidebar_float">
+                <div *ngIf="!myData?.error" class="col-md-2 col-md-pull-10" >
+                        <!-- id="sidebar_float" -->
                     <mat-accordion>
                     <div class="sidebar">
                         <mat-expansion-panel class="products-one" expanded>    

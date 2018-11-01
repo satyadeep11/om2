@@ -18,6 +18,7 @@ export class SidebarComponent {
     fname:String;
     lname:String;
     myData:any;
+    searchText='';
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
     

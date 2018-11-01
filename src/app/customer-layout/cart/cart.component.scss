@@ -260,7 +260,7 @@
     width: 100%;
     float: left;
     z-index: 0;
-    margin-bottom: 9em; }
+      }
     #colorlib-hero .btn {
       font-size: 24px; }
       #colorlib-hero .btn.btn-primary {
@@ -875,13 +875,15 @@
       float: left; }
       @media screen and (max-width: 768px) {
         .product-cart .product-img, .product-name .product-img {
-          display: none; } }
+          // display: none; 
+        } 
+      }
     .product-cart .form-control, .product-name .form-control {
       padding: 0;
       height: 40px;
       width: 50%;
       margin: 0 auto;
-      border: 1px solid #f0f0f0 !important; }
+      border: 1px solid #000!important; }
   
   .product-name {
     padding: .8em 0;
@@ -970,7 +972,7 @@
   #colorlib-intro {
     position: relative;
     padding-top: 9em;
-    margin-bottom: 9em; }
+      }
     #colorlib-intro .overlay {
       position: absolute;
       top: 0;
@@ -1354,7 +1356,7 @@
   
   #colorlib-testimony {
     padding-top: 9em;
-    margin-bottom: 9em; }
+      }
     #colorlib-testimony .owl-carousel {
       z-index: 0; }
     #colorlib-testimony .owl-carousel .owl-stage-outer {
@@ -1550,7 +1552,6 @@
     -ms-box-shadow: none;
     -o-box-shadow: none;
     box-shadow: none;
-    border: none !important;
     font-size: 13px !important;
     font-weight: 300;
     background: #fff !important;

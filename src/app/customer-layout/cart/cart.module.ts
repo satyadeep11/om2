@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CartRoutingModule } from './cart-routing.module';
 import { CartComponent } from './cart.component';
-
+import { FormsModule } from '@angular/forms';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
@@ -11,7 +11,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   imports: [
     CommonModule,
     MatSnackBarModule,
-    CartRoutingModule
+    CartRoutingModule,
+    FormsModule
   ],
   declarations: [CartComponent]
 })

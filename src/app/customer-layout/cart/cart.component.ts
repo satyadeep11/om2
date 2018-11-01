@@ -13,7 +13,7 @@ import {MatSnackBar} from '@angular/material';
 export class CartComponent implements OnInit {
 
   productList:any;
- 
+  textEntered='';
   newCart:any=[];
   
   constructor(public gc: GlobalCart,
@@ -105,11 +105,18 @@ export class CartComponent implements OnInit {
         cartdetails.email=localStorage.getItem("email").toString();
         cartdetails.fname=localStorage.getItem("fname").toString();
         cartdetails.lname=localStorage.getItem("lname").toString();
+        if(this.textEntered.length==0){
+          cartdetails.userquery="Nothing";
+        }
+        else{
+          cartdetails.userquery=this.textEntered;
+        }
+        
+        console.log(cartdetails)
         this.productDetailService.SubmitCart(cartdetails).subscribe(user => {
           //console.log(user);
           // this.myData.error = user.error;  
-          this.GetCart();
-          
+          this.GetCart();          
         
         },
         error => console.log(error)
@@ -129,6 +136,9 @@ export class CartComponent implements OnInit {
     );  
   }
 
+  check(x){
+    console.log(x);
+  }
   gcUpdate() {
     var retrievedData = localStorage.getItem("currentCart");        
     var cartdetails = JSON.parse(retrievedData); 
@@ -158,6 +168,7 @@ export interface CID {
   email?:string;
   fname?:string;
   lname?:string;
+  userquery?:string;
 }
 
 export interface Cart {  
