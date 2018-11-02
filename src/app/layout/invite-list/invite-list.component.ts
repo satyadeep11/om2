@@ -102,16 +102,17 @@ export class InviteListComponent implements OnInit {
   }
 
   deleteCustomer(customerid:CustomerUID){
-    
-    this.closed = false;
-    this.inviteListService.deleteuser(customerid)
-     .subscribe(user => {
-       // show an alert to tell the user if user was invited
-       console.log(user);
-       this.myData = user; 
-    },
-    error => console.log(error)
-   );
+    if(window.confirm('Are you sure you want to delete this customer ?')){
+      this.closed = false;
+      this.inviteListService.deleteuser(customerid)
+      .subscribe(user => {
+        // show an alert to tell the user if user was invited
+        console.log(user);
+        this.myData = user;  
+      },
+      error => console.log(error)
+    );
+  }
        
   }
   editCustomerInfo(customerid,fname,lname,company,phone,securityGroups){

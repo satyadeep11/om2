@@ -47,7 +47,7 @@
               <div class="col-md-7">                
                   <h3 class="detail-one">{{myData?.product.ProductName}}</h3>
                   <p class="price">
-                    <span class="detail-two">{{myData?.product.Price | currency:'USD'}}</span> 
+                    <span class="detail-two">{{myData?.product.Price | currency:'USD'}} <b><a [ngStyle]="{'cursor': 'pointer'}" data-toggle="tooltip" placement="right" ngbTooltip="Prices listed are MSRP pricing and are used for ballpark purposes. A final price for all items will be provided for you factoring in your specific decoration and expected volume">(Blank Pricing)</a></b></span> 
                     <!-- <span class="rate text-right">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -59,7 +59,7 @@
                   </p>
                   <p>{{myData?.product.ProductDesc1}}</p>                  
                       <div *ngIf="myData && !myData?.error" id="color-thumbnails" class="product-entry detail-three box-case" style="display: flow-root;">
-                        <span class="btn-danger" *ngIf="!this.colorselected || this.colorselected=='undefined'">* Select the colors for this product below<br></span>
+                        <span class="btn-danger" *ngIf="!this.colorselected || this.colorselected=='undefined'">* Click on color(s) below to add this product to your Selections.<br></span>
                         <div *ngIf="myData?.variants.length!=cart.length"> 
                           <h5>Colors Available</h5>
                         <span class="thumb-nail">

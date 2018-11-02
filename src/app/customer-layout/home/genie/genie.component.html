@@ -12,11 +12,11 @@
             <input type="checkbox" (change)="AddRemoveCat($event,item2.CategoryID)">{{item2.CategoryName}}
           </span>
         </div>
-        <div>
-          <button mat-button (click)="Reset();stepper.reset()">Reset</button>
-          <button *ngIf="i!=2" mat-button matStepperNext>Next</button>
+        <div class="buttons_style">
+          <button  color="primary" mat-raised-button (click)="Reset();stepper.reset()">Reset </button> 
+          <button  color="primary" *ngIf="i!=2" mat-raised-button matStepperNext>Next </button> 
           <!-- <button *ngIf="i!=0" mat-button matStepperPrevious>Back</button> -->
-          <button *ngIf="i==2" mat-button (click)="SaveCat()">Save</button>          
+          <button   color="primary" *ngIf="i==2" mat-raised-button (click)="SaveCat()">Save </button>         
         </div>      
     </mat-step>
   </div>
