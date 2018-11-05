@@ -44,7 +44,7 @@ export class MenuComponent implements OnInit {
     this.intro.onexit(function(targetElement) {  
         if(!localStorage.getItem("HomeVisit") && (window.location.pathname.includes("home"))){
             localStorage.setItem('HomeVisit', 'Yes');
-            self.LoadGenie();
+            // self.LoadGenie();
         }
         if(!localStorage.getItem("ProductsVisit") && (window.location.pathname.includes("products"))){
             localStorage.setItem('ProductsVisit', 'Yes');                
@@ -68,7 +68,8 @@ export class MenuComponent implements OnInit {
   ngAfterViewInit() {
     if(!localStorage.getItem('HomeVisit') && (window.location.pathname.includes("home"))) {
         // localStorage.setItem('HomeVisit', 'Yes');
-        this.OpenTour(); 
+        // this.OpenTour(); 
+        this.QuestionBounceCheck='question';  
       }
      if(!localStorage.getItem('ProductsVisit') && (window.location.pathname.includes("products"))) {
               
