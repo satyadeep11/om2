@@ -6,56 +6,63 @@
         </div>
         
         <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-            <ngb-panel title="How quickly will my items be available to order once I choose the products?">
+                <ngb-panel title="What does the question mark icon on the main menu do?">
+                        <ng-template ngbPanelContent>
+                          <ul>
+                            <li>Click on the <i class="fa fa-question-circle"></i> icon for help on any page of the QuickSelect website.
+                                It will guide you through the main areas of each page so that you can understand where you are and what you can do there.<br> <img src="/assets/images/faq_selection_genie.PNG"></li><br>
+                            <li>Choose <i>Skip</i> to close the tool. <i>Back</i> to see the previous tip. <i>Next</i> to see the next tip.</li>
+                          </ul>
+                        </ng-template>                
+                    </ngb-panel>
+
+                    <ngb-panel title="I’ve forgotten my password. What do I do?">
+                            <ng-template ngbPanelContent>
+                                <ul>
+                                  <li>Click on the <i>Forgot Password</i> link at the bottom of the <a [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">QuickSelect login page</a>.<br> <img src="/assets/images/faq_login.PNG"></li><br>
+                                  <li>Enter the email address associated with your QuickSelect account and select <i>Reset Password</i>.  We will email you a link to reset your password.<br> <img src="/assets/images/faq_reset_password.PNG"></li>
+                                </ul>
+                            </ng-template>              
+                          </ngb-panel>
+
+                          <ngb-panel title="I forgot some items! How do I get them added to my store?">
+                                <ng-template ngbPanelContent>
+                                    If there are additional items you would like to added, just submit a new selection. Products from your original submission and the new one will be added to your store.
+                                </ng-template>                
+                            </ngb-panel>
+
+                            <ngb-panel title="Can I remove a selection I’ve already submitted?">
+                                    <ng-template ngbPanelContent>
+                                        Your selections can be edited or canceled (if you prefer to start over) by your account manager. Just contact us and we’ll help you get that taken care of. 
+                                    </ng-template>                
+                                </ngb-panel>
+
+            <ngb-panel title="How quickly will my items be available to request once I choose the products?">
               <ng-template ngbPanelContent>
                   Once you submit your selections, we have a little bit of work do to on our end. If you have an existing QuickBrand store, your new selections will generally be available within 5 working days. If you have a new QuickBrand Store, your account team will provide you with an estimated launch date.
                  
               </ng-template>
             </ngb-panel>
-            <ngb-panel title="I’ve forgotten my password. What do I do?">
-              <ng-template ngbPanelContent>
-                  <ul>
-                    <li>Click on the Forgot Password link at the bottom of the <a [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">QuickSelect login page</a>.<br> <img src="/assets/images/faq_login.PNG"></li><br>
-                    <li>Enter the email address associated with your QuickSelect account and select Reset Password.  We will email you a link to reset your password.<br> <img src="/assets/images/faq_reset_password.PNG"></li>
-                  </ul>
-              </ng-template>              
-            </ngb-panel>
-            <ngb-panel title="What does the question mark icon on the main menu do?">
-                <ng-template ngbPanelContent>
-                  <ul>
-                    <li>Click on the <i class="fa fa-question-circle"></i> icon for help on any page of the QuickSelect website.
-                        It will guide you through the main areas of each page so that you can understand where you are and what you can do there.<br> <img src="/assets/images/faq_selection_genie.PNG"></li><br>
-                    <li>Choose Skip to close the tool. Back to see the previous tip. Next to see the next tip.</li>
-                  </ul>
-                </ng-template>                
-            </ngb-panel>
+
+            <ngb-panel title="I didn’t see a product in the selection tool that I need in my store. What can I do?">
+                    <ng-template ngbPanelContent>
+                        With decades of experience launching online stores, we have seen stores have the most success when they start with fewer product choices, then add more products over time. However, you can certainly add other available products not shown in the QuickSelect tool to your store initially. Please contacts us in one of two ways to address this:
+                        <ul>
+                            <li>Submit a note with your needs in the comment area Selection Summary screen before you submit it. </li>
+                            <li>Reach out to your account manager directly.</li>
+                        </ul>
+                    </ng-template>                
+                </ngb-panel>
+            
             <ngb-panel title="Can I see selections I’ve made previously?">
                 <ng-template ngbPanelContent>
                     <ul>
-                        <li>Absolutely! Click on your name in the upper right corner, then select Orders.<br> <img src="/assets/images/faq_orders.PNG"></li><br>
-                        <li>On the following page, click View to see the details of any orders you’ve placed.<br> <img src="/assets/images/faq_orders_view.PNG"></li><br>
+                        <li>Absolutely! Click on your name in the upper right corner, then select <i>Requests</i>.<br> <img src="/assets/images/faq_orders.PNG"></li><br>
+                        <li>On the following page, click <i>View</i> to see the details of any request you’ve placed.<br> <img src="/assets/images/faq_orders_view.PNG"></li><br>
                     </ul>
                 </ng-template>                
             </ngb-panel>
-            <ngb-panel title="Can I remove a selection I’ve already submitted?">
-                <ng-template ngbPanelContent>
-                    Your selections can be edited or canceled (if you prefer to start over) by your account manager. Just contact us and we’ll help you get that taken care of. 
-                </ng-template>                
-            </ngb-panel>
-            <ngb-panel title="I forgot some items! How do I get them added to my store?">
-                <ng-template ngbPanelContent>
-                    If there are additional items you would like to added, just submit a new selection. Products from your original submission and the new one will be added to your store.
-                </ng-template>                
-            </ngb-panel>
-            <ngb-panel title="I didn’t see a product in the selection tool that I need in my store. What can I do?">
-                <ng-template ngbPanelContent>
-                    With decades of experience launching online stores, we have seen stores have the most success when they start with fewer product choices, then add more products over time. However, you can certainly add other available products not shown in the QuickSelect tool to your store initially. Please contacts us in one of two ways to address this:
-                    <ul>
-                        <li>Submit a note with your needs in the comment area Selection Summary screen before you submit it. </li>
-                        <li>Reach out to your account manager directly.</li>
-                    </ul>
-                </ng-template>                
-            </ngb-panel>
+
         </ngb-accordion>
     </div>
 </div>

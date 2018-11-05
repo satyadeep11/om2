@@ -6,6 +6,9 @@
     margin-left: 1000px;
   }
   
+  // ::ng-deep.mat-expansion-panel-content{
+  //   font-size: 1rem!important;
+  // }
   
   /* Tooltip text */
   .color .tooltiptext {
@@ -548,7 +551,7 @@
           margin-bottom: 0;
           width: 100%;
           text-transform: uppercase;
-          font-size: 12px; }
+          font-size: 1rem; }
           .product-entry .product-img .cart p span {
             display: inline-block; }
             .product-entry .product-img .cart p span a {
@@ -560,7 +563,7 @@
     .product-entry .desc h3 {
       font-size: 20px;
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: 1rem;
       margin-bottom: 10px; }
       .product-entry .desc h3 a {
         color: #000; }

@@ -2,7 +2,11 @@
     pointer-events: none !important;
 }
 
-::ng-deep.mat-step-header .mat-step-icon,.mat-raised-button.mat-primary {
+::ng-deep.mat-step-header .mat-step-icon {
+    background-color: #ee5d31;
+}
+
+::ng-deep.mat-raised-button.mat-primary {
     background-color: rgb(170, 173, 0);
 }
 

@@ -1,7 +1,7 @@
 <span class="step-one">
 <button style="float: right;" mat-button (click)="closeDialog()">Close</button>
 <mat-card-title>Select Categories</mat-card-title><br>
-<mat-card-subtitle>Select from the categories to simplify your selection experience. </mat-card-subtitle>
+<mat-card-subtitle> Use the checkboxes to pick the categories of items you would like to add to your QuickBrand store.</mat-card-subtitle>
 
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <div *ngFor="let item of myData?.cats; let i=index">
@@ -11,7 +11,7 @@
           <span *ngIf="item.CategoryID== item2.CategoryParent">
             <input type="checkbox" (change)="AddRemoveCat($event,item2.CategoryID)">{{item2.CategoryName}}
           </span>
-        </div>
+        </div><br>
         <div class="buttons_style">
           <button  color="primary" mat-raised-button (click)="Reset();stepper.reset()">Reset </button> 
           <button  color="primary" *ngIf="i!=2" mat-raised-button matStepperNext>Next </button> 

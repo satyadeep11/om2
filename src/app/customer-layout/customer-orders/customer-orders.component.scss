@@ -49,15 +49,16 @@
           background: rgba(0, 0, 0, 0.7);
           content: ""; }
     
-    a {
-      color: rgb(179, 187, 53);
-      -webkit-transition: 0.5s;
-      -o-transition: 0.5s;
-      transition: 0.5s; }
-      a:hover, a:active, a:focus {
-        color: rgb(179, 187, 53);
-        outline: none;
-        text-decoration: none; }
+          a {
+            color: black;
+            -webkit-transition: 0.5s;
+            -o-transition: 0.5s;
+            transition: 0.5s; 
+            font-size: 1rem;}
+            a:hover, a:active, a:focus {
+              color: black;
+              outline: none;
+              text-decoration: none; }
     
     p {
       margin-bottom: 20px; }

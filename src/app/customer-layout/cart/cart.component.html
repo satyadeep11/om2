@@ -2,10 +2,10 @@
 		<div class="container">
 
 			<div  *ngIf="gc.count==0" class="row row-pb-md">
-				<span>No Products Selected</span>
+				<span>You haven't selected any Products. Use the Selection Genie or drop-down menus for Apparel, Hardgoods, or Accessories to find the items for your QuickBrand store.</span>
 			</div>
 			<div  *ngIf="gc.count!=0">
-				<h4>Summary of your current Selections</h4>
+				<h4>Selection Request Summary</h4>
 			</div>
 			<div  *ngIf="gc.count>0" class="row row-pb-md">
 				<div class="col-md-10 col-md-offset-1">
@@ -49,7 +49,9 @@
 							</div>					
 							<div class="one-eight text-center">
 								<div class="display-tc">
-									<button class="btn btn-danger" (click)="DeleteProduct(item.ProductID,item.ProductName);">Remove</button>
+									<button class="btn" style="background: #ee582b ;
+									color: #fff;
+									border: 2px solid #ee582b ;" (click)="DeleteProduct(item.ProductID,item.ProductName);">Remove</button>
 								</div>
 							</div>
 						</span>
@@ -60,7 +62,7 @@
 			
 			<div class="row">
 					<div class="col-md-12">
-						<p>Were you unable to find something?<br>If yes, Please mention that in the box below before you submit your selection and we will get back to you. Thanks.</p>
+						<p>Unable to find something?<br>Please use the space below to explain what you were looking for. Your account manager will look into it for you.</p>
 						<div >
 							<textarea class="form-control" [(ngModel)]='textEntered' rows="3" (change)="check(textEntered)"></textarea>
 						</div><br>

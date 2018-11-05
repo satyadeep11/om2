@@ -38,9 +38,9 @@
     <span [class]="QuestionBounceCheck" (click)="OpenTour();" [ngStyle]="{'cursor': 'pointer'}" data-toggle="tooltip" placement="right" ngbTooltip="Tutorial"><i class="fa fa-question-circle"></i></span>
     <span class="fill-space"></span>
     
-    <span class="step-two">
-    <input [(ngModel)]="searchText" (keydown.enter)="Search(searchText);searchText='';" type="search" placeholder="Search.." name="search">
-    <button (click)="Search(searchText);searchText='';"><i class="fa fa-search"></i></button>
+    <span class="step-two" style="display: flex;">
+    <input [(ngModel)]="searchText" (keydown.enter)="Search(searchText);searchText='';" type="search" placeholder="Search.." name="search" style="font-size: 1rem;">
+    <button (click)="Search(searchText);searchText='';" style="font-size: 1rem;"><i class="fa fa-search"></i></button>
     </span>    
     <!-- <span *ngFor="let item of myData?.cats; let i=index">
         <button *ngIf="item.CategoryParent==0" mat-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{name: item.CategoryName}">{{item.CategoryName}}</button>

@@ -59,7 +59,7 @@
                   </p>
                   <p>{{myData?.product.ProductDesc1}}</p>                  
                       <div *ngIf="myData && !myData?.error" id="color-thumbnails" class="product-entry detail-three box-case" style="display: flow-root;">
-                        <span class="btn-danger" *ngIf="!this.colorselected || this.colorselected=='undefined'">* Click on color(s) below to add this product to your Selections.<br></span>
+                        <span style="background: #ee582b ; color:white;border: 2px solid #ee582b" *ngIf="!this.colorselected || this.colorselected=='undefined'">* Click on color(s) below to add this product to your Selections.<br></span>
                         <div *ngIf="myData?.variants.length!=cart.length"> 
                           <h5>Colors Available</h5>
                         <span class="thumb-nail">

@@ -4,6 +4,10 @@
     flex: 1 1 auto;
   }
 
+  .mat-button, .mat-fab, .mat-flat-button, .mat-icon-button, .mat-mini-fab, .mat-raised-button, .mat-stroked-button{
+    font-size: 1rem!important;  
+  }
+
   .question {
     text-align:right;
     opacity: 1;

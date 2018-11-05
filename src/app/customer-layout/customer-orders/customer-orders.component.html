@@ -2,17 +2,17 @@
     <div class="container" *ngIf="!viewCheck">
        <div  class="row justify-content-md-center">   
         <div *ngIf="myData?.orders.length==0" class="row row-pb-md">
-            <span>No Orders</span>
+            <span>No Requests</span>
         </div>
         <div  *ngIf="myData?.orders.length>0" class="col-md-auto text-center">
-            <h4>Your List of Selections</h4>
+            <h4>Your Selection Requests</h4>
             <table class='table table-hover table-striped table-responsive text-center'>    
                 <thead class="thead-dark">
                 <tr>
-                    <th>Selection Number</th>
+                    <th>Request Number</th>
                     <th>Product Count</th>
-                    <th>Order Date</th>          
-                    <th>Action</th>
+                    <th>Request Date</th>          
+                    <th></th>
                 </tr>   
                 </thead>     
                 <tbody>
@@ -31,10 +31,12 @@
     <div class="container" *ngIf="viewCheck">
         <div  class="row justify-content-md-center">   
         <div class="col-md-12 text-right" >
-            <button (click)="viewCheck=false" class="btn btn-info">Back</button>
+            <button (click)="viewCheck=false" class="btn" style="background: rgb(179, 187, 53);  
+            color: #fff;
+            border: 2px solid rgb(179, 187, 53);" >Back</button>
         </div>
         <div  *ngIf="myData?.orders.length>0" class="col-md-auto text-center">
-        <h5>Order Number: {{orderNumber}}</h5>
+        <h5>Request Number: {{orderNumber}}</h5>
         <table class='table table-hover table-striped table-responsive text-center'>    
             <tr>
                 <th colspan="2">Product Details</th>
@@ -49,7 +51,7 @@
                   <div class="display-tc">
                     <h4><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">{{item.ProductName}}</a></h4><br>
                     <span >
-                    <h6>Colors : {{item.ColorsList}}</h6>
+                    <h6>Colors: {{item.ColorsList}}</h6>
                     </span>
                   </div>
                 </td>
@@ -58,7 +60,9 @@
             </tr>        
         </table>
         <div class="col-md-12 text-right" >
-                <button (click)="viewCheck=false" class="btn btn-info">Back</button>
+                <button (click)="viewCheck=false" class="btn" style="background: rgb(179, 187, 53);  ;
+									color: #fff;
+									border: 2px solid rgb(179, 187, 53); ">Back</button>
               </div>
         <div class="row">
             

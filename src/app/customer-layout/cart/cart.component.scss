@@ -43,12 +43,13 @@
         content: ""; }
   
   a {
-    color: rgb(179, 187, 53);
+    color: black;
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
-    transition: 0.5s; }
+    transition: 0.5s; 
+    font-size: 1rem;}
     a:hover, a:active, a:focus {
-      color: rgb(179, 187, 53);
+      color: black;
       outline: none;
       text-decoration: none; }
   
@@ -115,7 +116,7 @@
         -o-transition: 0.5s;
         transition: 0.5s; }
         .colorlib-nav ul li a:hover {
-          color: rgb(179, 187, 53); }
+          color: black; }
       .colorlib-nav ul li.has-dropdown {
         position: relative; }
         .colorlib-nav ul li.has-dropdown .dropdown {
@@ -167,7 +168,7 @@
               .colorlib-nav ul li.has-dropdown .dropdown li a:hover {
                 color: #fff; }
         .colorlib-nav ul li.has-dropdown:hover a, .colorlib-nav ul li.has-dropdown:focus a {
-          color: rgb(179, 187, 53); }
+          color: black; }
       .colorlib-nav ul li.btn-cta a {
         padding: 30px 0px !important;
         color: #fff; }
@@ -235,7 +236,7 @@
         display: table-cell;
         vertical-align: middle;
         font-size: 40px;
-        color: rgb(179, 187, 53); }
+        color: black; }
     .colorlib-video .video-overlay {
       position: absolute;
       top: 0;
@@ -436,7 +437,7 @@
     display: block; }
     .colorlib-shop .icon i {
       font-size: 100px;
-      color: rgb(179, 187, 53); }
+      color: black; }
   
   .f-product-1 {
     display: block;
@@ -537,7 +538,7 @@
       .product-entry .desc h3 a {
         color: #000; }
     .product-entry .desc .price span {
-      color: rgb(179, 187, 53);
+      color: black;
       font-weight: 400; }
     .product-entry .desc .price .sale {
       color: gray;
@@ -806,7 +807,7 @@
     .process.active p {
       border: 2px solid #f0f0f0; }
       .process.active p span {
-        color: rgb(179, 187, 53); }
+        color: black; }
   
   .product-cart, .product-name {
     width: 100%;
@@ -931,7 +932,7 @@
         .total-wrap .total p span:last-child {
           font-weight: 500; }
     .total-wrap .total .grand-total p span:last-child {
-      color: rgb(179, 187, 53);
+      color: black;
       font-weight: 500; }
   
   .cart-detail {
@@ -1054,7 +1055,7 @@
         margin: 0;
         line-height: 1;
         display: inline-block;
-        color: rgb(179, 187, 53); }
+        color: black; }
       .text-salebox .text-lefts .sale-box .sup-1 {
         font-size: 40px;
         position: absolute;
@@ -1062,7 +1063,7 @@
         left: 100%;
         display: block;
         line-height: 1;
-        color: rgb(179, 187, 53);
+        color: black;
         font-weight: 700; }
       .text-salebox .text-lefts .sale-box .sup-2 {
         font-size: 36px;
@@ -1095,7 +1096,7 @@
         color: #fff; }
       .text-salebox .text-rights .btn-outline {
         border: 1px solid rgb(179, 187, 53) !important;
-        color: rgb(179, 187, 53); }
+        color: black; }
   
   .sidebar {
     width: 100%;
@@ -1167,7 +1168,7 @@
       margin-top: 28px;
       padding: 12px !important; }
     .sidebar .colorlib-form-2 .rate i {
-      color: rgb(179, 187, 53);
+      color: black;
       margin: 0 5px; }
     .sidebar .colorlib-form-2 .place {
       font-size: 16px;
@@ -1215,7 +1216,7 @@
         text-transform: uppercase;
         color: gray; }
         .size-wrap p.size-desc .size:hover {
-          color: rgb(179, 187, 53); }
+          color: black; }
   
   .fancy-collapse-panel .panel-default > .panel-heading {
     padding: 0;
@@ -1233,7 +1234,7 @@
     font-size: 12px;
     text-transform: uppercase;
     background: transparent;
-    color: rgb(179, 187, 53);
+    color: black;
     position: relative;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
@@ -1276,7 +1277,7 @@
         .panel-body ul li a {
           color: #000; }
           .panel-body ul li a:hover {
-            color: rgb(179, 187, 53); }
+            color: black; }
   
   .panel-group {
     margin-bottom: 0; }
@@ -1314,7 +1315,7 @@
       .colorlib-form .form-control:active, .colorlib-form .form-control:focus {
         -webkit-box-shadow: none;
         box-shadow: none;
-        border-color: rgb(179, 187, 53); }
+        border-color: black; }
       .colorlib-form .form-control::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
         color: #999999; }
@@ -1592,7 +1593,7 @@
         display: inline-block;
         zoom: 1;
         *display: inline;
-        color: rgb(179, 187, 53);
+        color: black;
         padding-left: 10px;
         padding-right: 10px; }
         .colorlib-social-icons li a i {
@@ -1976,7 +1977,7 @@
       border-color: #53565a !important; }
     .btn-primary.btn-outline {
       background: transparent;
-      color: rgb(179, 187, 53);
+      color: black;
       border: 1px solid rgb(179, 187, 53); }
       .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
         background: rgb(179, 187, 53);
@@ -2088,7 +2089,7 @@
       outline: none;
       -webkit-box-shadow: none;
       box-shadow: none;
-      border-color: rgb(179, 187, 53); }
+      border-color: black; }
   
   .row-pb-lg {
     padding-bottom: 6em !important; }
