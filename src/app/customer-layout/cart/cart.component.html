@@ -1,8 +1,8 @@
 <div class="colorlib-shop">
 		<div class="container">
 
-			<div  *ngIf="gc.count==0" class="row row-pb-md">
-				<span>You haven't selected any Products. Use the Selection Genie or drop-down menus for Apparel, Hardgoods, or Accessories to find the items for your QuickBrand store.</span>
+			<div  *ngIf="gc.count==0" class="col-md-12">
+				<span class="text-center"><h3>You haven't selected any Products.</h3><br> <p>Use the Selection Genie or drop-down menus for Apparel, Hardgoods, or Accessories to find the items for your QuickBrand store.</p></span>
 			</div>
 			<div  *ngIf="gc.count!=0">
 				<h4>Selection Request Summary</h4>
@@ -60,7 +60,7 @@
 				</div>
 			</div>
 			
-			<div class="row">
+			<div class="row" *ngIf="gc.count>0">
 					<div class="col-md-12">
 						<p>Unable to find something?<br>Please use the space below to explain what you were looking for. Your account manager will look into it for you.</p>
 						<div >

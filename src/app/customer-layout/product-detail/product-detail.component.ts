@@ -16,6 +16,8 @@ import {GlobalCart} from '../globalcart';
 export class ProductDetailComponent implements OnInit {
   
 //variables
+catid:any;
+catname:any;
   id:PriceId={};
   private sub: any; 
   myData:any;
@@ -50,7 +52,9 @@ ngOnInit()  {
 
               this.productDetailService.product_detail(this.id).subscribe(user => {
                 this.myData = user; 
-                //console.log(this.myData);
+                this.catname=this.myData.product.CategoryName;
+                this.catid=this.myData.product.CatID;
+                console.log(this.myData);
                 this.productid=this.myData.product.ProductID;
                     this.visitedproducts=localStorage.getItem("visitedproducts");
                     this.visitedproducts=this.visitedproducts+this.productid.toString();

@@ -2,8 +2,19 @@
     <div class="container">
       <div class="row row-pb-lg">
         <div class="col-md-12 col-md-offset-1">
+            <div class="row">
+                <div class="col-xl-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item" > 
+                          <a style="color:black" href="Javascript:void(0)" [routerLink]="['/products',catid]">{{catname}}</a>
+                        </li>
+                        <li class="breadcrumb-item active"> {{myData?.product.ProductName}}</li>
+                    </ol>
+                </div>
+            </div>
           <div class="product-detail-wrap">
             <div class="row">
+
               <div class="col-md-5">
                 <div class="product-entry">
                     <div *ngIf="myData?.error" class="text-center" >    

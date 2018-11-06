@@ -181,14 +181,15 @@ brandCheck(brand,i){
 }
 
 NextCat() {
-  if(this.gc.CatListFull.length>0){
-    if(this.id)
-  this.getNextMember(this.gc.CatListFull, this.id.catid,'genie');
-  }
-  else if(localStorage.getItem("CatListFull")){
+  
+  if(localStorage.getItem("CatListFull")){
     var retrievedData = localStorage.getItem("CatListFull");        
-    this.gc.CatListFull= JSON.parse(retrievedData); 
+    this.gc.CatListFull= JSON.parse(retrievedData).split(',').map(Number); 
+    console.log(retrievedData,"ok",this.gc.CatListFull)
     if(this.id)
+    this.getNextMember(this.gc.CatListFull, this.id.catid,'genie');
+    }else if(this.gc.CatListFull.length>0){
+      if(this.id)
     this.getNextMember(this.gc.CatListFull, this.id.catid,'genie');
     }
   else{
@@ -200,7 +201,7 @@ getNextMember(array, productID, from) {
   console.log(array,productID,startIndex); 
   if(startIndex==array.length - 1){
     if(from=='genie'){
-      this.router.navigate(['/home']);
+      this.router.navigate(['/cart']);
     }
     else
     if(from=='category'){

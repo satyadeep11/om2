@@ -53,21 +53,26 @@ SaveCat(){
   var self=this;
   this.productDetailService.update_category(cartList).subscribe(user => {
     if(!user.error) {
-      self.productDetailService.get_category_products(cartList).subscribe(user => {   
-        self.gc.productlist=user.products;
-        console.log(self.gc.productlist);
-        if(self.gc.productlist)  {
-        self.gc.productlist=self.gc.productlist.map(function(v){return +v});
-        localStorage.setItem('productList',JSON.stringify(self.gc.productlist)); 
-        this.router.navigate(['/product-detail',self.gc.productlist[0]]);  
-        this.dialogRef.close();
-        }
-        else{
-          alert('No products found in Selected Categories');
-        }
-      },
-      error => console.log(error)
-      );
+      // self.productDetailService.get_category_products(cartList).subscribe(user => {   
+      //   self.gc.productlist=user.products;
+      //   console.log(self.gc.productlist);
+      //   if(self.gc.productlist)  {
+      //   self.gc.productlist=self.gc.productlist.map(function(v){return +v});
+      //   localStorage.setItem('productList',JSON.stringify(self.gc.productlist)); 
+      //   this.router.navigate(['/product-detail',self.gc.productlist[0]]);  
+      //   this.dialogRef.close();
+      //   }
+      //   else{
+      //     alert('No products found in Selected Categories');
+      //   }
+      // },
+      // error => console.log(error)
+      // );
+      console.log("here")
+      localStorage.setItem('CatListFull',JSON.stringify(cartList.catid));
+      console.log(localStorage.getItem('CatListFull'));
+      this.router.navigate(['/products',this.catList[0]]);  
+      this.dialogRef.close();
     }
   
          
