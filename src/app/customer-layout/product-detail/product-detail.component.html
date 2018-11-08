@@ -93,6 +93,7 @@
                         </span>   
                       </div>                        
                       </div>
+                      <p *ngIf="myData"><button (click)="SubmitCart();" class="btn btn-primary detail-six">Add to Selection</button></p>
                       <div *ngIf="myData?.companion.length>0" id="color-thumbnails" class="product-entry detail-four box-case" style="display: flow-root;">
                           <div *ngIf="myData?.companion.length>0" class="col-md-12 col-md-offset-3 text-center">
                               <h5 style="display:initial"><span>Companion Products</span></h5>
@@ -132,7 +133,7 @@
                     </div>
 
                   <!-- <p><span [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p> -->
-                  <p *ngIf="myData"><button (click)="SubmitCart();" class="btn btn-primary detail-six">Next Product</button></p>
+                  
                 
               </div>
             </div>

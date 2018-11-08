@@ -6,7 +6,8 @@ import {Router} from "@angular/router";
 
 import { AuthService } from '../../auth.service';
 import {GlobalCart} from '../globalcart';
-
+import {  RoutesRecognized } from '@angular/router';
+import { filter, pairwise } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-detail',
@@ -39,10 +40,10 @@ constructor(  private route: ActivatedRoute,
               private authService: AuthService,
               private gc: GlobalCart,
               private router: Router) 
-              { 
+              {
                 this.router.routeReuseStrategy.shouldReuseRoute = function() {
                   return false;
-              };
+                };
               }
 
 ngOnInit()  {
@@ -54,6 +55,18 @@ ngOnInit()  {
                 this.myData = user; 
                 this.catname=this.myData.product.CategoryName;
                 this.catid=this.myData.product.CatID;
+                if(this.catid.includes(',')){
+                  var idarray:Array<String>= this.catid.split(',');
+                  var namearray= this.catname.split(',');
+                  this.getPreviousUrl();
+                  var previousUrl=localStorage.getItem('previousUrl');     
+                   var index=idarray.indexOf(previousUrl);
+                   if(!idarray.includes(previousUrl)){
+                     index=0;
+                   }
+                    this.catid=idarray[index];  
+                    this.catname=namearray[index]; 
+                }
                 console.log(this.myData);
                 this.productid=this.myData.product.ProductID;
                     this.visitedproducts=localStorage.getItem("visitedproducts");
@@ -66,10 +79,17 @@ ngOnInit()  {
               error => console.log(error)
               );
               this.GetCart();
-              this.updateCart();
-              console.log(this.cart,"here");
-              
+              this.updateCart();              
             }
+
+getPreviousUrl(){
+  this.router.events
+              .pipe(filter((e: any) => e instanceof RoutesRecognized),
+                  pairwise()
+              ).subscribe((e: any) => {                   
+                  localStorage.setItem('previousUrl',  e[0].urlAfterRedirects.substr(e[0].urlAfterRedirects.lastIndexOf('/') + 1));               
+              });             
+}
 
 updateCart()  {
                 var retrievedData = localStorage.getItem("currentCart");        
