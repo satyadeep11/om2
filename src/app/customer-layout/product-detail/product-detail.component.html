@@ -2,8 +2,8 @@
     <div class="container">
       <div class="row row-pb-lg">
         <div class="col-md-12 col-md-offset-1">
-            <div class="row">
-                <div class="col-xl-12">
+            <div class="row" >
+                <div class="col-xl-12" *ngIf="myData && !myData?.error">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item" > 
                           <a style="color:black" href="Javascript:void(0)" [routerLink]="['/products',catid]">{{catname}}</a>
@@ -14,12 +14,13 @@
             </div>
           <div class="product-detail-wrap">
             <div class="row">
-
-              <div class="col-md-5">
-                <div class="product-entry">
-                    <div *ngIf="myData?.error" class="text-center" >    
+                <div class="col-md-12 text-center" >
+                    <div *ngIf="myData?.error"  >    
                         <img src="../../../assets/images/ordersnone.png"/><br> Nothing Found   
                      </div>
+                </div>
+              <div class="col-md-5 text-center" >
+                <div class="product-entry">                    
                   <div *ngIf="!myData?.error" class="product-img" id="product-img" ></div>
                   <!-- <div class="thumb-nail">
                     <a class="thumb-img" id="thumb-img-1" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a>
@@ -55,9 +56,9 @@
 
                 </div>
               </div>
-              <div class="col-md-7">                
-                  <h3 class="detail-one">{{myData?.product.ProductName}}</h3>
-                  <p class="price">
+              <div class="col-md-7" *ngIf="myData && !myData?.error">                
+                  <h3 class="detail-one" *ngIf="myData && !myData?.error">{{myData?.product.ProductName}}</h3>
+                  <p class="price" *ngIf="myData && !myData?.error">
                     <span class="detail-two">{{myData?.product.Price | currency:'USD'}} <b><a [ngStyle]="{'cursor': 'pointer'}" data-toggle="tooltip" placement="right" ngbTooltip="Prices listed are MSRP pricing and are used for ballpark purposes. A final price for all items will be provided for you factoring in your specific decoration and expected volume"><i class="fa fa-question-circle"></i></a></b></span> 
                     <!-- <span class="rate text-right">
                       <i class="fa fa-star"></i>
@@ -93,8 +94,8 @@
                         </span>   
                       </div>                        
                       </div>
-                      <p *ngIf="myData"><button (click)="SubmitCart();" class="btn btn-primary detail-six">Add to Selection</button></p>
-                      
+                      <p *ngIf="myData && !myData?.error"><button (click)="SubmitCart();" class="btn btn-primary detail-six">Add to Selection</button></p>
+                      <div *ngIf="myData && !myData?.error">
                       <div *ngIf="myData?.companion.length>0" id="color-thumbnails" class="product-entry detail-four box-case" style="display: flow-root;">
                           <div *ngIf="myData?.companion.length>0" class="col-md-12 col-md-offset-3 text-center">
                               <h5 style="display:initial"><span>Companion Products</span></h5>
@@ -118,11 +119,12 @@
                                   </div>
                               </div>                         
                           </div>
-                      </div>  
+                      </div> 
+                    </div> 
                                   
                   
-                  <p *ngIf="myData">SKU: {{myData?.product.ProductBaseSKU}}</p> 
-                  
+                  <p *ngIf="myData && !myData?.error">SKU: {{myData?.product.ProductBaseSKU}}</p> 
+                  <div *ngIf="myData && !myData?.error">
                   <div *ngIf="myData?.sizes[0].A1_Short" class="size-wrap detail-five">
                       <p class="size-desc">
                         Sizes:<br> 
@@ -132,7 +134,7 @@
                           All the above sizes will be made available in your store.
                         </p>
                     </div>
-
+                    </div>
                   <!-- <p><span [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" class="btn btn-primary btn-addtocart"><i class="fa fa-shopping-cart"></i> Add to Cart</span></p> -->
                   
                 
@@ -164,7 +166,7 @@
             </div>
         </div>                         
     </div> -->
-      <div *ngIf="myData" class="row">
+      <div *ngIf="myData && !myData?.error" class="row">
         <div class="col-sm-12 col-md-offset-1">
           <div class="row">
             <div class="col-sm-12 tabulation">
