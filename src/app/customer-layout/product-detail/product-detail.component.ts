@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductDetailService } from '../product-detail.service'; 
 import {MatSnackBar} from '@angular/material';
 import {Router} from "@angular/router";
+import {Renderer} from '@angular/core';
 
 import { AuthService } from '../../auth.service';
 import {GlobalCart} from '../globalcart';
@@ -39,12 +40,15 @@ constructor(  private route: ActivatedRoute,
               public snackBar: MatSnackBar,
               private authService: AuthService,
               private gc: GlobalCart,
+              private render:Renderer,
               private router: Router) 
               {
                 this.router.routeReuseStrategy.shouldReuseRoute = function() {
                   return false;
                 };
               }
+
+              
 
 ngOnInit()  {
               this.sub = this.route.params.subscribe(params => {
@@ -123,6 +127,32 @@ openSnackBar(msg,action,className)  {
                               panelClass: [className]
                             });
                           }
+
+colorSelected(id){
+  event.preventDefault()
+  this.render.setElementClass(document.getElementById(id),"circle",true);
+}
+colorRemoved(id){
+  event.preventDefault()
+  this.render.setElementClass(document.getElementById(id),"circle",false);
+}
+checkcolorCart(color,colorcode,image) {
+  console.log(this.cart);
+  if(this.cart.length==0){
+    this.addtoCart(color,colorcode,image);
+      this.colorSelected('color'+colorcode);
+  }
+   else if(this.cart.some(function(o){return o["Attr2"] === colorcode;})){
+      this.deletefromCart(color,colorcode,image);
+      this.colorRemoved('color'+colorcode);
+    }
+    else{
+      
+      this.addtoCart(color,colorcode,image);
+      this.colorSelected('color'+colorcode);
+    }
+  
+}
 
 addtoCart(color,colorcode,image) {
                                     if(this.colorselected){this.colorselected=this.colorselected.replace(new RegExp(colorcode),'');}
@@ -274,6 +304,22 @@ SubmitCart() {
                 else{
                   this.router.navigate(['/home']);
                 }
+              }
+
+              BacktoCategory(param){
+                if(param=="add"){
+                  if(this.cart.length==0){
+                    this.openSnackBar('No Colors Selected','','red-snackbar'); 
+                  }
+                  else{
+                    this.router.navigate(['/products', this.catid]);
+                  }
+                }
+                else if(param=="back"){
+                  this.router.navigate(['/products', this.catid]);
+                }
+                
+                
               }
 
 getNextMember(array, productID, from) {

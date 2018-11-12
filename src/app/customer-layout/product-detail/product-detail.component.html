@@ -73,16 +73,17 @@
                       <div *ngIf="myData && !myData?.error" id="color-thumbnails" class="product-entry detail-three box-case" style="display: flow-root;">
                         <span style="background: #ee582b ; color:white;border: 2px solid #ee582b" *ngIf="!this.colorselected || this.colorselected=='undefined'">* Click on color(s) below to add this product to your Selections.<br></span>
                         <div *ngIf="myData?.variants.length!=cart.length"> 
-                          <h5>Colors Available</h5>
+                          <!-- <h5>Colors Available</h5> -->
                         <span class="thumb-nail">
-                            <span *ngFor="let item of myData?.variants;let l = last">
-                            <a *ngIf="!this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');addtoCart(item.A2_Label,item.Attr2,item.ImageFile)">
-                              <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>                              
+                            <span *ngFor="let item of myData?.variants;let l = last" >
+                            <a class="thumb-img" [class.circle]="this.colorselected?.includes(item.Attr2) && item.Attr2!=null"  [id]="'color'+item.Attr2" style="padding: 2px;display: inline-table;float:none;margin:2px" on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');checkcolorCart(item.A2_Label,item.Attr2,item.ImageFile);">
+                                <img style="height:50px; width:50px" [src]="'https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)"/>
+                                  <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>                              
                             </a>
                           </span>
                         </span>
                       </div> 
-                      <div> 
+                      <!-- <div> 
                         
                         <span *ngIf="cart.length!=0" class="thumb-nail">
                             <br ><h5>Colors Selected</h5>
@@ -92,9 +93,10 @@
                             </a>
                           </span>
                         </span>   
-                      </div>                        
+                      </div>                         -->
                       </div>
-                      <p *ngIf="myData && !myData?.error"><button (click)="SubmitCart();" class="btn btn-primary detail-six">Add to Selection</button></p>
+                     <span style="display: inline-flex;"><p *ngIf="myData && !myData?.error"><button (click)="BacktoCategory('back');" class="btn btn-primary detail-six">Back to Category</button></p>
+                     <p *ngIf="myData && !myData?.error"><button (click)="BacktoCategory('add');" class="btn btn-primary detail-six">Add to Selection</button></p></span>
                       <div *ngIf="myData && !myData?.error">
                       <div *ngIf="myData?.companion.length>0" id="color-thumbnails" class="product-entry detail-four box-case" style="display: flow-root;">
                           <div *ngIf="myData?.companion.length>0" class="col-md-12 col-md-offset-3 text-center">
