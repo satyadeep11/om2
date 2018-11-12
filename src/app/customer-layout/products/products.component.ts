@@ -183,8 +183,10 @@ brandCheck(brand,i){
 NextCat() {
   
   if(localStorage.getItem("CatListFull")){
-    var retrievedData = localStorage.getItem("CatListFull");        
-    this.gc.CatListFull= JSON.parse(retrievedData).split(',').map(Number); 
+    
+    var retrievedData = localStorage.getItem("CatListFull");    
+     
+    this.gc.CatListFull= JSON.parse(retrievedData); 
     console.log(retrievedData,"ok",this.gc.CatListFull)
     if(this.id)
     this.getNextMember(this.gc.CatListFull, this.id.catid,'genie');
