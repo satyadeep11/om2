@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
       }
       else{
         this.router.navigateByUrl('/error');
-      }
+      } 
     }
 
     userRegister(person: newUser){
@@ -48,6 +48,7 @@ export class SignupComponent implements OnInit {
             localStorage.setItem('isLoggedin', 'true');
             localStorage.setItem('fname', this.myData.user.fname);
             localStorage.setItem('lname', this.myData.user.lname);
+            localStorage.setItem('securityGroup', this.myData.user['security_group']);
             this.router.navigateByUrl('/home');
           }
           else if(this.myData.user.admin==1){
@@ -55,6 +56,7 @@ export class SignupComponent implements OnInit {
             localStorage.setItem('admin', 'true');
             localStorage.setItem('fname', this.myData.user.fname);
             localStorage.setItem('lname', this.myData.user.lname);
+            localStorage.setItem('securityGroup', this.myData.user['security_group']);
             this.router.navigateByUrl('/dashboard');
           }
        },

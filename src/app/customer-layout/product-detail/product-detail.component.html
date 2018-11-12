@@ -248,7 +248,7 @@
 
   <ng-template #content let-modal>
       <div class="modal-header">
-        <h4 class="modal-title">{{myData?.product.ProductName}} was added to you Selection</h4>
+        <h4 class="modal-title">{{myData?.product.ProductName}} was added to your Selection</h4>
         <button type="button" class="close" aria-label="Close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -261,7 +261,7 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" [routerLink]="['/products',catid]" [routerLinkActive]="['router-link-active']" (click)="closeModal()">Continue Selection</button>
-          <button type="button" ngbAutofocus class="btn btn-danger" [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" (click)="closeModal()" >End Selection</button>
+          <button type="button" ngbAutofocus class="btn btn-primary" [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" (click)="closeModal()" >End Selection</button>
         </div>
 </ng-template>
 
