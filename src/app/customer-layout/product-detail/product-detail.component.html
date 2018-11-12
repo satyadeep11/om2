@@ -72,8 +72,9 @@
                   <p>{{myData?.product.ProductDesc1}}</p>                  
                       <div *ngIf="myData && !myData?.error" id="color-thumbnails" class="product-entry detail-three box-case" style="display: flow-root;">
                         <span style="background: #ee582b ; color:white;border: 2px solid #ee582b" *ngIf="!this.colorselected || this.colorselected=='undefined'">* Click on color(s) below to add this product to your Selections.<br></span>
-                        <div *ngIf="myData?.variants.length!=cart.length"> 
+                        <!-- <div *ngIf="myData?.variants.length!=cart.length">  -->
                           <!-- <h5>Colors Available</h5> -->
+                          <div>
                         <span class="thumb-nail">
                             <span *ngFor="let item of myData?.variants;let l = last" >
                             <a class="thumb-img" [class.circle]="this.colorselected?.includes(item.Attr2) && item.Attr2!=null"  [id]="'color'+item.Attr2" style="padding: 2px;display: inline-table;float:none;margin:2px" on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');checkcolorCart(item.A2_Label,item.Attr2,item.ImageFile);">
@@ -95,8 +96,8 @@
                         </span>   
                       </div>                         -->
                       </div>
-                     <span style="display: inline-flex;"><p *ngIf="myData && !myData?.error"><button (click)="BacktoCategory('back');" class="btn btn-primary detail-six">Back to Category</button></p>
-                     <p *ngIf="myData && !myData?.error"><button (click)="BacktoCategory('add');" class="btn btn-primary detail-six">Add to Selection</button></p></span>
+                     <span style="display: inline-flex;"><p *ngIf="myData && !myData?.error"><button (click)="BacktoCategory('back',content);" class="btn btn-primary detail-six">Back to Category</button></p>
+                     <p *ngIf="myData && !myData?.error"><button (click)="BacktoCategory('add',content);" class="btn btn-primary detail-six">Add to Selection</button></p></span>
                       <div *ngIf="myData && !myData?.error">
                       <div *ngIf="myData?.companion.length>0" id="color-thumbnails" class="product-entry detail-four box-case" style="display: flow-root;">
                           <div *ngIf="myData?.companion.length>0" class="col-md-12 col-md-offset-3 text-center">
@@ -243,5 +244,25 @@
       </div>
     </div>
   </div>
+
+
+  <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">{{myData?.product.ProductName}} was added to you Selection</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>You have selected the following Colors</p>
+        <ul>
+          <li *ngFor="let color of cart;">{{color.A2_Label}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" [routerLink]="['/products',catid]" [routerLinkActive]="['router-link-active']" (click)="closeModal()">Continue Selection</button>
+          <button type="button" ngbAutofocus class="btn btn-danger" [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" (click)="closeModal()" >End Selection</button>
+        </div>
+</ng-template>
 
   

@@ -9,6 +9,7 @@ import { AuthService } from '../../auth.service';
 import {GlobalCart} from '../globalcart';
 import {  RoutesRecognized } from '@angular/router';
 import { filter, pairwise } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product-detail',
@@ -33,6 +34,7 @@ catname:any;
   visitedproducts='';
   public url="url(https://www.afhsgear.com/sites/998/products/998_";
   public url_close=")";
+  modalReference: any;
 //variables end
 
 constructor(  private route: ActivatedRoute,
@@ -41,6 +43,7 @@ constructor(  private route: ActivatedRoute,
               private authService: AuthService,
               private gc: GlobalCart,
               private render:Renderer,
+              private modalService: NgbModal,
               private router: Router) 
               {
                 this.router.routeReuseStrategy.shouldReuseRoute = function() {
@@ -306,21 +309,24 @@ SubmitCart() {
                 }
               }
 
-              BacktoCategory(param){
-                if(param=="add"){
-                  if(this.cart.length==0){
-                    this.openSnackBar('No Colors Selected','','red-snackbar'); 
-                  }
-                  else{
-                    this.router.navigate(['/products', this.catid]);
-                  }
-                }
-                else if(param=="back"){
-                  this.router.navigate(['/products', this.catid]);
-                }
-                
-                
-              }
+BacktoCategory(param,content){
+  if(param=="add"){
+    if(this.cart.length==0){
+      this.openSnackBar('No Colors Selected','','red-snackbar'); 
+    }
+    else{
+      // this.router.navigate(['/products', this.catid]);
+      this.modalReference=this.modalService.open(content, { centered: true });
+    }
+  }
+  else if(param=="back"){
+    this.router.navigate(['/products', this.catid]);
+  }
+  
+}
+closeModal(){
+  this.modalReference.close();
+}
 
 getNextMember(array, productID, from) {
                 var startIndex = array.indexOf(productID);
