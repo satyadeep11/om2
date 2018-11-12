@@ -2,8 +2,8 @@
   <mat-toolbar class="menu-bar" style="    background-color: unset;
   color: ghostwhite;">
     <span class="step-three">      
-    <span *ngFor="let item of navItems" >
-      <!-- Handle branch node buttons here -->
+    <!-- <span *ngFor="let item of navItems" >
+      
       <span *ngIf="item.children && item.children.length > 0">
         <button mat-button [matMenuTriggerFor]="menu.childMenu"
         [disabled]="item.disabled">
@@ -11,12 +11,25 @@
         </button>
         <app-menu-item #menu [items]="item.children"></app-menu-item>
       </span>
-      <!-- Leaf node buttons here -->
+      
       <span *ngIf="!item.children || item.children.length === 0">
         <button mat-button color="primary" [routerLink]="item.route">
           {{item.displayName}}
         </button>
       </span>
+    </span> -->
+    <span *ngFor="let item of myData?.cats; let i=index">
+        <button *ngIf="item.CategoryParent==0" mat-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{name: item.CategoryName}">{{item.CategoryName}}</button>
+        <mat-menu #appMenu="matMenu" [overlapTrigger]="false">
+            <ng-template matMenuContent let-name="name">
+              <div *ngFor="let item2 of myData?.cats">
+                  <span *ngIf="item.CategoryID== item2.CategoryParent">
+                      <button mat-menu-item [routerLink]="['/products/',item2.CategoryID]" [routerLinkActive]="['router-link-active']">{{item2.CategoryName}}</button>
+                  </span>
+              </div>
+              <button mat-menu-item [routerLink]="['/products/',item.CategoryID]" [routerLinkActive]="['router-link-active']">View All</button>
+            </ng-template>
+        </mat-menu>
     </span>
   </span>
     <!-- <span class="step-one">
@@ -50,7 +63,8 @@
                   <span *ngIf="item.CategoryID== item2.CategoryParent">
                       <button mat-menu-item [routerLink]="['/products/',item2.CategoryID]" [routerLinkActive]="['router-link-active']">{{item2.CategoryName}}</button>
                   </span>
-                </div>
+              </div>
+              <button mat-menu-item [routerLink]="['/products/',item.CategoryID]" [routerLinkActive]="['router-link-active']">View All</button>
             </ng-template>
         </mat-menu>
     </span> -->
