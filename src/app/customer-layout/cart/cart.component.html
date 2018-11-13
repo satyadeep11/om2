@@ -2,7 +2,7 @@
 		<div class="container">
 
 			<div  *ngIf="gc.count==0" class="col-md-12">
-				<span class="text-center"><h3>You haven't selected any Products.</h3><br> <p>Use the Selection Genie or drop-down menus for Apparel, Hardgoods, or Accessories to find the items for your QuickBrand store.</p></span>
+				<span class="text-center"><h3>You haven't selected any products.</h3><br> <p>Use the drop-down menus for Apparel, Hardgoods, or Accessories to find the items for your QuickBrand store.</p></span>
 			</div>
 			<div  *ngIf="gc.count!=0">
 				<h4>Selection Request Summary</h4>
@@ -33,7 +33,7 @@
 								<div class="display-tc">
 									<h3><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">{{item.ProductName}}</a></h3><br>
 									<span *ngFor=" let item2 of item.Colors;">
-									<h3>{{item2}}</h3>
+									<h3 style="font-size: 1rem">{{item2}}</h3>
 									</span>
 								</div>
 							</div>
