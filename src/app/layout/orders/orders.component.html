@@ -11,8 +11,9 @@
     </div>
     
     <div  class="row justify-content-md-center">
-    <div *ngIf="!myData?.error && !approvedCheck" >
-        <table *ngIf="!editCheck" class='table table-hover table-responsive text-center'>
+    <div *ngIf="!myData?.error && !approvedCheck" class="col-md-auto" >
+            <br> <h1 *ngIf="!editCheck" >Pending Orders</h1> <br>
+        <table *ngIf="!editCheck" class='table table-hover table-responsive'>
 
             <tr>
                 <th>Order ID</th>
@@ -45,8 +46,9 @@
     <img src="../../../assets/images/ordersnone.png"/><br> No Pending Orders   
     </div>
 
-    <div *ngIf="!subData?.error && approvedCheck && !viewCheck" >
-        <table *ngIf="!editCheck" class='table table-hover table-responsive text-center'>
+    <div *ngIf="!subData?.error && approvedCheck && !viewCheck" class="col-md-auto" >
+            <br> <h1 >Approved Orders</h1> <br>
+        <table *ngIf="!editCheck" class='table table-hover table-responsive'>
     
           <tr>
               <th>Order ID</th>
@@ -82,9 +84,9 @@
     </div>
 
 
-    <div *ngIf="viewCheck">    
-            <button class="btn btn-primary pull-right" (click)="CloseApproved()"> Go Back</button>
-            
+    <div *ngIf="viewCheck" class="col-md-auto">    
+            <button class="btn btn-primary" (click)="CloseApproved()"> Go Back</button>
+            <br> <h1>Order Details</h1> <br>   
         <table class='table table-hover table-responsive'>
               <tr><th></th>
                   <th>Product Details</th>

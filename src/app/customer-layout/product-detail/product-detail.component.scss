@@ -754,8 +754,10 @@
       .product-detail-wrap .thumb-nail .thumb-img:first-child {
         margin-left: 0; }
       @media screen and (max-width: 768px) {
-        .product-detail-wrap .thumb-nail .thumb-img {
-          width: 31.5%; } }
+        // .product-detail-wrap .thumb-nail .thumb-img {
+        //   width: 31.5%; 
+        // } 
+      }
   
   .product-detail-wrap .desc {
     display: block;
