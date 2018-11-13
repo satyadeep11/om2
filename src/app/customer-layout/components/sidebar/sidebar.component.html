@@ -124,7 +124,7 @@
             </div> -->
             <div class="nested-menu">
                 <a class="list-group-item" (click)="addExpandClass('profile')">
-                        <i class="fa fa-user"></i> {{fname|titlecase}} {{lname|titlecase}} <b class="caret"></b>
+                        <i class="fa fa-user"></i> {{fname|titlecase}} {{lname|titlecase}} <i class="fa fa-angle-down"></i><b class="caret"></b>
                 </a>
                 <li class="nested" [class.expand]="showMenu === 'profile'">
                     <ul class="submenu">
@@ -143,6 +143,11 @@
                                 <span><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</span>
                             </a>
                         </li> -->
+                        <li>
+                                <a [routerLink]="['/customer-orders']" [routerLinkActive]="['router-link-active']">
+                                    <span><i class="fa fa-shopping-cart"></i> {{'Requests'}}</span>
+                                </a>
+                        </li>
                         <li>
                             <a [routerLink]="['/login']" (click)="onLoggedout()">
                                 <span><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
@@ -175,6 +180,9 @@
                 <a class="list-group-item" [routerLink]="['/faq']" [routerLinkActive]="['router-link-active']">
                         <span><i class="fa fa-location-arrow"></i> FAQs</span>
                 </a>  
+                <a class="list-group-item" [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']">
+                    <span><i class="fa fa-shopping-cart"></i>Selections</span>
+                </a>  
                 <a class="list-group-item" >                
                     <input [(ngModel)]="searchText" (keydown.enter)="Search(searchText);searchText='';" type="search" size="18" placeholder="Search.." name="search">
                     <button (click)="Search(searchText);searchText='';"><i class="fa fa-search"></i></button>                
@@ -184,7 +192,8 @@
 
         </div>
     </div>
-    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleSidebar()"> 
+        <!-- toggleCollapsed() -->
         <i class="fa fa-fw fa-angle-double-left"></i>&nbsp;
         <span>{{ 'Collapse Sidebar' | translate }}</span>
     </div>

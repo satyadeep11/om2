@@ -4,6 +4,11 @@
     padding-top: 20px;
     width: 100%;
     margin-left: 1000px;
+    
+  }
+  .filterButton{
+    display:none;
+    z-index: 100000!important;
   }
   
   // ::ng-deep.mat-expansion-panel-content{
@@ -590,7 +595,42 @@
     float: left; }
     @media screen and (max-width: 768px) {
       .product-detail-wrap .thumb-nail {
-        margin-bottom: 2em; } }
+        margin-bottom: 2em; } 
+      .filterButton{
+        display: unset;
+        position: fixed;
+        right: 5px;
+        bottom: 5px;
+      }
+      .filtersList{
+        z-index: 1041;
+        display:none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+      }
+      .filterBackdrop{
+        display:none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1040;
+        opacity: 0.5;
+        background-color: #000;
+      }
+      .active{
+        display:unset;
+      }
+      .colorlib-shop {
+          margin-top: 1rem!important
+      }
+
+
+    }
     .product-detail-wrap .thumb-nail .thumb-img {
       height: 120px;
       width: 31.87%;

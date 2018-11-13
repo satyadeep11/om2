@@ -735,7 +735,7 @@
     //
   
   .product-detail-wrap .product-img {
-    height: 400px;
+    
     margin-bottom: 8px; }
   
   .product-detail-wrap .thumb-nail {
@@ -744,7 +744,11 @@
     float: left; }
     @media screen and (max-width: 768px) {
       .product-detail-wrap .thumb-nail {
-        margin-bottom: 2em; } }
+        margin-bottom: 2em; } 
+        .colorlib-shop {
+            margin-top: 1rem!important
+        }
+      }
     .product-detail-wrap .thumb-nail .thumb-img {
       height: 50px;
       width: 50px;

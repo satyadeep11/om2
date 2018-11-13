@@ -26,6 +26,7 @@ export class ProductsComponent implements OnInit {
   sizeSelected='';
   searchText:any='';
   secondsize=[];
+  icon='menu';
   
   brandFilterArray=[];
   genderFilterArray=[];
@@ -149,6 +150,17 @@ if(localStorage.getItem("visitedproducts") ){this.visitedproducts=localStorage.g
 
 ngOnInit() {
  
+}
+
+filterButtonToggle(){
+  console.log(this.icon)
+  if(this.icon=="menu"){
+    this.icon = "close" ;
+  }
+  else{
+    this.icon="menu";
+  }
+   
 }
 
 getMain(imagename){

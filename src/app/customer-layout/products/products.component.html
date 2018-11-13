@@ -64,10 +64,13 @@
                         </div>                     
                     </div>
                 </div>
-                <div *ngIf="!myData?.error" class="col-md-2 col-md-pull-10" >
+                <button mat-fab color="primary" class="filterButton" (click)=filterButtonToggle()><mat-icon>{{icon}}</mat-icon></button>
+                <div class="filterBackdrop" [ngClass]="icon=='close' ? 'active' : ''"></div>
+                <div *ngIf="!myData?.error" class="col-md-2 col-md-pull-10 filtersList" [ngClass]="icon=='close' ? 'active' : ''">
                         <!-- id="sidebar_float" -->
                     <mat-accordion>
                     <div class="sidebar">
+                            <mat-card> <mat-card-title>Filters</mat-card-title></mat-card>
                         <mat-expansion-panel class="products-one" expanded>    
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
