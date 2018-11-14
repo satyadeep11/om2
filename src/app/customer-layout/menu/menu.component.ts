@@ -30,7 +30,8 @@ export class MenuComponent implements OnInit {
     this.intro.oncomplete(function(targetElement) {         
         if(!localStorage.getItem("HomeVisit") && (window.location.pathname.includes("home"))){
             localStorage.setItem('HomeVisit', 'Yes');
-            self.LoadGenie();
+            // self.LoadGenie();
+            this.QuestionBounceCheck='';
         }
         if(!localStorage.getItem("ProductsVisit") && (window.location.pathname.includes("products"))){
             localStorage.setItem('ProductsVisit', 'Yes'); 
