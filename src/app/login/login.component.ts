@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
        
     }
     userLogin(person: Person){
+      console.log(person,"here");
         this.authService.login(person)
         .subscribe(user => {
           // show an alert to tell the user if product was created or not
