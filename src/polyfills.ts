@@ -35,6 +35,8 @@ import 'core-js/es6/map';
 import 'core-js/es6/weak-map';
 import 'core-js/es6/set';
 
+import 'classlist.js';  // Run `npm install --save classlist.js`.
+
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
 
@@ -66,3 +68,21 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
  * Need to import at least one locale-data with intl.
  */
 // import 'intl/locale-data/jsonp/en';
+
+(function() {
+    Object.setPrototypeOf = Object.setPrototypeOf || ({__proto__: []} instanceof Array ? setProtoOf : mixinProperties);
+  
+    function setProtoOf(obj, proto) {
+      obj.__proto__ = proto;
+      return obj;
+    }
+  
+    function mixinProperties(obj, proto) {
+      for (const prop in proto) {
+        if (!obj.hasOwnProperty(prop)) {
+          obj[prop] = proto[prop];
+        }
+      }
+      return obj;
+    }
+  })();
