@@ -15,7 +15,9 @@ export class InviteComponent implements OnInit {
   email: any;
   securityGroups:any;
   sgList=[];
+  invite_string='';
   public sgListerror = false;  
+ 
 
   constructor(public router: Router,
               private inviteService: InviteService) { 
@@ -45,6 +47,8 @@ export class InviteComponent implements OnInit {
       // go back to list of products
       this.myData = user; 
       this.closed = false; 
+      this.invite_string="https://quickselect.idworks.com/signup?email="+person.email+"&uuid="+this.myData.uid;
+      console.log(this.invite_string);
       // if(this.myData.error){
       //   this.router.navigateByUrl('/error');
       // }
@@ -61,6 +65,25 @@ export class InviteComponent implements OnInit {
     else{
       this.sgListerror =true;
     }
+  }
+
+copyFunction() {
+    /* Get the text field */
+    var txtArea = document.createElement("textarea");
+    txtArea.id = 'txt';
+    txtArea.style.position = 'fixed';
+    txtArea.style.top = '0';
+    txtArea.style.left = '0';
+    txtArea.style.opacity = '0';
+    txtArea.value = this.invite_string;
+    document.body.appendChild(txtArea);
+    txtArea.select();
+  
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+  
+    /* Alert the copied text */
+    alert("The Invite Link for the Customer is copied to your clipboard");
   }
 
   AddRemove(groupID,event) {//event gets the checkbox checked or not value

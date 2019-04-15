@@ -24,6 +24,7 @@ export class InviteListComponent implements OnInit {
   ulname='';
   ucompany='';
   uphone='';
+  invite_string='';
 
   constructor(public router: Router,
     private inviteListService: InviteListService,
@@ -39,6 +40,24 @@ export class InviteListComponent implements OnInit {
     }
 
 
+    copyFunction(email,id) {
+      /* Get the text field */
+      var txtArea = document.createElement("textarea");
+      txtArea.id = 'txt';
+      txtArea.style.position = 'fixed';
+      txtArea.style.top = '0';
+      txtArea.style.left = '0';
+      txtArea.style.opacity = '0';
+      txtArea.value = "https://quickselect.idworks.com/signup?email="+email+"&uuid="+id;
+      document.body.appendChild(txtArea);
+      txtArea.select();
+    
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
+    
+      /* Alert the copied text */
+      alert("The Invite Link for the Customer is copied to your clipboard");
+    }
 
   ngOnInit() {
      

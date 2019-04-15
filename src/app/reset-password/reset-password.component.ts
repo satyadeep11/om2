@@ -44,10 +44,10 @@ export class ResetPasswordComponent implements OnInit {
         this.router.navigateByUrl('/error');
       }
       else if(this.myData.user.admin==0){
-        localStorage.setItem('isLoggedin', 'true');
-        localStorage.setItem('fname', this.myData.user.fname);
-        localStorage.setItem('lname', this.myData.user.lname);
-        localStorage.setItem('securityGroup', this.myData.user['security_group']);
+        // localStorage.setItem('isLoggedin', 'true');
+        // localStorage.setItem('fname', this.myData.user.fname);
+        // localStorage.setItem('lname', this.myData.user.lname);
+        // localStorage.setItem('securityGroup', this.myData.user['security_group']);
         if(window.confirm('Password Changed. You will be redirected to the Login Page.')){
           this.router.navigateByUrl('/login');
           }
@@ -55,11 +55,11 @@ export class ResetPasswordComponent implements OnInit {
         
       }
       else if(this.myData.user.admin==1){
-        localStorage.setItem('isLoggedin', 'true');
-        localStorage.setItem('admin', 'true');
-        localStorage.setItem('fname', this.myData.user.fname);
-        localStorage.setItem('lname', this.myData.user.lname);        
-        localStorage.setItem('securityGroup', this.myData.user['security_group']);
+        // localStorage.setItem('isLoggedin', 'true');
+        // localStorage.setItem('admin', 'true');
+        // localStorage.setItem('fname', this.myData.user.fname);
+        // localStorage.setItem('lname', this.myData.user.lname);        
+        // localStorage.setItem('securityGroup', this.myData.user['security_group']);
         if(window.confirm('Password Changed. You will be redirected to the Login Page.')){
           this.router.navigateByUrl('/login');
           }

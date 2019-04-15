@@ -63,6 +63,9 @@
                     <!-- delete customer button -->
                     <button (click)="deleteCustomer(user.unique_id)" class='btn btn-danger '>
                        Delete
+                    </button>&nbsp;
+                    <button (click)="copyFunction(user.email,user.unique_id)" class='btn btn-success '>
+                            Invite Link
                     </button>
             </td>         
         </tr>

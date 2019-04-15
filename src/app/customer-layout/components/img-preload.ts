@@ -1,9 +1,9 @@
-// An image directive based on http://blog.teamtreehouse.com/learn-asynchronous-image-loading-javascript
+// An image directive based on https://blog.teamtreehouse.com/learn-asynchronous-image-loading-javascript
 import {Directive, Input, OnInit} from '@angular/core';
 
 // Define the Directive meta data
 @Directive({
-  selector: '[img-preloader]', //E.g <img mg-img-preloader="http://some_remote_image_url"
+  selector: '[img-preloader]', //E.g <img mg-img-preloader="https://some_remote_image_url"
   host: {
     '[attr.src]': 'finalImage'    //the attribute of the host element we want to update. in this case, <img 'src' />
   }

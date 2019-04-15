@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
     fname:String;
     lname:String;
+    admin:boolean;
     
     constructor(private translate: TranslateService, public router: Router,public gc: GlobalCart) {
 
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
        this.fname= localStorage.getItem("fname").toString();
        this.lname= localStorage.getItem("lname").toString();   
-        
+       this.admin=  (localStorage.getItem('admin')=='true'); 
     }
 
     gcUpdate(){
@@ -64,7 +65,8 @@ export class HeaderComponent implements OnInit {
         localStorage.removeItem('isLoggedin');
         localStorage.removeItem('uuid');
         localStorage.removeItem('lname');
-        localStorage.removeItem('fname');
+        localStorage.removeItem('fname'); 
+        localStorage.removeItem('admin');
         // localStorage.clear();
     }
 
