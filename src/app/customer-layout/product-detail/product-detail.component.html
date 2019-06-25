@@ -30,9 +30,9 @@
                   <!-- <ngb-carousel *ngIf="myData?.variants.length>3">
                     <ng-template ngbSlide *ngFor="let item of myData?.variants; let i= index; let l=count ">
                       <div class="thumb-nail" *ngIf="item.ImageFile">
-                        <span *ngIf="myData?.variants[i].ImageFile"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
-                        <span *ngIf="l>i+1"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+myData?.variants[i+1].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
-                        <span *ngIf="l>i+2"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+myData?.variants[i+2].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
+                        <span *ngIf="myData?.variants[i].ImageFile"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.securedgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
+                        <span *ngIf="l>i+1"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.securedgear.com/sites/998/products/998_' +item.ProductID+'_'+myData?.variants[i+1].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
+                        <span *ngIf="l>i+2"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.securedgear.com/sites/998/products/998_' +item.ProductID+'_'+myData?.variants[i+2].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
                       </div>
                     </ng-template>                  
                   </ngb-carousel> -->
@@ -40,14 +40,14 @@
                   <!-- <ngb-carousel *ngIf="myData?.variants.length<=3" [showNavigationArrows]="false">
                       <ng-template ngbSlide>
                         <div class="thumb-nail" *ngIf="myData?.variants[0].ImageFile">
-                          <span *ngIf="myData?.variants.length<3"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +myData?.variants[0].ProductID+'_'+myData?.variants[0].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
-                          <span *ngIf="myData?.variants.length==2"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +myData?.variants[0].ProductID+'_'+myData?.variants[1].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
-                          <span *ngIf="myData?.variants.length==3"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +myData?.variants[0].ProductID+'_'+myData?.variants[2].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
+                          <span *ngIf="myData?.variants.length<3"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.securedgear.com/sites/998/products/998_' +myData?.variants[0].ProductID+'_'+myData?.variants[0].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
+                          <span *ngIf="myData?.variants.length==2"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.securedgear.com/sites/998/products/998_' +myData?.variants[0].ProductID+'_'+myData?.variants[1].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
+                          <span *ngIf="myData?.variants.length==3"><a class="thumb-img" [ngStyle]="{'background-image': 'url(https://www.securedgear.com/sites/998/products/998_' +myData?.variants[0].ProductID+'_'+myData?.variants[2].ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a></span>
                         </div>
                       </ng-template>                  
                     </ngb-carousel> -->
                     <!-- <span class="thumb-nail">
-                    <a *ngFor="let item of myData?.variants; " class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;">
+                    <a *ngFor="let item of myData?.variants; " class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.securedgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile+ ')'}" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;">
                       <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>
                       <span>{{ l === true ? updateCart() : null}}</span>
                     </a>
@@ -78,7 +78,7 @@
                         <span class="thumb-nail">
                             <span *ngFor="let item of myData?.variants;let l = last" >
                             <a class="thumb-img" [class.circle]="this.colorselected?.includes(item.Attr2) && item.Attr2!=null"  [id]="'color'+item.Attr2" style="padding: 2px;display: inline-table;float:none;margin:2px" on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');checkcolorCart(item.A2_Label,item.Attr2,item.ImageFile);">
-                                <img style="height:50px; width:50px" [src]="'https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)"/>
+                                <img style="height:50px; width:50px" [src]="'https://www.securedgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)"/>
                                   <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>                              
                             </a>
                           </span>
@@ -89,7 +89,7 @@
                         <span *ngIf="cart.length!=0" class="thumb-nail">
                             <br ><h5>Colors Selected</h5>
                             <span *ngFor="let item of cart;let l = last">
-                            <a *ngIf="this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');deletefromCart(item.A2_Label,item.Attr2,item.ImageFile)">
+                            <a *ngIf="this.colorselected?.includes(item.Attr2) && item.Attr2!=null" class="thumb-img" style="height:50px; width:50px" [ngStyle]="{'background-image': 'url(https://www.securedgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)+ ')'}"  on-mouseover="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');" (click)="updateImage(item.ProductID,getMain(item.ImageFile),'product-img');deletefromCart(item.A2_Label,item.Attr2,item.ImageFile)">
                               <span  class="tooltiptext">{{item.A2_Label||"None"}}</span>                            
                             </a>
                           </span>

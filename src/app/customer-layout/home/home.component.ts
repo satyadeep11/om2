@@ -14,7 +14,7 @@ import {GlobalCart} from '../globalcart';
 export class HomeComponent implements OnInit {
   public id: any;
   myData:any;
-  public url="url(https://www.afhsgear.com/sites/998/products/998_";
+  public url="url(https://www.securedgear.com/sites/998/products/998_";
   public url_close=")";  
 
   constructor(private productDetailService: ProductDetailService,private gc: GlobalCart,public dialog : MatDialog) {

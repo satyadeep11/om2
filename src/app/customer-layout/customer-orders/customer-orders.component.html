@@ -45,7 +45,7 @@
             <!-- Use *ngFor directive to loop throught our list of orders. -->
             <tr *ngFor=" let item of singleOrder?.cartproducts">
                 <td>
-                    <img class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [src]="'https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile"/>
+                    <img class="product-img" [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']" [src]="'https://www.securedgear.com/sites/998/products/998_' +item.ProductID+'_'+item.ImageFile"/>
                 </td>
                 <td>
                   <div class="display-tc">

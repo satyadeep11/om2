@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
   id:CatId={};
   private sub: any;
   myData:any;
-  public url="url(https://www.afhsgear.com/sites/998/products/998_";
+  public url="url(https://www.securedgear.com/sites/998/products/998_";
   public url_close=")";
   visitedproducts="";
   startprice=0;

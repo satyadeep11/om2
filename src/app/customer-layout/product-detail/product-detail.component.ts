@@ -32,7 +32,7 @@ catname:any;
   cartcheck=true;
   cart=[]; 
   visitedproducts='';
-  public url="url(https://www.afhsgear.com/sites/998/products/998_";
+  public url="url(https://www.securedgear.com/sites/998/products/998_";
   public url_close=")";
   modalReference: any;
 //variables end
@@ -231,7 +231,7 @@ public updateImage(product,image,imageid) {
                                             if(image) {
                                               var inputElement = <HTMLInputElement>document.getElementById(imageid);
                                               if(document.getElementById(imageid)){
-                                                var url="https://www.afhsgear.com/sites/998/products/998_";
+                                                var url="https://www.securedgear.com/sites/998/products/998_";
                                                 inputElement.style.backgroundImage = 'url('+url+ product +'_'+ image + ')';
                                               }
                                             }

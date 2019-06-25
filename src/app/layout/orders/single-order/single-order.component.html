@@ -13,7 +13,7 @@
       </tr>
       <tr *ngFor="let item of newCart;let count=index">
           <td>
-              <img class="product-img" [src]="'https://www.afhsgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)"/>
+              <img class="product-img" [src]="'https://www.securedgear.com/sites/998/products/998_' +item.ProductID+'_'+getThumb(item.ImageFile)"/>
           </td>
           <td>
               <h5><a [routerLink]="['/product-detail',item.ProductID]" [routerLinkActive]="['router-link-active']">{{item.ProductName}}</a></h5>
@@ -25,7 +25,7 @@
                         <span *ngFor="let colors of myData.colors;let i=index">
                             <span style="border: 1px solid black;padding: 5px;overflow: auto;display: inline-block;margin: 5px;">
                                 <input *ngIf="colors.ProductID!=null" type="checkbox" [checked]="item.Colors.includes(colors.A2_Label)" (change)="AddRemove(item.ProductID,colors.Attr2,colors.A2_Label,item.selectionid,colors.Price,item.ProductName,colors.ImageFile,$event)" /> {{colors.A2_Label}}
-                                <img [src]="'https://www.afhsgear.com/sites/998/products/998_' +myData?.colors[0].ProductID+'_'+getThumb60(colors.ImageFile)"/> 
+                                <img [src]="'https://www.securedgear.com/sites/998/products/998_' +myData?.colors[0].ProductID+'_'+getThumb60(colors.ImageFile)"/> 
                             </span>
                         </span>  
                     </p>
