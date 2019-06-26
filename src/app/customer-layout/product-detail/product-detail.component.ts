@@ -53,6 +53,7 @@ constructor(  private route: ActivatedRoute,
 
               ImageClick(url){
                 url=url.replace("url\(","").replace("\)","").replace("\"","").replace("\"","");
+                url=url.replace("_600.jpg",".jpg");
                 window.open(url);
               }                
 
