@@ -21,7 +21,7 @@
                 </div>
               <div class="col-md-5 text-center" >
                 <div class="product-entry">                    
-                  <div *ngIf="!myData?.error" class="product-img" id="product-img" ></div>
+                  <div *ngIf="!myData?.error" class="product-img" id="product-img" [ngStyle]="{'cursor': 'pointer'}" (click)="ImageClick($event.target.style.backgroundImage)"></div>
                   <!-- <div class="thumb-nail">
                     <a class="thumb-img" id="thumb-img-1" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a>
                     <a class="thumb-img" id="thumb-img-2" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a>

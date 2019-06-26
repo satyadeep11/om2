@@ -51,7 +51,10 @@ constructor(  private route: ActivatedRoute,
                 };
               }
 
-              
+              ImageClick(url){
+                url=url.replace("url\(","").replace("\)","").replace("\"","").replace("\"","");
+                window.open(url);
+              }                
 
 ngOnInit()  {
               this.sub = this.route.params.subscribe(params => {
@@ -360,7 +363,9 @@ getThumb200(imagename){
                   
 getMain(imagename){
                     return imagename.replace(".jpg", "_600.jpg");
-                }              
+                }   
+                
+
 
 }
 
