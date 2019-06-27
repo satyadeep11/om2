@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductDetailService } from '../product-detail.service'; 
 import {MatSnackBar} from '@angular/material';
@@ -11,6 +11,7 @@ import {  RoutesRecognized } from '@angular/router';
 import { filter, pairwise } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -19,6 +20,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ProductDetailComponent implements OnInit {
   
 //variables
+@Input() public imageurl;
 catid:any;
 catname:any;
   id:PriceId={};
@@ -51,11 +53,7 @@ constructor(  private route: ActivatedRoute,
                 };
               }
 
-              ImageClick(url){
-                url=url.replace("url\(","").replace("\)","").replace("\"","").replace("\"","");
-                url=url.replace("_600.jpg",".jpg");
-                window.open(url);
-              }                
+              
 
 ngOnInit()  {
               this.sub = this.route.params.subscribe(params => {
@@ -328,6 +326,20 @@ BacktoCategory(param,content){
   }
   
 }
+ImageClick(url,imagezoom){
+  url=url.replace("url\(","").replace("\)","").replace("\"","").replace("\"","");
+  // url=url.replace("_600.jpg",".jpg");
+  // window.open(url);
+  this.modalReference=this.modalService.open(imagezoom, { centered: true,size:"lg"});
+  this.imageurl=url; 
+}  
+
+ImageClickNewTab(url){
+  url=url.replace("url\(","").replace("\)","").replace("\"","").replace("\"","");
+  url=url.replace("_600.jpg",".jpg");
+  window.open(url);
+}  
+
 closeModal(){
   this.modalReference.close();
 }

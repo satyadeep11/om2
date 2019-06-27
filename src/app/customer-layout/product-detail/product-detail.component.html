@@ -21,7 +21,8 @@
                 </div>
               <div class="col-md-5 text-center" >
                 <div class="product-entry">                    
-                  <div *ngIf="!myData?.error" class="product-img" id="product-img" [ngStyle]="{'cursor': 'pointer'}" (click)="ImageClick($event.target.style.backgroundImage)"></div>
+                  <div *ngIf="!myData?.error" class="product-img" id="product-img" [ngStyle]="{'cursor': 'pointer'}" (click)="ImageClick($event.target.style.backgroundImage,imagezoom)"></div>
+                  <a [ngStyle]="{'cursor': 'pointer'}" (click)="ImageClickNewTab($event.target.previousElementSibling.style.backgroundImage)">Enlarge Image in new tab</a>
                   <!-- <div class="thumb-nail">
                     <a class="thumb-img" id="thumb-img-1" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a>
                     <a class="thumb-img" id="thumb-img-2" onclick="document.getElementById('product-img').style.backgroundImage =this.style.backgroundImage ;"></a>
@@ -263,6 +264,20 @@
           <button type="button" class="btn btn-outline-secondary" [routerLink]="['/products',catid]" [routerLinkActive]="['router-link-active']" (click)="closeModal()">Goto Category</button>
           <button type="button" ngbAutofocus class="btn btn-primary" [routerLink]="['/cart']" [routerLinkActive]="['router-link-active']" (click)="closeModal()" >End Selection</button>
         </div>
+</ng-template>
+
+<ng-template #imagezoom let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{myData?.product.ProductName}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img [(src)]="this.imageurl" style="display:block; margin-left: auto;margin-right: auto">
+  </div>
+  <div class="modal-footer">      
+    </div>
 </ng-template>
 
   
