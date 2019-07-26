@@ -59,7 +59,7 @@ export class ProductsComponent implements OnInit {
         this.productDetailService.category_product(this.id)
             .subscribe(user => {
               this.myData = user;  
-              console.log(this.myData);     
+              console.log(this.myData["products"],"here");     
               //get the product list for this category
                         var self=this;
                         self.gc.productlistcategory.length=0;
