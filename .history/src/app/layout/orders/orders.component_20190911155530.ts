@@ -28,7 +28,7 @@ export class OrdersComponent implements OnInit {
   }
 
   getSigleOrder(selectionid){
-    
+    console.log(this.notes);
     let orderid:OrderId={};
     var colors_container=[];    
     var uniqueproductid:any[][]=[];

@@ -21,7 +21,6 @@ export class OrdersComponent implements OnInit {
     viewCheck=false;
     approvedCheck=false;
     subData:any;
-    notes='';
 
   ngOnInit() {
     this.getOrders();

@@ -35,14 +35,14 @@
                 <td>{{order.Notes}}</td> 
                 <td id="actions_td">
                         <!-- edit Order button -->                  
-                        <button (click)="notes=order.Notes;getSigleOrder(order.Id);" class='btn btn-primary '>
+                        <button (click)="getSigleOrder(order.Id);notes=order.Notes" class='btn btn-primary '>
                             Edit Order
                         </button>&nbsp;                  
                 </td>         
             </tr>
 
         </table>
-        <app-single-order *ngIf="editCheck" [newCart]="newCart" [notes]="notes" [fullCart]="singleOrderData" (editCheckChange)="editCheckChangeHandler($event)" (saveCheckChange)="saveCheckChangeHandler($event)"></app-single-order>
+        <app-single-order *ngIf="editCheck" [newCart]="newCart" [fullCart]="singleOrderData" (editCheckChange)="editCheckChangeHandler($event)" (saveCheckChange)="saveCheckChangeHandler($event)"></app-single-order>
     </div>
     <div *ngIf="myData?.error && !approvedCheck" >    
     <img src="../../../assets/images/ordersnone.png"/><br> No Pending Orders   
@@ -79,7 +79,7 @@
           </tr>
     
         </table>
-        <app-single-order *ngIf="editCheck" [newCart]="newCart" [notes]="notes" [fullCart]="singleOrderData" (editCheckChange)="editCheckChangeHandler($event)" (saveCheckChange)="saveCheckChangeHandler($event)"></app-single-order>
+        <app-single-order *ngIf="editCheck" [newCart]="newCart" [fullCart]="singleOrderData" (editCheckChange)="editCheckChangeHandler($event)" (saveCheckChange)="saveCheckChangeHandler($event)"></app-single-order>
     </div>
     <div *ngIf="subData?.error && approvedCheck" >    
        <img src="../../../assets/images/ordersnone.png"/><br> No Pending Orders   

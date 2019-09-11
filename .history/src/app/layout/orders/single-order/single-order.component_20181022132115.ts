@@ -20,7 +20,6 @@ export class SingleOrderComponent implements OnInit {
 
   @Input() newCart;
   @Input() fullCart;
-  @Input() notes;
  
   @Output() editCheckChange = new EventEmitter<boolean>();
   @Output() saveCheckChange = new EventEmitter<number>();

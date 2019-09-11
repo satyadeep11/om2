@@ -4,7 +4,7 @@
         <button class="btn btn-success " (click)="ApproveCheck()"> Approve </button>
         <button class="btn btn-primary" (click)="Close()"> Go Back</button>
     </div><br><br>
-    <p class="text-left" *ngIf="notes.length>0">Notes : <b>{{notes}}</b></p>
+    <p *ngIf="notes.length>0">Notes : {{notes}}</p>
 <table class='table table-hover table-responsive'>
       <tr><th></th>
           <th>Product Details</th>
