@@ -39,7 +39,7 @@
         "node-sass": "^4.12.0",
         "rxjs": "^6.0.0",
         "save": "^2.4.0",
-        "yarn": "^1.17.3",
+        "yarn": "^1.22.0",
         "zone.js": "^0.8.29"
     },
     "devDependencies": {
